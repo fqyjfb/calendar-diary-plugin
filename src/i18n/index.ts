@@ -5,12 +5,13 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import enCalendar from "@/i18n/locales/en/calendar.json";
 import koCalendar from "@/i18n/locales/ko/calendar.json";
 import jaCalendar from "@/i18n/locales/ja/calendar.json";
+import zhCalendar from "@/i18n/locales/zh/calendar.json";
 
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    fallbackLng: "en",
+    fallbackLng: "zh",
     debug: false,
     defaultNS: "calendar",
     ns: ["calendar"],
@@ -24,6 +25,9 @@ i18n
       },
       ja: {
         calendar: jaCalendar,
+      },
+      zh: {
+        calendar: zhCalendar,
       },
     },
 

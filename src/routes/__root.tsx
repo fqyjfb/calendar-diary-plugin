@@ -20,7 +20,7 @@ import { cn } from "@/lib/utils"
 import { useThemeStore } from '@/stores/theme-store'
 
 // Root layout component
-function RootComponent() {
+export function RootComponent() {
   const { theme, applyTheme } = useThemeStore()
 
   // Apply theme on mount and when theme changes

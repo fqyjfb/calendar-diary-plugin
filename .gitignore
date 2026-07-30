@@ -9,7 +9,6 @@
 /coverage
 
 # vite
-/dist
 /dist-ssr
 *.local
 
