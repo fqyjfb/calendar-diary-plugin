@@ -1,48 +1,29 @@
 import { useTranslation } from "react-i18next";
 
-import { useCalendarUser } from "@/stores/calendar-store";
-import { useUsers } from "@/hooks/use-users";
+import { useCalendarType } from "@/stores/calendar-store";
+import { useEventTypes } from "@/hooks/use-event-types";
 
-import { AvatarGroup } from "@/components/ui/avatar-group";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-export function UserSelect() {
-  const { selectedUserId, setSelectedUserId } = useCalendarUser();
-  const { data: users = [] } = useUsers();
+export function TypeSelect() {
+  const { selectedType, setSelectedType } = useCalendarType();
+  const { options: eventTypeOptions } = useEventTypes();
   const { t } = useTranslation('calendar');
 
   return (
-    <Select value={selectedUserId} onValueChange={setSelectedUserId}>
+    <Select value={selectedType} onValueChange={(value) => setSelectedType(value as typeof selectedType)}>
       <SelectTrigger className="flex-1 md:w-48">
         <SelectValue />
       </SelectTrigger>
 
       <SelectContent align="end">
         <SelectItem value="all">
-          <div className="flex items-center gap-1">
-            <AvatarGroup max={2}>
-              {users.map(user => (
-                <Avatar key={user.id} className="size-6 text-xxs">
-                  <AvatarImage src={user.picturePath ?? undefined} alt={user.name} />
-                  <AvatarFallback className="text-xxs">{user.name[0]}</AvatarFallback>
-                </Avatar>
-              ))}
-            </AvatarGroup>
-            {t("userSelect.all")}
-          </div>
+          {t("typeSelect.all")}
         </SelectItem>
 
-        {users.map(user => (
-          <SelectItem key={user.id} value={user.id} className="flex-1">
-            <div className="flex items-center gap-2">
-              <Avatar key={user.id} className="size-6">
-                <AvatarImage src={user.picturePath ?? undefined} alt={user.name} />
-                <AvatarFallback className="text-xxs">{user.name[0]}</AvatarFallback>
-              </Avatar>
-
-              <p className="truncate">{user.name}</p>
-            </div>
+        {eventTypeOptions.map(type => (
+          <SelectItem key={type.value} value={type.value}>
+            {type.label}
           </SelectItem>
         ))}
       </SelectContent>

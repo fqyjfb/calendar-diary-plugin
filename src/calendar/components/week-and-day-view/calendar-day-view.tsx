@@ -1,10 +1,11 @@
-import { Calendar, Clock, User } from "lucide-react";
+import { Calendar, Clock, Tag } from "lucide-react";
 import { parseISO, areIntervalsOverlapping, format } from "date-fns";
 import { useTranslation } from "react-i18next";
 
-import { useCalendarDate, useCalendarUser, useCalendarPreferences } from "@/stores/calendar-store";
+import { useCalendarDate, useCalendarPreferences } from "@/stores/calendar-store";
 import { getDateLocale } from "@/lib/date-locale";
 import { formatDate, formatTimeRange } from "@/lib/date-formats";
+import { useEventTypes } from "@/hooks/use-event-types";
 
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { SingleCalendar } from "@/components/ui/single-calendar";
@@ -27,10 +28,10 @@ interface IProps {
 
 export function CalendarDayView({ singleDayEvents, multiDayEvents }: IProps) {
   const { selectedDate, setSelectedDate } = useCalendarDate();
-  const { users } = useCalendarUser();
   const { visibleHours, workingHours } = useCalendarPreferences();
   const { t, i18n } = useTranslation('calendar');
   const locale = getDateLocale(i18n.language);
+  const { getLabel } = useEventTypes();
 
   const { hours, earliestEventHour, latestEventHour } = getVisibleHours(visibleHours, singleDayEvents);
 
@@ -149,8 +150,8 @@ export function CalendarDayView({ singleDayEvents, multiDayEvents }: IProps) {
         </ScrollArea>
       </div>
 
-      <div className="hidden w-64 divide-y border-l md:block">
-        <SingleCalendar className="mx-auto w-fit" mode="single" selected={selectedDate} onSelect={date => date && setSelectedDate(date)} initialFocus />
+      <div className="hidden w-72 divide-y border-l md:block">
+        <SingleCalendar className="mx-auto w-fit" mode="single" selected={selectedDate} onSelect={(date: Date | undefined) => date && setSelectedDate(date)} />
 
         <div className="flex-1 space-y-3">
           {currentEvents.length > 0 ? (
@@ -170,18 +171,14 @@ export function CalendarDayView({ singleDayEvents, multiDayEvents }: IProps) {
             <ScrollArea className="h-[422px] px-4" type="always">
               <div className="space-y-6 pb-4">
                 {currentEvents.map(event => {
-                  const user = users.find(user => user.id === event.user.id);
-
                   return (
                     <div key={event.id} className="space-y-1.5">
                       <p className="line-clamp-2 text-sm font-semibold">{event.title}</p>
 
-                      {user && (
-                        <div className="flex items-center gap-1.5 text-muted-foreground">
-                          <User className="size-3.5" />
-                          <span className="text-sm">{user.name}</span>
-                        </div>
-                      )}
+                      <div className="flex items-center gap-1.5 text-muted-foreground">
+                        <Tag className="size-3.5" />
+                        <span className="text-sm">{getLabel(event.type)}</span>
+                      </div>
 
                       <div className="flex items-center gap-1.5 text-muted-foreground">
                         <Calendar className="size-3.5" />

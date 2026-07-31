@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 // Generic loading spinner
 export function LoadingSpinner({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
@@ -13,11 +14,13 @@ export function LoadingSpinner({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
 
 // Full page loading state
 export function PageLoading() {
+  const { t } = useTranslation("calendar");
+
   return (
     <div className="flex min-h-[400px] items-center justify-center">
       <div className="text-center">
         <LoadingSpinner size="lg" />
-        <p className="mt-4 text-gray-600">Loading...</p>
+        <p className="mt-4 text-gray-600">{t("common.loading")}</p>
       </div>
     </div>
   );
@@ -25,11 +28,13 @@ export function PageLoading() {
 
 // Calendar-specific loading state
 export function CalendarLoading() {
+  const { t } = useTranslation("calendar");
+
   return (
     <div className="flex min-h-[600px] items-center justify-center">
       <div className="text-center">
         <LoadingSpinner size="lg" />
-        <p className="mt-4 text-gray-600">Loading calendar...</p>
+        <p className="mt-4 text-gray-600">{t("loading.loadingCalendar")}</p>
       </div>
     </div>
   );
@@ -37,11 +42,13 @@ export function CalendarLoading() {
 
 // Events loading state
 export function EventsLoading() {
+  const { t } = useTranslation("calendar");
+
   return (
     <div className="flex min-h-[200px] items-center justify-center">
       <div className="text-center">
         <LoadingSpinner />
-        <p className="mt-2 text-sm text-gray-600">Loading events...</p>
+        <p className="mt-2 text-sm text-gray-600">{t("loading.loadingEvents")}</p>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Calendar } from "lucide-react";
 
 import { ToggleTheme } from "@/components/layout/change-theme";
-import { LanguageSelector } from "@/components/language-selector";
+import { SettingsDialog } from "@/calendar/components/dialogs/settings-dialog";
 
 export function Header() {
   const { t } = useTranslation("calendar");
@@ -20,11 +20,9 @@ export function Header() {
           </div>
         </div>
 
-        <div className="hidden items-center gap-4 md:flex">
-          <div className="flex items-center gap-2">
-            <LanguageSelector />
-            <ToggleTheme />
-          </div>
+        <div className="hidden items-center gap-2 md:flex">
+          <SettingsDialog />
+          <ToggleTheme />
         </div>
       </div>
     </header>

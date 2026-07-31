@@ -33,7 +33,7 @@ export function ChangeVisibleHoursInput() {
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2">
-        <p className="text-sm font-semibold">Change visible hours</p>
+        <p className="text-sm font-semibold">{t("settings.visibleHours")}</p>
 
         <TooltipProvider delayDuration={100}>
           <Tooltip>
@@ -42,21 +42,21 @@ export function ChangeVisibleHoursInput() {
             </TooltipTrigger>
 
             <TooltipContent className="max-w-80 text-center">
-              <p>If an event falls outside the specified visible hours, the visible hours will automatically adjust to include that event.</p>
+              <p>{t("settings.visibleHoursTooltip")}</p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
       </div>
 
       <div className="flex items-center gap-4">
-        <p>From</p>
+        <p>{t("common.from")}</p>
         <TimeInput id="start-time" hourCycle={12} value={from} onChange={handleFromChange} aria-label={t("settings.startTimeLabel")} />
-        <p>To</p>
+        <p>{t("common.to")}</p>
         <TimeInput id="end-time" hourCycle={12} value={to} onChange={handleToChange} aria-label={t("settings.endTimeLabel")} />
       </div>
 
       <Button className="mt-4 w-fit" onClick={handleApply}>
-        Apply
+        {t("common.apply")}
       </Button>
     </div>
   );

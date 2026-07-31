@@ -2,12 +2,13 @@
 
 import { parseISO } from "date-fns";
 import { cva } from "class-variance-authority";
-import { Clock, Text, User } from "lucide-react";
+import { Clock, Text, Tag } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { getDateLocale } from "@/lib/date-locale";
 import { formatTimeRange } from "@/lib/date-formats";
 
 import { useCalendarPreferences } from "@/stores/calendar-store";
+import { useEventTypes } from "@/hooks/use-event-types";
 
 import { EventDetailsDialog } from "@/calendar/components/dialogs/event-details-dialog";
 
@@ -54,6 +55,7 @@ export function AgendaEventCard({ event, eventCurrentDay, eventTotalDays }: IPro
   const { badgeVariant } = useCalendarPreferences();
   const { t, i18n } = useTranslation("calendar");
   const locale = getDateLocale(i18n.language);
+  const { getLabel } = useEventTypes();
 
   const startDate = parseISO(event.startDate);
   const endDate = parseISO(event.endDate);
@@ -89,8 +91,8 @@ export function AgendaEventCard({ event, eventCurrentDay, eventTotalDays }: IPro
           </div>
 
           <div className="mt-1 flex items-center gap-1">
-            <User className="size-3 shrink-0" />
-            <p className="text-xs text-foreground">{event.user.name}</p>
+            <Tag className="size-3 shrink-0" />
+            <p className="text-xs text-foreground">{getLabel(event.type)}</p>
           </div>
 
           <div className="flex items-center gap-1">

@@ -37,18 +37,19 @@
     "endDate": "结束日期",
     "startTime": "开始时间",
     "endTime": "结束时间",
-    "user": "用户",
+    "type": "事件类型",
     "color": "颜色",
     "noEvents": "暂无事件",
     "noEventsScheduled": "所选月份没有安排事件",
     "eventCount": "{{count}} 个事件",
     "eventCount_plural": "{{count}} 个事件",
     "dayCount": "第 {{current}} 天 / 共 {{total}} 天",
-    "selectUser": "选择用户",
+    "selectType": "选择类型",
     "required": "必填项",
     "titleRequired": "标题不能为空",
     "descriptionRequired": "描述不能为空",
     "colorRequired": "请选择颜色",
+    "typeRequired": "请选择事件类型",
     "startDateInPast": "开始日期不能为过去",
     "endDateBeforeStart": "结束日期必须晚于开始日期",
     "eventCreatedSuccess": "事件创建成功",
@@ -57,7 +58,15 @@
     "startDateRequired": "请选择开始日期",
     "startTimeRequired": "请选择开始时间",
     "endDateRequired": "请选择结束日期",
-    "endTimeRequired": "请选择结束时间"
+    "endTimeRequired": "请选择结束时间",
+    "dialogDescription": "填写事件信息并保存",
+    "deleteConfirm": "确定要删除这个事件吗？此操作不可撤销。"
+  },
+  "eventTypes": {
+    "work": "工作",
+    "study": "学习",
+    "life": "生活",
+    "other": "其他"
   },
   "dateTime": {
     "selectDate": "选择日期",
@@ -76,10 +85,21 @@
     "noAppointments": "当前没有预约或咨询",
     "happeningNow": "正在进行"
   },
-  "userSelect": {
+  "typeSelect": {
     "all": "全部",
-    "selectUser": "选择用户",
-    "selectOption": "请选择一个选项"
+    "selectType": "选择类型",
+    "selectOption": "请选择一个类型",
+    "enterCustomType": "输入自定义类型",
+    "add": "添加"
+  },
+  "typeManager": {
+    "title": "管理事件类型",
+    "defaultTypes": "默认类型",
+    "customTypes": "自定义类型",
+    "noCustomTypes": "暂无自定义类型",
+    "placeholder": "输入新类型名称",
+    "add": "添加",
+    "addNewType": "添加新类型"
   },
   "weekdays": {
     "sunday": "星期日",
@@ -123,6 +143,13 @@
     "loadingError": "加载数据时出错",
     "savingError": "保存数据时出错",
     "deletingError": "删除数据时出错"
+  },
+  "loading": {
+    "loadingEvents": "加载事件中...",
+    "loadingCalendar": "加载日历中...",
+    "failedToLoad": "加载事件失败",
+    "viewNotImplemented": "视图 \"{{view}}\" 尚未实现",
+    "availableViews": "可用视图：月视图、周视图、日视图、年视图、议程"
   },
   "months": {
     "january": "一月",
@@ -170,6 +197,7 @@
     "cancel": "取消",
     "creating": "创建中...",
     "saving": "保存中...",
+    "deleting": "删除中...",
     "delete": "删除",
     "edit": "编辑",
     "create": "创建",
@@ -200,10 +228,19 @@
     "workingHoursTooltip": "这会在工作时间以外的小时单元格上应用虚线背景，仅适用于周视图和日视图。",
     "closed": "休息",
     "visibleHours": "可见时间范围",
+    "visibleHoursTooltip": "如果事件时间超出设定的可见时间范围，系统将自动扩展可见范围以包含该事件。",
     "badgeVariant": "徽章样式",
     "startTimeLabel": "开始时间",
-    "endTimeLabel": "结束时间"
+    "endTimeLabel": "结束时间",
+    "dialogDescription": "自定义日历显示和工作时间设置"
   },
+  "badgeVariants": {
+    "dot": "圆点",
+    "colored": "纯色",
+    "mixed": "混合"
+  },
+  "calendarSettings": "日历设置",
+  "moreEvents": "更多...",
   "accessibility": {
     "viewByDay": "按日查看",
     "viewByWeek": "按周查看",

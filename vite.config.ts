@@ -31,5 +31,4 @@ export default defineConfig({
     __DEV__: JSON.stringify(process.env.NODE_ENV === 'development'),
   },
   assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.svg'],
-  publicDir: 'public',
 })

@@ -7,7 +7,6 @@ import { useEvents } from "@/hooks/use-events";
 import { CalendarHeader } from "@/calendar/components/header/calendar-header";
 import type { TCalendarView } from "@/calendar/types";
 
-// Lazy load calendar view components for better code splitting
 const CalendarMonthView = lazy(() =>
   import("@/calendar/components/month-view/calendar-month-view").then(module => ({
     default: module.CalendarMonthView,
@@ -38,7 +37,6 @@ const CalendarAgendaView = lazy(() =>
   }))
 );
 
-// Loading fallback component for lazy-loaded views
 function ViewLoadingFallback() {
   const { t } = useTranslation("calendar");
   return (
@@ -51,39 +49,35 @@ function ViewLoadingFallback() {
 
 export function ClientContainer() {
   const location = useLocation();
+  const { t } = useTranslation("calendar");
 
-  // Use individual selectors to avoid object recreation
   const selectedDate = useCalendarStore(state => state.selectedDate);
-  const selectedUserId = useCalendarStore(state => state.selectedUserId);
+  const selectedType = useCalendarStore(state => state.selectedType);
   const { data: events = [], isLoading, error } = useEvents();
 
-  // Extract view from router path
   const view = useMemo(() => {
     const pathSegments = location.pathname.split("/");
     const viewSegment = pathSegments[pathSegments.length - 1];
 
-    // Validate that it's a valid calendar view
     const validViews: TCalendarView[] = ["month", "week", "day", "year", "agenda"];
     if (validViews.includes(viewSegment as TCalendarView)) {
       return viewSegment as TCalendarView;
     }
 
-    // Default to month view if invalid
     return "month" as TCalendarView;
   }, [location.pathname]);
 
-  // Filter events based on view and user selection
   const filteredEvents = useMemo(() => {
     return events.filter(event => {
       const eventStartDate = parseISO(event.startDate);
       const eventEndDate = parseISO(event.endDate);
-      const isUserMatch = selectedUserId === "all" || event.user.id === selectedUserId;
+      const isTypeMatch = selectedType === "all" || event.type === selectedType;
 
       if (view === "month") {
         const monthStart = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), 1);
         const monthEnd = new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 0, 23, 59, 59, 999);
         const isInSelectedMonth = eventStartDate <= monthEnd && eventEndDate >= monthStart;
-        return isInSelectedMonth && isUserMatch;
+        return isInSelectedMonth && isTypeMatch;
       }
 
       if (view === "week") {
@@ -96,7 +90,7 @@ export function ClientContainer() {
         weekEnd.setHours(23, 59, 59, 999);
 
         const isInSelectedWeek = eventStartDate <= weekEnd && eventEndDate >= weekStart;
-        return isInSelectedWeek && isUserMatch;
+        return isInSelectedWeek && isTypeMatch;
       }
 
       if (view === "day") {
@@ -107,7 +101,7 @@ export function ClientContainer() {
         dayEnd.setHours(23, 59, 59, 999);
 
         const isInSelectedDay = eventStartDate <= dayEnd && eventEndDate >= dayStart;
-        return isInSelectedDay && isUserMatch;
+        return isInSelectedDay && isTypeMatch;
       }
 
       if (view === "year") {
@@ -115,21 +109,19 @@ export function ClientContainer() {
         const yearEnd = new Date(selectedDate.getFullYear(), 11, 31, 23, 59, 59, 999);
 
         const isInSelectedYear = eventStartDate <= yearEnd && eventEndDate >= yearStart;
-        return isInSelectedYear && isUserMatch;
+        return isInSelectedYear && isTypeMatch;
       }
 
       if (view === "agenda") {
-        // For agenda view, show events from the selected month
         const monthStart = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), 1);
         const monthEnd = new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 0, 23, 59, 59, 999);
         const isInSelectedMonth = eventStartDate <= monthEnd && eventEndDate >= monthStart;
-        return isInSelectedMonth && isUserMatch;
+        return isInSelectedMonth && isTypeMatch;
       }
 
-      // For other views, return false
       return false;
     });
-  }, [selectedDate, selectedUserId, events, view]);
+  }, [selectedDate, selectedType, events, view]);
 
   const singleDayEvents = useMemo(() => {
     return filteredEvents.filter(event => {
@@ -147,24 +139,22 @@ export function ClientContainer() {
     });
   }, [filteredEvents]);
 
-  // Show loading state
   if (isLoading) {
     return (
       <div className="overflow-hidden rounded-xl border">
         <div className="p-8 text-center">
           <div className="mx-auto size-8 animate-spin rounded-full border-b-2 border-primary"></div>
-          <p className="mt-2 text-muted-foreground">Loading events...</p>
+          <p className="mt-2 text-muted-foreground">{t("loading.loadingEvents")}</p>
         </div>
       </div>
     );
   }
 
-  // Show error state
   if (error) {
     return (
       <div className="overflow-hidden rounded-xl border">
         <div className="p-8 text-center">
-          <p className="mb-2 text-red-600">Failed to load events</p>
+          <p className="mb-2 text-red-600">{t("loading.failedToLoad")}</p>
           <p className="text-sm text-muted-foreground">{error.message}</p>
         </div>
       </div>
@@ -183,8 +173,8 @@ export function ClientContainer() {
         {view === "agenda" && <CalendarAgendaView singleDayEvents={singleDayEvents} multiDayEvents={multiDayEvents} />}
         {!["month", "week", "day", "year", "agenda"].includes(view) && (
           <div className="p-8 text-center">
-            <p className="text-muted-foreground">View &quot;{view}&quot; is not implemented yet.</p>
-            <p className="text-sm text-muted-foreground">Available views: Month, Week, Day, Year, Agenda</p>
+            <p className="text-muted-foreground">{t("loading.viewNotImplemented", { view })}</p>
+            <p className="text-sm text-muted-foreground">{t("loading.availableViews")}</p>
           </div>
         )}
       </Suspense>

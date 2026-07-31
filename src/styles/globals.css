@@ -82,3 +82,28 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* react-day-picker v10 visual overrides
+   CSS variables are set via inline `style` prop (see calendar-formatters.ts).
+   These rules add background fill for selected/today states that v10's
+   default CSS doesn't include (v10 only applies borders). */
+
+.rdp-today:not(.rdp-outside) .rdp-day_button {
+  background-color: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+  font-weight: 600;
+}
+
+.rdp-selected .rdp-day_button {
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+
+.rdp-day_button:hover {
+  background-color: hsl(var(--accent));
+}
+
+.rdp-selected .rdp-day_button:hover {
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}

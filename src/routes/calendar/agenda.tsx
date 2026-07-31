@@ -7,7 +7,6 @@ import { ClientContainer } from "@/calendar/components/client-container";
 // Search params schema for agenda view
 const agendaSearchSchema = z.object({
   date: z.string().optional(),
-  userId: z.string().optional(),
 });
 
 // Agenda view component
@@ -40,9 +39,7 @@ export const Route = createFileRoute("/calendar/agenda")({
     if (search.date && !NavigationUtils.isValidDateString(search.date)) {
       throw redirect({
         to: "/calendar/agenda",
-        search: {
-          userId: search.userId,
-        },
+        search: {},
       });
     }
   },

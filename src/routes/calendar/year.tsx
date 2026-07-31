@@ -7,7 +7,6 @@ import { ClientContainer } from "@/calendar/components/client-container";
 // Search params schema for year view
 const yearSearchSchema = z.object({
   date: z.string().optional(),
-  userId: z.string().optional(),
 });
 
 // Year view component
@@ -40,9 +39,7 @@ export const Route = createFileRoute("/calendar/year")({
     if (search.date && !NavigationUtils.isValidDateString(search.date)) {
       throw redirect({
         to: "/calendar/year",
-        search: {
-          userId: search.userId,
-        },
+        search: {},
       });
     }
   },

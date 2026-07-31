@@ -25,7 +25,7 @@ const SingleDayPicker = React.forwardRef<HTMLButtonElement, SingleDayPickerProps
     const displayDate = value ? formatDate(value, "fullDate", i18n.language, locale) : placeholder || t("dateTime.selectDate", "Pick a date");
 
     return (
-      <Popover>
+      <Popover modal>
         <PopoverTrigger asChild>
           <Button
             ref={ref}
@@ -38,8 +38,15 @@ const SingleDayPicker = React.forwardRef<HTMLButtonElement, SingleDayPickerProps
             {value ? displayDate : <span>{displayDate}</span>}
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-auto p-0">
-          <Calendar mode="single" selected={value} onSelect={onSelect} initialFocus locale={locale} />
+        <PopoverContent className="w-[304px] p-0" align="start">
+          <Calendar
+            mode="single"
+            selected={value}
+            onSelect={(date) => {
+              onSelect?.(date);
+            }}
+            locale={locale}
+          />
         </PopoverContent>
       </Popover>
     );

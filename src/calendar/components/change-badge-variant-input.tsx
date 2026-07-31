@@ -9,7 +9,7 @@ export function ChangeBadgeVariantInput() {
 
   return (
     <div className="space-y-2">
-      <p className="text-sm font-semibold">Change badge variant</p>
+      <p className="text-sm font-semibold">{t("settings.badgeVariant")}</p>
 
       <Select value={badgeVariant} onValueChange={setBadgeVariant}>
         <SelectTrigger className="w-48" aria-label={t("accessibility.selectBadgeVariant")}>
@@ -17,9 +17,9 @@ export function ChangeBadgeVariantInput() {
         </SelectTrigger>
 
         <SelectContent>
-          <SelectItem value="dot">Dot</SelectItem>
-          <SelectItem value="colored">Colored</SelectItem>
-          <SelectItem value="mixed">Mixed</SelectItem>
+          <SelectItem value="dot">{t("badgeVariants.dot")}</SelectItem>
+          <SelectItem value="colored">{t("badgeVariants.colored")}</SelectItem>
+          <SelectItem value="mixed">{t("badgeVariants.mixed")}</SelectItem>
         </SelectContent>
       </Select>
     </div>

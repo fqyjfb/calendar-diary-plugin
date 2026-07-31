@@ -6,7 +6,6 @@ import { CalendarLayout as CalendarLayoutComponent } from '@/components/layout/c
 // Search params schema for date navigation
 const calendarSearchSchema = z.object({
   date: z.string().optional(),
-  userId: z.string().optional(),
 })
 
 // Calendar layout component
@@ -27,9 +26,7 @@ export const Route = createFileRoute('/calendar')({
     if (search.date && !NavigationUtils.isValidDateString(search.date)) {
       throw redirect({
         to: '/calendar/month',
-        search: {
-          userId: search.userId,
-        },
+        search: {},
       })
     }
   },

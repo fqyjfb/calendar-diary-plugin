@@ -1,9 +1,7 @@
 import { z } from "zod";
 
-// We'll handle i18n in the form error display, not in the schema
-// This keeps the schema simple and allows for runtime language switching
 export const eventSchema = z.object({
-  user: z.string(),
+  type: z.string().min(1, "typeRequired"),
   title: z.string().min(1, "titleRequired"),
   description: z.string().min(1, "descriptionRequired"),
   startDate: z.date({ required_error: "startDateRequired" }),

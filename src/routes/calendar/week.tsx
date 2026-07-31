@@ -7,7 +7,6 @@ import { ClientContainer } from "@/calendar/components/client-container";
 // Search params schema for week view
 const weekSearchSchema = z.object({
   date: z.string().optional(),
-  userId: z.string().optional(),
 });
 
 // Week view component
@@ -40,9 +39,7 @@ export const Route = createFileRoute("/calendar/week")({
     if (search.date && !NavigationUtils.isValidDateString(search.date)) {
       throw redirect({
         to: "/calendar/week",
-        search: {
-          userId: search.userId,
-        },
+        search: {},
       });
     }
   },

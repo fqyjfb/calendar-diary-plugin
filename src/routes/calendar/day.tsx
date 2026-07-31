@@ -7,7 +7,6 @@ import { ClientContainer } from "@/calendar/components/client-container";
 // Search params schema for day view
 const daySearchSchema = z.object({
   date: z.string().optional(),
-  userId: z.string().optional(),
 });
 
 // Day view component
@@ -24,7 +23,7 @@ function DayViewError({ error }: { error: Error }) {
       <h2 className="mb-2 text-xl font-bold text-red-600">{t("errors.dayViewError")}</h2>
       <p className="mb-4 text-muted-foreground">{error.message}</p>
       <a href="/calendar/day" className="rounded bg-primary px-4 py-2 text-primary-foreground hover:bg-primary/90">
-        {t("navigation.goToToday")}
+        {t("navigation.goToCurrentDay")}
       </a>
     </div>
   );
@@ -40,9 +39,7 @@ export const Route = createFileRoute("/calendar/day")({
     if (search.date && !NavigationUtils.isValidDateString(search.date)) {
       throw redirect({
         to: "/calendar/day",
-        search: {
-          userId: search.userId,
-        },
+        search: {},
       });
     }
   },

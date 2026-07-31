@@ -77,7 +77,7 @@ const TimeInput = React.forwardRef<HTMLDivElement, TimeInputProps>(
         ref={ref}
         id={id}
         className={cn(
-          "flex h-10 w-full items-center rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2",
+          "flex h-10 w-full items-center rounded-md border border-input bg-background px-3 py-2 text-sm focus-within:border-primary",
           dataInvalid && "border-destructive",
           className
         )}
@@ -87,7 +87,7 @@ const TimeInput = React.forwardRef<HTMLDivElement, TimeInputProps>(
           <button
             type="button"
             onClick={handlePeriodToggle}
-            className="mr-2 rounded px-2 py-1 text-xs font-medium hover:bg-accent focus:outline-none focus:ring-1 focus:ring-ring"
+            className="mr-2 rounded px-2 py-1 text-xs font-medium hover:bg-accent focus:outline-none focus:border-primary"
             aria-label={t("dateTime.toggleAmPm", "Toggle AM/PM")}
           >
             {t(`dateTime.${period}`)}

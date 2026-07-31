@@ -49,13 +49,10 @@ export const useCreateEvent = () => {
   return useMutation({
     mutationFn: createEvent,
     onMutate: async (newEvent) => {
-      // Cancel any outgoing refetches so they don't overwrite our optimistic update
       await queryClient.cancelQueries({ queryKey: eventKeys.all })
 
-      // Snapshot all list queries matching events
       const previousLists = queryClient.getQueriesData<IEvent[]>({ queryKey: eventKeys.lists() })
 
-      // Optimistically append a temporary event to each list
       const optimisticEvent: IEvent = {
         ...(newEvent as Omit<IEvent, 'id'>),
         id: Date.now(),
@@ -68,24 +65,21 @@ export const useCreateEvent = () => {
 
       return { previousLists, optimisticEvent }
     },
-    onSuccess: (createdEvent, _variables, _context) => {
-      // Persist created event in all lists without invalidating to mock source
+    onSuccess: (createdEvent, _variables, context) => {
       queryClient.setQueriesData<IEvent[]>({ queryKey: eventKeys.lists() }, (old) => {
         if (!old) return [createdEvent]
-        const exists = old.some((e) => e.id === createdEvent.id)
-        return exists ? old : [...old, createdEvent]
+        const filtered = context?.optimisticEvent
+          ? old.filter(e => e.id !== context.optimisticEvent.id)
+          : old
+        return [...filtered, createdEvent]
       })
     },
     onError: (_error, _newEvent, context) => {
-      // Rollback optimistic updates on all lists
       if (context?.previousLists) {
         for (const [key, data] of context.previousLists) {
           queryClient.setQueryData(key, data)
         }
       }
-    },
-    onSettled: () => {
-      // Do not invalidate to avoid resetting to static mocks
     },
   })
 }
@@ -96,32 +90,25 @@ export const useUpdateEvent = () => {
   return useMutation({
     mutationFn: updateEvent,
     onMutate: async (updatedEvent) => {
-      // Cancel any outgoing refetches
       await queryClient.cancelQueries({ queryKey: eventKeys.all })
       await queryClient.cancelQueries({ queryKey: eventKeys.detail(updatedEvent.id) })
 
-      // Snapshot the previous values for all list queries and the detail query
       const previousLists = queryClient.getQueriesData<IEvent[]>({ queryKey: eventKeys.lists() })
       const previousDetail = queryClient.getQueryData<IEvent | undefined>(eventKeys.detail(updatedEvent.id))
 
-      // Optimistically update all list queries
       queryClient.setQueriesData<IEvent[]>({ queryKey: eventKeys.lists() }, (old) => {
         if (!old) return old
         return old.map(event => (event.id === updatedEvent.id ? updatedEvent : event))
       })
 
-      // Optimistically update the individual event
       queryClient.setQueryData(eventKeys.detail(updatedEvent.id), updatedEvent)
 
       return { previousLists, previousDetail }
     },
     onSuccess: (updatedEvent) => {
-      // Ensure the detail cache is updated with the server response
       queryClient.setQueryData(eventKeys.detail(updatedEvent.id), updatedEvent)
-      // Do not invalidate list queries here to avoid reverting to mock data
     },
     onError: (_error, updatedEvent, context) => {
-      // Roll back the optimistic updates
       if (context?.previousLists) {
         for (const [key, data] of context.previousLists) {
           queryClient.setQueryData(key, data)
@@ -129,13 +116,6 @@ export const useUpdateEvent = () => {
       }
       if (context?.previousDetail) {
         queryClient.setQueryData(eventKeys.detail(updatedEvent.id), context.previousDetail)
-      }
-      // Error is handled by the UI layer
-    },
-    onSettled: (updatedEvent) => {
-      // Keep detail cache in sync; avoid invalidating lists to preserve optimistic UI with mocks
-      if (updatedEvent) {
-        queryClient.setQueryData(eventKeys.detail(updatedEvent.id), updatedEvent)
       }
     },
   })
@@ -147,36 +127,27 @@ export const useDeleteEvent = () => {
   return useMutation({
     mutationFn: deleteEvent,
     onMutate: async (eventId) => {
-      // Cancel any outgoing refetches
       await queryClient.cancelQueries({ queryKey: eventKeys.all })
 
-      // Snapshot the previous value
-      const previousEvents = queryClient.getQueryData(eventKeys.lists())
+      const previousLists = queryClient.getQueriesData<IEvent[]>({ queryKey: eventKeys.lists() })
 
-      // Optimistically remove the event from the list
-      if (previousEvents) {
-        queryClient.setQueryData(eventKeys.lists(), (old: IEvent[] | undefined) =>
+      if (previousLists.length > 0) {
+        queryClient.setQueriesData<IEvent[]>({ queryKey: eventKeys.lists() }, (old) =>
           old ? old.filter(event => event.id !== eventId) : []
         )
       }
 
-      return { previousEvents }
+      return { previousLists }
     },
     onSuccess: (_, deletedEventId) => {
-      // Remove the event from individual cache and invalidate lists
       queryClient.removeQueries({ queryKey: eventKeys.detail(deletedEventId) })
-      queryClient.invalidateQueries({ queryKey: eventKeys.lists() })
     },
     onError: (_error, _deletedEventId, context) => {
-      // Roll back the optimistic update
-      if (context?.previousEvents) {
-        queryClient.setQueryData(eventKeys.lists(), context.previousEvents)
+      if (context?.previousLists) {
+        for (const [key, data] of context.previousLists) {
+          queryClient.setQueryData(key, data)
+        }
       }
-      // Error is handled by the UI layer
-    },
-    onSettled: () => {
-      // Always refetch to ensure consistency
-      queryClient.invalidateQueries({ queryKey: eventKeys.lists() })
     },
   })
 }

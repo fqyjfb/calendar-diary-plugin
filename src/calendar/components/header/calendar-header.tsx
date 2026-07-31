@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 import { Button } from "@/components/ui/button";
 
-import { UserSelect } from "@/calendar/components/header/user-select";
+import { TypeSelect } from "@/calendar/components/header/user-select";
 import { TodayButton } from "@/calendar/components/header/today-button";
 import { DateNavigator } from "@/calendar/components/header/date-navigator";
 
@@ -112,7 +112,7 @@ export function CalendarHeader({ events }: IProps) {
             </Button>
           </div>
 
-          <UserSelect />
+          <TypeSelect />
         </div>
 
         <Suspense

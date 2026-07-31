@@ -2,9 +2,10 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslation } from "react-i18next";
+import { Settings2 } from "lucide-react";
 
 import { useDisclosure } from "@/hooks/use-disclosure";
-import { useUsers } from "@/hooks/use-users";
+import { useEventTypes } from "@/hooks/use-event-types";
 import { useCreateEvent } from "@/hooks/use-events";
 
 import { Input } from "@/components/ui/input";
@@ -12,11 +13,11 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { TimeInput } from "@/components/ui/time-input";
 import { SingleDayPicker } from "@/components/ui/single-day-picker";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Form, FormField, FormLabel, FormItem, FormControl } from "@/components/ui/form";
 import { FormMessageTranslated } from "@/calendar/components/form-message-translated";
 import { Select, SelectItem, SelectContent, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogHeader, DialogClose, DialogContent, DialogTrigger, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
+import { TypeManagerDialog } from "@/calendar/components/dialogs/type-manager-dialog";
 
 import { eventSchema } from "@/calendar/schemas";
 
@@ -32,7 +33,7 @@ interface IProps {
 
 export function AddEventDialog({ children, startDate, startTime }: IProps) {
   const { t } = useTranslation('calendar');
-  const { data: users = [] } = useUsers();
+  const { options: eventTypeOptions } = useEventTypes();
   const { isOpen, onClose, onToggle } = useDisclosure();
   const createEventMutation = useCreateEvent();
 
@@ -41,7 +42,7 @@ export function AddEventDialog({ children, startDate, startTime }: IProps) {
     defaultValues: {
       title: "",
       description: "",
-      user: "",
+      type: undefined,
       color: undefined,
       startDate: startDate || new Date(),
       endDate: startDate || new Date(),
@@ -52,20 +53,13 @@ export function AddEventDialog({ children, startDate, startTime }: IProps) {
 
   const onSubmit: SubmitHandler<TEventFormData> = async (values: TEventFormData) => {
     try {
-      // Find the selected user
-      const selectedUser = users.find(user => user.id === values.user);
-      if (!selectedUser) {
-        throw new Error("Selected user not found");
-      }
-
-      // Create the event data
       const eventData = {
         title: values.title,
         description: values.description,
         startDate: values.startDate!.toISOString(),
         endDate: values.endDate!.toISOString(),
         color: values.color!,
-        user: selectedUser,
+        type: values.type,
       };
 
       await createEventMutation.mutateAsync(eventData);
@@ -73,7 +67,6 @@ export function AddEventDialog({ children, startDate, startTime }: IProps) {
       form.reset();
     } catch (_error) {
       // Error is handled by the mutation hook
-      // Error handling is already done in the mutation hook
     }
   };
 
@@ -81,7 +74,7 @@ export function AddEventDialog({ children, startDate, startTime }: IProps) {
     form.reset({
       title: "",
       description: "",
-      user: "",
+      type: undefined,
       color: undefined,
       startDate: startDate || new Date(),
       endDate: startDate || new Date(),
@@ -98,7 +91,7 @@ export function AddEventDialog({ children, startDate, startTime }: IProps) {
         <DialogHeader>
           <DialogTitle>{t("events.addEvent")}</DialogTitle>
           <DialogDescription>
-            This is just and example of how to use the form. In a real application, you would call the API to create the event
+            {t("events.dialogDescription")}
           </DialogDescription>
         </DialogHeader>
 
@@ -106,31 +99,38 @@ export function AddEventDialog({ children, startDate, startTime }: IProps) {
           <form id="event-form" onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4 py-4">
             <FormField
               control={form.control}
-              name="user"
+              name="type"
               render={({ field, fieldState }) => (
                 <FormItem>
-                  <FormLabel>{t("events.user")}</FormLabel>
+                  <FormLabel>{t("events.type")}</FormLabel>
                   <FormControl>
-                    <Select value={field.value ?? ""} onValueChange={field.onChange}>
-                      <SelectTrigger data-invalid={fieldState.invalid}>
-                        <SelectValue placeholder={t("userSelect.selectOption")} />
-                      </SelectTrigger>
+                    <div className="flex gap-2">
+                      <Select value={field.value ?? ""} onValueChange={field.onChange}>
+                        <SelectTrigger className="flex-1" data-invalid={fieldState.invalid}>
+                          <SelectValue placeholder={t("typeSelect.selectOption")} />
+                        </SelectTrigger>
 
-                      <SelectContent>
-                        {users.map(user => (
-                          <SelectItem key={user.id} value={user.id} className="flex-1">
-                            <div className="flex items-center gap-2">
-                              <Avatar key={user.id} className="size-6">
-                                <AvatarImage src={user.picturePath ?? undefined} alt={user.name} />
-                                <AvatarFallback className="text-xxs">{user.name[0]}</AvatarFallback>
-                              </Avatar>
+                        <SelectContent>
+                          {eventTypeOptions.map(type => (
+                            <SelectItem key={type.value} value={type.value}>
+                              {type.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
 
-                              <p className="truncate">{user.name}</p>
-                            </div>
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                      <TypeManagerDialog
+                        onTypeChange={(types) => {
+                          if (field.value && !types.includes(field.value)) {
+                            field.onChange("");
+                          }
+                        }}
+                      >
+                        <Button type="button" variant="outline" size="icon">
+                          <Settings2 className="size-4" />
+                        </Button>
+                      </TypeManagerDialog>
+                    </div>
                   </FormControl>
                   <FormMessageTranslated />
                 </FormItem>
@@ -239,7 +239,7 @@ export function AddEventDialog({ children, startDate, startTime }: IProps) {
                   <FormControl>
                     <Select value={field.value ?? ""} onValueChange={field.onChange}>
                       <SelectTrigger data-invalid={fieldState.invalid}>
-                        <SelectValue placeholder={t("userSelect.selectOption")} />
+                        <SelectValue placeholder={t("typeSelect.selectOption")} />
                       </SelectTrigger>
 
                       <SelectContent>
