@@ -1,5 +1,13 @@
 {
   "title": "Big Calendar",
+  "header": {
+    "title": "Calendar Diary"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "The page you're looking for doesn't exist.",
+    "goHome": "Go Home"
+  },
   "views": {
     "month": "Month",
     "week": "Week",

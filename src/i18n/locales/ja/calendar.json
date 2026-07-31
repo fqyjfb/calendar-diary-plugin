@@ -1,5 +1,13 @@
 {
   "title": "カレンダー",
+  "header": {
+    "title": "カレンダー日記"
+  },
+  "notFound": {
+    "title": "ページが見つかりません",
+    "description": "お探しのページが見つかりません。",
+    "goHome": "ホームに戻る"
+  },
   "views": {
     "day": "日",
     "week": "週",

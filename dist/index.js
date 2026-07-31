@@ -12284,24 +12284,24 @@ var __async = (__this, __arguments, generator) => {
       return false;
     }
   }
-  function decodePath(path2) {
-    if (!path2) return {
-      path: path2,
+  function decodePath(path) {
+    if (!path) return {
+      path,
       handledProtocolRelativeURL: false
     };
-    if (!/[%\\\x00-\x1f\x7f]/.test(path2) && !path2.startsWith("//")) return {
-      path: path2,
+    if (!/[%\\\x00-\x1f\x7f]/.test(path) && !path.startsWith("//")) return {
+      path,
       handledProtocolRelativeURL: false
     };
     const re2 = /%25|%5C/gi;
     let cursor = 0;
     let result = "";
     let match2;
-    while (null !== (match2 = re2.exec(path2))) {
-      result += decodeSegment(path2.slice(cursor, match2.index)) + match2[0];
+    while (null !== (match2 = re2.exec(path))) {
+      result += decodeSegment(path.slice(cursor, match2.index)) + match2[0];
       cursor = re2.lastIndex;
     }
-    result = result + decodeSegment(cursor ? path2.slice(cursor) : path2);
+    result = result + decodeSegment(cursor ? path.slice(cursor) : path);
     let handledProtocolRelativeURL = false;
     if (result.startsWith("//")) {
       handledProtocolRelativeURL = true;
@@ -12312,9 +12312,9 @@ var __async = (__this, __arguments, generator) => {
       handledProtocolRelativeURL
     };
   }
-  function encodePathLikeUrl(path2) {
-    if (!/\s|[^\u0000-\u007F]/.test(path2)) return path2;
-    return path2.replace(/\s|[^\u0000-\u007F]/gu, encodeURIComponent);
+  function encodePathLikeUrl(path) {
+    if (!/\s|[^\u0000-\u007F]/.test(path)) return path;
+    return path.replace(/\s|[^\u0000-\u007F]/gu, encodeURIComponent);
   }
   function arraysEqual(a2, b) {
     if (a2 === b) return true;
@@ -12400,10 +12400,10 @@ var __async = (__this, __arguments, generator) => {
     if (openBrace + 1 >= part.length) return null;
     return [openBrace, closeBrace];
   }
-  function parseSegment(path2, start, output = new Uint16Array(6)) {
-    const next = path2.indexOf("/", start);
-    const end = next === -1 ? path2.length : next;
-    const part = path2.substring(start, end);
+  function parseSegment(path, start, output = new Uint16Array(6)) {
+    const next = path.indexOf("/", start);
+    const end = next === -1 ? path.length : next;
+    const part = path.substring(start, end);
     if (!part || !part.includes("$")) {
       output[0] = 0;
       output[1] = start;
@@ -12414,7 +12414,7 @@ var __async = (__this, __arguments, generator) => {
       return output;
     }
     if (part === "$") {
-      const total = path2.length;
+      const total = path.length;
       output[0] = 2;
       output[1] = start;
       output[2] = start;
@@ -12459,7 +12459,7 @@ var __async = (__this, __arguments, generator) => {
           output[2] = start + dollarPos;
           output[3] = start + afterDollar;
           output[4] = start + closeBrace + 1;
-          output[5] = path2.length;
+          output[5] = path.length;
           return output;
         }
         output[0] = 1;
@@ -12484,12 +12484,12 @@ var __async = (__this, __arguments, generator) => {
     onRoute == null ? void 0 : onRoute(route);
     let cursor = start;
     {
-      const path2 = (_a = route.fullPath) != null ? _a : route.from;
-      const length = path2.length;
+      const path = (_a = route.fullPath) != null ? _a : route.from;
+      const length = path.length;
       const caseSensitive = (_c = (_b = route.options) == null ? void 0 : _b.caseSensitive) != null ? _c : defaultCaseSensitive;
       const parseParams = (_g2 = (_e = (_d = route.options) == null ? void 0 : _d.params) == null ? void 0 : _e.parse) != null ? _g2 : (_f = route.options) == null ? void 0 : _f.parseParams;
       while (cursor < length) {
-        const segment = parseSegment(path2, cursor, data);
+        const segment = parseSegment(path, cursor, data);
         let nextNode;
         const start2 = cursor;
         const end = segment[5];
@@ -12497,7 +12497,7 @@ var __async = (__this, __arguments, generator) => {
         depth++;
         switch (segment[0]) {
           case 0: {
-            const value = path2.substring(segment[2], segment[3]);
+            const value = path.substring(segment[2], segment[3]);
             if (caseSensitive) {
               const existingNode = (_h2 = node.static) == null ? void 0 : _h2.get(value);
               if (existingNode) nextNode = existingNode;
@@ -12525,8 +12525,8 @@ var __async = (__this, __arguments, generator) => {
             break;
           }
           case 1: {
-            const prefix_raw = path2.substring(start2, segment[1]);
-            const suffix_raw = path2.substring(segment[4], end);
+            const prefix_raw = path.substring(start2, segment[1]);
+            const suffix_raw = path.substring(segment[4], end);
             const actuallyCaseSensitive = caseSensitive && !!(prefix_raw || suffix_raw);
             const prefix2 = !prefix_raw ? void 0 : actuallyCaseSensitive ? prefix_raw : prefix_raw.toLowerCase();
             const suffix2 = !suffix_raw ? void 0 : actuallyCaseSensitive ? suffix_raw : suffix_raw.toLowerCase();
@@ -12543,8 +12543,8 @@ var __async = (__this, __arguments, generator) => {
             break;
           }
           case 3: {
-            const prefix_raw = path2.substring(start2, segment[1]);
-            const suffix_raw = path2.substring(segment[4], end);
+            const prefix_raw = path.substring(start2, segment[1]);
+            const suffix_raw = path.substring(segment[4], end);
             const actuallyCaseSensitive = caseSensitive && !!(prefix_raw || suffix_raw);
             const prefix2 = !prefix_raw ? void 0 : actuallyCaseSensitive ? prefix_raw : prefix_raw.toLowerCase();
             const suffix2 = !suffix_raw ? void 0 : actuallyCaseSensitive ? suffix_raw : suffix_raw.toLowerCase();
@@ -12561,8 +12561,8 @@ var __async = (__this, __arguments, generator) => {
             break;
           }
           case 2: {
-            const prefix_raw = path2.substring(start2, segment[1]);
-            const suffix_raw = path2.substring(segment[4], end);
+            const prefix_raw = path.substring(start2, segment[1]);
+            const suffix_raw = path.substring(segment[4], end);
             const actuallyCaseSensitive = caseSensitive && !!(prefix_raw || suffix_raw);
             const prefix2 = !prefix_raw ? void 0 : actuallyCaseSensitive ? prefix_raw : prefix_raw.toLowerCase();
             const suffix2 = !suffix_raw ? void 0 : actuallyCaseSensitive ? suffix_raw : suffix_raw.toLowerCase();
@@ -12587,7 +12587,7 @@ var __async = (__this, __arguments, generator) => {
         node = pathlessNode;
       }
       const isLeaf = (route.path || !route.children) && !route.isRoot;
-      if (isLeaf && path2.endsWith("/")) {
+      if (isLeaf && path.endsWith("/")) {
         const indexNode = createStaticNode((_x = route.fullPath) != null ? _x : route.from);
         indexNode.kind = SEGMENT_TYPE_INDEX;
         indexNode.parent = node;
@@ -12690,17 +12690,17 @@ var __async = (__this, __arguments, generator) => {
     processedTree.masksTree = segmentTree;
     processedTree.flatCache = createLRUCache(1e3);
   }
-  function findFlatMatch(path2, processedTree) {
-    path2 || (path2 = "/");
-    const cached = processedTree.flatCache.get(path2);
+  function findFlatMatch(path, processedTree) {
+    path || (path = "/");
+    const cached = processedTree.flatCache.get(path);
     if (cached) return cached;
-    const result = findMatch(path2, processedTree.masksTree);
-    processedTree.flatCache.set(path2, result);
+    const result = findMatch(path, processedTree.masksTree);
+    processedTree.flatCache.set(path, result);
     return result;
   }
-  function findSingleMatch(from, caseSensitive, fuzzy, path2, processedTree) {
+  function findSingleMatch(from, caseSensitive, fuzzy, path, processedTree) {
     from || (from = "/");
-    path2 || (path2 = "/");
+    path || (path = "/");
     const key = caseSensitive ? `case\0${from}` : from;
     let tree = processedTree.singleCache.get(key);
     if (!tree) {
@@ -12708,16 +12708,16 @@ var __async = (__this, __arguments, generator) => {
       parseSegments(caseSensitive, new Uint16Array(6), { from }, 1, tree, 0);
       processedTree.singleCache.set(key, tree);
     }
-    return findMatch(path2, tree, fuzzy);
+    return findMatch(path, tree, fuzzy);
   }
-  function findRouteMatch(path2, processedTree, fuzzy = false) {
-    const key = fuzzy ? path2 : `nofuzz\0${path2}`;
+  function findRouteMatch(path, processedTree, fuzzy = false) {
+    const key = fuzzy ? path : `nofuzz\0${path}`;
     const cached = processedTree.matchCache.get(key);
     if (cached !== void 0) return cached;
-    path2 || (path2 = "/");
+    path || (path = "/");
     let result;
     try {
-      result = findMatch(path2, processedTree.segmentTree, fuzzy);
+      result = findMatch(path, processedTree.segmentTree, fuzzy);
     } catch (err) {
       if (err instanceof URIError) result = null;
       else throw err;
@@ -12726,8 +12726,8 @@ var __async = (__this, __arguments, generator) => {
     processedTree.matchCache.set(key, result);
     return result;
   }
-  function trimPathRight$1(path2) {
-    return path2 === "/" ? path2 : path2.replace(/\/{1,}$/, "");
+  function trimPathRight$1(path) {
+    return path === "/" ? path : path.replace(/\/{1,}$/, "");
   }
   function processRouteTree(routeTree2, caseSensitive = false, initRoute) {
     const segmentTree = createStaticNode(routeTree2.fullPath);
@@ -12760,17 +12760,17 @@ var __async = (__this, __arguments, generator) => {
       routesByPath
     };
   }
-  function findMatch(path2, segmentTree, fuzzy = false) {
-    const parts = path2.split("/");
-    const leaf = getNodeMatch(path2, parts, segmentTree, fuzzy);
+  function findMatch(path, segmentTree, fuzzy = false) {
+    const parts = path.split("/");
+    const leaf = getNodeMatch(path, parts, segmentTree, fuzzy);
     if (!leaf) return null;
-    const [rawParams] = extractParams(path2, parts, leaf);
+    const [rawParams] = extractParams(path, parts, leaf);
     return {
       route: leaf.node.route,
       rawParams
     };
   }
-  function extractParams(path2, parts, leaf) {
+  function extractParams(path, parts, leaf) {
     var _a, _b, _c, _d, _e, _f, _g2, _h2, _i2, _j2, _k2, _l, _m2, _n2, _o2, _p2, _q2, _r2, _s, _t;
     const list = buildBranch(leaf.node);
     let nodeParts = null;
@@ -12819,7 +12819,7 @@ var __async = (__this, __arguments, generator) => {
         if (value) rawParams[name] = decodeURIComponent(value);
       } else if (node.kind === 2) {
         const n2 = node;
-        const value = path2.substring(currentPathIndex + ((_r2 = (_q2 = n2.prefix) == null ? void 0 : _q2.length) != null ? _r2 : 0), path2.length - ((_t = (_s = n2.suffix) == null ? void 0 : _s.length) != null ? _t : 0));
+        const value = path.substring(currentPathIndex + ((_r2 = (_q2 = n2.prefix) == null ? void 0 : _q2.length) != null ? _r2 : 0), path.length - ((_t = (_s = n2.suffix) == null ? void 0 : _s.length) != null ? _t : 0));
         const splat = decodeURIComponent(value);
         rawParams["*"] = splat;
         rawParams._splat = splat;
@@ -12851,14 +12851,14 @@ var __async = (__this, __arguments, generator) => {
     } while (node);
     return list;
   }
-  function getNodeMatch(path2, parts, segmentTree, fuzzy) {
+  function getNodeMatch(path, parts, segmentTree, fuzzy) {
     var _a;
-    if (path2 === "/" && segmentTree.index) return {
+    if (path === "/" && segmentTree.index) return {
       node: segmentTree.index,
       skipped: 0
     };
     const trailingSlash = !last(parts);
-    const pathIsIndex = trailingSlash && path2 !== "/";
+    const pathIsIndex = trailingSlash && path !== "/";
     const partsLength = parts.length - (trailingSlash ? 1 : 0);
     const stack = [{
       node: segmentTree,
@@ -12877,7 +12877,7 @@ var __async = (__this, __arguments, generator) => {
       let { extract, rawParams } = frame;
       if (node.kind === 2 && node.route && !isFrameMoreSpecific(bestMatch, frame)) continue;
       if (node.parse) {
-        if (!validateParseParams(path2, parts, frame)) continue;
+        if (!validateParseParams(path, parts, frame)) continue;
         rawParams = frame.rawParams;
         extract = frame.extract;
       }
@@ -12903,7 +12903,7 @@ var __async = (__this, __arguments, generator) => {
         };
         let indexValid = true;
         if (node.index.parse) {
-          if (!validateParseParams(path2, parts, indexFrame)) indexValid = false;
+          if (!validateParseParams(path, parts, indexFrame)) indexValid = false;
         }
         if (indexValid) {
           if (!dynamics && !optionals && !skipped && isPerfectStaticMatch(statics, partsLength)) return indexFrame;
@@ -13042,7 +13042,7 @@ var __async = (__this, __arguments, generator) => {
     if (fuzzy && bestFuzzy) {
       let sliceIndex = bestFuzzy.index;
       for (let i2 = 0; i2 < bestFuzzy.index; i2++) sliceIndex += parts[i2].length;
-      const splat = sliceIndex === path2.length ? "/" : path2.slice(sliceIndex);
+      const splat = sliceIndex === path.length ? "/" : path.slice(sliceIndex);
       (_a = bestFuzzy.rawParams) != null ? _a : bestFuzzy.rawParams = /* @__PURE__ */ Object.create(null);
       bestFuzzy.rawParams["**"] = decodeURIComponent(splat);
       return bestFuzzy;
@@ -13055,11 +13055,11 @@ var __async = (__this, __arguments, generator) => {
   function isPerfectStaticMatch(statics, partsLength) {
     return statics === __pow(2, partsLength - 1) - 1;
   }
-  function validateParseParams(path2, parts, frame) {
+  function validateParseParams(path, parts, frame) {
     let rawParams;
     let state;
     try {
-      [rawParams, state] = extractParams(path2, parts, frame);
+      [rawParams, state] = extractParams(path, parts, frame);
     } catch (e) {
       return null;
     }
@@ -13081,18 +13081,18 @@ var __async = (__this, __arguments, generator) => {
       return val !== void 0;
     }).join("/"));
   }
-  function cleanPath(path2) {
-    return path2.replace(/\/{2,}/g, "/");
+  function cleanPath(path) {
+    return path.replace(/\/{2,}/g, "/");
   }
-  function trimPathLeft(path2) {
-    return path2 === "/" ? path2 : path2.replace(/^\/{1,}/, "");
+  function trimPathLeft(path) {
+    return path === "/" ? path : path.replace(/^\/{1,}/, "");
   }
-  function trimPathRight(path2) {
-    const len = path2.length;
-    return len > 1 && path2[len - 1] === "/" ? path2.replace(/\/{1,}$/, "") : path2;
+  function trimPathRight(path) {
+    const len = path.length;
+    return len > 1 && path[len - 1] === "/" ? path.replace(/\/{1,}$/, "") : path;
   }
-  function trimPath(path2) {
-    return trimPathRight(trimPathLeft(path2));
+  function trimPath(path) {
+    return trimPathRight(trimPathLeft(path));
   }
   function removeTrailingSlash(value, basepath) {
     if ((value == null ? void 0 : value.endsWith("/")) && value !== "/" && value !== `${basepath}/`) return value.slice(0, -1);
@@ -13154,41 +13154,41 @@ var __async = (__this, __arguments, generator) => {
     } else return encodePathParam(value, decoder);
   }
   function interpolatePath(_a) {
-    var _b = _a, { path: path2, params, decoder } = _b, rest = __objRest(_b, ["path", "params", "decoder"]);
+    var _b = _a, { path, params, decoder } = _b, rest = __objRest(_b, ["path", "params", "decoder"]);
     var _a2, _b2;
     let isMissingParams = false;
     const usedParams = /* @__PURE__ */ Object.create(null);
-    if (!path2 || path2 === "/") return {
+    if (!path || path === "/") return {
       interpolatedPath: "/",
       usedParams,
       isMissingParams
     };
-    if (!path2.includes("$")) return {
-      interpolatedPath: path2,
+    if (!path.includes("$")) return {
+      interpolatedPath: path,
       usedParams,
       isMissingParams
     };
-    const length = path2.length;
+    const length = path.length;
     let cursor = 0;
     let segment;
     let joined = "";
     while (cursor < length) {
       const start = cursor;
-      segment = parseSegment(path2, start, segment);
+      segment = parseSegment(path, start, segment);
       const end = segment[5];
       cursor = end + 1;
       if (start === end) continue;
       const kind = segment[0];
       if (kind === 0) {
-        joined += "/" + path2.substring(start, end);
+        joined += "/" + path.substring(start, end);
         continue;
       }
       if (kind === 2) {
         const splat = params._splat;
         usedParams._splat = splat;
         usedParams["*"] = splat;
-        const prefix2 = path2.substring(start, segment[1]);
-        const suffix2 = path2.substring(segment[4], end);
+        const prefix2 = path.substring(start, segment[1]);
+        const suffix2 = path.substring(segment[4], end);
         if (!splat) {
           isMissingParams = true;
           if (prefix2 || suffix2) joined += "/" + prefix2 + suffix2;
@@ -13199,28 +13199,28 @@ var __async = (__this, __arguments, generator) => {
         continue;
       }
       if (kind === 1) {
-        const key = path2.substring(segment[2], segment[3]);
+        const key = path.substring(segment[2], segment[3]);
         if (!isMissingParams && !(key in params)) isMissingParams = true;
         usedParams[key] = params[key];
-        const prefix2 = path2.substring(start, segment[1]);
-        const suffix2 = path2.substring(segment[4], end);
+        const prefix2 = path.substring(start, segment[1]);
+        const suffix2 = path.substring(segment[4], end);
         const value = (_a2 = encodeParam(key, params, decoder)) != null ? _a2 : "undefined";
         joined += "/" + prefix2 + value + suffix2;
         continue;
       }
       if (kind === 3) {
-        const key = path2.substring(segment[2], segment[3]);
+        const key = path.substring(segment[2], segment[3]);
         const valueRaw = params[key];
         if (valueRaw == null) continue;
         usedParams[key] = valueRaw;
-        const prefix2 = path2.substring(start, segment[1]);
-        const suffix2 = path2.substring(segment[4], end);
+        const prefix2 = path.substring(start, segment[1]);
+        const suffix2 = path.substring(segment[4], end);
         const value = (_b2 = encodeParam(key, params, decoder)) != null ? _b2 : "";
         joined += "/" + prefix2 + value + suffix2;
         continue;
       }
     }
-    if (path2.endsWith("/")) joined += "/";
+    if (path.endsWith("/")) joined += "/";
     return {
       usedParams,
       interpolatedPath: joined || "/",
@@ -13367,12 +13367,12 @@ var __async = (__this, __arguments, generator) => {
       }
       ignoreScroll = true;
       try {
-        const hash2 = event.toLocation.hash;
+        const hash = event.toLocation.hash;
         const hashScrollIntoViewOptions = (_b = event.toLocation.state.__hashScrollIntoViewOptions) != null ? _b : true;
         let windowRestored = false;
         if (shouldResetScroll) {
-          if (!hash2 && scrollToTopSelectors) scrollToTopElements != null ? scrollToTopElements : scrollToTopElements = getScrollToTopElements(scrollToTopSelectors);
-          const skipWindowRestore = hash2 && hashScrollIntoViewOptions && hashNavigation;
+          if (!hash && scrollToTopSelectors) scrollToTopElements != null ? scrollToTopElements : scrollToTopElements = getScrollToTopElements(scrollToTopSelectors);
+          const skipWindowRestore = hash && hashScrollIntoViewOptions && hashNavigation;
           const elementEntries = scroll.restoring ? scrollRestorationCache[cacheKey] : void 0;
           if (elementEntries) for (const elementSelector in elementEntries) {
             const { scrollX: scrollX2, scrollY: scrollY2 } = elementEntries[elementSelector];
@@ -13393,7 +13393,7 @@ var __async = (__this, __arguments, generator) => {
               }
             }
           }
-          if (!hash2) {
+          if (!hash) {
             const scrollOptions = {
               top: 0,
               left: 0,
@@ -13403,7 +13403,7 @@ var __async = (__this, __arguments, generator) => {
             if (scrollToTopElements) for (const element of scrollToTopElements) element.scrollTo(scrollOptions);
           }
         }
-        if (!windowRestored && hash2 && hashScrollIntoViewOptions) (_c = document.getElementById(hash2)) == null ? void 0 : _c.scrollIntoView(hashScrollIntoViewOptions);
+        if (!windowRestored && hash && hashScrollIntoViewOptions) (_c = document.getElementById(hash)) == null ? void 0 : _c.scrollIntoView(hashScrollIntoViewOptions);
       } finally {
         ignoreScroll = false;
       }
@@ -14295,31 +14295,31 @@ var __async = (__this, __arguments, generator) => {
           subscribers.delete(cb);
         };
       },
-      push: (path2, state, navigateOpts) => {
+      push: (path, state, navigateOpts) => {
         const currentIndex = location.state[stateIndexKey];
         state = assignKeyAndIndex(currentIndex + 1, state);
         tryNavigation({
           task: () => {
-            opts.pushState(path2, state);
+            opts.pushState(path, state);
             notify({ type: "PUSH" });
           },
           navigateOpts,
           type: "PUSH",
-          path: path2,
+          path,
           state
         });
       },
-      replace: (path2, state, navigateOpts) => {
+      replace: (path, state, navigateOpts) => {
         const currentIndex = location.state[stateIndexKey];
         state = assignKeyAndIndex(currentIndex, state);
         tryNavigation({
           task: () => {
-            opts.replaceState(path2, state);
+            opts.replaceState(path, state);
             notify({ type: "REPLACE" });
           },
           navigateOpts,
           type: "REPLACE",
-          path: path2,
+          path,
           state
         });
       },
@@ -14400,7 +14400,7 @@ var __async = (__this, __arguments, generator) => {
     let blockers = [];
     const _getBlockers = () => blockers;
     const _setBlockers = (newBlockers) => blockers = newBlockers;
-    const createHref = (path2) => path2;
+    const createHref = (path) => path;
     const parseLocation = () => parseHref(`${win.location.pathname}${win.location.search}${win.location.hash}`, win.history.state);
     if (!((_a = win.history.state) == null ? void 0 : _a.__TSR_key) && !((_b = win.history.state) == null ? void 0 : _b.key)) {
       const addedKey = createRandomKey();
@@ -14550,8 +14550,46 @@ var __async = (__this, __arguments, generator) => {
     };
     return history2;
   }
-  function sanitizePath(path2) {
-    let sanitized = path2.replace(/[\x00-\x1f\x7f]/g, "");
+  function createMemoryHistory(opts = { initialEntries: ["/"] }) {
+    const entries = opts.initialEntries;
+    let index2 = opts.initialIndex ? Math.min(Math.max(opts.initialIndex, 0), entries.length - 1) : entries.length - 1;
+    const states = entries.map((_entry, index3) => assignKeyAndIndex(index3, void 0));
+    const getLocation = () => parseHref(entries[index2], states[index2]);
+    let blockers = [];
+    const _getBlockers = () => blockers;
+    const _setBlockers = (newBlockers) => blockers = newBlockers;
+    return createHistory({
+      getLocation,
+      getLength: () => entries.length,
+      pushState: (path, state) => {
+        if (index2 < entries.length - 1) {
+          entries.splice(index2 + 1);
+          states.splice(index2 + 1);
+        }
+        states.push(state);
+        entries.push(path);
+        index2 = Math.max(entries.length - 1, 0);
+      },
+      replaceState: (path, state) => {
+        states[index2] = state;
+        entries[index2] = path;
+      },
+      back: () => {
+        index2 = Math.max(index2 - 1, 0);
+      },
+      forward: () => {
+        index2 = Math.min(index2 + 1, entries.length - 1);
+      },
+      go: (n2) => {
+        index2 = Math.min(Math.max(index2 + n2, 0), entries.length - 1);
+      },
+      createHref: (path) => path,
+      getBlockers: _getBlockers,
+      setBlockers: _setBlockers
+    });
+  }
+  function sanitizePath(path) {
+    let sanitized = path.replace(/[\x00-\x1f\x7f]/g, "");
     if (sanitized.startsWith("//")) sanitized = "/" + sanitized.replace(/^\/+/, "");
     return sanitized;
   }
@@ -14674,18 +14712,18 @@ var __async = (__this, __arguments, generator) => {
         });
       };
       this.parseLocation = (locationToParse, previousLocation) => {
-        const parse2 = ({ pathname, search, hash: hash2, href, state }) => {
+        const parse2 = ({ pathname, search, hash, href, state }) => {
           if (!this.rewrite && !/[ \x00-\x1f\x7f\u0080-\uffff]/.test(pathname)) {
             const parsedSearch2 = this.options.parseSearch(search);
             const searchStr2 = this.options.stringifySearch(parsedSearch2);
             return {
-              href: pathname + searchStr2 + hash2,
-              publicHref: pathname + searchStr2 + hash2,
+              href: pathname + searchStr2 + hash,
+              publicHref: pathname + searchStr2 + hash,
               pathname: decodePath(pathname).path,
               external: false,
               searchStr: searchStr2,
               search: nullReplaceEqualDeep(previousLocation == null ? void 0 : previousLocation.search, parsedSearch2),
-              hash: decodePath(hash2.slice(1)).path,
+              hash: decodePath(hash.slice(1)).path,
               state: replaceEqualDeep$1(previousLocation == null ? void 0 : previousLocation.state, state)
             };
           }
@@ -14718,10 +14756,10 @@ var __async = (__this, __arguments, generator) => {
         }
         return location;
       };
-      this.resolvePathWithBase = (from, path2) => {
+      this.resolvePathWithBase = (from, path) => {
         return resolvePath({
           base: from,
-          to: path2.includes("//") ? cleanPath(path2) : path2,
+          to: path.includes("//") ? cleanPath(path) : path,
           trailingSlash: this.options.trailingSlash,
           cache: this.resolvePathCache
         });
@@ -14813,8 +14851,8 @@ var __async = (__this, __arguments, generator) => {
           });
           nextSearch = nullReplaceEqualDeep(fromSearch, nextSearch);
           const searchStr = this.options.stringifySearch(nextSearch);
-          const hash2 = dest.hash === true ? currentLocation.hash : dest.hash ? functionalUpdate$1(dest.hash, currentLocation.hash) : void 0;
-          const hashStr = hash2 ? `#${hash2}` : "";
+          const hash = dest.hash === true ? currentLocation.hash : dest.hash ? functionalUpdate$1(dest.hash, currentLocation.hash) : void 0;
+          const hashStr = hash ? `#${hash}` : "";
           let nextState = dest.state === true ? currentLocation.state : dest.state ? functionalUpdate$1(dest.state, currentLocation.state) : {};
           nextState = replaceEqualDeep$1(currentLocation.state, nextState);
           const fullPath = `${nextPathname}${searchStr}${hashStr}`;
@@ -14840,7 +14878,7 @@ var __async = (__this, __arguments, generator) => {
             search: nextSearch,
             searchStr,
             state: nextState,
-            hash: hash2 != null ? hash2 : "",
+            hash: hash != null ? hash : "",
             external,
             unmaskOnReload: dest.unmaskOnReload
           };
@@ -15014,7 +15052,7 @@ var __async = (__this, __arguments, generator) => {
         var _a, _b;
         const historyAction = (_a = opts == null ? void 0 : opts.action) == null ? void 0 : _a.type;
         let redirect2;
-        let notFound;
+        let notFound2;
         let loadPromise;
         const previousLocation = (_b = this.stores.resolvedLocation.get()) != null ? _b : this.stores.location.get();
         loadPromise = new Promise((resolve) => {
@@ -15086,8 +15124,8 @@ var __async = (__this, __arguments, generator) => {
                   replace: true,
                   ignoreBlocker: true
                 }));
-              } else if (isNotFound(err)) notFound = err;
-              const nextStatusCode = redirect2 ? redirect2.status : notFound ? 404 : this.stores.matches.get().some((d) => d.status === "error") ? 500 : 200;
+              } else if (isNotFound(err)) notFound2 = err;
+              const nextStatusCode = redirect2 ? redirect2.status : notFound2 ? 404 : this.stores.matches.get().some((d) => d.status === "error") ? 500 : 200;
               this.batch(() => {
                 this.stores.statusCode.set(nextStatusCode);
                 this.stores.redirect.set(redirect2);
@@ -15653,14 +15691,14 @@ var __async = (__this, __arguments, generator) => {
         else if (!this.parentRoute) {
           invariant$1();
         }
-        let path2 = isRoot ? rootRouteId : options22 == null ? void 0 : options22.path;
-        if (path2 && path2 !== "/") path2 = trimPathLeft(path2);
-        const customId = (options22 == null ? void 0 : options22.id) || path2;
+        let path = isRoot ? rootRouteId : options22 == null ? void 0 : options22.path;
+        if (path && path !== "/") path = trimPathLeft(path);
+        const customId = (options22 == null ? void 0 : options22.id) || path;
         let id2 = isRoot ? rootRouteId : joinPaths([this.parentRoute.id === "__root__" ? "" : this.parentRoute.id, customId]);
-        if (path2 === "__root__") path2 = "/";
+        if (path === "__root__") path = "/";
         if (id2 !== "__root__") id2 = joinPaths(["/", id2]);
-        const fullPath = id2 === "__root__" ? "/" : joinPaths([this.parentRoute.fullPath, path2]);
-        this._path = path2;
+        const fullPath = id2 === "__root__" ? "/" : joinPaths([this.parentRoute.fullPath, path]);
+        this._path = path;
         this._id = id2;
         this._fullPath = fullPath;
         this._to = trimPathRight(fullPath);
@@ -16395,9 +16433,9 @@ var __async = (__this, __arguments, generator) => {
   };
   function useStructuralSharing(opts, router2) {
     const previousResult = reactExports.useRef();
-    return (slice2) => {
+    return (slice) => {
       var _a;
-      const selected = (opts == null ? void 0 : opts.select) ? opts.select(slice2) : slice2;
+      const selected = (opts == null ? void 0 : opts.select) ? opts.select(slice) : slice;
       if ((_a = opts == null ? void 0 : opts.structuralSharing) != null ? _a : router2.options.defaultStructuralSharing) return previousResult.current = replaceEqualDeep$1(previousResult.current, selected);
       return selected;
     };
@@ -16826,12 +16864,12 @@ var __async = (__this, __arguments, generator) => {
   function createRootRoute(options2) {
     return new RootRoute(options2);
   }
-  function createFileRoute(path2) {
-    return new FileRoute(path2, { silent: true }).createRoute;
+  function createFileRoute(path) {
+    return new FileRoute(path, { silent: true }).createRoute;
   }
   var FileRoute = class {
-    constructor(path2, _opts) {
-      this.path = path2;
+    constructor(path, _opts) {
+      this.path = path;
       this.createRoute = (options2) => {
         const route = createRoute(options2);
         route.isRoot = false;
@@ -17229,6 +17267,233 @@ var __async = (__this, __arguments, generator) => {
     const router2 = useRouter();
     return useStore$1(router2.stores.location, useStructuralSharing(opts, router2));
   }
+  const warn = (i18n, code, msg, rest) => {
+    var _a, _b, _c, _d;
+    const args = [msg, __spreadValues({
+      code
+    }, rest || {})];
+    if ((_b = (_a = i18n == null ? void 0 : i18n.services) == null ? void 0 : _a.logger) == null ? void 0 : _b.forward) {
+      return i18n.services.logger.forward(args, "warn", "react-i18next::", true);
+    }
+    if (isString$2(args[0])) args[0] = `react-i18next:: ${args[0]}`;
+    if ((_d = (_c = i18n == null ? void 0 : i18n.services) == null ? void 0 : _c.logger) == null ? void 0 : _d.warn) {
+      i18n.services.logger.warn(...args);
+    } else if (console == null ? void 0 : console.warn) {
+      console.warn(...args);
+    }
+  };
+  const alreadyWarned = {};
+  const warnOnce = (i18n, code, msg, rest) => {
+    if (isString$2(msg) && alreadyWarned[msg]) return;
+    if (isString$2(msg)) alreadyWarned[msg] = /* @__PURE__ */ new Date();
+    warn(i18n, code, msg, rest);
+  };
+  const loadedClb = (i18n, cb) => () => {
+    if (i18n.isInitialized) {
+      cb();
+    } else {
+      const initialized = () => {
+        setTimeout(() => {
+          i18n.off("initialized", initialized);
+        }, 0);
+        cb();
+      };
+      i18n.on("initialized", initialized);
+    }
+  };
+  const loadNamespaces = (i18n, ns, cb) => {
+    i18n.loadNamespaces(ns, loadedClb(i18n, cb));
+  };
+  const loadLanguages = (i18n, lng, ns, cb) => {
+    if (isString$2(ns)) ns = [ns];
+    if (i18n.options.preload && i18n.options.preload.indexOf(lng) > -1) return loadNamespaces(i18n, ns, cb);
+    ns.forEach((n2) => {
+      if (i18n.options.ns.indexOf(n2) < 0) i18n.options.ns.push(n2);
+    });
+    i18n.loadLanguages(lng, loadedClb(i18n, cb));
+  };
+  const hasLoadedNamespace = (ns, i18n, options2 = {}) => {
+    if (!i18n.languages || !i18n.languages.length) {
+      warnOnce(i18n, "NO_LANGUAGES", "i18n.languages were undefined or empty", {
+        languages: i18n.languages
+      });
+      return true;
+    }
+    return i18n.hasLoadedNamespace(ns, {
+      lng: options2.lng,
+      precheck: (i18nInstance2, loadNotPending) => {
+        if (options2.bindI18n && options2.bindI18n.indexOf("languageChanging") > -1 && i18nInstance2.services.backendConnector.backend && i18nInstance2.isLanguageChangingTo && !loadNotPending(i18nInstance2.isLanguageChangingTo, ns)) return false;
+      }
+    });
+  };
+  const isString$2 = (obj) => typeof obj === "string";
+  const isObject$2 = (obj) => typeof obj === "object" && obj !== null;
+  const matchHtmlEntity = /&(?:amp|#38|lt|#60|gt|#62|apos|#39|quot|#34|nbsp|#160|copy|#169|reg|#174|hellip|#8230|#x2F|#47);/g;
+  const htmlEntities = {
+    "&amp;": "&",
+    "&#38;": "&",
+    "&lt;": "<",
+    "&#60;": "<",
+    "&gt;": ">",
+    "&#62;": ">",
+    "&apos;": "'",
+    "&#39;": "'",
+    "&quot;": '"',
+    "&#34;": '"',
+    "&nbsp;": " ",
+    "&#160;": " ",
+    "&copy;": "©",
+    "&#169;": "©",
+    "&reg;": "®",
+    "&#174;": "®",
+    "&hellip;": "…",
+    "&#8230;": "…",
+    "&#x2F;": "/",
+    "&#47;": "/"
+  };
+  const unescapeHtmlEntity = (m) => htmlEntities[m];
+  const unescape = (text) => text.replace(matchHtmlEntity, unescapeHtmlEntity);
+  let defaultOptions$3 = {
+    bindI18n: "languageChanged",
+    bindI18nStore: "",
+    transEmptyNodeValue: "",
+    transSupportBasicHtmlNodes: true,
+    transWrapTextNodes: "",
+    transKeepBasicHtmlNodesFor: ["br", "strong", "i", "p"],
+    useSuspense: true,
+    unescape
+  };
+  const setDefaults = (options2 = {}) => {
+    defaultOptions$3 = __spreadValues(__spreadValues({}, defaultOptions$3), options2);
+  };
+  const getDefaults = () => defaultOptions$3;
+  let i18nInstance;
+  const setI18n = (instance2) => {
+    i18nInstance = instance2;
+  };
+  const getI18n = () => i18nInstance;
+  const initReactI18next = {
+    type: "3rdParty",
+    init(instance2) {
+      setDefaults(instance2.options.react);
+      setI18n(instance2);
+    }
+  };
+  const I18nContext = reactExports.createContext();
+  class ReportNamespaces {
+    constructor() {
+      this.usedNamespaces = {};
+    }
+    addUsedNamespaces(namespaces) {
+      namespaces.forEach((ns) => {
+        if (!this.usedNamespaces[ns]) this.usedNamespaces[ns] = true;
+      });
+    }
+    getUsedNamespaces() {
+      return Object.keys(this.usedNamespaces);
+    }
+  }
+  const usePrevious$1 = (value, ignore) => {
+    const ref = reactExports.useRef();
+    reactExports.useEffect(() => {
+      ref.current = value;
+    }, [value, ignore]);
+    return ref.current;
+  };
+  const alwaysNewT = (i18n, language, namespace, keyPrefix) => i18n.getFixedT(language, namespace, keyPrefix);
+  const useMemoizedT = (i18n, language, namespace, keyPrefix) => reactExports.useCallback(alwaysNewT(i18n, language, namespace, keyPrefix), [i18n, language, namespace, keyPrefix]);
+  const useTranslation = (ns, props = {}) => {
+    var _a, _b, _c, _d;
+    const {
+      i18n: i18nFromProps
+    } = props;
+    const {
+      i18n: i18nFromContext,
+      defaultNS: defaultNSFromContext
+    } = reactExports.useContext(I18nContext) || {};
+    const i18n = i18nFromProps || i18nFromContext || getI18n();
+    if (i18n && !i18n.reportNamespaces) i18n.reportNamespaces = new ReportNamespaces();
+    if (!i18n) {
+      warnOnce(i18n, "NO_I18NEXT_INSTANCE", "useTranslation: You will need to pass in an i18next instance by using initReactI18next");
+      const notReadyT = (k, optsOrDefaultValue) => {
+        if (isString$2(optsOrDefaultValue)) return optsOrDefaultValue;
+        if (isObject$2(optsOrDefaultValue) && isString$2(optsOrDefaultValue.defaultValue)) return optsOrDefaultValue.defaultValue;
+        return Array.isArray(k) ? k[k.length - 1] : k;
+      };
+      const retNotReady = [notReadyT, {}, false];
+      retNotReady.t = notReadyT;
+      retNotReady.i18n = {};
+      retNotReady.ready = false;
+      return retNotReady;
+    }
+    if ((_a = i18n.options.react) == null ? void 0 : _a.wait) warnOnce(i18n, "DEPRECATED_OPTION", "useTranslation: It seems you are still using the old wait option, you may migrate to the new useSuspense behaviour.");
+    const i18nOptions = __spreadValues(__spreadValues(__spreadValues({}, getDefaults()), i18n.options.react), props);
+    const {
+      useSuspense,
+      keyPrefix
+    } = i18nOptions;
+    let namespaces = ns || defaultNSFromContext || ((_b = i18n.options) == null ? void 0 : _b.defaultNS);
+    namespaces = isString$2(namespaces) ? [namespaces] : namespaces || ["translation"];
+    (_d = (_c = i18n.reportNamespaces).addUsedNamespaces) == null ? void 0 : _d.call(_c, namespaces);
+    const ready = (i18n.isInitialized || i18n.initializedStoreOnce) && namespaces.every((n2) => hasLoadedNamespace(n2, i18n, i18nOptions));
+    const memoGetT = useMemoizedT(i18n, props.lng || null, i18nOptions.nsMode === "fallback" ? namespaces : namespaces[0], keyPrefix);
+    const getT = () => memoGetT;
+    const getNewT = () => alwaysNewT(i18n, props.lng || null, i18nOptions.nsMode === "fallback" ? namespaces : namespaces[0], keyPrefix);
+    const [t2, setT] = reactExports.useState(getT);
+    let joinedNS = namespaces.join();
+    if (props.lng) joinedNS = `${props.lng}${joinedNS}`;
+    const previousJoinedNS = usePrevious$1(joinedNS);
+    const isMounted = reactExports.useRef(true);
+    reactExports.useEffect(() => {
+      const {
+        bindI18n,
+        bindI18nStore
+      } = i18nOptions;
+      isMounted.current = true;
+      if (!ready && !useSuspense) {
+        if (props.lng) {
+          loadLanguages(i18n, props.lng, namespaces, () => {
+            if (isMounted.current) setT(getNewT);
+          });
+        } else {
+          loadNamespaces(i18n, namespaces, () => {
+            if (isMounted.current) setT(getNewT);
+          });
+        }
+      }
+      if (ready && previousJoinedNS && previousJoinedNS !== joinedNS && isMounted.current) {
+        setT(getNewT);
+      }
+      const boundReset = () => {
+        if (isMounted.current) setT(getNewT);
+      };
+      if (bindI18n) i18n == null ? void 0 : i18n.on(bindI18n, boundReset);
+      if (bindI18nStore) i18n == null ? void 0 : i18n.store.on(bindI18nStore, boundReset);
+      return () => {
+        isMounted.current = false;
+        if (i18n && bindI18n) bindI18n == null ? void 0 : bindI18n.split(" ").forEach((e) => i18n.off(e, boundReset));
+        if (bindI18nStore && i18n) bindI18nStore.split(" ").forEach((e) => i18n.store.off(e, boundReset));
+      };
+    }, [i18n, joinedNS]);
+    reactExports.useEffect(() => {
+      if (isMounted.current && ready) {
+        setT(getT);
+      }
+    }, [i18n, keyPrefix, ready]);
+    const ret = [t2, i18n, ready];
+    ret.t = t2;
+    ret.i18n = i18n;
+    ret.ready = ready;
+    if (ready) return ret;
+    if (!ready && !useSuspense) return ret;
+    throw new Promise((resolve) => {
+      if (props.lng) {
+        loadLanguages(i18n, props.lng, namespaces, () => resolve());
+      } else {
+        loadNamespaces(i18n, namespaces, () => resolve());
+      }
+    });
+  };
   const DndContext = reactExports.createContext({
     dragDropManager: void 0
   });
@@ -17408,8 +17673,8 @@ var __async = (__this, __arguments, generator) => {
   function isProduction() {
     return typeof process !== "undefined" && true;
   }
-  function get$2(obj, path2, defaultValue) {
-    return path2.split(".").reduce(
+  function get$2(obj, path, defaultValue) {
+    return path.split(".").reduce(
       (a2, c) => a2 && a2[c] ? a2[c] : defaultValue || null,
       obj
     );
@@ -17419,7 +17684,7 @@ var __async = (__this, __arguments, generator) => {
       (i2) => i2 !== item
     );
   }
-  function isObject$2(input) {
+  function isObject$1(input) {
     return typeof input === "object";
   }
   function xor(itemsA, itemsB) {
@@ -17518,7 +17783,7 @@ var __async = (__this, __arguments, generator) => {
     invariant(typeof getSourceClientOffset2 === "function", "When clientOffset is provided, getSourceClientOffset must be a function.");
   }
   function verifyItemIsObject(item) {
-    invariant(isObject$2(item), "Item must be an object.");
+    invariant(isObject$1(item), "Item must be an object.");
   }
   function getDraggableSource(sourceIds, monitor) {
     let sourceId = null;
@@ -17590,7 +17855,7 @@ var __async = (__this, __arguments, generator) => {
     return dropResult;
   }
   function verifyDropResultType(dropResult) {
-    invariant(typeof dropResult === "undefined" || isObject$2(dropResult), "Drop result must either be an object or undefined.");
+    invariant(typeof dropResult === "undefined" || isObject$1(dropResult), "Drop result must either be an object or undefined.");
   }
   function getDroppableTargets(monitor) {
     const targetIds = monitor.getTargetIds().filter(monitor.canDropOnTarget, monitor);
@@ -22875,9 +23140,9 @@ var __async = (__this, __arguments, generator) => {
       });
     }
     getQueryDefaults(queryKey) {
-      const defaults2 = [...__privateGet(this, _queryDefaults).values()];
+      const defaults = [...__privateGet(this, _queryDefaults).values()];
       const result = {};
-      defaults2.forEach((queryDefault) => {
+      defaults.forEach((queryDefault) => {
         if (partialMatchKey(queryKey, queryDefault.queryKey)) {
           Object.assign(result, queryDefault.defaultOptions);
         }
@@ -22891,9 +23156,9 @@ var __async = (__this, __arguments, generator) => {
       });
     }
     getMutationDefaults(mutationKey) {
-      const defaults2 = [...__privateGet(this, _mutationDefaults).values()];
+      const defaults = [...__privateGet(this, _mutationDefaults).values()];
       const result = {};
-      defaults2.forEach((queryDefault) => {
+      defaults.forEach((queryDefault) => {
         if (partialMatchKey(mutationKey, queryDefault.mutationKey)) {
           Object.assign(result, queryDefault.defaultOptions);
         }
@@ -23403,17 +23668,6 @@ var __async = (__this, __arguments, generator) => {
     Component2.displayName = toPascalCase(iconName);
     return Component2;
   };
-  /**
-   * @license lucide-react v0.488.0 - ISC
-   *
-   * This source code is licensed under the ISC license.
-   * See the LICENSE file in the root directory of this source tree.
-   */
-  const __iconNode$m = [
-    ["path", { d: "M7 7h10v10", key: "1tivn9" }],
-    ["path", { d: "M7 17 17 7", key: "1vkiza" }]
-  ];
-  const ArrowUpRight = createLucideIcon("arrow-up-right", __iconNode$m);
   /**
    * @license lucide-react v0.488.0 - ISC
    *
@@ -23942,9 +24196,9 @@ var __async = (__this, __arguments, generator) => {
       });
     });
   };
-  const getPart = (classPartObject, path2) => {
+  const getPart = (classPartObject, path) => {
     let currentClassPartObject = classPartObject;
-    path2.split(CLASS_PART_SEPARATOR).forEach((pathPart) => {
+    path.split(CLASS_PART_SEPARATOR).forEach((pathPart) => {
       if (!currentClassPartObject.nextPart.has(pathPart)) {
         currentClassPartObject.nextPart.set(pathPart, {
           nextPart: /* @__PURE__ */ new Map(),
@@ -26872,13 +27126,13 @@ var __async = (__this, __arguments, generator) => {
   const createStore = (createState) => createState ? createStoreImpl(createState) : createStoreImpl;
   const identity = (arg) => arg;
   function useStore(api, selector = identity) {
-    const slice2 = React$4.useSyncExternalStore(
+    const slice = React$4.useSyncExternalStore(
       api.subscribe,
       React$4.useCallback(() => selector(api.getState()), [api, selector]),
       React$4.useCallback(() => selector(api.getInitialState()), [api, selector])
     );
-    React$4.useDebugValue(slice2);
-    return slice2;
+    React$4.useDebugValue(slice);
+    return slice;
   }
   const createImpl = (createState) => {
     const api = createStore(createState);
@@ -27121,233 +27375,6 @@ var __async = (__this, __arguments, generator) => {
       theme === "dark" && /* @__PURE__ */ jsxRuntimeExports.jsx(Moon, {})
     ] });
   }
-  const warn = (i18n, code, msg, rest) => {
-    var _a, _b, _c, _d;
-    const args = [msg, __spreadValues({
-      code
-    }, rest || {})];
-    if ((_b = (_a = i18n == null ? void 0 : i18n.services) == null ? void 0 : _a.logger) == null ? void 0 : _b.forward) {
-      return i18n.services.logger.forward(args, "warn", "react-i18next::", true);
-    }
-    if (isString$2(args[0])) args[0] = `react-i18next:: ${args[0]}`;
-    if ((_d = (_c = i18n == null ? void 0 : i18n.services) == null ? void 0 : _c.logger) == null ? void 0 : _d.warn) {
-      i18n.services.logger.warn(...args);
-    } else if (console == null ? void 0 : console.warn) {
-      console.warn(...args);
-    }
-  };
-  const alreadyWarned = {};
-  const warnOnce = (i18n, code, msg, rest) => {
-    if (isString$2(msg) && alreadyWarned[msg]) return;
-    if (isString$2(msg)) alreadyWarned[msg] = /* @__PURE__ */ new Date();
-    warn(i18n, code, msg, rest);
-  };
-  const loadedClb = (i18n, cb) => () => {
-    if (i18n.isInitialized) {
-      cb();
-    } else {
-      const initialized = () => {
-        setTimeout(() => {
-          i18n.off("initialized", initialized);
-        }, 0);
-        cb();
-      };
-      i18n.on("initialized", initialized);
-    }
-  };
-  const loadNamespaces = (i18n, ns, cb) => {
-    i18n.loadNamespaces(ns, loadedClb(i18n, cb));
-  };
-  const loadLanguages = (i18n, lng, ns, cb) => {
-    if (isString$2(ns)) ns = [ns];
-    if (i18n.options.preload && i18n.options.preload.indexOf(lng) > -1) return loadNamespaces(i18n, ns, cb);
-    ns.forEach((n2) => {
-      if (i18n.options.ns.indexOf(n2) < 0) i18n.options.ns.push(n2);
-    });
-    i18n.loadLanguages(lng, loadedClb(i18n, cb));
-  };
-  const hasLoadedNamespace = (ns, i18n, options2 = {}) => {
-    if (!i18n.languages || !i18n.languages.length) {
-      warnOnce(i18n, "NO_LANGUAGES", "i18n.languages were undefined or empty", {
-        languages: i18n.languages
-      });
-      return true;
-    }
-    return i18n.hasLoadedNamespace(ns, {
-      lng: options2.lng,
-      precheck: (i18nInstance2, loadNotPending) => {
-        if (options2.bindI18n && options2.bindI18n.indexOf("languageChanging") > -1 && i18nInstance2.services.backendConnector.backend && i18nInstance2.isLanguageChangingTo && !loadNotPending(i18nInstance2.isLanguageChangingTo, ns)) return false;
-      }
-    });
-  };
-  const isString$2 = (obj) => typeof obj === "string";
-  const isObject$1 = (obj) => typeof obj === "object" && obj !== null;
-  const matchHtmlEntity = /&(?:amp|#38|lt|#60|gt|#62|apos|#39|quot|#34|nbsp|#160|copy|#169|reg|#174|hellip|#8230|#x2F|#47);/g;
-  const htmlEntities = {
-    "&amp;": "&",
-    "&#38;": "&",
-    "&lt;": "<",
-    "&#60;": "<",
-    "&gt;": ">",
-    "&#62;": ">",
-    "&apos;": "'",
-    "&#39;": "'",
-    "&quot;": '"',
-    "&#34;": '"',
-    "&nbsp;": " ",
-    "&#160;": " ",
-    "&copy;": "©",
-    "&#169;": "©",
-    "&reg;": "®",
-    "&#174;": "®",
-    "&hellip;": "…",
-    "&#8230;": "…",
-    "&#x2F;": "/",
-    "&#47;": "/"
-  };
-  const unescapeHtmlEntity = (m) => htmlEntities[m];
-  const unescape = (text) => text.replace(matchHtmlEntity, unescapeHtmlEntity);
-  let defaultOptions$3 = {
-    bindI18n: "languageChanged",
-    bindI18nStore: "",
-    transEmptyNodeValue: "",
-    transSupportBasicHtmlNodes: true,
-    transWrapTextNodes: "",
-    transKeepBasicHtmlNodesFor: ["br", "strong", "i", "p"],
-    useSuspense: true,
-    unescape
-  };
-  const setDefaults = (options2 = {}) => {
-    defaultOptions$3 = __spreadValues(__spreadValues({}, defaultOptions$3), options2);
-  };
-  const getDefaults$1 = () => defaultOptions$3;
-  let i18nInstance;
-  const setI18n = (instance2) => {
-    i18nInstance = instance2;
-  };
-  const getI18n = () => i18nInstance;
-  const initReactI18next = {
-    type: "3rdParty",
-    init(instance2) {
-      setDefaults(instance2.options.react);
-      setI18n(instance2);
-    }
-  };
-  const I18nContext = reactExports.createContext();
-  class ReportNamespaces {
-    constructor() {
-      this.usedNamespaces = {};
-    }
-    addUsedNamespaces(namespaces) {
-      namespaces.forEach((ns) => {
-        if (!this.usedNamespaces[ns]) this.usedNamespaces[ns] = true;
-      });
-    }
-    getUsedNamespaces() {
-      return Object.keys(this.usedNamespaces);
-    }
-  }
-  const usePrevious$1 = (value, ignore) => {
-    const ref = reactExports.useRef();
-    reactExports.useEffect(() => {
-      ref.current = value;
-    }, [value, ignore]);
-    return ref.current;
-  };
-  const alwaysNewT = (i18n, language, namespace, keyPrefix) => i18n.getFixedT(language, namespace, keyPrefix);
-  const useMemoizedT = (i18n, language, namespace, keyPrefix) => reactExports.useCallback(alwaysNewT(i18n, language, namespace, keyPrefix), [i18n, language, namespace, keyPrefix]);
-  const useTranslation = (ns, props = {}) => {
-    var _a, _b, _c, _d;
-    const {
-      i18n: i18nFromProps
-    } = props;
-    const {
-      i18n: i18nFromContext,
-      defaultNS: defaultNSFromContext
-    } = reactExports.useContext(I18nContext) || {};
-    const i18n = i18nFromProps || i18nFromContext || getI18n();
-    if (i18n && !i18n.reportNamespaces) i18n.reportNamespaces = new ReportNamespaces();
-    if (!i18n) {
-      warnOnce(i18n, "NO_I18NEXT_INSTANCE", "useTranslation: You will need to pass in an i18next instance by using initReactI18next");
-      const notReadyT = (k, optsOrDefaultValue) => {
-        if (isString$2(optsOrDefaultValue)) return optsOrDefaultValue;
-        if (isObject$1(optsOrDefaultValue) && isString$2(optsOrDefaultValue.defaultValue)) return optsOrDefaultValue.defaultValue;
-        return Array.isArray(k) ? k[k.length - 1] : k;
-      };
-      const retNotReady = [notReadyT, {}, false];
-      retNotReady.t = notReadyT;
-      retNotReady.i18n = {};
-      retNotReady.ready = false;
-      return retNotReady;
-    }
-    if ((_a = i18n.options.react) == null ? void 0 : _a.wait) warnOnce(i18n, "DEPRECATED_OPTION", "useTranslation: It seems you are still using the old wait option, you may migrate to the new useSuspense behaviour.");
-    const i18nOptions = __spreadValues(__spreadValues(__spreadValues({}, getDefaults$1()), i18n.options.react), props);
-    const {
-      useSuspense,
-      keyPrefix
-    } = i18nOptions;
-    let namespaces = ns || defaultNSFromContext || ((_b = i18n.options) == null ? void 0 : _b.defaultNS);
-    namespaces = isString$2(namespaces) ? [namespaces] : namespaces || ["translation"];
-    (_d = (_c = i18n.reportNamespaces).addUsedNamespaces) == null ? void 0 : _d.call(_c, namespaces);
-    const ready = (i18n.isInitialized || i18n.initializedStoreOnce) && namespaces.every((n2) => hasLoadedNamespace(n2, i18n, i18nOptions));
-    const memoGetT = useMemoizedT(i18n, props.lng || null, i18nOptions.nsMode === "fallback" ? namespaces : namespaces[0], keyPrefix);
-    const getT = () => memoGetT;
-    const getNewT = () => alwaysNewT(i18n, props.lng || null, i18nOptions.nsMode === "fallback" ? namespaces : namespaces[0], keyPrefix);
-    const [t2, setT] = reactExports.useState(getT);
-    let joinedNS = namespaces.join();
-    if (props.lng) joinedNS = `${props.lng}${joinedNS}`;
-    const previousJoinedNS = usePrevious$1(joinedNS);
-    const isMounted = reactExports.useRef(true);
-    reactExports.useEffect(() => {
-      const {
-        bindI18n,
-        bindI18nStore
-      } = i18nOptions;
-      isMounted.current = true;
-      if (!ready && !useSuspense) {
-        if (props.lng) {
-          loadLanguages(i18n, props.lng, namespaces, () => {
-            if (isMounted.current) setT(getNewT);
-          });
-        } else {
-          loadNamespaces(i18n, namespaces, () => {
-            if (isMounted.current) setT(getNewT);
-          });
-        }
-      }
-      if (ready && previousJoinedNS && previousJoinedNS !== joinedNS && isMounted.current) {
-        setT(getNewT);
-      }
-      const boundReset = () => {
-        if (isMounted.current) setT(getNewT);
-      };
-      if (bindI18n) i18n == null ? void 0 : i18n.on(bindI18n, boundReset);
-      if (bindI18nStore) i18n == null ? void 0 : i18n.store.on(bindI18nStore, boundReset);
-      return () => {
-        isMounted.current = false;
-        if (i18n && bindI18n) bindI18n == null ? void 0 : bindI18n.split(" ").forEach((e) => i18n.off(e, boundReset));
-        if (bindI18nStore && i18n) bindI18nStore.split(" ").forEach((e) => i18n.store.off(e, boundReset));
-      };
-    }, [i18n, joinedNS]);
-    reactExports.useEffect(() => {
-      if (isMounted.current && ready) {
-        setT(getT);
-      }
-    }, [i18n, keyPrefix, ready]);
-    const ret = [t2, i18n, ready];
-    ret.t = t2;
-    ret.i18n = i18n;
-    ret.ready = ready;
-    if (ready) return ret;
-    if (!ready && !useSuspense) return ret;
-    throw new Promise((resolve) => {
-      if (props.lng) {
-        loadLanguages(i18n, props.lng, namespaces, () => resolve());
-      } else {
-        loadNamespaces(i18n, namespaces, () => resolve());
-      }
-    });
-  };
   function clamp$1(value, [min2, max2]) {
     return Math.min(max2, Math.max(min2, value));
   }
@@ -30542,7 +30569,7 @@ var __async = (__this, __arguments, generator) => {
   function ItoI(a2) {
     return a2;
   }
-  function innerCreateMedium(defaults2, middleware) {
+  function innerCreateMedium(defaults, middleware) {
     if (middleware === void 0) {
       middleware = ItoI;
     }
@@ -30556,7 +30583,7 @@ var __async = (__this, __arguments, generator) => {
         if (buffer.length) {
           return buffer[buffer.length - 1];
         }
-        return defaults2;
+        return defaults;
       },
       useMedium: function(data) {
         var item = middleware(data, assigned);
@@ -32371,6 +32398,7 @@ var __async = (__this, __arguments, generator) => {
   });
   SelectSeparator.displayName = Separator.displayName;
   const languages = [
+    { code: "zh", name: "中文", flag: "🇨🇳" },
     { code: "en", name: "English", flag: "🇺🇸" },
     { code: "ko", name: "한국어", flag: "🇰🇷" },
     { code: "ja", name: "日本語", flag: "🇯🇵" }
@@ -32396,30 +32424,16 @@ var __async = (__this, __arguments, generator) => {
     ] });
   }
   function Header$1() {
+    const { t: t2 } = useTranslation("calendar");
     return /* @__PURE__ */ jsxRuntimeExports.jsx("header", { className: "mx-auto flex h-[88px] w-full max-w-screen-2xl items-center justify-center", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "my-3 flex h-14 w-full items-center justify-between px-8", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3.5", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex size-12 items-center justify-center rounded-full border p-3", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Calendar$1, { className: "size-6 text-foreground" }) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-1", children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-lg font-medium leading-6", children: "Big calendar" }) })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "space-y-1", children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-lg font-medium leading-6", children: t2("header.title") }) })
       ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "hidden items-center gap-4 md:flex", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          "a",
-          {
-            href: "https://github.com/simplecore-inc/big-calendar-react",
-            target: "_blank",
-            rel: "noopener noreferrer",
-            className: "inline-flex gap-0.5 text-sm hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring",
-            children: [
-              "View on GitHub",
-              /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowUpRight, { size: 14, className: "text-foreground" })
-            ]
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(LanguageSelector, {}),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(ToggleTheme, {})
-        ] })
-      ] })
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "hidden items-center gap-4 md:flex", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(LanguageSelector, {}),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(ToggleTheme, {})
+      ] }) })
     ] }) });
   }
   const DragPreview = reactExports.memo(({ item, transform }) => {
@@ -32502,15 +32516,33 @@ var __async = (__this, __arguments, generator) => {
     ] }) }) });
   }
   function RootErrorComponent({ error }) {
+    const { t: t2 } = useTranslation("calendar");
+    const navigate = useNavigate();
     return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex min-h-screen items-center justify-center bg-background text-foreground", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-8 text-center", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "mb-4 text-2xl font-bold text-red-600", children: "Something went wrong" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "mb-4 text-2xl font-bold text-red-600", children: t2("errors.somethingWentWrong") }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mb-4 text-muted-foreground", children: error.message }),
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         "button",
         {
-          onClick: () => window.location.reload(),
+          onClick: () => navigate({ to: "/calendar/month" }),
           className: "rounded bg-primary px-4 py-2 text-primary-foreground hover:bg-primary/90",
-          children: "Reload Page"
+          children: t2("common.back")
+        }
+      )
+    ] }) });
+  }
+  function NotFoundComponent() {
+    const { t: t2 } = useTranslation("calendar");
+    const navigate = useNavigate();
+    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex min-h-screen items-center justify-center bg-background text-foreground", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-8 text-center", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "mb-4 text-2xl font-bold", children: t2("notFound.title") }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mb-4 text-muted-foreground", children: t2("notFound.description") }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "button",
+        {
+          onClick: () => navigate({ to: "/calendar/month" }),
+          className: "rounded bg-primary px-4 py-2 text-primary-foreground hover:bg-primary/90",
+          children: t2("notFound.goHome")
         }
       )
     ] }) });
@@ -32518,18 +32550,7 @@ var __async = (__this, __arguments, generator) => {
   const Route$7 = createRootRoute({
     component: RootComponent,
     errorComponent: RootErrorComponent,
-    notFoundComponent: () => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex min-h-screen items-center justify-center bg-background text-foreground", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-8 text-center", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "mb-4 text-2xl font-bold", children: "Page Not Found" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mb-4 text-muted-foreground", children: "The page you're looking for doesn't exist." }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "a",
-        {
-          href: "/",
-          className: "rounded bg-primary px-4 py-2 text-primary-foreground hover:bg-primary/90",
-          children: "Go Home"
-        }
-      )
-    ] }) })
+    notFoundComponent: NotFoundComponent
   });
   const Route$6 = createFileRoute("/")({
     beforeLoad: () => {
@@ -32883,8 +32904,8 @@ var __async = (__this, __arguments, generator) => {
     return overrideErrorMap;
   }
   const makeIssue = (params) => {
-    const { data, path: path2, errorMaps, issueData } = params;
-    const fullPath = [...path2, ...issueData.path || []];
+    const { data, path, errorMaps, issueData } = params;
+    const fullPath = [...path, ...issueData.path || []];
     const fullIssue = __spreadProps(__spreadValues({}, issueData), {
       path: fullPath
     });
@@ -32994,11 +33015,11 @@ var __async = (__this, __arguments, generator) => {
     errorUtil2.toString = (message2) => typeof message2 === "string" ? message2 : message2 == null ? void 0 : message2.message;
   })(errorUtil || (errorUtil = {}));
   class ParseInputLazyPath {
-    constructor(parent, value, path2, key) {
+    constructor(parent, value, path, key) {
       this._cachedPath = [];
       this.parent = parent;
       this.data = value;
-      this._path = path2;
+      this._path = path;
       this._key = key;
     }
     get path() {
@@ -33391,10 +33412,10 @@ var __async = (__this, __arguments, generator) => {
     if (!jwtRegex.test(jwt))
       return false;
     try {
-      const [header] = jwt.split(".");
-      if (!header)
+      const [header2] = jwt.split(".");
+      if (!header2)
         return false;
-      const base64 = header.replace(/-/g, "+").replace(/_/g, "/").padEnd(header.length + (4 - header.length % 4) % 4, "=");
+      const base64 = header2.replace(/-/g, "+").replace(/_/g, "/").padEnd(header2.length + (4 - header2.length % 4) % 4, "=");
       const decoded = JSON.parse(atob(base64));
       if (typeof decoded !== "object" || decoded === null)
         return false;
@@ -51855,8 +51876,8 @@ var __async = (__this, __arguments, generator) => {
   const lastOfPathSeparatorRegExp = /###/g;
   const cleanKey = (key) => key && key.indexOf("###") > -1 ? key.replace(lastOfPathSeparatorRegExp, ".") : key;
   const canNotTraverseDeeper = (object) => !object || isString$1(object);
-  const getLastOfPath = (object, path2, Empty) => {
-    const stack = !isString$1(path2) ? path2 : path2.split(".");
+  const getLastOfPath = (object, path, Empty) => {
+    const stack = !isString$1(path) ? path : path.split(".");
     let stackIndex = 0;
     while (stackIndex < stack.length - 1) {
       if (canNotTraverseDeeper(object)) return {};
@@ -51875,17 +51896,17 @@ var __async = (__this, __arguments, generator) => {
       k: cleanKey(stack[stackIndex])
     };
   };
-  const setPath = (object, path2, newValue) => {
+  const setPath = (object, path, newValue) => {
     const {
       obj,
       k
-    } = getLastOfPath(object, path2, Object);
-    if (obj !== void 0 || path2.length === 1) {
+    } = getLastOfPath(object, path, Object);
+    if (obj !== void 0 || path.length === 1) {
       obj[k] = newValue;
       return;
     }
-    let e = path2[path2.length - 1];
-    let p = path2.slice(0, path2.length - 1);
+    let e = path[path.length - 1];
+    let p = path.slice(0, path.length - 1);
     let last2 = getLastOfPath(object, p, Object);
     while (last2.obj === void 0 && p.length) {
       e = `${p[p.length - 1]}.${e}`;
@@ -51897,19 +51918,19 @@ var __async = (__this, __arguments, generator) => {
     }
     last2.obj[`${last2.k}.${e}`] = newValue;
   };
-  const pushPath = (object, path2, newValue, concat) => {
+  const pushPath = (object, path, newValue, concat) => {
     const {
       obj,
       k
-    } = getLastOfPath(object, path2, Object);
+    } = getLastOfPath(object, path, Object);
     obj[k] = obj[k] || [];
     obj[k].push(newValue);
   };
-  const getPath = (object, path2) => {
+  const getPath = (object, path) => {
     const {
       obj,
       k
-    } = getLastOfPath(object, path2);
+    } = getLastOfPath(object, path);
     if (!obj) return void 0;
     if (!Object.prototype.hasOwnProperty.call(obj, k)) return void 0;
     return obj[k];
@@ -51989,13 +52010,13 @@ var __async = (__this, __arguments, generator) => {
     }
     return matched;
   };
-  const deepFind = (obj, path2, keySeparator = ".") => {
+  const deepFind = (obj, path, keySeparator = ".") => {
     if (!obj) return void 0;
-    if (obj[path2]) {
-      if (!Object.prototype.hasOwnProperty.call(obj, path2)) return void 0;
-      return obj[path2];
+    if (obj[path]) {
+      if (!Object.prototype.hasOwnProperty.call(obj, path)) return void 0;
+      return obj[path];
     }
-    const tokens = path2.split(keySeparator);
+    const tokens = path.split(keySeparator);
     let current = obj;
     for (let i2 = 0; i2 < tokens.length; ) {
       if (!current || typeof current !== "object") {
@@ -52146,26 +52167,26 @@ var __async = (__this, __arguments, generator) => {
       var _a, _b;
       const keySeparator = options2.keySeparator !== void 0 ? options2.keySeparator : this.options.keySeparator;
       const ignoreJSONStructure = options2.ignoreJSONStructure !== void 0 ? options2.ignoreJSONStructure : this.options.ignoreJSONStructure;
-      let path2;
+      let path;
       if (lng.indexOf(".") > -1) {
-        path2 = lng.split(".");
+        path = lng.split(".");
       } else {
-        path2 = [lng, ns];
+        path = [lng, ns];
         if (key) {
           if (Array.isArray(key)) {
-            path2.push(...key);
+            path.push(...key);
           } else if (isString$1(key) && keySeparator) {
-            path2.push(...key.split(keySeparator));
+            path.push(...key.split(keySeparator));
           } else {
-            path2.push(key);
+            path.push(key);
           }
         }
       }
-      const result = getPath(this.data, path2);
+      const result = getPath(this.data, path);
       if (!result && !ns && !key && lng.indexOf(".") > -1) {
-        lng = path2[0];
-        ns = path2[1];
-        key = path2.slice(2).join(".");
+        lng = path[0];
+        ns = path[1];
+        key = path.slice(2).join(".");
       }
       if (result || !ignoreJSONStructure || !isString$1(key)) return result;
       return deepFind((_b = (_a = this.data) == null ? void 0 : _a[lng]) == null ? void 0 : _b[ns], key, keySeparator);
@@ -52174,15 +52195,15 @@ var __async = (__this, __arguments, generator) => {
       silent: false
     }) {
       const keySeparator = options2.keySeparator !== void 0 ? options2.keySeparator : this.options.keySeparator;
-      let path2 = [lng, ns];
-      if (key) path2 = path2.concat(keySeparator ? key.split(keySeparator) : key);
+      let path = [lng, ns];
+      if (key) path = path.concat(keySeparator ? key.split(keySeparator) : key);
       if (lng.indexOf(".") > -1) {
-        path2 = lng.split(".");
+        path = lng.split(".");
         value = ns;
-        ns = path2[1];
+        ns = path[1];
       }
       this.addNamespaces(ns);
-      setPath(this.data, path2, value);
+      setPath(this.data, path, value);
       if (!options2.silent) this.emit("added", lng, ns, key, value);
     }
     addResources(lng, ns, resources, options2 = {
@@ -52199,22 +52220,22 @@ var __async = (__this, __arguments, generator) => {
       silent: false,
       skipCopy: false
     }) {
-      let path2 = [lng, ns];
+      let path = [lng, ns];
       if (lng.indexOf(".") > -1) {
-        path2 = lng.split(".");
+        path = lng.split(".");
         deep = resources;
         resources = ns;
-        ns = path2[1];
+        ns = path[1];
       }
       this.addNamespaces(ns);
-      let pack = getPath(this.data, path2) || {};
+      let pack = getPath(this.data, path) || {};
       if (!options2.skipCopy) resources = JSON.parse(JSON.stringify(resources));
       if (deep) {
         deepExtend(pack, resources, overwrite);
       } else {
         pack = __spreadValues(__spreadValues({}, pack), resources);
       }
-      setPath(this.data, path2, pack);
+      setPath(this.data, path, pack);
       if (!options2.silent) this.emit("added", lng, ns, resources);
     }
     removeResourceBundle(lng, ns) {
@@ -52274,9 +52295,9 @@ var __async = (__this, __arguments, generator) => {
   function keysFromSelector(selector, opts) {
     var _a;
     const {
-      [PATH_KEY]: path2
+      [PATH_KEY]: path
     } = selector(createProxy());
-    return path2.join((_a = opts == null ? void 0 : opts.keySeparator) != null ? _a : ".");
+    return path.join((_a = opts == null ? void 0 : opts.keySeparator) != null ? _a : ".");
   }
   const checkedLoadedFor = {};
   const shouldHandleAsObject = (res) => !isString$1(res) && typeof res !== "boolean" && typeof res !== "number";
@@ -52856,12 +52877,12 @@ var __async = (__this, __arguments, generator) => {
     }
   }
   const deepFindWithDefaults = (data, defaultData, key, keySeparator = ".", ignoreJSONStructure = true) => {
-    let path2 = getPathWithDefaults(data, defaultData, key);
-    if (!path2 && ignoreJSONStructure && isString$1(key)) {
-      path2 = deepFind(data, key, keySeparator);
-      if (path2 === void 0) path2 = deepFind(defaultData, key, keySeparator);
+    let path = getPathWithDefaults(data, defaultData, key);
+    if (!path && ignoreJSONStructure && isString$1(key)) {
+      path = deepFind(data, key, keySeparator);
+      if (path === void 0) path = deepFind(defaultData, key, keySeparator);
     }
-    return path2;
+    return path;
   };
   const regexSafe = (val) => val.replace(/\$/g, "$$$$");
   class Interpolator {
@@ -52933,10 +52954,10 @@ var __async = (__this, __arguments, generator) => {
       const defaultData = this.options && this.options.interpolation && this.options.interpolation.defaultVariables || {};
       const handleFormat = (key) => {
         if (key.indexOf(this.formatSeparator) < 0) {
-          const path2 = deepFindWithDefaults(data, defaultData, key, this.options.keySeparator, this.options.ignoreJSONStructure);
-          return this.alwaysFormat ? this.format(path2, void 0, lng, __spreadProps(__spreadValues(__spreadValues({}, options2), data), {
+          const path = deepFindWithDefaults(data, defaultData, key, this.options.keySeparator, this.options.ignoreJSONStructure);
+          return this.alwaysFormat ? this.format(path, void 0, lng, __spreadProps(__spreadValues(__spreadValues({}, options2), data), {
             interpolationkey: key
-          })) : path2;
+          })) : path;
         }
         const p = key.split(this.formatSeparator);
         const k = p.shift().trim();
@@ -54623,425 +54644,15 @@ var __async = (__this, __arguments, generator) => {
     CalendarRoute: CalendarRouteWithChildren
   };
   const routeTree = Route$7._addFileChildren(rootRouteChildren)._addFileTypes();
-  const {
-    slice,
-    forEach
-  } = [];
-  function defaults(obj) {
-    forEach.call(slice.call(arguments, 1), (source) => {
-      if (source) {
-        for (const prop in source) {
-          if (obj[prop] === void 0) obj[prop] = source[prop];
-        }
-      }
-    });
-    return obj;
-  }
-  function hasXSS(input) {
-    if (typeof input !== "string") return false;
-    const xssPatterns = [/<\s*script.*?>/i, /<\s*\/\s*script\s*>/i, /<\s*img.*?on\w+\s*=/i, /<\s*\w+\s*on\w+\s*=.*?>/i, /javascript\s*:/i, /vbscript\s*:/i, /expression\s*\(/i, /eval\s*\(/i, /alert\s*\(/i, /document\.cookie/i, /document\.write\s*\(/i, /window\.location/i, /innerHTML/i];
-    return xssPatterns.some((pattern) => pattern.test(input));
-  }
-  const fieldContentRegExp = /^[\u0009\u0020-\u007e\u0080-\u00ff]+$/;
-  const serializeCookie = function(name, val) {
-    let options2 = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {
-      path: "/"
-    };
-    const opt = options2;
-    const value = encodeURIComponent(val);
-    let str = `${name}=${value}`;
-    if (opt.maxAge > 0) {
-      const maxAge = opt.maxAge - 0;
-      if (Number.isNaN(maxAge)) throw new Error("maxAge should be a Number");
-      str += `; Max-Age=${Math.floor(maxAge)}`;
-    }
-    if (opt.domain) {
-      if (!fieldContentRegExp.test(opt.domain)) {
-        throw new TypeError("option domain is invalid");
-      }
-      str += `; Domain=${opt.domain}`;
-    }
-    if (opt.path) {
-      if (!fieldContentRegExp.test(opt.path)) {
-        throw new TypeError("option path is invalid");
-      }
-      str += `; Path=${opt.path}`;
-    }
-    if (opt.expires) {
-      if (typeof opt.expires.toUTCString !== "function") {
-        throw new TypeError("option expires is invalid");
-      }
-      str += `; Expires=${opt.expires.toUTCString()}`;
-    }
-    if (opt.httpOnly) str += "; HttpOnly";
-    if (opt.secure) str += "; Secure";
-    if (opt.sameSite) {
-      const sameSite = typeof opt.sameSite === "string" ? opt.sameSite.toLowerCase() : opt.sameSite;
-      switch (sameSite) {
-        case true:
-          str += "; SameSite=Strict";
-          break;
-        case "lax":
-          str += "; SameSite=Lax";
-          break;
-        case "strict":
-          str += "; SameSite=Strict";
-          break;
-        case "none":
-          str += "; SameSite=None";
-          break;
-        default:
-          throw new TypeError("option sameSite is invalid");
-      }
-    }
-    if (opt.partitioned) str += "; Partitioned";
-    return str;
-  };
-  const cookie = {
-    create(name, value, minutes, domain) {
-      let cookieOptions = arguments.length > 4 && arguments[4] !== void 0 ? arguments[4] : {
-        path: "/",
-        sameSite: "strict"
-      };
-      if (minutes) {
-        cookieOptions.expires = /* @__PURE__ */ new Date();
-        cookieOptions.expires.setTime(cookieOptions.expires.getTime() + minutes * 60 * 1e3);
-      }
-      if (domain) cookieOptions.domain = domain;
-      document.cookie = serializeCookie(name, value, cookieOptions);
-    },
-    read(name) {
-      const nameEQ = `${name}=`;
-      const ca = document.cookie.split(";");
-      for (let i2 = 0; i2 < ca.length; i2++) {
-        let c = ca[i2];
-        while (c.charAt(0) === " ") c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-      }
-      return null;
-    },
-    remove(name, domain) {
-      this.create(name, "", -1, domain);
-    }
-  };
-  var cookie$1 = {
-    name: "cookie",
-    // Deconstruct the options object and extract the lookupCookie property
-    lookup(_ref) {
-      let {
-        lookupCookie
-      } = _ref;
-      if (lookupCookie && typeof document !== "undefined") {
-        return cookie.read(lookupCookie) || void 0;
-      }
-      return void 0;
-    },
-    // Deconstruct the options object and extract the lookupCookie, cookieMinutes, cookieDomain, and cookieOptions properties
-    cacheUserLanguage(lng, _ref2) {
-      let {
-        lookupCookie,
-        cookieMinutes,
-        cookieDomain,
-        cookieOptions
-      } = _ref2;
-      if (lookupCookie && typeof document !== "undefined") {
-        cookie.create(lookupCookie, lng, cookieMinutes, cookieDomain, cookieOptions);
-      }
-    }
-  };
-  var querystring = {
-    name: "querystring",
-    // Deconstruct the options object and extract the lookupQuerystring property
-    lookup(_ref) {
-      var _a;
-      let {
-        lookupQuerystring
-      } = _ref;
-      let found;
-      if (typeof window !== "undefined") {
-        let {
-          search
-        } = window.location;
-        if (!window.location.search && ((_a = window.location.hash) == null ? void 0 : _a.indexOf("?")) > -1) {
-          search = window.location.hash.substring(window.location.hash.indexOf("?"));
-        }
-        const query = search.substring(1);
-        const params = query.split("&");
-        for (let i2 = 0; i2 < params.length; i2++) {
-          const pos = params[i2].indexOf("=");
-          if (pos > 0) {
-            const key = params[i2].substring(0, pos);
-            if (key === lookupQuerystring) {
-              found = params[i2].substring(pos + 1);
-            }
-          }
-        }
-      }
-      return found;
-    }
-  };
-  var hash = {
-    name: "hash",
-    // Deconstruct the options object and extract the lookupHash property and the lookupFromHashIndex property
-    lookup(_ref) {
-      var _a;
-      let {
-        lookupHash,
-        lookupFromHashIndex
-      } = _ref;
-      let found;
-      if (typeof window !== "undefined") {
-        const {
-          hash: hash2
-        } = window.location;
-        if (hash2 && hash2.length > 2) {
-          const query = hash2.substring(1);
-          if (lookupHash) {
-            const params = query.split("&");
-            for (let i2 = 0; i2 < params.length; i2++) {
-              const pos = params[i2].indexOf("=");
-              if (pos > 0) {
-                const key = params[i2].substring(0, pos);
-                if (key === lookupHash) {
-                  found = params[i2].substring(pos + 1);
-                }
-              }
-            }
-          }
-          if (found) return found;
-          if (!found && lookupFromHashIndex > -1) {
-            const language = hash2.match(/\/([a-zA-Z-]*)/g);
-            if (!Array.isArray(language)) return void 0;
-            const index2 = typeof lookupFromHashIndex === "number" ? lookupFromHashIndex : 0;
-            return (_a = language[index2]) == null ? void 0 : _a.replace("/", "");
-          }
-        }
-      }
-      return found;
-    }
-  };
-  let hasLocalStorageSupport = null;
-  const localStorageAvailable = () => {
-    if (hasLocalStorageSupport !== null) return hasLocalStorageSupport;
-    try {
-      hasLocalStorageSupport = typeof window !== "undefined" && window.localStorage !== null;
-      if (!hasLocalStorageSupport) {
-        return false;
-      }
-      const testKey = "i18next.translate.boo";
-      window.localStorage.setItem(testKey, "foo");
-      window.localStorage.removeItem(testKey);
-    } catch (e) {
-      hasLocalStorageSupport = false;
-    }
-    return hasLocalStorageSupport;
-  };
-  var localStorage$1 = {
-    name: "localStorage",
-    // Deconstruct the options object and extract the lookupLocalStorage property
-    lookup(_ref) {
-      let {
-        lookupLocalStorage
-      } = _ref;
-      if (lookupLocalStorage && localStorageAvailable()) {
-        return window.localStorage.getItem(lookupLocalStorage) || void 0;
-      }
-      return void 0;
-    },
-    // Deconstruct the options object and extract the lookupLocalStorage property
-    cacheUserLanguage(lng, _ref2) {
-      let {
-        lookupLocalStorage
-      } = _ref2;
-      if (lookupLocalStorage && localStorageAvailable()) {
-        window.localStorage.setItem(lookupLocalStorage, lng);
-      }
-    }
-  };
-  let hasSessionStorageSupport = null;
-  const sessionStorageAvailable = () => {
-    if (hasSessionStorageSupport !== null) return hasSessionStorageSupport;
-    try {
-      hasSessionStorageSupport = typeof window !== "undefined" && window.sessionStorage !== null;
-      if (!hasSessionStorageSupport) {
-        return false;
-      }
-      const testKey = "i18next.translate.boo";
-      window.sessionStorage.setItem(testKey, "foo");
-      window.sessionStorage.removeItem(testKey);
-    } catch (e) {
-      hasSessionStorageSupport = false;
-    }
-    return hasSessionStorageSupport;
-  };
-  var sessionStorage$1 = {
-    name: "sessionStorage",
-    lookup(_ref) {
-      let {
-        lookupSessionStorage
-      } = _ref;
-      if (lookupSessionStorage && sessionStorageAvailable()) {
-        return window.sessionStorage.getItem(lookupSessionStorage) || void 0;
-      }
-      return void 0;
-    },
-    cacheUserLanguage(lng, _ref2) {
-      let {
-        lookupSessionStorage
-      } = _ref2;
-      if (lookupSessionStorage && sessionStorageAvailable()) {
-        window.sessionStorage.setItem(lookupSessionStorage, lng);
-      }
-    }
-  };
-  var navigator$1 = {
-    name: "navigator",
-    lookup(options2) {
-      const found = [];
-      if (typeof navigator !== "undefined") {
-        const {
-          languages: languages2,
-          userLanguage,
-          language
-        } = navigator;
-        if (languages2) {
-          for (let i2 = 0; i2 < languages2.length; i2++) {
-            found.push(languages2[i2]);
-          }
-        }
-        if (userLanguage) {
-          found.push(userLanguage);
-        }
-        if (language) {
-          found.push(language);
-        }
-      }
-      return found.length > 0 ? found : void 0;
-    }
-  };
-  var htmlTag = {
-    name: "htmlTag",
-    // Deconstruct the options object and extract the htmlTag property
-    lookup(_ref) {
-      let {
-        htmlTag: htmlTag2
-      } = _ref;
-      let found;
-      const internalHtmlTag = htmlTag2 || (typeof document !== "undefined" ? document.documentElement : null);
-      if (internalHtmlTag && typeof internalHtmlTag.getAttribute === "function") {
-        found = internalHtmlTag.getAttribute("lang");
-      }
-      return found;
-    }
-  };
-  var path = {
-    name: "path",
-    // Deconstruct the options object and extract the lookupFromPathIndex property
-    lookup(_ref) {
-      var _a;
-      let {
-        lookupFromPathIndex
-      } = _ref;
-      if (typeof window === "undefined") return void 0;
-      const language = window.location.pathname.match(/\/([a-zA-Z-]*)/g);
-      if (!Array.isArray(language)) return void 0;
-      const index2 = typeof lookupFromPathIndex === "number" ? lookupFromPathIndex : 0;
-      return (_a = language[index2]) == null ? void 0 : _a.replace("/", "");
-    }
-  };
-  var subdomain = {
-    name: "subdomain",
-    lookup(_ref) {
-      var _a, _b;
-      let {
-        lookupFromSubdomainIndex
-      } = _ref;
-      const internalLookupFromSubdomainIndex = typeof lookupFromSubdomainIndex === "number" ? lookupFromSubdomainIndex + 1 : 1;
-      const language = typeof window !== "undefined" && ((_b = (_a = window.location) == null ? void 0 : _a.hostname) == null ? void 0 : _b.match(/^(\w{2,5})\.(([a-z0-9-]{1,63}\.[a-z]{2,6})|localhost)/i));
-      if (!language) return void 0;
-      return language[internalLookupFromSubdomainIndex];
-    }
-  };
-  let canCookies = false;
-  try {
-    document.cookie;
-    canCookies = true;
-  } catch (e) {
-  }
-  const order = ["querystring", "cookie", "localStorage", "sessionStorage", "navigator", "htmlTag"];
-  if (!canCookies) order.splice(1, 1);
-  const getDefaults = () => ({
-    order,
-    lookupQuerystring: "lng",
-    lookupCookie: "i18next",
-    lookupLocalStorage: "i18nextLng",
-    lookupSessionStorage: "i18nextLng",
-    // cache user language
-    caches: ["localStorage"],
-    excludeCacheFor: ["cimode"],
-    // cookieMinutes: 10,
-    // cookieDomain: 'myDomain'
-    convertDetectedLanguage: (l) => l
-  });
-  class Browser {
-    constructor(services) {
-      let options2 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
-      this.type = "languageDetector";
-      this.detectors = {};
-      this.init(services, options2);
-    }
-    init() {
-      let services = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {
-        languageUtils: {}
-      };
-      let options2 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
-      let i18nOptions = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {};
-      this.services = services;
-      this.options = defaults(options2, this.options || {}, getDefaults());
-      if (typeof this.options.convertDetectedLanguage === "string" && this.options.convertDetectedLanguage.indexOf("15897") > -1) {
-        this.options.convertDetectedLanguage = (l) => l.replace("-", "_");
-      }
-      if (this.options.lookupFromUrlIndex) this.options.lookupFromPathIndex = this.options.lookupFromUrlIndex;
-      this.i18nOptions = i18nOptions;
-      this.addDetector(cookie$1);
-      this.addDetector(querystring);
-      this.addDetector(localStorage$1);
-      this.addDetector(sessionStorage$1);
-      this.addDetector(navigator$1);
-      this.addDetector(htmlTag);
-      this.addDetector(path);
-      this.addDetector(subdomain);
-      this.addDetector(hash);
-    }
-    addDetector(detector) {
-      this.detectors[detector.name] = detector;
-      return this;
-    }
-    detect() {
-      let detectionOrder = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : this.options.order;
-      let detected = [];
-      detectionOrder.forEach((detectorName) => {
-        if (this.detectors[detectorName]) {
-          let lookup = this.detectors[detectorName].lookup(this.options);
-          if (lookup && typeof lookup === "string") lookup = [lookup];
-          if (lookup) detected = detected.concat(lookup);
-        }
-      });
-      detected = detected.filter((d) => d !== void 0 && d !== null && !hasXSS(d)).map((d) => this.options.convertDetectedLanguage(d));
-      if (this.services && this.services.languageUtils && this.services.languageUtils.getBestMatchFromCodes) return detected;
-      return detected.length > 0 ? detected[0] : null;
-    }
-    cacheUserLanguage(lng) {
-      let caches = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : this.options.caches;
-      if (!caches) return;
-      if (this.options.excludeCacheFor && this.options.excludeCacheFor.indexOf(lng) > -1) return;
-      caches.forEach((cacheName) => {
-        if (this.detectors[cacheName]) this.detectors[cacheName].cacheUserLanguage(lng, this.options);
-      });
-    }
-  }
-  Browser.type = "languageDetector";
   const title$3 = "Big Calendar";
+  const header$3 = {
+    title: "Calendar Diary"
+  };
+  const notFound$3 = {
+    title: "Page Not Found",
+    description: "The page you're looking for doesn't exist.",
+    goHome: "Go Home"
+  };
   const views$3 = {
     month: "Month",
     week: "Week",
@@ -55249,6 +54860,8 @@ var __async = (__this, __arguments, generator) => {
   };
   const enCalendar = {
     title: title$3,
+    header: header$3,
+    notFound: notFound$3,
     views: views$3,
     navigation: navigation$3,
     events: events$3,
@@ -55267,6 +54880,14 @@ var __async = (__this, __arguments, generator) => {
     accessibility: accessibility$3
   };
   const title$2 = "빅 캘린더";
+  const header$2 = {
+    title: "캘린더 다이어리"
+  };
+  const notFound$2 = {
+    title: "페이지를 찾을 수 없습니다",
+    description: "찾고 계신 페이지가 존재하지 않습니다.",
+    goHome: "홈으로 돌아가기"
+  };
   const views$2 = {
     month: "월",
     week: "주",
@@ -55474,6 +55095,8 @@ var __async = (__this, __arguments, generator) => {
   };
   const koCalendar = {
     title: title$2,
+    header: header$2,
+    notFound: notFound$2,
     views: views$2,
     navigation: navigation$2,
     events: events$2,
@@ -55492,6 +55115,14 @@ var __async = (__this, __arguments, generator) => {
     accessibility: accessibility$2
   };
   const title$1 = "カレンダー";
+  const header$1 = {
+    title: "カレンダー日記"
+  };
+  const notFound$1 = {
+    title: "ページが見つかりません",
+    description: "お探しのページが見つかりません。",
+    goHome: "ホームに戻る"
+  };
   const views$1 = {
     day: "日",
     week: "週",
@@ -55699,6 +55330,8 @@ var __async = (__this, __arguments, generator) => {
   };
   const jaCalendar = {
     title: title$1,
+    header: header$1,
+    notFound: notFound$1,
     views: views$1,
     navigation: navigation$1,
     userSelect: userSelect$1,
@@ -55717,6 +55350,14 @@ var __async = (__this, __arguments, generator) => {
     accessibility: accessibility$1
   };
   const title = "大日历";
+  const header = {
+    title: "日历日记本"
+  };
+  const notFound = {
+    title: "页面未找到",
+    description: "您查找的页面不存在。",
+    goHome: "返回首页"
+  };
   const views = {
     month: "月视图",
     week: "周视图",
@@ -55924,6 +55565,8 @@ var __async = (__this, __arguments, generator) => {
   };
   const zhCalendar = {
     title,
+    header,
+    notFound,
     views,
     navigation,
     events,
@@ -55941,7 +55584,8 @@ var __async = (__this, __arguments, generator) => {
     settings,
     accessibility
   };
-  instance.use(Browser).use(initReactI18next).init({
+  instance.use(initReactI18next).init({
+    lng: "zh",
     fallbackLng: "zh",
     debug: false,
     defaultNS: "calendar",
@@ -55962,10 +55606,6 @@ var __async = (__this, __arguments, generator) => {
     },
     interpolation: {
       escapeValue: false
-    },
-    detection: {
-      order: ["localStorage", "cookie", "navigator", "htmlTag"],
-      caches: ["localStorage", "cookie"]
     }
   });
   const _PerformanceMonitor = class _PerformanceMonitor {
@@ -56066,7 +55706,8 @@ var __async = (__this, __arguments, generator) => {
   __publicField(_PerformanceMonitor, "instance");
   let PerformanceMonitor = _PerformanceMonitor;
   const performanceMonitor = PerformanceMonitor.getInstance();
-  const router = createRouter({ routeTree });
+  const history$1 = createMemoryHistory();
+  const router = createRouter({ routeTree, history: history$1 });
   performanceMonitor.startMeasure("App Initialization");
   const PluginApp = () => {
     return React$4.createElement(RouterProvider, { router });
@@ -56131,17 +55772,17 @@ var __async = (__this, __arguments, generator) => {
   var isUndefined = (val) => val === void 0;
   var compact = (value) => Array.isArray(value) ? value.filter(Boolean) : [];
   var stringToPath = (input) => compact(input.replace(/["|']|\]/g, "").split(/\.|\[/));
-  var get = (object, path2, defaultValue) => {
-    if (!path2 || !isObject(object)) {
+  var get = (object, path, defaultValue) => {
+    if (!path || !isObject(object)) {
       return defaultValue;
     }
-    const result = (isKey(path2) ? [path2] : stringToPath(path2)).reduce((result2, key) => isNullOrUndefined(result2) ? result2 : result2[key], object);
-    return isUndefined(result) || result === object ? isUndefined(object[path2]) ? defaultValue : object[path2] : result;
+    const result = (isKey(path) ? [path] : stringToPath(path)).reduce((result2, key) => isNullOrUndefined(result2) ? result2 : result2[key], object);
+    return isUndefined(result) || result === object ? isUndefined(object[path]) ? defaultValue : object[path] : result;
   };
   var isBoolean = (value) => typeof value === "boolean";
-  var set = (object, path2, value) => {
+  var set = (object, path, value) => {
     let index2 = -1;
-    const tempPath = isKey(path2) ? [path2] : stringToPath(path2);
+    const tempPath = isKey(path) ? [path] : stringToPath(path);
     const length = tempPath.length;
     const lastIndex = length - 1;
     while (++index2 < length) {
@@ -56483,8 +56124,8 @@ var __async = (__this, __arguments, generator) => {
     }
     return true;
   }
-  function unset(object, path2) {
-    const paths = Array.isArray(path2) ? path2 : isKey(path2) ? [path2] : stringToPath(path2);
+  function unset(object, path) {
+    const paths = Array.isArray(path) ? path : isKey(path) ? [path] : stringToPath(path);
     const childObject = paths.length === 1 ? object : baseGet(object, paths);
     const index2 = paths.length - 1;
     const key = paths[index2];

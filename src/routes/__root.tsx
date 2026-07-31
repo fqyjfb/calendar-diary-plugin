@@ -1,29 +1,24 @@
 import { useEffect } from 'react'
-import { createRootRoute, Outlet } from '@tanstack/react-router'
+import { createRootRoute, Outlet, useNavigate } from '@tanstack/react-router'
+import { useTranslation } from 'react-i18next'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 
-// Import global styles
 import "@/styles/globals.css"
 
-// Import our providers and components
 import { QueryProvider } from '@/components/query-provider'
 import { ErrorBoundary } from '@/components/error-boundary'
 import { Header } from '@/components/layout/header'
 import { CustomDragLayer } from '@/calendar/components/dnd/custom-drag-layer'
 
-// Import fonts and utilities
 import { inter } from "@/styles/fonts"
 import { cn } from "@/lib/utils"
 
-// Import theme store
 import { useThemeStore } from '@/stores/theme-store'
 
-// Root layout component
-export function RootComponent() {
+function RootComponent() {
   const { theme, applyTheme } = useThemeStore()
 
-  // Apply theme on mount and when theme changes
   useEffect(() => {
     applyTheme(theme)
   }, [theme, applyTheme])
@@ -45,40 +40,48 @@ export function RootComponent() {
   )
 }
 
-// Error boundary component for route-level error handling
 function RootErrorComponent({ error }: { error: Error }) {
+  const { t } = useTranslation('calendar')
+  const navigate = useNavigate()
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-background text-foreground">
       <div className="p-8 text-center">
-        <h1 className="mb-4 text-2xl font-bold text-red-600">Something went wrong</h1>
+        <h1 className="mb-4 text-2xl font-bold text-red-600">{t("errors.somethingWentWrong")}</h1>
         <p className="mb-4 text-muted-foreground">{error.message}</p>
-        <button 
-          onClick={() => window.location.reload()} 
+        <button
+          onClick={() => navigate({ to: '/calendar/month' })}
           className="rounded bg-primary px-4 py-2 text-primary-foreground hover:bg-primary/90"
         >
-          Reload Page
+          {t("common.back")}
         </button>
       </div>
     </div>
   )
 }
 
-// Create and export the root route
+function NotFoundComponent() {
+  const { t } = useTranslation('calendar')
+  const navigate = useNavigate()
+
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-background text-foreground">
+      <div className="p-8 text-center">
+        <h1 className="mb-4 text-2xl font-bold">{t("notFound.title")}</h1>
+        <p className="mb-4 text-muted-foreground">{t("notFound.description")}</p>
+        <button
+          onClick={() => navigate({ to: '/calendar/month' })}
+          className="rounded bg-primary px-4 py-2 text-primary-foreground hover:bg-primary/90"
+        >
+          {t("notFound.goHome")}
+        </button>
+      </div>
+    </div>
+  )
+}
+
 export const Route = createRootRoute({
   component: RootComponent,
   errorComponent: RootErrorComponent,
-  notFoundComponent: () => (
-    <div className="flex min-h-screen items-center justify-center bg-background text-foreground">
-      <div className="p-8 text-center">
-        <h1 className="mb-4 text-2xl font-bold">Page Not Found</h1>
-        <p className="mb-4 text-muted-foreground">The page you&apos;re looking for doesn&apos;t exist.</p>
-        <a 
-          href="/" 
-          className="rounded bg-primary px-4 py-2 text-primary-foreground hover:bg-primary/90"
-        >
-          Go Home
-        </a>
-      </div>
-    </div>
-  ),
+  notFoundComponent: NotFoundComponent,
 })

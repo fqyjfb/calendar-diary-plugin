@@ -1,5 +1,13 @@
 {
   "title": "빅 캘린더",
+  "header": {
+    "title": "캘린더 다이어리"
+  },
+  "notFound": {
+    "title": "페이지를 찾을 수 없습니다",
+    "description": "찾고 계신 페이지가 존재하지 않습니다.",
+    "goHome": "홈으로 돌아가기"
+  },
   "views": {
     "month": "월",
     "week": "주",
