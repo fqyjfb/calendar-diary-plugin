@@ -33,9 +33,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 
-# tanstack router generated files
-/src/routeTree.gen.ts
-
 # env
 .env
 
