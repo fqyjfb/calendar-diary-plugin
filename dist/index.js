@@ -27207,7 +27207,7 @@ var __async = (__this, __arguments, generator) => {
   };
   const unescapeHtmlEntity = (m) => htmlEntities[m];
   const unescape = (text) => text.replace(matchHtmlEntity, unescapeHtmlEntity);
-  let defaultOptions$2 = {
+  let defaultOptions$3 = {
     bindI18n: "languageChanged",
     bindI18nStore: "",
     transEmptyNodeValue: "",
@@ -27218,9 +27218,9 @@ var __async = (__this, __arguments, generator) => {
     unescape
   };
   const setDefaults = (options2 = {}) => {
-    defaultOptions$2 = __spreadValues(__spreadValues({}, defaultOptions$2), options2);
+    defaultOptions$3 = __spreadValues(__spreadValues({}, defaultOptions$3), options2);
   };
-  const getDefaults$1 = () => defaultOptions$2;
+  const getDefaults$1 = () => defaultOptions$3;
   let i18nInstance;
   const setI18n = (instance2) => {
     i18nInstance = instance2;
@@ -32986,7 +32986,7 @@ var __async = (__this, __arguments, generator) => {
   const OK = (value) => ({ status: "valid", value });
   const isAborted = (x) => x.status === "aborted";
   const isDirty = (x) => x.status === "dirty";
-  const isValid$1 = (x) => x.status === "valid";
+  const isValid$2 = (x) => x.status === "valid";
   const isAsync = (x) => typeof Promise !== "undefined" && x instanceof Promise;
   var errorUtil;
   (function(errorUtil2) {
@@ -33013,7 +33013,7 @@ var __async = (__this, __arguments, generator) => {
     }
   }
   const handleResult = (ctx, result) => {
-    if (isValid$1(result)) {
+    if (isValid$2(result)) {
       return { success: true, data: result.value };
     } else {
       if (!ctx.common.issues.length) {
@@ -33135,7 +33135,7 @@ var __async = (__this, __arguments, generator) => {
       if (!this["~standard"].async) {
         try {
           const result = this._parseSync({ data, path: [], parent: ctx });
-          return isValid$1(result) ? {
+          return isValid$2(result) ? {
             value: result.value
           } : {
             issues: ctx.common.issues
@@ -33150,7 +33150,7 @@ var __async = (__this, __arguments, generator) => {
           };
         }
       }
-      return this._parseAsync({ data, path: [], parent: ctx }).then((result) => isValid$1(result) ? {
+      return this._parseAsync({ data, path: [], parent: ctx }).then((result) => isValid$2(result) ? {
         value: result.value
       } : {
         issues: ctx.common.issues
@@ -35713,7 +35713,7 @@ var __async = (__this, __arguments, generator) => {
             path: ctx.path,
             parent: ctx
           });
-          if (!isValid$1(base))
+          if (!isValid$2(base))
             return INVALID;
           const result = effect2.transform(base.value, checkCtx);
           if (result instanceof Promise) {
@@ -35722,7 +35722,7 @@ var __async = (__this, __arguments, generator) => {
           return { status: status.value, value: result };
         } else {
           return this._def.schema._parseAsync({ data: ctx.data, path: ctx.path, parent: ctx }).then((base) => {
-            if (!isValid$1(base))
+            if (!isValid$2(base))
               return INVALID;
             return Promise.resolve(effect2.transform(base.value, checkCtx)).then((result) => ({
               status: status.value,
@@ -35949,7 +35949,7 @@ var __async = (__this, __arguments, generator) => {
     _parse(input) {
       const result = this._def.innerType._parse(input);
       const freeze = (data) => {
-        if (isValid$1(data)) {
+        if (isValid$2(data)) {
           data.value = Object.freeze(data.value);
         }
         return data;
@@ -36018,7 +36018,7 @@ var __async = (__this, __arguments, generator) => {
   ZodPromise.create;
   ZodOptional.create;
   ZodNullable.create;
-  function toDate(argument) {
+  function toDate$1(argument) {
     const argStr = Object.prototype.toString.call(argument);
     if (argument instanceof Date || typeof argument === "object" && argStr === "[object Date]") {
       return new argument.constructor(+argument);
@@ -36028,30 +36028,30 @@ var __async = (__this, __arguments, generator) => {
       return /* @__PURE__ */ new Date(NaN);
     }
   }
-  function constructFrom(date, value) {
+  function constructFrom$1(date, value) {
     if (date instanceof Date) {
       return new date.constructor(value);
     } else {
       return new Date(value);
     }
   }
-  function addDays(date, amount) {
-    const _date = toDate(date);
-    if (isNaN(amount)) return constructFrom(date, NaN);
+  function addDays$1(date, amount) {
+    const _date = toDate$1(date);
+    if (isNaN(amount)) return constructFrom$1(date, NaN);
     if (!amount) {
       return _date;
     }
     _date.setDate(_date.getDate() + amount);
     return _date;
   }
-  function addMonths(date, amount) {
-    const _date = toDate(date);
-    if (isNaN(amount)) return constructFrom(date, NaN);
+  function addMonths$1(date, amount) {
+    const _date = toDate$1(date);
+    if (isNaN(amount)) return constructFrom$1(date, NaN);
     if (!amount) {
       return _date;
     }
     const dayOfMonth = _date.getDate();
-    const endOfDesiredMonth = constructFrom(date, _date.getTime());
+    const endOfDesiredMonth = constructFrom$1(date, _date.getTime());
     endOfDesiredMonth.setMonth(_date.getMonth() + amount + 1, 0);
     const daysInMonth = endOfDesiredMonth.getDate();
     if (dayOfMonth >= daysInMonth) {
@@ -36065,39 +36065,39 @@ var __async = (__this, __arguments, generator) => {
       return _date;
     }
   }
-  const millisecondsInWeek = 6048e5;
-  const millisecondsInDay = 864e5;
+  const millisecondsInWeek$1 = 6048e5;
+  const millisecondsInDay$1 = 864e5;
   const millisecondsInMinute = 6e4;
   const millisecondsInHour = 36e5;
-  let defaultOptions$1 = {};
-  function getDefaultOptions() {
-    return defaultOptions$1;
+  let defaultOptions$2 = {};
+  function getDefaultOptions$1() {
+    return defaultOptions$2;
   }
-  function startOfWeek(date, options2) {
+  function startOfWeek$1(date, options2) {
     var _a, _b, _c, _d, _e, _f, _g2, _h2;
-    const defaultOptions2 = getDefaultOptions();
+    const defaultOptions2 = getDefaultOptions$1();
     const weekStartsOn = (_h2 = (_g2 = (_d = (_c = options2 == null ? void 0 : options2.weekStartsOn) != null ? _c : (_b = (_a = options2 == null ? void 0 : options2.locale) == null ? void 0 : _a.options) == null ? void 0 : _b.weekStartsOn) != null ? _d : defaultOptions2.weekStartsOn) != null ? _g2 : (_f = (_e = defaultOptions2.locale) == null ? void 0 : _e.options) == null ? void 0 : _f.weekStartsOn) != null ? _h2 : 0;
-    const _date = toDate(date);
+    const _date = toDate$1(date);
     const day = _date.getDay();
     const diff = (day < weekStartsOn ? 7 : 0) + day - weekStartsOn;
     _date.setDate(_date.getDate() - diff);
     _date.setHours(0, 0, 0, 0);
     return _date;
   }
-  function startOfISOWeek(date) {
-    return startOfWeek(date, { weekStartsOn: 1 });
+  function startOfISOWeek$1(date) {
+    return startOfWeek$1(date, { weekStartsOn: 1 });
   }
-  function getISOWeekYear(date) {
-    const _date = toDate(date);
+  function getISOWeekYear$1(date) {
+    const _date = toDate$1(date);
     const year = _date.getFullYear();
-    const fourthOfJanuaryOfNextYear = constructFrom(date, 0);
+    const fourthOfJanuaryOfNextYear = constructFrom$1(date, 0);
     fourthOfJanuaryOfNextYear.setFullYear(year + 1, 0, 4);
     fourthOfJanuaryOfNextYear.setHours(0, 0, 0, 0);
-    const startOfNextYear = startOfISOWeek(fourthOfJanuaryOfNextYear);
-    const fourthOfJanuaryOfThisYear = constructFrom(date, 0);
+    const startOfNextYear = startOfISOWeek$1(fourthOfJanuaryOfNextYear);
+    const fourthOfJanuaryOfThisYear = constructFrom$1(date, 0);
     fourthOfJanuaryOfThisYear.setFullYear(year, 0, 4);
     fourthOfJanuaryOfThisYear.setHours(0, 0, 0, 0);
-    const startOfThisYear = startOfISOWeek(fourthOfJanuaryOfThisYear);
+    const startOfThisYear = startOfISOWeek$1(fourthOfJanuaryOfThisYear);
     if (_date.getTime() >= startOfNextYear.getTime()) {
       return year + 1;
     } else if (_date.getTime() >= startOfThisYear.getTime()) {
@@ -36106,13 +36106,13 @@ var __async = (__this, __arguments, generator) => {
       return year - 1;
     }
   }
-  function startOfDay(date) {
-    const _date = toDate(date);
+  function startOfDay$1(date) {
+    const _date = toDate$1(date);
     _date.setHours(0, 0, 0, 0);
     return _date;
   }
-  function getTimezoneOffsetInMilliseconds(date) {
-    const _date = toDate(date);
+  function getTimezoneOffsetInMilliseconds$1(date) {
+    const _date = toDate$1(date);
     const utcDate = new Date(
       Date.UTC(
         _date.getFullYear(),
@@ -36127,88 +36127,61 @@ var __async = (__this, __arguments, generator) => {
     utcDate.setUTCFullYear(_date.getFullYear());
     return +date - +utcDate;
   }
-  function differenceInCalendarDays(dateLeft, dateRight) {
-    const startOfDayLeft = startOfDay(dateLeft);
-    const startOfDayRight = startOfDay(dateRight);
-    const timestampLeft = +startOfDayLeft - getTimezoneOffsetInMilliseconds(startOfDayLeft);
-    const timestampRight = +startOfDayRight - getTimezoneOffsetInMilliseconds(startOfDayRight);
-    return Math.round((timestampLeft - timestampRight) / millisecondsInDay);
+  function differenceInCalendarDays$1(dateLeft, dateRight) {
+    const startOfDayLeft = startOfDay$1(dateLeft);
+    const startOfDayRight = startOfDay$1(dateRight);
+    const timestampLeft = +startOfDayLeft - getTimezoneOffsetInMilliseconds$1(startOfDayLeft);
+    const timestampRight = +startOfDayRight - getTimezoneOffsetInMilliseconds$1(startOfDayRight);
+    return Math.round((timestampLeft - timestampRight) / millisecondsInDay$1);
   }
-  function startOfISOWeekYear(date) {
-    const year = getISOWeekYear(date);
-    const fourthOfJanuary = constructFrom(date, 0);
+  function startOfISOWeekYear$1(date) {
+    const year = getISOWeekYear$1(date);
+    const fourthOfJanuary = constructFrom$1(date, 0);
     fourthOfJanuary.setFullYear(year, 0, 4);
     fourthOfJanuary.setHours(0, 0, 0, 0);
-    return startOfISOWeek(fourthOfJanuary);
+    return startOfISOWeek$1(fourthOfJanuary);
   }
-  function addWeeks(date, amount) {
+  function addWeeks$1(date, amount) {
     const days2 = amount * 7;
-    return addDays(date, days2);
+    return addDays$1(date, days2);
   }
-  function addYears(date, amount) {
-    return addMonths(date, amount * 12);
+  function addYears$1(date, amount) {
+    return addMonths$1(date, amount * 12);
   }
   function areIntervalsOverlapping(intervalLeft, intervalRight, options2) {
     const [leftStartTime, leftEndTime] = [
-      +toDate(intervalLeft.start),
-      +toDate(intervalLeft.end)
+      +toDate$1(intervalLeft.start),
+      +toDate$1(intervalLeft.end)
     ].sort((a2, b) => a2 - b);
     const [rightStartTime, rightEndTime] = [
-      +toDate(intervalRight.start),
-      +toDate(intervalRight.end)
+      +toDate$1(intervalRight.start),
+      +toDate$1(intervalRight.end)
     ].sort((a2, b) => a2 - b);
     return leftStartTime < rightEndTime && rightStartTime < leftEndTime;
   }
-  function max(dates) {
-    let result;
-    dates.forEach(function(dirtyDate) {
-      const currentDate = toDate(dirtyDate);
-      if (result === void 0 || result < currentDate || isNaN(Number(currentDate))) {
-        result = currentDate;
-      }
-    });
-    return result || /* @__PURE__ */ new Date(NaN);
-  }
-  function min(dates) {
-    let result;
-    dates.forEach((dirtyDate) => {
-      const date = toDate(dirtyDate);
-      if (!result || result > date || isNaN(+date)) {
-        result = date;
-      }
-    });
-    return result || /* @__PURE__ */ new Date(NaN);
-  }
   function constructNow(date) {
-    return constructFrom(date, Date.now());
+    return constructFrom$1(date, Date.now());
   }
-  function isSameDay(dateLeft, dateRight) {
-    const dateLeftStartOfDay = startOfDay(dateLeft);
-    const dateRightStartOfDay = startOfDay(dateRight);
+  function isSameDay$1(dateLeft, dateRight) {
+    const dateLeftStartOfDay = startOfDay$1(dateLeft);
+    const dateRightStartOfDay = startOfDay$1(dateRight);
     return +dateLeftStartOfDay === +dateRightStartOfDay;
   }
-  function isDate(value) {
+  function isDate$1(value) {
     return value instanceof Date || typeof value === "object" && Object.prototype.toString.call(value) === "[object Date]";
   }
-  function isValid(date) {
-    if (!isDate(date) && typeof date !== "number") {
+  function isValid$1(date) {
+    if (!isDate$1(date) && typeof date !== "number") {
       return false;
     }
-    const _date = toDate(date);
+    const _date = toDate$1(date);
     return !isNaN(Number(_date));
   }
-  function differenceInCalendarMonths(dateLeft, dateRight) {
-    const _dateLeft = toDate(dateLeft);
-    const _dateRight = toDate(dateRight);
-    const yearDiff = _dateLeft.getFullYear() - _dateRight.getFullYear();
-    const monthDiff = _dateLeft.getMonth() - _dateRight.getMonth();
-    return yearDiff * 12 + monthDiff;
-  }
   function differenceInDays(dateLeft, dateRight) {
-    const _dateLeft = toDate(dateLeft);
-    const _dateRight = toDate(dateRight);
+    const _dateLeft = toDate$1(dateLeft);
+    const _dateRight = toDate$1(dateRight);
     const sign = compareLocalAsc(_dateLeft, _dateRight);
-    const difference = Math.abs(differenceInCalendarDays(_dateLeft, _dateRight));
+    const difference = Math.abs(differenceInCalendarDays$1(_dateLeft, _dateRight));
     _dateLeft.setDate(_dateLeft.getDate() - sign * difference);
     const isLastDayNotFull = Number(
       compareLocalAsc(_dateLeft, _dateRight) === -sign
@@ -36234,27 +36207,27 @@ var __async = (__this, __arguments, generator) => {
     };
   }
   function differenceInMilliseconds(dateLeft, dateRight) {
-    return +toDate(dateLeft) - +toDate(dateRight);
+    return +toDate$1(dateLeft) - +toDate$1(dateRight);
   }
   function differenceInMinutes(dateLeft, dateRight, options2) {
     const diff = differenceInMilliseconds(dateLeft, dateRight) / millisecondsInMinute;
     return getRoundingMethod(options2 == null ? void 0 : options2.roundingMethod)(diff);
   }
   function endOfDay(date) {
-    const _date = toDate(date);
+    const _date = toDate$1(date);
     _date.setHours(23, 59, 59, 999);
     return _date;
   }
-  function endOfMonth(date) {
-    const _date = toDate(date);
+  function endOfMonth$1(date) {
+    const _date = toDate$1(date);
     const month = _date.getMonth();
     _date.setFullYear(_date.getFullYear(), month + 1, 0);
     _date.setHours(23, 59, 59, 999);
     return _date;
   }
   function eachDayOfInterval(interval, options2) {
-    const startDate = toDate(interval.start);
-    const endDate = toDate(interval.end);
+    const startDate = toDate$1(interval.start);
+    const endDate = toDate$1(interval.end);
     let reversed = +startDate > +endDate;
     const endTime = reversed ? +startDate : +endDate;
     const currentDate = reversed ? endDate : startDate;
@@ -36262,79 +36235,44 @@ var __async = (__this, __arguments, generator) => {
     let step = 1;
     const dates = [];
     while (+currentDate <= endTime) {
-      dates.push(toDate(currentDate));
+      dates.push(toDate$1(currentDate));
       currentDate.setDate(currentDate.getDate() + step);
       currentDate.setHours(0, 0, 0, 0);
     }
     return reversed ? dates.reverse() : dates;
   }
-  function eachMonthOfInterval(interval, options2) {
-    const startDate = toDate(interval.start);
-    const endDate = toDate(interval.end);
-    let reversed = +startDate > +endDate;
-    const endTime = reversed ? +startDate : +endDate;
-    const currentDate = reversed ? endDate : startDate;
-    currentDate.setHours(0, 0, 0, 0);
-    currentDate.setDate(1);
-    let step = 1;
-    const dates = [];
-    while (+currentDate <= endTime) {
-      dates.push(toDate(currentDate));
-      currentDate.setMonth(currentDate.getMonth() + step);
-    }
-    return reversed ? dates.reverse() : dates;
-  }
-  function startOfMonth(date) {
-    const _date = toDate(date);
+  function startOfMonth$1(date) {
+    const _date = toDate$1(date);
     _date.setDate(1);
     _date.setHours(0, 0, 0, 0);
     return _date;
   }
-  function endOfYear(date) {
-    const _date = toDate(date);
+  function endOfYear$1(date) {
+    const _date = toDate$1(date);
     const year = _date.getFullYear();
     _date.setFullYear(year + 1, 0, 0);
     _date.setHours(23, 59, 59, 999);
     return _date;
   }
-  function startOfYear(date) {
-    const cleanDate = toDate(date);
-    const _date = constructFrom(date, 0);
+  function startOfYear$1(date) {
+    const cleanDate = toDate$1(date);
+    const _date = constructFrom$1(date, 0);
     _date.setFullYear(cleanDate.getFullYear(), 0, 1);
     _date.setHours(0, 0, 0, 0);
     return _date;
   }
-  function eachYearOfInterval(interval, options2) {
-    const startDate = toDate(interval.start);
-    const endDate = toDate(interval.end);
-    let reversed = +startDate > +endDate;
-    const endTime = reversed ? +startDate : +endDate;
-    const currentDate = reversed ? endDate : startDate;
-    currentDate.setHours(0, 0, 0, 0);
-    currentDate.setMonth(0, 1);
-    let step = 1;
-    const dates = [];
-    while (+currentDate <= endTime) {
-      dates.push(toDate(currentDate));
-      currentDate.setFullYear(currentDate.getFullYear() + step);
-    }
-    return reversed ? dates.reverse() : dates;
-  }
-  function endOfWeek(date, options2) {
+  function endOfWeek$1(date, options2) {
     var _a, _b, _c, _d, _e, _f, _g2, _h2;
-    const defaultOptions2 = getDefaultOptions();
+    const defaultOptions2 = getDefaultOptions$1();
     const weekStartsOn = (_h2 = (_g2 = (_d = (_c = options2 == null ? void 0 : options2.weekStartsOn) != null ? _c : (_b = (_a = options2 == null ? void 0 : options2.locale) == null ? void 0 : _a.options) == null ? void 0 : _b.weekStartsOn) != null ? _d : defaultOptions2.weekStartsOn) != null ? _g2 : (_f = (_e = defaultOptions2.locale) == null ? void 0 : _e.options) == null ? void 0 : _f.weekStartsOn) != null ? _h2 : 0;
-    const _date = toDate(date);
+    const _date = toDate$1(date);
     const day = _date.getDay();
     const diff = (day < weekStartsOn ? -7 : 0) + 6 - (day - weekStartsOn);
     _date.setDate(_date.getDate() + diff);
     _date.setHours(23, 59, 59, 999);
     return _date;
   }
-  function endOfISOWeek(date) {
-    return endOfWeek(date, { weekStartsOn: 1 });
-  }
-  const formatDistanceLocale$o = {
+  const formatDistanceLocale$p = {
     lessThanXSeconds: {
       one: "less than a second",
       other: "less than {{count}} seconds"
@@ -36397,9 +36335,9 @@ var __async = (__this, __arguments, generator) => {
       other: "almost {{count}} years"
     }
   };
-  const formatDistance$p = (token, count2, options2) => {
+  const formatDistance$q = (token, count2, options2) => {
     let result;
-    const tokenValue = formatDistanceLocale$o[token];
+    const tokenValue = formatDistanceLocale$p[token];
     if (typeof tokenValue === "string") {
       result = tokenValue;
     } else if (count2 === 1) {
@@ -36416,46 +36354,46 @@ var __async = (__this, __arguments, generator) => {
     }
     return result;
   };
-  function buildFormatLongFn(args) {
+  function buildFormatLongFn$1(args) {
     return (options2 = {}) => {
       const width = options2.width ? String(options2.width) : args.defaultWidth;
       const format2 = args.formats[width] || args.formats[args.defaultWidth];
       return format2;
     };
   }
-  const dateFormats$q = {
+  const dateFormats$r = {
     full: "EEEE, MMMM do, y",
     long: "MMMM do, y",
     medium: "MMM d, y",
     short: "MM/dd/yyyy"
   };
-  const timeFormats$p = {
+  const timeFormats$q = {
     full: "h:mm:ss a zzzz",
     long: "h:mm:ss a z",
     medium: "h:mm:ss a",
     short: "h:mm a"
   };
-  const dateTimeFormats$p = {
+  const dateTimeFormats$q = {
     full: "{{date}} 'at' {{time}}",
     long: "{{date}} 'at' {{time}}",
     medium: "{{date}}, {{time}}",
     short: "{{date}}, {{time}}"
   };
-  const formatLong$p = {
-    date: buildFormatLongFn({
-      formats: dateFormats$q,
+  const formatLong$q = {
+    date: buildFormatLongFn$1({
+      formats: dateFormats$r,
       defaultWidth: "full"
     }),
-    time: buildFormatLongFn({
-      formats: timeFormats$p,
+    time: buildFormatLongFn$1({
+      formats: timeFormats$q,
       defaultWidth: "full"
     }),
-    dateTime: buildFormatLongFn({
-      formats: dateTimeFormats$p,
+    dateTime: buildFormatLongFn$1({
+      formats: dateTimeFormats$q,
       defaultWidth: "full"
     })
   };
-  const formatRelativeLocale$p = {
+  const formatRelativeLocale$q = {
     lastWeek: "'last' eeee 'at' p",
     yesterday: "'yesterday at' p",
     today: "'today at' p",
@@ -36463,8 +36401,8 @@ var __async = (__this, __arguments, generator) => {
     nextWeek: "eeee 'at' p",
     other: "P"
   };
-  const formatRelative$p = (token, _date, _baseDate, _options) => formatRelativeLocale$p[token];
-  function buildLocalizeFn(args) {
+  const formatRelative$q = (token, _date, _baseDate, _options) => formatRelativeLocale$q[token];
+  function buildLocalizeFn$1(args) {
     return (value, options2) => {
       const context = (options2 == null ? void 0 : options2.context) ? String(options2.context) : "standalone";
       let valuesArray;
@@ -36481,17 +36419,17 @@ var __async = (__this, __arguments, generator) => {
       return valuesArray[index2];
     };
   }
-  const eraValues$p = {
+  const eraValues$q = {
     narrow: ["B", "A"],
     abbreviated: ["BC", "AD"],
     wide: ["Before Christ", "Anno Domini"]
   };
-  const quarterValues$p = {
+  const quarterValues$q = {
     narrow: ["1", "2", "3", "4"],
     abbreviated: ["Q1", "Q2", "Q3", "Q4"],
     wide: ["1st quarter", "2nd quarter", "3rd quarter", "4th quarter"]
   };
-  const monthValues$p = {
+  const monthValues$q = {
     narrow: ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"],
     abbreviated: [
       "Jan",
@@ -36522,7 +36460,7 @@ var __async = (__this, __arguments, generator) => {
       "December"
     ]
   };
-  const dayValues$p = {
+  const dayValues$q = {
     narrow: ["S", "M", "T", "W", "T", "F", "S"],
     short: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
     abbreviated: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
@@ -36536,7 +36474,7 @@ var __async = (__this, __arguments, generator) => {
       "Saturday"
     ]
   };
-  const dayPeriodValues$p = {
+  const dayPeriodValues$q = {
     narrow: {
       am: "a",
       pm: "p",
@@ -36568,7 +36506,7 @@ var __async = (__this, __arguments, generator) => {
       night: "night"
     }
   };
-  const formattingDayPeriodValues$j = {
+  const formattingDayPeriodValues$k = {
     narrow: {
       am: "a",
       pm: "p",
@@ -36600,7 +36538,7 @@ var __async = (__this, __arguments, generator) => {
       night: "at night"
     }
   };
-  const ordinalNumber$p = (dirtyNumber, _options) => {
+  const ordinalNumber$q = (dirtyNumber, _options) => {
     const number = Number(dirtyNumber);
     const rem100 = number % 100;
     if (rem100 > 20 || rem100 < 10) {
@@ -36615,33 +36553,33 @@ var __async = (__this, __arguments, generator) => {
     }
     return number + "th";
   };
-  const localize$p = {
-    ordinalNumber: ordinalNumber$p,
-    era: buildLocalizeFn({
-      values: eraValues$p,
+  const localize$q = {
+    ordinalNumber: ordinalNumber$q,
+    era: buildLocalizeFn$1({
+      values: eraValues$q,
       defaultWidth: "wide"
     }),
-    quarter: buildLocalizeFn({
-      values: quarterValues$p,
+    quarter: buildLocalizeFn$1({
+      values: quarterValues$q,
       defaultWidth: "wide",
       argumentCallback: (quarter) => quarter - 1
     }),
-    month: buildLocalizeFn({
-      values: monthValues$p,
+    month: buildLocalizeFn$1({
+      values: monthValues$q,
       defaultWidth: "wide"
     }),
-    day: buildLocalizeFn({
-      values: dayValues$p,
+    day: buildLocalizeFn$1({
+      values: dayValues$q,
       defaultWidth: "wide"
     }),
-    dayPeriod: buildLocalizeFn({
-      values: dayPeriodValues$p,
+    dayPeriod: buildLocalizeFn$1({
+      values: dayPeriodValues$q,
       defaultWidth: "wide",
-      formattingValues: formattingDayPeriodValues$j,
+      formattingValues: formattingDayPeriodValues$k,
       defaultFormattingWidth: "wide"
     })
   };
-  function buildMatchFn(args) {
+  function buildMatchFn$1(args) {
     return (string, options2 = {}) => {
       const width = options2.width;
       const matchPattern = width && args.matchPatterns[width] || args.matchPatterns[args.defaultMatchWidth];
@@ -36651,9 +36589,9 @@ var __async = (__this, __arguments, generator) => {
       }
       const matchedString = matchResult[0];
       const parsePatterns = width && args.parsePatterns[width] || args.parsePatterns[args.defaultParseWidth];
-      const key = Array.isArray(parsePatterns) ? findIndex(parsePatterns, (pattern) => pattern.test(matchedString)) : (
+      const key = Array.isArray(parsePatterns) ? findIndex$1(parsePatterns, (pattern) => pattern.test(matchedString)) : (
         // eslint-disable-next-line @typescript-eslint/no-explicit-any -- I challange you to fix the type
-        findKey(parsePatterns, (pattern) => pattern.test(matchedString))
+        findKey$1(parsePatterns, (pattern) => pattern.test(matchedString))
       );
       let value;
       value = args.valueCallback ? args.valueCallback(key) : key;
@@ -36665,7 +36603,7 @@ var __async = (__this, __arguments, generator) => {
       return { value, rest };
     };
   }
-  function findKey(object, predicate) {
+  function findKey$1(object, predicate) {
     for (const key in object) {
       if (Object.prototype.hasOwnProperty.call(object, key) && predicate(object[key])) {
         return key;
@@ -36673,7 +36611,7 @@ var __async = (__this, __arguments, generator) => {
     }
     return void 0;
   }
-  function findIndex(array, predicate) {
+  function findIndex$1(array, predicate) {
     for (let key = 0; key < array.length; key++) {
       if (predicate(array[key])) {
         return key;
@@ -36681,7 +36619,7 @@ var __async = (__this, __arguments, generator) => {
     }
     return void 0;
   }
-  function buildMatchPatternFn(args) {
+  function buildMatchPatternFn$1(args) {
     return (string, options2 = {}) => {
       const matchResult = string.match(args.matchPattern);
       if (!matchResult) return null;
@@ -36694,30 +36632,30 @@ var __async = (__this, __arguments, generator) => {
       return { value, rest };
     };
   }
-  const matchOrdinalNumberPattern$p = /^(\d+)(th|st|nd|rd)?/i;
-  const parseOrdinalNumberPattern$p = /\d+/i;
-  const matchEraPatterns$p = {
+  const matchOrdinalNumberPattern$q = /^(\d+)(th|st|nd|rd)?/i;
+  const parseOrdinalNumberPattern$q = /\d+/i;
+  const matchEraPatterns$q = {
     narrow: /^(b|a)/i,
     abbreviated: /^(b\.?\s?c\.?|b\.?\s?c\.?\s?e\.?|a\.?\s?d\.?|c\.?\s?e\.?)/i,
     wide: /^(before christ|before common era|anno domini|common era)/i
   };
-  const parseEraPatterns$p = {
+  const parseEraPatterns$q = {
     any: [/^b/i, /^(a|c)/i]
   };
-  const matchQuarterPatterns$p = {
+  const matchQuarterPatterns$q = {
     narrow: /^[1234]/i,
     abbreviated: /^q[1234]/i,
     wide: /^[1234](th|st|nd|rd)? quarter/i
   };
-  const parseQuarterPatterns$p = {
+  const parseQuarterPatterns$q = {
     any: [/1/i, /2/i, /3/i, /4/i]
   };
-  const matchMonthPatterns$p = {
+  const matchMonthPatterns$q = {
     narrow: /^[jfmasond]/i,
     abbreviated: /^(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)/i,
     wide: /^(january|february|march|april|may|june|july|august|september|october|november|december)/i
   };
-  const parseMonthPatterns$p = {
+  const parseMonthPatterns$q = {
     narrow: [
       /^j/i,
       /^f/i,
@@ -36747,21 +36685,21 @@ var __async = (__this, __arguments, generator) => {
       /^d/i
     ]
   };
-  const matchDayPatterns$p = {
+  const matchDayPatterns$q = {
     narrow: /^[smtwf]/i,
     short: /^(su|mo|tu|we|th|fr|sa)/i,
     abbreviated: /^(sun|mon|tue|wed|thu|fri|sat)/i,
     wide: /^(sunday|monday|tuesday|wednesday|thursday|friday|saturday)/i
   };
-  const parseDayPatterns$p = {
+  const parseDayPatterns$q = {
     narrow: [/^s/i, /^m/i, /^t/i, /^w/i, /^t/i, /^f/i, /^s/i],
     any: [/^su/i, /^m/i, /^tu/i, /^w/i, /^th/i, /^f/i, /^sa/i]
   };
-  const matchDayPeriodPatterns$p = {
+  const matchDayPeriodPatterns$q = {
     narrow: /^(a|p|mi|n|(in the|at) (morning|afternoon|evening|night))/i,
     any: /^([ap]\.?\s?m\.?|midnight|noon|(in the|at) (morning|afternoon|evening|night))/i
   };
-  const parseDayPeriodPatterns$p = {
+  const parseDayPeriodPatterns$q = {
     any: {
       am: /^a/i,
       pm: /^p/i,
@@ -36773,81 +36711,81 @@ var __async = (__this, __arguments, generator) => {
       night: /night/i
     }
   };
-  const match$p = {
-    ordinalNumber: buildMatchPatternFn({
-      matchPattern: matchOrdinalNumberPattern$p,
-      parsePattern: parseOrdinalNumberPattern$p,
+  const match$q = {
+    ordinalNumber: buildMatchPatternFn$1({
+      matchPattern: matchOrdinalNumberPattern$q,
+      parsePattern: parseOrdinalNumberPattern$q,
       valueCallback: (value) => parseInt(value, 10)
     }),
-    era: buildMatchFn({
-      matchPatterns: matchEraPatterns$p,
+    era: buildMatchFn$1({
+      matchPatterns: matchEraPatterns$q,
       defaultMatchWidth: "wide",
-      parsePatterns: parseEraPatterns$p,
+      parsePatterns: parseEraPatterns$q,
       defaultParseWidth: "any"
     }),
-    quarter: buildMatchFn({
-      matchPatterns: matchQuarterPatterns$p,
+    quarter: buildMatchFn$1({
+      matchPatterns: matchQuarterPatterns$q,
       defaultMatchWidth: "wide",
-      parsePatterns: parseQuarterPatterns$p,
+      parsePatterns: parseQuarterPatterns$q,
       defaultParseWidth: "any",
       valueCallback: (index2) => index2 + 1
     }),
-    month: buildMatchFn({
-      matchPatterns: matchMonthPatterns$p,
+    month: buildMatchFn$1({
+      matchPatterns: matchMonthPatterns$q,
       defaultMatchWidth: "wide",
-      parsePatterns: parseMonthPatterns$p,
+      parsePatterns: parseMonthPatterns$q,
       defaultParseWidth: "any"
     }),
-    day: buildMatchFn({
-      matchPatterns: matchDayPatterns$p,
+    day: buildMatchFn$1({
+      matchPatterns: matchDayPatterns$q,
       defaultMatchWidth: "wide",
-      parsePatterns: parseDayPatterns$p,
+      parsePatterns: parseDayPatterns$q,
       defaultParseWidth: "any"
     }),
-    dayPeriod: buildMatchFn({
-      matchPatterns: matchDayPeriodPatterns$p,
+    dayPeriod: buildMatchFn$1({
+      matchPatterns: matchDayPeriodPatterns$q,
       defaultMatchWidth: "any",
-      parsePatterns: parseDayPeriodPatterns$p,
+      parsePatterns: parseDayPeriodPatterns$q,
       defaultParseWidth: "any"
     })
   };
-  const enUS$1 = {
+  const enUS$2 = {
     code: "en-US",
-    formatDistance: formatDistance$p,
-    formatLong: formatLong$p,
-    formatRelative: formatRelative$p,
-    localize: localize$p,
-    match: match$p,
+    formatDistance: formatDistance$q,
+    formatLong: formatLong$q,
+    formatRelative: formatRelative$q,
+    localize: localize$q,
+    match: match$q,
     options: {
       weekStartsOn: 0,
       firstWeekContainsDate: 1
     }
   };
-  function getDayOfYear(date) {
-    const _date = toDate(date);
-    const diff = differenceInCalendarDays(_date, startOfYear(_date));
+  function getDayOfYear$1(date) {
+    const _date = toDate$1(date);
+    const diff = differenceInCalendarDays$1(_date, startOfYear$1(_date));
     const dayOfYear = diff + 1;
     return dayOfYear;
   }
-  function getISOWeek(date) {
-    const _date = toDate(date);
-    const diff = +startOfISOWeek(_date) - +startOfISOWeekYear(_date);
-    return Math.round(diff / millisecondsInWeek) + 1;
+  function getISOWeek$1(date) {
+    const _date = toDate$1(date);
+    const diff = +startOfISOWeek$1(_date) - +startOfISOWeekYear$1(_date);
+    return Math.round(diff / millisecondsInWeek$1) + 1;
   }
-  function getWeekYear(date, options2) {
+  function getWeekYear$1(date, options2) {
     var _a, _b, _c, _d, _e, _f, _g2, _h2;
-    const _date = toDate(date);
+    const _date = toDate$1(date);
     const year = _date.getFullYear();
-    const defaultOptions2 = getDefaultOptions();
+    const defaultOptions2 = getDefaultOptions$1();
     const firstWeekContainsDate = (_h2 = (_g2 = (_d = (_c = options2 == null ? void 0 : options2.firstWeekContainsDate) != null ? _c : (_b = (_a = options2 == null ? void 0 : options2.locale) == null ? void 0 : _a.options) == null ? void 0 : _b.firstWeekContainsDate) != null ? _d : defaultOptions2.firstWeekContainsDate) != null ? _g2 : (_f = (_e = defaultOptions2.locale) == null ? void 0 : _e.options) == null ? void 0 : _f.firstWeekContainsDate) != null ? _h2 : 1;
-    const firstWeekOfNextYear = constructFrom(date, 0);
+    const firstWeekOfNextYear = constructFrom$1(date, 0);
     firstWeekOfNextYear.setFullYear(year + 1, 0, firstWeekContainsDate);
     firstWeekOfNextYear.setHours(0, 0, 0, 0);
-    const startOfNextYear = startOfWeek(firstWeekOfNextYear, options2);
-    const firstWeekOfThisYear = constructFrom(date, 0);
+    const startOfNextYear = startOfWeek$1(firstWeekOfNextYear, options2);
+    const firstWeekOfThisYear = constructFrom$1(date, 0);
     firstWeekOfThisYear.setFullYear(year, 0, firstWeekContainsDate);
     firstWeekOfThisYear.setHours(0, 0, 0, 0);
-    const startOfThisYear = startOfWeek(firstWeekOfThisYear, options2);
+    const startOfThisYear = startOfWeek$1(firstWeekOfThisYear, options2);
     if (_date.getTime() >= startOfNextYear.getTime()) {
       return year + 1;
     } else if (_date.getTime() >= startOfThisYear.getTime()) {
@@ -36856,42 +36794,42 @@ var __async = (__this, __arguments, generator) => {
       return year - 1;
     }
   }
-  function startOfWeekYear(date, options2) {
+  function startOfWeekYear$1(date, options2) {
     var _a, _b, _c, _d, _e, _f, _g2, _h2;
-    const defaultOptions2 = getDefaultOptions();
+    const defaultOptions2 = getDefaultOptions$1();
     const firstWeekContainsDate = (_h2 = (_g2 = (_d = (_c = options2 == null ? void 0 : options2.firstWeekContainsDate) != null ? _c : (_b = (_a = options2 == null ? void 0 : options2.locale) == null ? void 0 : _a.options) == null ? void 0 : _b.firstWeekContainsDate) != null ? _d : defaultOptions2.firstWeekContainsDate) != null ? _g2 : (_f = (_e = defaultOptions2.locale) == null ? void 0 : _e.options) == null ? void 0 : _f.firstWeekContainsDate) != null ? _h2 : 1;
-    const year = getWeekYear(date, options2);
-    const firstWeek = constructFrom(date, 0);
+    const year = getWeekYear$1(date, options2);
+    const firstWeek = constructFrom$1(date, 0);
     firstWeek.setFullYear(year, 0, firstWeekContainsDate);
     firstWeek.setHours(0, 0, 0, 0);
-    const _date = startOfWeek(firstWeek, options2);
+    const _date = startOfWeek$1(firstWeek, options2);
     return _date;
   }
-  function getWeek(date, options2) {
-    const _date = toDate(date);
-    const diff = +startOfWeek(_date, options2) - +startOfWeekYear(_date, options2);
-    return Math.round(diff / millisecondsInWeek) + 1;
+  function getWeek$1(date, options2) {
+    const _date = toDate$1(date);
+    const diff = +startOfWeek$1(_date, options2) - +startOfWeekYear$1(_date, options2);
+    return Math.round(diff / millisecondsInWeek$1) + 1;
   }
-  function addLeadingZeros(number, targetLength) {
+  function addLeadingZeros$1(number, targetLength) {
     const sign = number < 0 ? "-" : "";
     const output = Math.abs(number).toString().padStart(targetLength, "0");
     return sign + output;
   }
-  const lightFormatters = {
+  const lightFormatters$1 = {
     // Year
     y(date, token) {
       const signedYear = date.getFullYear();
       const year = signedYear > 0 ? signedYear : 1 - signedYear;
-      return addLeadingZeros(token === "yy" ? year % 100 : year, token.length);
+      return addLeadingZeros$1(token === "yy" ? year % 100 : year, token.length);
     },
     // Month
     M(date, token) {
       const month = date.getMonth();
-      return token === "M" ? String(month + 1) : addLeadingZeros(month + 1, 2);
+      return token === "M" ? String(month + 1) : addLeadingZeros$1(month + 1, 2);
     },
     // Day of the month
     d(date, token) {
-      return addLeadingZeros(date.getDate(), token.length);
+      return addLeadingZeros$1(date.getDate(), token.length);
     },
     // AM or PM
     a(date, token) {
@@ -36911,19 +36849,19 @@ var __async = (__this, __arguments, generator) => {
     },
     // Hour [1-12]
     h(date, token) {
-      return addLeadingZeros(date.getHours() % 12 || 12, token.length);
+      return addLeadingZeros$1(date.getHours() % 12 || 12, token.length);
     },
     // Hour [0-23]
     H(date, token) {
-      return addLeadingZeros(date.getHours(), token.length);
+      return addLeadingZeros$1(date.getHours(), token.length);
     },
     // Minute
     m(date, token) {
-      return addLeadingZeros(date.getMinutes(), token.length);
+      return addLeadingZeros$1(date.getMinutes(), token.length);
     },
     // Second
     s(date, token) {
-      return addLeadingZeros(date.getSeconds(), token.length);
+      return addLeadingZeros$1(date.getSeconds(), token.length);
     },
     // Fraction of second
     S(date, token) {
@@ -36932,10 +36870,10 @@ var __async = (__this, __arguments, generator) => {
       const fractionalSeconds = Math.trunc(
         milliseconds * Math.pow(10, numberOfDigits - 3)
       );
-      return addLeadingZeros(fractionalSeconds, token.length);
+      return addLeadingZeros$1(fractionalSeconds, token.length);
     }
   };
-  const dayPeriodEnum = {
+  const dayPeriodEnum$1 = {
     midnight: "midnight",
     noon: "noon",
     morning: "morning",
@@ -36943,7 +36881,7 @@ var __async = (__this, __arguments, generator) => {
     evening: "evening",
     night: "night"
   };
-  const formatters = {
+  const formatters$1 = {
     // Era
     G: function(date, token, localize2) {
       const era = date.getFullYear() > 0 ? 1 : 0;
@@ -36966,25 +36904,25 @@ var __async = (__this, __arguments, generator) => {
         const year = signedYear > 0 ? signedYear : 1 - signedYear;
         return localize2.ordinalNumber(year, { unit: "year" });
       }
-      return lightFormatters.y(date, token);
+      return lightFormatters$1.y(date, token);
     },
     // Local week-numbering year
     Y: function(date, token, localize2, options2) {
-      const signedWeekYear = getWeekYear(date, options2);
+      const signedWeekYear = getWeekYear$1(date, options2);
       const weekYear = signedWeekYear > 0 ? signedWeekYear : 1 - signedWeekYear;
       if (token === "YY") {
         const twoDigitYear = weekYear % 100;
-        return addLeadingZeros(twoDigitYear, 2);
+        return addLeadingZeros$1(twoDigitYear, 2);
       }
       if (token === "Yo") {
         return localize2.ordinalNumber(weekYear, { unit: "year" });
       }
-      return addLeadingZeros(weekYear, token.length);
+      return addLeadingZeros$1(weekYear, token.length);
     },
     // ISO week-numbering year
     R: function(date, token) {
-      const isoWeekYear = getISOWeekYear(date);
-      return addLeadingZeros(isoWeekYear, token.length);
+      const isoWeekYear = getISOWeekYear$1(date);
+      return addLeadingZeros$1(isoWeekYear, token.length);
     },
     // Extended year. This is a single number designating the year of this calendar system.
     // The main difference between `y` and `u` localizers are B.C. years:
@@ -36997,7 +36935,7 @@ var __async = (__this, __arguments, generator) => {
     // while `uu` pads single digit years to 2 characters and returns other years unchanged.
     u: function(date, token) {
       const year = date.getFullYear();
-      return addLeadingZeros(year, token.length);
+      return addLeadingZeros$1(year, token.length);
     },
     // Quarter
     Q: function(date, token, localize2) {
@@ -37006,7 +36944,7 @@ var __async = (__this, __arguments, generator) => {
         case "Q":
           return String(quarter);
         case "QQ":
-          return addLeadingZeros(quarter, 2);
+          return addLeadingZeros$1(quarter, 2);
         case "Qo":
           return localize2.ordinalNumber(quarter, { unit: "quarter" });
         case "QQQ":
@@ -37034,7 +36972,7 @@ var __async = (__this, __arguments, generator) => {
         case "q":
           return String(quarter);
         case "qq":
-          return addLeadingZeros(quarter, 2);
+          return addLeadingZeros$1(quarter, 2);
         case "qo":
           return localize2.ordinalNumber(quarter, { unit: "quarter" });
         case "qqq":
@@ -37061,7 +36999,7 @@ var __async = (__this, __arguments, generator) => {
       switch (token) {
         case "M":
         case "MM":
-          return lightFormatters.M(date, token);
+          return lightFormatters$1.M(date, token);
         case "Mo":
           return localize2.ordinalNumber(month + 1, { unit: "month" });
         case "MMM":
@@ -37086,7 +37024,7 @@ var __async = (__this, __arguments, generator) => {
         case "L":
           return String(month + 1);
         case "LL":
-          return addLeadingZeros(month + 1, 2);
+          return addLeadingZeros$1(month + 1, 2);
         case "Lo":
           return localize2.ordinalNumber(month + 1, { unit: "month" });
         case "LLL":
@@ -37106,34 +37044,34 @@ var __async = (__this, __arguments, generator) => {
     },
     // Local week of year
     w: function(date, token, localize2, options2) {
-      const week2 = getWeek(date, options2);
+      const week2 = getWeek$1(date, options2);
       if (token === "wo") {
         return localize2.ordinalNumber(week2, { unit: "week" });
       }
-      return addLeadingZeros(week2, token.length);
+      return addLeadingZeros$1(week2, token.length);
     },
     // ISO week of year
     I: function(date, token, localize2) {
-      const isoWeek = getISOWeek(date);
+      const isoWeek = getISOWeek$1(date);
       if (token === "Io") {
         return localize2.ordinalNumber(isoWeek, { unit: "week" });
       }
-      return addLeadingZeros(isoWeek, token.length);
+      return addLeadingZeros$1(isoWeek, token.length);
     },
     // Day of the month
     d: function(date, token, localize2) {
       if (token === "do") {
         return localize2.ordinalNumber(date.getDate(), { unit: "date" });
       }
-      return lightFormatters.d(date, token);
+      return lightFormatters$1.d(date, token);
     },
     // Day of year
     D: function(date, token, localize2) {
-      const dayOfYear = getDayOfYear(date);
+      const dayOfYear = getDayOfYear$1(date);
       if (token === "Do") {
         return localize2.ordinalNumber(dayOfYear, { unit: "dayOfYear" });
       }
-      return addLeadingZeros(dayOfYear, token.length);
+      return addLeadingZeros$1(dayOfYear, token.length);
     },
     // Day of week
     E: function(date, token, localize2) {
@@ -37172,7 +37110,7 @@ var __async = (__this, __arguments, generator) => {
         case "e":
           return String(localDayOfWeek);
         case "ee":
-          return addLeadingZeros(localDayOfWeek, 2);
+          return addLeadingZeros$1(localDayOfWeek, 2);
         case "eo":
           return localize2.ordinalNumber(localDayOfWeek, { unit: "day" });
         case "eee":
@@ -37206,7 +37144,7 @@ var __async = (__this, __arguments, generator) => {
         case "c":
           return String(localDayOfWeek);
         case "cc":
-          return addLeadingZeros(localDayOfWeek, token.length);
+          return addLeadingZeros$1(localDayOfWeek, token.length);
         case "co":
           return localize2.ordinalNumber(localDayOfWeek, { unit: "day" });
         case "ccc":
@@ -37240,7 +37178,7 @@ var __async = (__this, __arguments, generator) => {
         case "i":
           return String(isoDayOfWeek);
         case "ii":
-          return addLeadingZeros(isoDayOfWeek, token.length);
+          return addLeadingZeros$1(isoDayOfWeek, token.length);
         case "io":
           return localize2.ordinalNumber(isoDayOfWeek, { unit: "day" });
         case "iii":
@@ -37300,9 +37238,9 @@ var __async = (__this, __arguments, generator) => {
       const hours = date.getHours();
       let dayPeriodEnumValue;
       if (hours === 12) {
-        dayPeriodEnumValue = dayPeriodEnum.noon;
+        dayPeriodEnumValue = dayPeriodEnum$1.noon;
       } else if (hours === 0) {
-        dayPeriodEnumValue = dayPeriodEnum.midnight;
+        dayPeriodEnumValue = dayPeriodEnum$1.midnight;
       } else {
         dayPeriodEnumValue = hours / 12 >= 1 ? "pm" : "am";
       }
@@ -37336,13 +37274,13 @@ var __async = (__this, __arguments, generator) => {
       const hours = date.getHours();
       let dayPeriodEnumValue;
       if (hours >= 17) {
-        dayPeriodEnumValue = dayPeriodEnum.evening;
+        dayPeriodEnumValue = dayPeriodEnum$1.evening;
       } else if (hours >= 12) {
-        dayPeriodEnumValue = dayPeriodEnum.afternoon;
+        dayPeriodEnumValue = dayPeriodEnum$1.afternoon;
       } else if (hours >= 4) {
-        dayPeriodEnumValue = dayPeriodEnum.morning;
+        dayPeriodEnumValue = dayPeriodEnum$1.morning;
       } else {
-        dayPeriodEnumValue = dayPeriodEnum.night;
+        dayPeriodEnumValue = dayPeriodEnum$1.night;
       }
       switch (token) {
         case "B":
@@ -37372,14 +37310,14 @@ var __async = (__this, __arguments, generator) => {
         if (hours === 0) hours = 12;
         return localize2.ordinalNumber(hours, { unit: "hour" });
       }
-      return lightFormatters.h(date, token);
+      return lightFormatters$1.h(date, token);
     },
     // Hour [0-23]
     H: function(date, token, localize2) {
       if (token === "Ho") {
         return localize2.ordinalNumber(date.getHours(), { unit: "hour" });
       }
-      return lightFormatters.H(date, token);
+      return lightFormatters$1.H(date, token);
     },
     // Hour [0-11]
     K: function(date, token, localize2) {
@@ -37387,7 +37325,7 @@ var __async = (__this, __arguments, generator) => {
       if (token === "Ko") {
         return localize2.ordinalNumber(hours, { unit: "hour" });
       }
-      return addLeadingZeros(hours, token.length);
+      return addLeadingZeros$1(hours, token.length);
     },
     // Hour [1-24]
     k: function(date, token, localize2) {
@@ -37396,25 +37334,25 @@ var __async = (__this, __arguments, generator) => {
       if (token === "ko") {
         return localize2.ordinalNumber(hours, { unit: "hour" });
       }
-      return addLeadingZeros(hours, token.length);
+      return addLeadingZeros$1(hours, token.length);
     },
     // Minute
     m: function(date, token, localize2) {
       if (token === "mo") {
         return localize2.ordinalNumber(date.getMinutes(), { unit: "minute" });
       }
-      return lightFormatters.m(date, token);
+      return lightFormatters$1.m(date, token);
     },
     // Second
     s: function(date, token, localize2) {
       if (token === "so") {
         return localize2.ordinalNumber(date.getSeconds(), { unit: "second" });
       }
-      return lightFormatters.s(date, token);
+      return lightFormatters$1.s(date, token);
     },
     // Fraction of second
     S: function(date, token) {
-      return lightFormatters.S(date, token);
+      return lightFormatters$1.S(date, token);
     },
     // Timezone (ISO-8601. If offset is 0, output is always `'Z'`)
     X: function(date, token, _localize) {
@@ -37424,14 +37362,14 @@ var __async = (__this, __arguments, generator) => {
       }
       switch (token) {
         case "X":
-          return formatTimezoneWithOptionalMinutes(timezoneOffset);
+          return formatTimezoneWithOptionalMinutes$1(timezoneOffset);
         case "XXXX":
         case "XX":
-          return formatTimezone(timezoneOffset);
+          return formatTimezone$1(timezoneOffset);
         case "XXXXX":
         case "XXX":
         default:
-          return formatTimezone(timezoneOffset, ":");
+          return formatTimezone$1(timezoneOffset, ":");
       }
     },
     // Timezone (ISO-8601. If offset is 0, output is `'+00:00'` or equivalent)
@@ -37439,14 +37377,14 @@ var __async = (__this, __arguments, generator) => {
       const timezoneOffset = date.getTimezoneOffset();
       switch (token) {
         case "x":
-          return formatTimezoneWithOptionalMinutes(timezoneOffset);
+          return formatTimezoneWithOptionalMinutes$1(timezoneOffset);
         case "xxxx":
         case "xx":
-          return formatTimezone(timezoneOffset);
+          return formatTimezone$1(timezoneOffset);
         case "xxxxx":
         case "xxx":
         default:
-          return formatTimezone(timezoneOffset, ":");
+          return formatTimezone$1(timezoneOffset, ":");
       }
     },
     // Timezone (GMT)
@@ -37456,10 +37394,10 @@ var __async = (__this, __arguments, generator) => {
         case "O":
         case "OO":
         case "OOO":
-          return "GMT" + formatTimezoneShort(timezoneOffset, ":");
+          return "GMT" + formatTimezoneShort$1(timezoneOffset, ":");
         case "OOOO":
         default:
-          return "GMT" + formatTimezone(timezoneOffset, ":");
+          return "GMT" + formatTimezone$1(timezoneOffset, ":");
       }
     },
     // Timezone (specific non-location)
@@ -37469,24 +37407,24 @@ var __async = (__this, __arguments, generator) => {
         case "z":
         case "zz":
         case "zzz":
-          return "GMT" + formatTimezoneShort(timezoneOffset, ":");
+          return "GMT" + formatTimezoneShort$1(timezoneOffset, ":");
         case "zzzz":
         default:
-          return "GMT" + formatTimezone(timezoneOffset, ":");
+          return "GMT" + formatTimezone$1(timezoneOffset, ":");
       }
     },
     // Seconds timestamp
     t: function(date, token, _localize) {
       const timestamp = Math.trunc(date.getTime() / 1e3);
-      return addLeadingZeros(timestamp, token.length);
+      return addLeadingZeros$1(timestamp, token.length);
     },
     // Milliseconds timestamp
     T: function(date, token, _localize) {
       const timestamp = date.getTime();
-      return addLeadingZeros(timestamp, token.length);
+      return addLeadingZeros$1(timestamp, token.length);
     }
   };
-  function formatTimezoneShort(offset2, delimiter = "") {
+  function formatTimezoneShort$1(offset2, delimiter = "") {
     const sign = offset2 > 0 ? "-" : "+";
     const absOffset = Math.abs(offset2);
     const hours = Math.trunc(absOffset / 60);
@@ -37494,23 +37432,23 @@ var __async = (__this, __arguments, generator) => {
     if (minutes === 0) {
       return sign + String(hours);
     }
-    return sign + String(hours) + delimiter + addLeadingZeros(minutes, 2);
+    return sign + String(hours) + delimiter + addLeadingZeros$1(minutes, 2);
   }
-  function formatTimezoneWithOptionalMinutes(offset2, delimiter) {
+  function formatTimezoneWithOptionalMinutes$1(offset2, delimiter) {
     if (offset2 % 60 === 0) {
       const sign = offset2 > 0 ? "-" : "+";
-      return sign + addLeadingZeros(Math.abs(offset2) / 60, 2);
+      return sign + addLeadingZeros$1(Math.abs(offset2) / 60, 2);
     }
-    return formatTimezone(offset2, delimiter);
+    return formatTimezone$1(offset2, delimiter);
   }
-  function formatTimezone(offset2, delimiter = "") {
+  function formatTimezone$1(offset2, delimiter = "") {
     const sign = offset2 > 0 ? "-" : "+";
     const absOffset = Math.abs(offset2);
-    const hours = addLeadingZeros(Math.trunc(absOffset / 60), 2);
-    const minutes = addLeadingZeros(absOffset % 60, 2);
+    const hours = addLeadingZeros$1(Math.trunc(absOffset / 60), 2);
+    const minutes = addLeadingZeros$1(absOffset % 60, 2);
     return sign + hours + delimiter + minutes;
   }
-  const dateLongFormatter = (pattern, formatLong2) => {
+  const dateLongFormatter$1 = (pattern, formatLong2) => {
     switch (pattern) {
       case "P":
         return formatLong2.date({ width: "short" });
@@ -37523,7 +37461,7 @@ var __async = (__this, __arguments, generator) => {
         return formatLong2.date({ width: "full" });
     }
   };
-  const timeLongFormatter = (pattern, formatLong2) => {
+  const timeLongFormatter$1 = (pattern, formatLong2) => {
     switch (pattern) {
       case "p":
         return formatLong2.time({ width: "short" });
@@ -37536,12 +37474,12 @@ var __async = (__this, __arguments, generator) => {
         return formatLong2.time({ width: "full" });
     }
   };
-  const dateTimeLongFormatter = (pattern, formatLong2) => {
+  const dateTimeLongFormatter$1 = (pattern, formatLong2) => {
     const matchResult = pattern.match(/(P+)(p+)?/) || [];
     const datePattern = matchResult[1];
     const timePattern = matchResult[2];
     if (!timePattern) {
-      return dateLongFormatter(pattern, formatLong2);
+      return dateLongFormatter$1(pattern, formatLong2);
     }
     let dateTimeFormat;
     switch (datePattern) {
@@ -37559,64 +37497,64 @@ var __async = (__this, __arguments, generator) => {
         dateTimeFormat = formatLong2.dateTime({ width: "full" });
         break;
     }
-    return dateTimeFormat.replace("{{date}}", dateLongFormatter(datePattern, formatLong2)).replace("{{time}}", timeLongFormatter(timePattern, formatLong2));
+    return dateTimeFormat.replace("{{date}}", dateLongFormatter$1(datePattern, formatLong2)).replace("{{time}}", timeLongFormatter$1(timePattern, formatLong2));
   };
-  const longFormatters = {
-    p: timeLongFormatter,
-    P: dateTimeLongFormatter
+  const longFormatters$1 = {
+    p: timeLongFormatter$1,
+    P: dateTimeLongFormatter$1
   };
-  const dayOfYearTokenRE = /^D+$/;
-  const weekYearTokenRE = /^Y+$/;
-  const throwTokens = ["D", "DD", "YY", "YYYY"];
-  function isProtectedDayOfYearToken(token) {
-    return dayOfYearTokenRE.test(token);
+  const dayOfYearTokenRE$1 = /^D+$/;
+  const weekYearTokenRE$1 = /^Y+$/;
+  const throwTokens$1 = ["D", "DD", "YY", "YYYY"];
+  function isProtectedDayOfYearToken$1(token) {
+    return dayOfYearTokenRE$1.test(token);
   }
-  function isProtectedWeekYearToken(token) {
-    return weekYearTokenRE.test(token);
+  function isProtectedWeekYearToken$1(token) {
+    return weekYearTokenRE$1.test(token);
   }
-  function warnOrThrowProtectedError(token, format2, input) {
-    const _message = message(token, format2, input);
+  function warnOrThrowProtectedError$1(token, format2, input) {
+    const _message = message$1(token, format2, input);
     console.warn(_message);
-    if (throwTokens.includes(token)) throw new RangeError(_message);
+    if (throwTokens$1.includes(token)) throw new RangeError(_message);
   }
-  function message(token, format2, input) {
+  function message$1(token, format2, input) {
     const subject = token[0] === "Y" ? "years" : "days of the month";
     return `Use \`${token.toLowerCase()}\` instead of \`${token}\` (in \`${format2}\`) for formatting ${subject} to the input \`${input}\`; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md`;
   }
-  const formattingTokensRegExp = /[yYQqMLwIdDecihHKkms]o|(\w)\1*|''|'(''|[^'])+('|$)|./g;
-  const longFormattingTokensRegExp = /P+p+|P+|p+|''|'(''|[^'])+('|$)|./g;
-  const escapedStringRegExp = /^'([^]*?)'?$/;
-  const doubleQuoteRegExp = /''/g;
-  const unescapedLatinCharacterRegExp = /[a-zA-Z]/;
-  function format(date, formatStr, options2) {
+  const formattingTokensRegExp$1 = /[yYQqMLwIdDecihHKkms]o|(\w)\1*|''|'(''|[^'])+('|$)|./g;
+  const longFormattingTokensRegExp$1 = /P+p+|P+|p+|''|'(''|[^'])+('|$)|./g;
+  const escapedStringRegExp$1 = /^'([^]*?)'?$/;
+  const doubleQuoteRegExp$1 = /''/g;
+  const unescapedLatinCharacterRegExp$1 = /[a-zA-Z]/;
+  function format$1(date, formatStr, options2) {
     var _a, _b, _c, _d, _e, _f, _g2, _h2, _i2, _j2, _k2, _l, _m2, _n2, _o2, _p2, _q2, _r2;
-    const defaultOptions2 = getDefaultOptions();
-    const locale = (_b = (_a = options2 == null ? void 0 : options2.locale) != null ? _a : defaultOptions2.locale) != null ? _b : enUS$1;
+    const defaultOptions2 = getDefaultOptions$1();
+    const locale = (_b = (_a = options2 == null ? void 0 : options2.locale) != null ? _a : defaultOptions2.locale) != null ? _b : enUS$2;
     const firstWeekContainsDate = (_j2 = (_i2 = (_f = (_e = options2 == null ? void 0 : options2.firstWeekContainsDate) != null ? _e : (_d = (_c = options2 == null ? void 0 : options2.locale) == null ? void 0 : _c.options) == null ? void 0 : _d.firstWeekContainsDate) != null ? _f : defaultOptions2.firstWeekContainsDate) != null ? _i2 : (_h2 = (_g2 = defaultOptions2.locale) == null ? void 0 : _g2.options) == null ? void 0 : _h2.firstWeekContainsDate) != null ? _j2 : 1;
     const weekStartsOn = (_r2 = (_q2 = (_n2 = (_m2 = options2 == null ? void 0 : options2.weekStartsOn) != null ? _m2 : (_l = (_k2 = options2 == null ? void 0 : options2.locale) == null ? void 0 : _k2.options) == null ? void 0 : _l.weekStartsOn) != null ? _n2 : defaultOptions2.weekStartsOn) != null ? _q2 : (_p2 = (_o2 = defaultOptions2.locale) == null ? void 0 : _o2.options) == null ? void 0 : _p2.weekStartsOn) != null ? _r2 : 0;
-    const originalDate = toDate(date);
-    if (!isValid(originalDate)) {
+    const originalDate = toDate$1(date);
+    if (!isValid$1(originalDate)) {
       throw new RangeError("Invalid time value");
     }
-    let parts = formatStr.match(longFormattingTokensRegExp).map((substring) => {
+    let parts = formatStr.match(longFormattingTokensRegExp$1).map((substring) => {
       const firstCharacter = substring[0];
       if (firstCharacter === "p" || firstCharacter === "P") {
-        const longFormatter = longFormatters[firstCharacter];
+        const longFormatter = longFormatters$1[firstCharacter];
         return longFormatter(substring, locale.formatLong);
       }
       return substring;
-    }).join("").match(formattingTokensRegExp).map((substring) => {
+    }).join("").match(formattingTokensRegExp$1).map((substring) => {
       if (substring === "''") {
         return { isToken: false, value: "'" };
       }
       const firstCharacter = substring[0];
       if (firstCharacter === "'") {
-        return { isToken: false, value: cleanEscapedString(substring) };
+        return { isToken: false, value: cleanEscapedString$1(substring) };
       }
-      if (formatters[firstCharacter]) {
+      if (formatters$1[firstCharacter]) {
         return { isToken: true, value: substring };
       }
-      if (firstCharacter.match(unescapedLatinCharacterRegExp)) {
+      if (firstCharacter.match(unescapedLatinCharacterRegExp$1)) {
         throw new RangeError(
           "Format string contains an unescaped latin alphabet character `" + firstCharacter + "`"
         );
@@ -37634,75 +37572,67 @@ var __async = (__this, __arguments, generator) => {
     return parts.map((part) => {
       if (!part.isToken) return part.value;
       const token = part.value;
-      if (!(options2 == null ? void 0 : options2.useAdditionalWeekYearTokens) && isProtectedWeekYearToken(token) || !(options2 == null ? void 0 : options2.useAdditionalDayOfYearTokens) && isProtectedDayOfYearToken(token)) {
-        warnOrThrowProtectedError(token, formatStr, String(date));
+      if (!(options2 == null ? void 0 : options2.useAdditionalWeekYearTokens) && isProtectedWeekYearToken$1(token) || !(options2 == null ? void 0 : options2.useAdditionalDayOfYearTokens) && isProtectedDayOfYearToken$1(token)) {
+        warnOrThrowProtectedError$1(token, formatStr, String(date));
       }
-      const formatter = formatters[token[0]];
+      const formatter = formatters$1[token[0]];
       return formatter(originalDate, token, locale.localize, formatterOptions);
     }).join("");
   }
-  function cleanEscapedString(input) {
-    const matched = input.match(escapedStringRegExp);
+  function cleanEscapedString$1(input) {
+    const matched = input.match(escapedStringRegExp$1);
     if (!matched) {
       return input;
     }
-    return matched[1].replace(doubleQuoteRegExp, "'");
+    return matched[1].replace(doubleQuoteRegExp$1, "'");
   }
-  function getDaysInMonth(date) {
-    const _date = toDate(date);
+  function getDaysInMonth$1(date) {
+    const _date = toDate$1(date);
     const year = _date.getFullYear();
     const monthIndex = _date.getMonth();
-    const lastDayOfMonth = constructFrom(date, 0);
+    const lastDayOfMonth = constructFrom$1(date, 0);
     lastDayOfMonth.setFullYear(year, monthIndex + 1, 0);
     lastDayOfMonth.setHours(0, 0, 0, 0);
     return lastDayOfMonth.getDate();
   }
-  function getMonth(date) {
-    const _date = toDate(date);
-    const month = _date.getMonth();
-    return month;
-  }
-  function getYear(date) {
-    return toDate(date).getFullYear();
-  }
-  function isAfter(date, dateToCompare) {
-    const _date = toDate(date);
-    const _dateToCompare = toDate(dateToCompare);
+  function isAfter$1(date, dateToCompare) {
+    const _date = toDate$1(date);
+    const _dateToCompare = toDate$1(dateToCompare);
     return _date.getTime() > _dateToCompare.getTime();
   }
-  function isBefore(date, dateToCompare) {
-    const _date = toDate(date);
-    const _dateToCompare = toDate(dateToCompare);
+  function isBefore$1(date, dateToCompare) {
+    const _date = toDate$1(date);
+    const _dateToCompare = toDate$1(dateToCompare);
     return +_date < +_dateToCompare;
   }
   function isSameWeek(dateLeft, dateRight, options2) {
-    const dateLeftStartOfWeek = startOfWeek(dateLeft, options2);
-    const dateRightStartOfWeek = startOfWeek(dateRight, options2);
+    const dateLeftStartOfWeek = startOfWeek$1(dateLeft, options2);
+    const dateRightStartOfWeek = startOfWeek$1(dateRight, options2);
     return +dateLeftStartOfWeek === +dateRightStartOfWeek;
   }
-  function isSameMonth(dateLeft, dateRight) {
-    const _dateLeft = toDate(dateLeft);
-    const _dateRight = toDate(dateRight);
+  function isSameMonth$1(dateLeft, dateRight) {
+    const _dateLeft = toDate$1(dateLeft);
+    const _dateRight = toDate$1(dateRight);
     return _dateLeft.getFullYear() === _dateRight.getFullYear() && _dateLeft.getMonth() === _dateRight.getMonth();
   }
-  function isSameYear(dateLeft, dateRight) {
-    const _dateLeft = toDate(dateLeft);
-    const _dateRight = toDate(dateRight);
+  function isSameYear$1(dateLeft, dateRight) {
+    const _dateLeft = toDate$1(dateLeft);
+    const _dateRight = toDate$1(dateRight);
     return _dateLeft.getFullYear() === _dateRight.getFullYear();
   }
   function isToday(date) {
-    return isSameDay(date, constructNow(date));
+    return isSameDay$1(date, constructNow(date));
   }
   function isWithinInterval(date, interval) {
-    const time = +toDate(date);
+    const time = +toDate$1(date);
     const [startTime, endTime] = [
-      +toDate(interval.start),
-      +toDate(interval.end)
+      +toDate$1(interval.start),
+      +toDate$1(interval.end)
     ].sort((a2, b) => a2 - b);
     return time >= startTime && time <= endTime;
   }
   function subDays(date, amount) {
-    return addDays(date, -amount);
+    return addDays$1(date, -amount);
   }
   function parseISO(argument, options2) {
     const additionalDigits = 2;
@@ -37882,33 +37812,14 @@ var __async = (__this, __arguments, generator) => {
   function validateTimezone(_hours, minutes) {
     return minutes >= 0 && minutes <= 59;
   }
-  function setMonth(date, month) {
-    const _date = toDate(date);
-    const year = _date.getFullYear();
-    const day = _date.getDate();
-    const dateWithDesiredMonth = constructFrom(date, 0);
-    dateWithDesiredMonth.setFullYear(year, month, 15);
-    dateWithDesiredMonth.setHours(0, 0, 0, 0);
-    const daysInMonth = getDaysInMonth(dateWithDesiredMonth);
-    _date.setMonth(month, Math.min(day, daysInMonth));
-    return _date;
-  }
-  function setYear(date, year) {
-    const _date = toDate(date);
-    if (isNaN(+_date)) {
-      return constructFrom(date, NaN);
-    }
-    _date.setFullYear(year);
-    return _date;
-  }
   function subMonths(date, amount) {
-    return addMonths(date, -amount);
+    return addMonths$1(date, -amount);
   }
   function subWeeks(date, amount) {
-    return addWeeks(date, -amount);
+    return addWeeks$1(date, -amount);
   }
   function subYears(date, amount) {
-    return addYears(date, -amount);
+    return addYears$1(date, -amount);
   }
   class NavigationUtils {
     /**
@@ -37917,7 +37828,7 @@ var __async = (__this, __arguments, generator) => {
     static isValidDateString(dateString) {
       try {
         const date = parseISO(dateString);
-        return isValid(date);
+        return isValid$1(date);
       } catch (e) {
         return false;
       }
@@ -37932,7 +37843,7 @@ var __async = (__this, __arguments, generator) => {
      * Formats a date for URL usage
      */
     static formatDateForUrl(date) {
-      return format(date, "yyyy-MM-dd");
+      return format$1(date, "yyyy-MM-dd");
     }
     /**
      * Parses a date from URL
@@ -40117,7 +40028,7 @@ var __async = (__this, __arguments, generator) => {
       ] })
     ] });
   }
-  const formatDistanceLocale$n = {
+  const formatDistanceLocale$o = {
     lessThanXSeconds: {
       one: "أقل من ثانية واحدة",
       two: "أقل من ثانتين",
@@ -40210,9 +40121,9 @@ var __async = (__this, __arguments, generator) => {
       other: "{{count}} عام تقريباً"
     }
   };
-  const formatDistance$o = (token, count2, options2) => {
+  const formatDistance$p = (token, count2, options2) => {
     let result;
-    const tokenValue = formatDistanceLocale$n[token];
+    const tokenValue = formatDistanceLocale$o[token];
     if (typeof tokenValue === "string") {
       result = tokenValue;
     } else if (count2 === 1) {
@@ -40233,39 +40144,39 @@ var __async = (__this, __arguments, generator) => {
     }
     return result;
   };
-  const dateFormats$p = {
+  const dateFormats$q = {
     full: "EEEE, MMMM do, y",
     long: "MMMM do, y",
     medium: "MMM d, y",
     short: "MM/dd/yyyy"
   };
-  const timeFormats$o = {
+  const timeFormats$p = {
     full: "h:mm:ss a zzzz",
     long: "h:mm:ss a z",
     medium: "h:mm:ss a",
     short: "h:mm a"
   };
-  const dateTimeFormats$o = {
+  const dateTimeFormats$p = {
     full: "{{date}} 'عند' {{time}}",
     long: "{{date}} 'عند' {{time}}",
     medium: "{{date}}, {{time}}",
     short: "{{date}}, {{time}}"
   };
-  const formatLong$o = {
-    date: buildFormatLongFn({
-      formats: dateFormats$p,
+  const formatLong$p = {
+    date: buildFormatLongFn$1({
+      formats: dateFormats$q,
       defaultWidth: "full"
     }),
-    time: buildFormatLongFn({
-      formats: timeFormats$o,
+    time: buildFormatLongFn$1({
+      formats: timeFormats$p,
       defaultWidth: "full"
     }),
-    dateTime: buildFormatLongFn({
-      formats: dateTimeFormats$o,
+    dateTime: buildFormatLongFn$1({
+      formats: dateTimeFormats$p,
       defaultWidth: "full"
     })
   };
-  const formatRelativeLocale$o = {
+  const formatRelativeLocale$p = {
     lastWeek: "'أخر' eeee 'عند' p",
     yesterday: "'أمس عند' p",
     today: "'اليوم عند' p",
@@ -40273,18 +40184,18 @@ var __async = (__this, __arguments, generator) => {
     nextWeek: "eeee 'عند' p",
     other: "P"
   };
-  const formatRelative$o = (token, _date, _baseDate, _options) => formatRelativeLocale$o[token];
-  const eraValues$o = {
+  const formatRelative$p = (token, _date, _baseDate, _options) => formatRelativeLocale$p[token];
+  const eraValues$p = {
     narrow: ["ق", "ب"],
     abbreviated: ["ق.م.", "ب.م."],
     wide: ["قبل الميلاد", "بعد الميلاد"]
   };
-  const quarterValues$o = {
+  const quarterValues$p = {
     narrow: ["1", "2", "3", "4"],
     abbreviated: ["ر1", "ر2", "ر3", "ر4"],
     wide: ["الربع الأول", "الربع الثاني", "الربع الثالث", "الربع الرابع"]
   };
-  const monthValues$o = {
+  const monthValues$p = {
     narrow: ["ي", "ف", "م", "أ", "م", "ي", "ي", "أ", "س", "أ", "ن", "د"],
     abbreviated: [
       "ينا",
@@ -40315,7 +40226,7 @@ var __async = (__this, __arguments, generator) => {
       "ديسمبر"
     ]
   };
-  const dayValues$o = {
+  const dayValues$p = {
     narrow: ["ح", "ن", "ث", "ر", "خ", "ج", "س"],
     short: ["أحد", "اثنين", "ثلاثاء", "أربعاء", "خميس", "جمعة", "سبت"],
     abbreviated: ["أحد", "اثنـ", "ثلا", "أربـ", "خميـ", "جمعة", "سبت"],
@@ -40329,7 +40240,7 @@ var __async = (__this, __arguments, generator) => {
       "السبت"
     ]
   };
-  const dayPeriodValues$o = {
+  const dayPeriodValues$p = {
     narrow: {
       am: "ص",
       pm: "م",
@@ -40361,7 +40272,7 @@ var __async = (__this, __arguments, generator) => {
       night: "ليلاً"
     }
   };
-  const formattingDayPeriodValues$i = {
+  const formattingDayPeriodValues$j = {
     narrow: {
       am: "ص",
       pm: "م",
@@ -40393,59 +40304,59 @@ var __async = (__this, __arguments, generator) => {
       night: "في الليل"
     }
   };
-  const ordinalNumber$o = (dirtyNumber) => {
+  const ordinalNumber$p = (dirtyNumber) => {
     return String(dirtyNumber);
   };
-  const localize$o = {
-    ordinalNumber: ordinalNumber$o,
-    era: buildLocalizeFn({
-      values: eraValues$o,
+  const localize$p = {
+    ordinalNumber: ordinalNumber$p,
+    era: buildLocalizeFn$1({
+      values: eraValues$p,
       defaultWidth: "wide"
     }),
-    quarter: buildLocalizeFn({
-      values: quarterValues$o,
+    quarter: buildLocalizeFn$1({
+      values: quarterValues$p,
       defaultWidth: "wide",
       argumentCallback: (quarter) => quarter - 1
     }),
-    month: buildLocalizeFn({
-      values: monthValues$o,
+    month: buildLocalizeFn$1({
+      values: monthValues$p,
       defaultWidth: "wide"
     }),
-    day: buildLocalizeFn({
-      values: dayValues$o,
+    day: buildLocalizeFn$1({
+      values: dayValues$p,
       defaultWidth: "wide"
     }),
-    dayPeriod: buildLocalizeFn({
-      values: dayPeriodValues$o,
+    dayPeriod: buildLocalizeFn$1({
+      values: dayPeriodValues$p,
       defaultWidth: "wide",
-      formattingValues: formattingDayPeriodValues$i,
+      formattingValues: formattingDayPeriodValues$j,
       defaultFormattingWidth: "wide"
     })
   };
-  const matchOrdinalNumberPattern$o = /^(\d+)(th|st|nd|rd)?/i;
-  const parseOrdinalNumberPattern$o = /\d+/i;
-  const matchEraPatterns$o = {
+  const matchOrdinalNumberPattern$p = /^(\d+)(th|st|nd|rd)?/i;
+  const parseOrdinalNumberPattern$p = /\d+/i;
+  const matchEraPatterns$p = {
     narrow: /^(ق|ب)/i,
     abbreviated: /^(ق\.?\s?م\.?|ق\.?\s?م\.?\s?|a\.?\s?d\.?|c\.?\s?)/i,
     wide: /^(قبل الميلاد|قبل الميلاد|بعد الميلاد|بعد الميلاد)/i
   };
-  const parseEraPatterns$o = {
+  const parseEraPatterns$p = {
     any: [/^قبل/i, /^بعد/i]
   };
-  const matchQuarterPatterns$o = {
+  const matchQuarterPatterns$p = {
     narrow: /^[1234]/i,
     abbreviated: /^ر[1234]/i,
     wide: /^الربع [1234]/i
   };
-  const parseQuarterPatterns$o = {
+  const parseQuarterPatterns$p = {
     any: [/1/i, /2/i, /3/i, /4/i]
   };
-  const matchMonthPatterns$o = {
+  const matchMonthPatterns$p = {
     narrow: /^[يفمأمسند]/i,
     abbreviated: /^(ين|ف|مار|أب|ماي|يون|يول|أغ|س|أك|ن|د)/i,
     wide: /^(ين|ف|مار|أب|ماي|يون|يول|أغ|س|أك|ن|د)/i
   };
-  const parseMonthPatterns$o = {
+  const parseMonthPatterns$p = {
     narrow: [
       /^ي/i,
       /^ف/i,
@@ -40475,13 +40386,13 @@ var __async = (__this, __arguments, generator) => {
       /^د/i
     ]
   };
-  const matchDayPatterns$o = {
+  const matchDayPatterns$p = {
     narrow: /^[حنثرخجس]/i,
     short: /^(أحد|اثنين|ثلاثاء|أربعاء|خميس|جمعة|سبت)/i,
     abbreviated: /^(أحد|اثن|ثلا|أرب|خمي|جمعة|سبت)/i,
     wide: /^(الأحد|الاثنين|الثلاثاء|الأربعاء|الخميس|الجمعة|السبت)/i
   };
-  const parseDayPatterns$o = {
+  const parseDayPatterns$p = {
     narrow: [/^ح/i, /^ن/i, /^ث/i, /^ر/i, /^خ/i, /^ج/i, /^س/i],
     wide: [
       /^الأحد/i,
@@ -40494,11 +40405,11 @@ var __async = (__this, __arguments, generator) => {
     ],
     any: [/^أح/i, /^اث/i, /^ث/i, /^أر/i, /^خ/i, /^ج/i, /^س/i]
   };
-  const matchDayPeriodPatterns$o = {
+  const matchDayPeriodPatterns$p = {
     narrow: /^(a|p|mi|n|(in the|at) (morning|afternoon|evening|night))/i,
     any: /^([ap]\.?\s?m\.?|midnight|noon|(in the|at) (morning|afternoon|evening|night))/i
   };
-  const parseDayPeriodPatterns$o = {
+  const parseDayPeriodPatterns$p = {
     any: {
       am: /^a/i,
       pm: /^p/i,
@@ -40510,57 +40421,57 @@ var __async = (__this, __arguments, generator) => {
       night: /night/i
     }
   };
-  const match$o = {
-    ordinalNumber: buildMatchPatternFn({
-      matchPattern: matchOrdinalNumberPattern$o,
-      parsePattern: parseOrdinalNumberPattern$o,
+  const match$p = {
+    ordinalNumber: buildMatchPatternFn$1({
+      matchPattern: matchOrdinalNumberPattern$p,
+      parsePattern: parseOrdinalNumberPattern$p,
       valueCallback: (value) => parseInt(value, 10)
     }),
-    era: buildMatchFn({
-      matchPatterns: matchEraPatterns$o,
+    era: buildMatchFn$1({
+      matchPatterns: matchEraPatterns$p,
       defaultMatchWidth: "wide",
-      parsePatterns: parseEraPatterns$o,
+      parsePatterns: parseEraPatterns$p,
       defaultParseWidth: "any"
     }),
-    quarter: buildMatchFn({
-      matchPatterns: matchQuarterPatterns$o,
+    quarter: buildMatchFn$1({
+      matchPatterns: matchQuarterPatterns$p,
       defaultMatchWidth: "wide",
-      parsePatterns: parseQuarterPatterns$o,
+      parsePatterns: parseQuarterPatterns$p,
       defaultParseWidth: "any",
       valueCallback: (index2) => index2 + 1
     }),
-    month: buildMatchFn({
-      matchPatterns: matchMonthPatterns$o,
+    month: buildMatchFn$1({
+      matchPatterns: matchMonthPatterns$p,
       defaultMatchWidth: "wide",
-      parsePatterns: parseMonthPatterns$o,
+      parsePatterns: parseMonthPatterns$p,
       defaultParseWidth: "any"
     }),
-    day: buildMatchFn({
-      matchPatterns: matchDayPatterns$o,
+    day: buildMatchFn$1({
+      matchPatterns: matchDayPatterns$p,
       defaultMatchWidth: "wide",
-      parsePatterns: parseDayPatterns$o,
+      parsePatterns: parseDayPatterns$p,
       defaultParseWidth: "any"
     }),
-    dayPeriod: buildMatchFn({
-      matchPatterns: matchDayPeriodPatterns$o,
+    dayPeriod: buildMatchFn$1({
+      matchPatterns: matchDayPeriodPatterns$p,
       defaultMatchWidth: "any",
-      parsePatterns: parseDayPeriodPatterns$o,
+      parsePatterns: parseDayPeriodPatterns$p,
       defaultParseWidth: "any"
     })
   };
   const arSA = {
     code: "ar-SA",
-    formatDistance: formatDistance$o,
-    formatLong: formatLong$o,
-    formatRelative: formatRelative$o,
-    localize: localize$o,
-    match: match$o,
+    formatDistance: formatDistance$p,
+    formatLong: formatLong$p,
+    formatRelative: formatRelative$p,
+    localize: localize$p,
+    match: match$p,
     options: {
       weekStartsOn: 0,
       firstWeekContainsDate: 1
     }
   };
-  const formatDistanceLocale$m = {
+  const formatDistanceLocale$n = {
     lessThanXSeconds: {
       one: {
         regular: "méně než 1 sekunda",
@@ -40825,9 +40736,9 @@ var __async = (__this, __arguments, generator) => {
       }
     }
   };
-  const formatDistance$n = (token, count2, options2) => {
+  const formatDistance$o = (token, count2, options2) => {
     let pluralResult;
-    const tokenValue = formatDistanceLocale$m[token];
+    const tokenValue = formatDistanceLocale$n[token];
     if (tokenValue.type === "other") {
       pluralResult = tokenValue.other;
     } else if (count2 === 1) {
@@ -40849,35 +40760,35 @@ var __async = (__this, __arguments, generator) => {
     }
     return timeResult.replace("{{count}}", String(count2));
   };
-  const dateFormats$o = {
+  const dateFormats$p = {
     full: "EEEE, d. MMMM yyyy",
     long: "d. MMMM yyyy",
     medium: "d. M. yyyy",
     short: "dd.MM.yyyy"
   };
-  const timeFormats$n = {
+  const timeFormats$o = {
     full: "H:mm:ss zzzz",
     long: "H:mm:ss z",
     medium: "H:mm:ss",
     short: "H:mm"
   };
-  const dateTimeFormats$n = {
+  const dateTimeFormats$o = {
     full: "{{date}} 'v' {{time}}",
     long: "{{date}} 'v' {{time}}",
     medium: "{{date}}, {{time}}",
     short: "{{date}}, {{time}}"
   };
-  const formatLong$n = {
-    date: buildFormatLongFn({
-      formats: dateFormats$o,
+  const formatLong$o = {
+    date: buildFormatLongFn$1({
+      formats: dateFormats$p,
       defaultWidth: "full"
     }),
-    time: buildFormatLongFn({
-      formats: timeFormats$n,
+    time: buildFormatLongFn$1({
+      formats: timeFormats$o,
       defaultWidth: "full"
     }),
-    dateTime: buildFormatLongFn({
-      formats: dateTimeFormats$n,
+    dateTime: buildFormatLongFn$1({
+      formats: dateTimeFormats$o,
       defaultWidth: "full"
     })
   };
@@ -40890,7 +40801,7 @@ var __async = (__this, __arguments, generator) => {
     "pátek",
     "sobotu"
   ];
-  const formatRelativeLocale$n = {
+  const formatRelativeLocale$o = {
     lastWeek: "'poslední' eeee 've' p",
     yesterday: "'včera v' p",
     today: "'dnes v' p",
@@ -40901,24 +40812,24 @@ var __async = (__this, __arguments, generator) => {
     },
     other: "P"
   };
-  const formatRelative$n = (token, date) => {
-    const format2 = formatRelativeLocale$n[token];
+  const formatRelative$o = (token, date) => {
+    const format2 = formatRelativeLocale$o[token];
     if (typeof format2 === "function") {
       return format2(date);
     }
     return format2;
   };
-  const eraValues$n = {
+  const eraValues$o = {
     narrow: ["př. n. l.", "n. l."],
     abbreviated: ["př. n. l.", "n. l."],
     wide: ["před naším letopočtem", "našeho letopočtu"]
   };
-  const quarterValues$n = {
+  const quarterValues$o = {
     narrow: ["1", "2", "3", "4"],
     abbreviated: ["1. čtvrtletí", "2. čtvrtletí", "3. čtvrtletí", "4. čtvrtletí"],
     wide: ["1. čtvrtletí", "2. čtvrtletí", "3. čtvrtletí", "4. čtvrtletí"]
   };
-  const monthValues$n = {
+  const monthValues$o = {
     narrow: ["L", "Ú", "B", "D", "K", "Č", "Č", "S", "Z", "Ř", "L", "P"],
     abbreviated: [
       "led",
@@ -40980,13 +40891,13 @@ var __async = (__this, __arguments, generator) => {
       "prosince"
     ]
   };
-  const dayValues$n = {
+  const dayValues$o = {
     narrow: ["ne", "po", "út", "st", "čt", "pá", "so"],
     short: ["ne", "po", "út", "st", "čt", "pá", "so"],
     abbreviated: ["ned", "pon", "úte", "stř", "čtv", "pát", "sob"],
     wide: ["neděle", "pondělí", "úterý", "středa", "čtvrtek", "pátek", "sobota"]
   };
-  const dayPeriodValues$n = {
+  const dayPeriodValues$o = {
     narrow: {
       am: "dop.",
       pm: "odp.",
@@ -41018,7 +40929,7 @@ var __async = (__this, __arguments, generator) => {
       night: "noc"
     }
   };
-  const formattingDayPeriodValues$h = {
+  const formattingDayPeriodValues$i = {
     narrow: {
       am: "dop.",
       pm: "odp.",
@@ -41050,62 +40961,62 @@ var __async = (__this, __arguments, generator) => {
       night: "noc"
     }
   };
-  const ordinalNumber$n = (dirtyNumber, _options) => {
+  const ordinalNumber$o = (dirtyNumber, _options) => {
     const number = Number(dirtyNumber);
     return number + ".";
   };
-  const localize$n = {
-    ordinalNumber: ordinalNumber$n,
-    era: buildLocalizeFn({
-      values: eraValues$n,
+  const localize$o = {
+    ordinalNumber: ordinalNumber$o,
+    era: buildLocalizeFn$1({
+      values: eraValues$o,
       defaultWidth: "wide"
     }),
-    quarter: buildLocalizeFn({
-      values: quarterValues$n,
+    quarter: buildLocalizeFn$1({
+      values: quarterValues$o,
       defaultWidth: "wide",
       argumentCallback: (quarter) => quarter - 1
     }),
-    month: buildLocalizeFn({
-      values: monthValues$n,
+    month: buildLocalizeFn$1({
+      values: monthValues$o,
       defaultWidth: "wide",
       formattingValues: formattingMonthValues$4,
       defaultFormattingWidth: "wide"
     }),
-    day: buildLocalizeFn({
-      values: dayValues$n,
+    day: buildLocalizeFn$1({
+      values: dayValues$o,
       defaultWidth: "wide"
     }),
-    dayPeriod: buildLocalizeFn({
-      values: dayPeriodValues$n,
+    dayPeriod: buildLocalizeFn$1({
+      values: dayPeriodValues$o,
       defaultWidth: "wide",
-      formattingValues: formattingDayPeriodValues$h,
+      formattingValues: formattingDayPeriodValues$i,
       defaultFormattingWidth: "wide"
     })
   };
-  const matchOrdinalNumberPattern$n = /^(\d+)\.?/i;
-  const parseOrdinalNumberPattern$n = /\d+/i;
-  const matchEraPatterns$n = {
+  const matchOrdinalNumberPattern$o = /^(\d+)\.?/i;
+  const parseOrdinalNumberPattern$o = /\d+/i;
+  const matchEraPatterns$o = {
     narrow: /^(p[řr](\.|ed) Kr\.|p[řr](\.|ed) n\. l\.|po Kr\.|n\. l\.)/i,
     abbreviated: /^(p[řr](\.|ed) Kr\.|p[řr](\.|ed) n\. l\.|po Kr\.|n\. l\.)/i,
     wide: /^(p[řr](\.|ed) Kristem|p[řr](\.|ed) na[šs][íi]m letopo[čc]tem|po Kristu|na[šs]eho letopo[čc]tu)/i
   };
-  const parseEraPatterns$n = {
+  const parseEraPatterns$o = {
     any: [/^p[řr]/i, /^(po|n)/i]
   };
-  const matchQuarterPatterns$n = {
+  const matchQuarterPatterns$o = {
     narrow: /^[1234]/i,
     abbreviated: /^[1234]\. [čc]tvrtlet[íi]/i,
     wide: /^[1234]\. [čc]tvrtlet[íi]/i
   };
-  const parseQuarterPatterns$n = {
+  const parseQuarterPatterns$o = {
     any: [/1/i, /2/i, /3/i, /4/i]
   };
-  const matchMonthPatterns$n = {
+  const matchMonthPatterns$o = {
     narrow: /^[lúubdkčcszřrlp]/i,
     abbreviated: /^(led|[úu]no|b[řr]e|dub|kv[ěe]|[čc]vn|[čc]vc|srp|z[áa][řr]|[řr][íi]j|lis|pro)/i,
     wide: /^(leden|ledna|[úu]nora?|b[řr]ezen|b[řr]ezna|duben|dubna|kv[ěe]ten|kv[ěe]tna|[čc]erven(ec|ce)?|[čc]ervna|srpen|srpna|z[áa][řr][íi]|[řr][íi]jen|[řr][íi]jna|listopad(a|u)?|prosinec|prosince)/i
   };
-  const parseMonthPatterns$n = {
+  const parseMonthPatterns$o = {
     narrow: [
       /^l/i,
       /^[úu]/i,
@@ -41135,20 +41046,20 @@ var __async = (__this, __arguments, generator) => {
       /^pro/i
     ]
   };
-  const matchDayPatterns$n = {
+  const matchDayPatterns$o = {
     narrow: /^[npuúsčps]/i,
     short: /^(ne|po|[úu]t|st|[čc]t|p[áa]|so)/i,
     abbreviated: /^(ned|pon|[úu]te|st[rř]|[čc]tv|p[áa]t|sob)/i,
     wide: /^(ned[ěe]le|pond[ěe]l[íi]|[úu]ter[ýy]|st[řr]eda|[čc]tvrtek|p[áa]tek|sobota)/i
   };
-  const parseDayPatterns$n = {
+  const parseDayPatterns$o = {
     narrow: [/^n/i, /^p/i, /^[úu]/i, /^s/i, /^[čc]/i, /^p/i, /^s/i],
     any: [/^ne/i, /^po/i, /^[úu]t/i, /^st/i, /^[čc]t/i, /^p[áa]/i, /^so/i]
   };
-  const matchDayPeriodPatterns$n = {
+  const matchDayPeriodPatterns$o = {
     any: /^dopoledne|dop\.?|odpoledne|odp\.?|p[ůu]lnoc|poledne|r[áa]no|odpoledne|ve[čc]er|(v )?noci?/i
   };
-  const parseDayPeriodPatterns$n = {
+  const parseDayPeriodPatterns$o = {
     any: {
       am: /^dop/i,
       pm: /^odp/i,
@@ -41160,57 +41071,57 @@ var __async = (__this, __arguments, generator) => {
       night: /noc/i
     }
   };
-  const match$n = {
-    ordinalNumber: buildMatchPatternFn({
-      matchPattern: matchOrdinalNumberPattern$n,
-      parsePattern: parseOrdinalNumberPattern$n,
+  const match$o = {
+    ordinalNumber: buildMatchPatternFn$1({
+      matchPattern: matchOrdinalNumberPattern$o,
+      parsePattern: parseOrdinalNumberPattern$o,
       valueCallback: (value) => parseInt(value, 10)
     }),
-    era: buildMatchFn({
-      matchPatterns: matchEraPatterns$n,
+    era: buildMatchFn$1({
+      matchPatterns: matchEraPatterns$o,
       defaultMatchWidth: "wide",
-      parsePatterns: parseEraPatterns$n,
+      parsePatterns: parseEraPatterns$o,
       defaultParseWidth: "any"
     }),
-    quarter: buildMatchFn({
-      matchPatterns: matchQuarterPatterns$n,
+    quarter: buildMatchFn$1({
+      matchPatterns: matchQuarterPatterns$o,
       defaultMatchWidth: "wide",
-      parsePatterns: parseQuarterPatterns$n,
+      parsePatterns: parseQuarterPatterns$o,
       defaultParseWidth: "any",
       valueCallback: (index2) => index2 + 1
     }),
-    month: buildMatchFn({
-      matchPatterns: matchMonthPatterns$n,
+    month: buildMatchFn$1({
+      matchPatterns: matchMonthPatterns$o,
       defaultMatchWidth: "wide",
-      parsePatterns: parseMonthPatterns$n,
+      parsePatterns: parseMonthPatterns$o,
       defaultParseWidth: "any"
     }),
-    day: buildMatchFn({
-      matchPatterns: matchDayPatterns$n,
+    day: buildMatchFn$1({
+      matchPatterns: matchDayPatterns$o,
       defaultMatchWidth: "wide",
-      parsePatterns: parseDayPatterns$n,
+      parsePatterns: parseDayPatterns$o,
       defaultParseWidth: "any"
     }),
-    dayPeriod: buildMatchFn({
-      matchPatterns: matchDayPeriodPatterns$n,
+    dayPeriod: buildMatchFn$1({
+      matchPatterns: matchDayPeriodPatterns$o,
       defaultMatchWidth: "any",
-      parsePatterns: parseDayPeriodPatterns$n,
+      parsePatterns: parseDayPeriodPatterns$o,
       defaultParseWidth: "any"
     })
   };
   const cs = {
     code: "cs",
-    formatDistance: formatDistance$n,
-    formatLong: formatLong$n,
-    formatRelative: formatRelative$n,
-    localize: localize$n,
-    match: match$n,
+    formatDistance: formatDistance$o,
+    formatLong: formatLong$o,
+    formatRelative: formatRelative$o,
+    localize: localize$o,
+    match: match$o,
     options: {
       weekStartsOn: 1,
       firstWeekContainsDate: 4
     }
   };
-  const formatDistanceLocale$l = {
+  const formatDistanceLocale$m = {
     lessThanXSeconds: {
       one: "mindre end ét sekund",
       other: "mindre end {{count}} sekunder"
@@ -41273,9 +41184,9 @@ var __async = (__this, __arguments, generator) => {
       other: "næsten {{count}} år"
     }
   };
-  const formatDistance$m = (token, count2, options2) => {
+  const formatDistance$n = (token, count2, options2) => {
     let result;
-    const tokenValue = formatDistanceLocale$l[token];
+    const tokenValue = formatDistanceLocale$m[token];
     if (typeof tokenValue === "string") {
       result = tokenValue;
     } else if (count2 === 1) {
@@ -41292,39 +41203,39 @@ var __async = (__this, __arguments, generator) => {
     }
     return result;
   };
-  const dateFormats$n = {
+  const dateFormats$o = {
     full: "EEEE 'den' d. MMMM y",
     long: "d. MMMM y",
     medium: "d. MMM y",
     short: "dd/MM/y"
   };
-  const timeFormats$m = {
+  const timeFormats$n = {
     full: "HH:mm:ss zzzz",
     long: "HH:mm:ss z",
     medium: "HH:mm:ss",
     short: "HH:mm"
   };
-  const dateTimeFormats$m = {
+  const dateTimeFormats$n = {
     full: "{{date}} 'kl'. {{time}}",
     long: "{{date}} 'kl'. {{time}}",
     medium: "{{date}} {{time}}",
     short: "{{date}} {{time}}"
   };
-  const formatLong$m = {
-    date: buildFormatLongFn({
-      formats: dateFormats$n,
+  const formatLong$n = {
+    date: buildFormatLongFn$1({
+      formats: dateFormats$o,
       defaultWidth: "full"
     }),
-    time: buildFormatLongFn({
-      formats: timeFormats$m,
+    time: buildFormatLongFn$1({
+      formats: timeFormats$n,
       defaultWidth: "full"
     }),
-    dateTime: buildFormatLongFn({
-      formats: dateTimeFormats$m,
+    dateTime: buildFormatLongFn$1({
+      formats: dateTimeFormats$n,
       defaultWidth: "full"
     })
   };
-  const formatRelativeLocale$m = {
+  const formatRelativeLocale$n = {
     lastWeek: "'sidste' eeee 'kl.' p",
     yesterday: "'i går kl.' p",
     today: "'i dag kl.' p",
@@ -41332,18 +41243,18 @@ var __async = (__this, __arguments, generator) => {
     nextWeek: "'på' eeee 'kl.' p",
     other: "P"
   };
-  const formatRelative$m = (token, _date, _baseDate, _options) => formatRelativeLocale$m[token];
-  const eraValues$m = {
+  const formatRelative$n = (token, _date, _baseDate, _options) => formatRelativeLocale$n[token];
+  const eraValues$n = {
     narrow: ["fvt", "vt"],
     abbreviated: ["f.v.t.", "v.t."],
     wide: ["før vesterlandsk tidsregning", "vesterlandsk tidsregning"]
   };
-  const quarterValues$m = {
+  const quarterValues$n = {
     narrow: ["1", "2", "3", "4"],
     abbreviated: ["1. kvt.", "2. kvt.", "3. kvt.", "4. kvt."],
     wide: ["1. kvartal", "2. kvartal", "3. kvartal", "4. kvartal"]
   };
-  const monthValues$m = {
+  const monthValues$n = {
     narrow: ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"],
     abbreviated: [
       "jan.",
@@ -41374,7 +41285,7 @@ var __async = (__this, __arguments, generator) => {
       "december"
     ]
   };
-  const dayValues$m = {
+  const dayValues$n = {
     narrow: ["S", "M", "T", "O", "T", "F", "L"],
     short: ["sø", "ma", "ti", "on", "to", "fr", "lø"],
     abbreviated: ["søn.", "man.", "tir.", "ons.", "tor.", "fre.", "lør."],
@@ -41388,7 +41299,7 @@ var __async = (__this, __arguments, generator) => {
       "lørdag"
     ]
   };
-  const dayPeriodValues$m = {
+  const dayPeriodValues$n = {
     narrow: {
       am: "a",
       pm: "p",
@@ -41420,7 +41331,7 @@ var __async = (__this, __arguments, generator) => {
       night: "nat"
     }
   };
-  const formattingDayPeriodValues$g = {
+  const formattingDayPeriodValues$h = {
     narrow: {
       am: "a",
       pm: "p",
@@ -41452,60 +41363,60 @@ var __async = (__this, __arguments, generator) => {
       night: "om natten"
     }
   };
-  const ordinalNumber$m = (dirtyNumber, _options) => {
+  const ordinalNumber$n = (dirtyNumber, _options) => {
     const number = Number(dirtyNumber);
     return number + ".";
   };
-  const localize$m = {
-    ordinalNumber: ordinalNumber$m,
-    era: buildLocalizeFn({
-      values: eraValues$m,
+  const localize$n = {
+    ordinalNumber: ordinalNumber$n,
+    era: buildLocalizeFn$1({
+      values: eraValues$n,
       defaultWidth: "wide"
     }),
-    quarter: buildLocalizeFn({
-      values: quarterValues$m,
+    quarter: buildLocalizeFn$1({
+      values: quarterValues$n,
       defaultWidth: "wide",
       argumentCallback: (quarter) => quarter - 1
     }),
-    month: buildLocalizeFn({
-      values: monthValues$m,
+    month: buildLocalizeFn$1({
+      values: monthValues$n,
       defaultWidth: "wide"
     }),
-    day: buildLocalizeFn({
-      values: dayValues$m,
+    day: buildLocalizeFn$1({
+      values: dayValues$n,
       defaultWidth: "wide"
     }),
-    dayPeriod: buildLocalizeFn({
-      values: dayPeriodValues$m,
+    dayPeriod: buildLocalizeFn$1({
+      values: dayPeriodValues$n,
       defaultWidth: "wide",
-      formattingValues: formattingDayPeriodValues$g,
+      formattingValues: formattingDayPeriodValues$h,
       defaultFormattingWidth: "wide"
     })
   };
-  const matchOrdinalNumberPattern$m = /^(\d+)(\.)?/i;
-  const parseOrdinalNumberPattern$m = /\d+/i;
-  const matchEraPatterns$m = {
+  const matchOrdinalNumberPattern$n = /^(\d+)(\.)?/i;
+  const parseOrdinalNumberPattern$n = /\d+/i;
+  const matchEraPatterns$n = {
     narrow: /^(fKr|fvt|eKr|vt)/i,
     abbreviated: /^(f\.Kr\.?|f\.v\.t\.?|e\.Kr\.?|v\.t\.)/i,
     wide: /^(f.Kr.|før vesterlandsk tidsregning|e.Kr.|vesterlandsk tidsregning)/i
   };
-  const parseEraPatterns$m = {
+  const parseEraPatterns$n = {
     any: [/^f/i, /^(v|e)/i]
   };
-  const matchQuarterPatterns$m = {
+  const matchQuarterPatterns$n = {
     narrow: /^[1234]/i,
     abbreviated: /^[1234]. kvt\./i,
     wide: /^[1234]\.? kvartal/i
   };
-  const parseQuarterPatterns$m = {
+  const parseQuarterPatterns$n = {
     any: [/1/i, /2/i, /3/i, /4/i]
   };
-  const matchMonthPatterns$m = {
+  const matchMonthPatterns$n = {
     narrow: /^[jfmasond]/i,
     abbreviated: /^(jan.|feb.|mar.|apr.|maj|jun.|jul.|aug.|sep.|okt.|nov.|dec.)/i,
     wide: /^(januar|februar|marts|april|maj|juni|juli|august|september|oktober|november|december)/i
   };
-  const parseMonthPatterns$m = {
+  const parseMonthPatterns$n = {
     narrow: [
       /^j/i,
       /^f/i,
@@ -41535,21 +41446,21 @@ var __async = (__this, __arguments, generator) => {
       /^d/i
     ]
   };
-  const matchDayPatterns$m = {
+  const matchDayPatterns$n = {
     narrow: /^[smtofl]/i,
     short: /^(søn.|man.|tir.|ons.|tor.|fre.|lør.)/i,
     abbreviated: /^(søn|man|tir|ons|tor|fre|lør)/i,
     wide: /^(søndag|mandag|tirsdag|onsdag|torsdag|fredag|lørdag)/i
   };
-  const parseDayPatterns$m = {
+  const parseDayPatterns$n = {
     narrow: [/^s/i, /^m/i, /^t/i, /^o/i, /^t/i, /^f/i, /^l/i],
     any: [/^s/i, /^m/i, /^ti/i, /^o/i, /^to/i, /^f/i, /^l/i]
   };
-  const matchDayPeriodPatterns$m = {
+  const matchDayPeriodPatterns$n = {
     narrow: /^(a|p|midnat|middag|(om) (morgenen|eftermiddagen|aftenen|natten))/i,
     any: /^([ap]\.?\s?m\.?|midnat|middag|(om) (morgenen|eftermiddagen|aftenen|natten))/i
   };
-  const parseDayPeriodPatterns$m = {
+  const parseDayPeriodPatterns$n = {
     any: {
       am: /^a/i,
       pm: /^p/i,
@@ -41561,57 +41472,57 @@ var __async = (__this, __arguments, generator) => {
       night: /nat/i
     }
   };
-  const match$m = {
-    ordinalNumber: buildMatchPatternFn({
-      matchPattern: matchOrdinalNumberPattern$m,
-      parsePattern: parseOrdinalNumberPattern$m,
+  const match$n = {
+    ordinalNumber: buildMatchPatternFn$1({
+      matchPattern: matchOrdinalNumberPattern$n,
+      parsePattern: parseOrdinalNumberPattern$n,
       valueCallback: (value) => parseInt(value, 10)
     }),
-    era: buildMatchFn({
-      matchPatterns: matchEraPatterns$m,
+    era: buildMatchFn$1({
+      matchPatterns: matchEraPatterns$n,
       defaultMatchWidth: "wide",
-      parsePatterns: parseEraPatterns$m,
+      parsePatterns: parseEraPatterns$n,
       defaultParseWidth: "any"
     }),
-    quarter: buildMatchFn({
-      matchPatterns: matchQuarterPatterns$m,
+    quarter: buildMatchFn$1({
+      matchPatterns: matchQuarterPatterns$n,
       defaultMatchWidth: "wide",
-      parsePatterns: parseQuarterPatterns$m,
+      parsePatterns: parseQuarterPatterns$n,
       defaultParseWidth: "any",
       valueCallback: (index2) => index2 + 1
     }),
-    month: buildMatchFn({
-      matchPatterns: matchMonthPatterns$m,
+    month: buildMatchFn$1({
+      matchPatterns: matchMonthPatterns$n,
       defaultMatchWidth: "wide",
-      parsePatterns: parseMonthPatterns$m,
+      parsePatterns: parseMonthPatterns$n,
       defaultParseWidth: "any"
     }),
-    day: buildMatchFn({
-      matchPatterns: matchDayPatterns$m,
+    day: buildMatchFn$1({
+      matchPatterns: matchDayPatterns$n,
       defaultMatchWidth: "wide",
-      parsePatterns: parseDayPatterns$m,
+      parsePatterns: parseDayPatterns$n,
       defaultParseWidth: "any"
     }),
-    dayPeriod: buildMatchFn({
-      matchPatterns: matchDayPeriodPatterns$m,
+    dayPeriod: buildMatchFn$1({
+      matchPatterns: matchDayPeriodPatterns$n,
       defaultMatchWidth: "any",
-      parsePatterns: parseDayPeriodPatterns$m,
+      parsePatterns: parseDayPeriodPatterns$n,
       defaultParseWidth: "any"
     })
   };
   const da = {
     code: "da",
-    formatDistance: formatDistance$m,
-    formatLong: formatLong$m,
-    formatRelative: formatRelative$m,
-    localize: localize$m,
-    match: match$m,
+    formatDistance: formatDistance$n,
+    formatLong: formatLong$n,
+    formatRelative: formatRelative$n,
+    localize: localize$n,
+    match: match$n,
     options: {
       weekStartsOn: 1,
       firstWeekContainsDate: 4
     }
   };
-  const formatDistanceLocale$k = {
+  const formatDistanceLocale$l = {
     lessThanXSeconds: {
       standalone: {
         one: "weniger als 1 Sekunde",
@@ -41767,9 +41678,9 @@ var __async = (__this, __arguments, generator) => {
       }
     }
   };
-  const formatDistance$l = (token, count2, options2) => {
+  const formatDistance$m = (token, count2, options2) => {
     let result;
-    const tokenValue = (options2 == null ? void 0 : options2.addSuffix) ? formatDistanceLocale$k[token].withPreposition : formatDistanceLocale$k[token].standalone;
+    const tokenValue = (options2 == null ? void 0 : options2.addSuffix) ? formatDistanceLocale$l[token].withPreposition : formatDistanceLocale$l[token].standalone;
     if (typeof tokenValue === "string") {
       result = tokenValue;
     } else if (count2 === 1) {
@@ -41786,7 +41697,7 @@ var __async = (__this, __arguments, generator) => {
     }
     return result;
   };
-  const dateFormats$m = {
+  const dateFormats$n = {
     full: "EEEE, do MMMM y",
     // Montag, 7. Januar 2018
     long: "do MMMM y",
@@ -41796,33 +41707,33 @@ var __async = (__this, __arguments, generator) => {
     short: "dd.MM.y"
     // 07.01.2018
   };
-  const timeFormats$l = {
+  const timeFormats$m = {
     full: "HH:mm:ss zzzz",
     long: "HH:mm:ss z",
     medium: "HH:mm:ss",
     short: "HH:mm"
   };
-  const dateTimeFormats$l = {
+  const dateTimeFormats$m = {
     full: "{{date}} 'um' {{time}}",
     long: "{{date}} 'um' {{time}}",
     medium: "{{date}} {{time}}",
     short: "{{date}} {{time}}"
   };
-  const formatLong$l = {
-    date: buildFormatLongFn({
-      formats: dateFormats$m,
+  const formatLong$m = {
+    date: buildFormatLongFn$1({
+      formats: dateFormats$n,
       defaultWidth: "full"
     }),
-    time: buildFormatLongFn({
-      formats: timeFormats$l,
+    time: buildFormatLongFn$1({
+      formats: timeFormats$m,
       defaultWidth: "full"
     }),
-    dateTime: buildFormatLongFn({
-      formats: dateTimeFormats$l,
+    dateTime: buildFormatLongFn$1({
+      formats: dateTimeFormats$m,
       defaultWidth: "full"
     })
   };
-  const formatRelativeLocale$l = {
+  const formatRelativeLocale$m = {
     lastWeek: "'letzten' eeee 'um' p",
     yesterday: "'gestern um' p",
     today: "'heute um' p",
@@ -41830,18 +41741,18 @@ var __async = (__this, __arguments, generator) => {
     nextWeek: "eeee 'um' p",
     other: "P"
   };
-  const formatRelative$l = (token, _date, _baseDate, _options) => formatRelativeLocale$l[token];
-  const eraValues$l = {
+  const formatRelative$m = (token, _date, _baseDate, _options) => formatRelativeLocale$m[token];
+  const eraValues$m = {
     narrow: ["v.Chr.", "n.Chr."],
     abbreviated: ["v.Chr.", "n.Chr."],
     wide: ["vor Christus", "nach Christus"]
   };
-  const quarterValues$l = {
+  const quarterValues$m = {
     narrow: ["1", "2", "3", "4"],
     abbreviated: ["Q1", "Q2", "Q3", "Q4"],
     wide: ["1. Quartal", "2. Quartal", "3. Quartal", "4. Quartal"]
   };
-  const monthValues$l = {
+  const monthValues$m = {
     narrow: ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"],
     abbreviated: [
       "Jan",
@@ -41873,7 +41784,7 @@ var __async = (__this, __arguments, generator) => {
     ]
   };
   const formattingMonthValues$3 = {
-    narrow: monthValues$l.narrow,
+    narrow: monthValues$m.narrow,
     abbreviated: [
       "Jan.",
       "Feb.",
@@ -41888,9 +41799,9 @@ var __async = (__this, __arguments, generator) => {
       "Nov.",
       "Dez."
     ],
-    wide: monthValues$l.wide
+    wide: monthValues$m.wide
   };
-  const dayValues$l = {
+  const dayValues$m = {
     narrow: ["S", "M", "D", "M", "D", "F", "S"],
     short: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
     abbreviated: ["So.", "Mo.", "Di.", "Mi.", "Do.", "Fr.", "Sa."],
@@ -41904,7 +41815,7 @@ var __async = (__this, __arguments, generator) => {
       "Samstag"
     ]
   };
-  const dayPeriodValues$l = {
+  const dayPeriodValues$m = {
     narrow: {
       am: "vm.",
       pm: "nm.",
@@ -41936,7 +41847,7 @@ var __async = (__this, __arguments, generator) => {
       night: "Nacht"
     }
   };
-  const formattingDayPeriodValues$f = {
+  const formattingDayPeriodValues$g = {
     narrow: {
       am: "vm.",
       pm: "nm.",
@@ -41968,61 +41879,61 @@ var __async = (__this, __arguments, generator) => {
       night: "nachts"
     }
   };
-  const ordinalNumber$l = (dirtyNumber) => {
+  const ordinalNumber$m = (dirtyNumber) => {
     const number = Number(dirtyNumber);
     return number + ".";
   };
-  const localize$l = {
-    ordinalNumber: ordinalNumber$l,
-    era: buildLocalizeFn({
-      values: eraValues$l,
+  const localize$m = {
+    ordinalNumber: ordinalNumber$m,
+    era: buildLocalizeFn$1({
+      values: eraValues$m,
       defaultWidth: "wide"
     }),
-    quarter: buildLocalizeFn({
-      values: quarterValues$l,
+    quarter: buildLocalizeFn$1({
+      values: quarterValues$m,
       defaultWidth: "wide",
       argumentCallback: (quarter) => quarter - 1
     }),
-    month: buildLocalizeFn({
-      values: monthValues$l,
+    month: buildLocalizeFn$1({
+      values: monthValues$m,
       formattingValues: formattingMonthValues$3,
       defaultWidth: "wide"
     }),
-    day: buildLocalizeFn({
-      values: dayValues$l,
+    day: buildLocalizeFn$1({
+      values: dayValues$m,
       defaultWidth: "wide"
     }),
-    dayPeriod: buildLocalizeFn({
-      values: dayPeriodValues$l,
+    dayPeriod: buildLocalizeFn$1({
+      values: dayPeriodValues$m,
       defaultWidth: "wide",
-      formattingValues: formattingDayPeriodValues$f,
+      formattingValues: formattingDayPeriodValues$g,
       defaultFormattingWidth: "wide"
     })
   };
-  const matchOrdinalNumberPattern$l = /^(\d+)(\.)?/i;
-  const parseOrdinalNumberPattern$l = /\d+/i;
-  const matchEraPatterns$l = {
+  const matchOrdinalNumberPattern$m = /^(\d+)(\.)?/i;
+  const parseOrdinalNumberPattern$m = /\d+/i;
+  const matchEraPatterns$m = {
     narrow: /^(v\.? ?Chr\.?|n\.? ?Chr\.?)/i,
     abbreviated: /^(v\.? ?Chr\.?|n\.? ?Chr\.?)/i,
     wide: /^(vor Christus|vor unserer Zeitrechnung|nach Christus|unserer Zeitrechnung)/i
   };
-  const parseEraPatterns$l = {
+  const parseEraPatterns$m = {
     any: [/^v/i, /^n/i]
   };
-  const matchQuarterPatterns$l = {
+  const matchQuarterPatterns$m = {
     narrow: /^[1234]/i,
     abbreviated: /^q[1234]/i,
     wide: /^[1234](\.)? Quartal/i
   };
-  const parseQuarterPatterns$l = {
+  const parseQuarterPatterns$m = {
     any: [/1/i, /2/i, /3/i, /4/i]
   };
-  const matchMonthPatterns$l = {
+  const matchMonthPatterns$m = {
     narrow: /^[jfmasond]/i,
     abbreviated: /^(j[aä]n|feb|mär[z]?|apr|mai|jun[i]?|jul[i]?|aug|sep|okt|nov|dez)\.?/i,
     wide: /^(januar|februar|märz|april|mai|juni|juli|august|september|oktober|november|dezember)/i
   };
-  const parseMonthPatterns$l = {
+  const parseMonthPatterns$m = {
     narrow: [
       /^j/i,
       /^f/i,
@@ -42052,21 +41963,21 @@ var __async = (__this, __arguments, generator) => {
       /^d/i
     ]
   };
-  const matchDayPatterns$l = {
+  const matchDayPatterns$m = {
     narrow: /^[smdmf]/i,
     short: /^(so|mo|di|mi|do|fr|sa)/i,
     abbreviated: /^(son?|mon?|die?|mit?|don?|fre?|sam?)\.?/i,
     wide: /^(sonntag|montag|dienstag|mittwoch|donnerstag|freitag|samstag)/i
   };
-  const parseDayPatterns$l = {
+  const parseDayPatterns$m = {
     any: [/^so/i, /^mo/i, /^di/i, /^mi/i, /^do/i, /^f/i, /^sa/i]
   };
-  const matchDayPeriodPatterns$l = {
+  const matchDayPeriodPatterns$m = {
     narrow: /^(vm\.?|nm\.?|Mitternacht|Mittag|morgens|nachm\.?|abends|nachts)/i,
     abbreviated: /^(vorm\.?|nachm\.?|Mitternacht|Mittag|morgens|nachm\.?|abends|nachts)/i,
     wide: /^(vormittags|nachmittags|Mitternacht|Mittag|morgens|nachmittags|abends|nachts)/i
   };
-  const parseDayPeriodPatterns$l = {
+  const parseDayPeriodPatterns$m = {
     any: {
       am: /^v/i,
       pm: /^n/i,
@@ -42080,57 +41991,57 @@ var __async = (__this, __arguments, generator) => {
       // will never be matched. Night is matched by `pm`
     }
   };
-  const match$l = {
-    ordinalNumber: buildMatchPatternFn({
-      matchPattern: matchOrdinalNumberPattern$l,
-      parsePattern: parseOrdinalNumberPattern$l,
+  const match$m = {
+    ordinalNumber: buildMatchPatternFn$1({
+      matchPattern: matchOrdinalNumberPattern$m,
+      parsePattern: parseOrdinalNumberPattern$m,
       valueCallback: (value) => parseInt(value)
     }),
-    era: buildMatchFn({
-      matchPatterns: matchEraPatterns$l,
+    era: buildMatchFn$1({
+      matchPatterns: matchEraPatterns$m,
       defaultMatchWidth: "wide",
-      parsePatterns: parseEraPatterns$l,
+      parsePatterns: parseEraPatterns$m,
       defaultParseWidth: "any"
     }),
-    quarter: buildMatchFn({
-      matchPatterns: matchQuarterPatterns$l,
+    quarter: buildMatchFn$1({
+      matchPatterns: matchQuarterPatterns$m,
       defaultMatchWidth: "wide",
-      parsePatterns: parseQuarterPatterns$l,
+      parsePatterns: parseQuarterPatterns$m,
       defaultParseWidth: "any",
       valueCallback: (index2) => index2 + 1
     }),
-    month: buildMatchFn({
-      matchPatterns: matchMonthPatterns$l,
+    month: buildMatchFn$1({
+      matchPatterns: matchMonthPatterns$m,
       defaultMatchWidth: "wide",
-      parsePatterns: parseMonthPatterns$l,
+      parsePatterns: parseMonthPatterns$m,
       defaultParseWidth: "any"
     }),
-    day: buildMatchFn({
-      matchPatterns: matchDayPatterns$l,
+    day: buildMatchFn$1({
+      matchPatterns: matchDayPatterns$m,
       defaultMatchWidth: "wide",
-      parsePatterns: parseDayPatterns$l,
+      parsePatterns: parseDayPatterns$m,
       defaultParseWidth: "any"
     }),
-    dayPeriod: buildMatchFn({
-      matchPatterns: matchDayPeriodPatterns$l,
+    dayPeriod: buildMatchFn$1({
+      matchPatterns: matchDayPeriodPatterns$m,
       defaultMatchWidth: "wide",
-      parsePatterns: parseDayPeriodPatterns$l,
+      parsePatterns: parseDayPeriodPatterns$m,
       defaultParseWidth: "any"
     })
   };
   const de = {
     code: "de",
-    formatDistance: formatDistance$l,
-    formatLong: formatLong$l,
-    formatRelative: formatRelative$l,
-    localize: localize$l,
-    match: match$l,
+    formatDistance: formatDistance$m,
+    formatLong: formatLong$m,
+    formatRelative: formatRelative$m,
+    localize: localize$m,
+    match: match$m,
     options: {
       weekStartsOn: 1,
       firstWeekContainsDate: 4
     }
   };
-  const formatDistanceLocale$j = {
+  const formatDistanceLocale$k = {
     lessThanXSeconds: {
       one: "menos de un segundo",
       other: "menos de {{count}} segundos"
@@ -42193,9 +42104,9 @@ var __async = (__this, __arguments, generator) => {
       other: "casi {{count}} años"
     }
   };
-  const formatDistance$k = (token, count2, options2) => {
+  const formatDistance$l = (token, count2, options2) => {
     let result;
-    const tokenValue = formatDistanceLocale$j[token];
+    const tokenValue = formatDistanceLocale$k[token];
     if (typeof tokenValue === "string") {
       result = tokenValue;
     } else if (count2 === 1) {
@@ -42212,39 +42123,39 @@ var __async = (__this, __arguments, generator) => {
     }
     return result;
   };
-  const dateFormats$l = {
+  const dateFormats$m = {
     full: "EEEE, d 'de' MMMM 'de' y",
     long: "d 'de' MMMM 'de' y",
     medium: "d MMM y",
     short: "dd/MM/y"
   };
-  const timeFormats$k = {
+  const timeFormats$l = {
     full: "HH:mm:ss zzzz",
     long: "HH:mm:ss z",
     medium: "HH:mm:ss",
     short: "HH:mm"
   };
-  const dateTimeFormats$k = {
+  const dateTimeFormats$l = {
     full: "{{date}} 'a las' {{time}}",
     long: "{{date}} 'a las' {{time}}",
     medium: "{{date}}, {{time}}",
     short: "{{date}}, {{time}}"
   };
-  const formatLong$k = {
-    date: buildFormatLongFn({
-      formats: dateFormats$l,
+  const formatLong$l = {
+    date: buildFormatLongFn$1({
+      formats: dateFormats$m,
       defaultWidth: "full"
     }),
-    time: buildFormatLongFn({
-      formats: timeFormats$k,
+    time: buildFormatLongFn$1({
+      formats: timeFormats$l,
       defaultWidth: "full"
     }),
-    dateTime: buildFormatLongFn({
-      formats: dateTimeFormats$k,
+    dateTime: buildFormatLongFn$1({
+      formats: dateTimeFormats$l,
       defaultWidth: "full"
     })
   };
-  const formatRelativeLocale$k = {
+  const formatRelativeLocale$l = {
     lastWeek: "'el' eeee 'pasado a la' p",
     yesterday: "'ayer a la' p",
     today: "'hoy a la' p",
@@ -42260,24 +42171,24 @@ var __async = (__this, __arguments, generator) => {
     nextWeek: "eeee 'a las' p",
     other: "P"
   };
-  const formatRelative$k = (token, date, _baseDate, _options) => {
+  const formatRelative$l = (token, date, _baseDate, _options) => {
     if (date.getHours() !== 1) {
       return formatRelativeLocalePlural[token];
     } else {
-      return formatRelativeLocale$k[token];
+      return formatRelativeLocale$l[token];
     }
   };
-  const eraValues$k = {
+  const eraValues$l = {
     narrow: ["AC", "DC"],
     abbreviated: ["AC", "DC"],
     wide: ["antes de cristo", "después de cristo"]
   };
-  const quarterValues$k = {
+  const quarterValues$l = {
     narrow: ["1", "2", "3", "4"],
     abbreviated: ["T1", "T2", "T3", "T4"],
     wide: ["1º trimestre", "2º trimestre", "3º trimestre", "4º trimestre"]
   };
-  const monthValues$k = {
+  const monthValues$l = {
     narrow: ["e", "f", "m", "a", "m", "j", "j", "a", "s", "o", "n", "d"],
     abbreviated: [
       "ene",
@@ -42308,7 +42219,7 @@ var __async = (__this, __arguments, generator) => {
       "diciembre"
     ]
   };
-  const dayValues$k = {
+  const dayValues$l = {
     narrow: ["d", "l", "m", "m", "j", "v", "s"],
     short: ["do", "lu", "ma", "mi", "ju", "vi", "sá"],
     abbreviated: ["dom", "lun", "mar", "mié", "jue", "vie", "sáb"],
@@ -42322,7 +42233,7 @@ var __async = (__this, __arguments, generator) => {
       "sábado"
     ]
   };
-  const dayPeriodValues$k = {
+  const dayPeriodValues$l = {
     narrow: {
       am: "a",
       pm: "p",
@@ -42354,7 +42265,7 @@ var __async = (__this, __arguments, generator) => {
       night: "noche"
     }
   };
-  const formattingDayPeriodValues$e = {
+  const formattingDayPeriodValues$f = {
     narrow: {
       am: "a",
       pm: "p",
@@ -42386,64 +42297,64 @@ var __async = (__this, __arguments, generator) => {
       night: "de la noche"
     }
   };
-  const ordinalNumber$k = (dirtyNumber, _options) => {
+  const ordinalNumber$l = (dirtyNumber, _options) => {
     const number = Number(dirtyNumber);
     return number + "º";
   };
-  const localize$k = {
-    ordinalNumber: ordinalNumber$k,
-    era: buildLocalizeFn({
-      values: eraValues$k,
+  const localize$l = {
+    ordinalNumber: ordinalNumber$l,
+    era: buildLocalizeFn$1({
+      values: eraValues$l,
       defaultWidth: "wide"
     }),
-    quarter: buildLocalizeFn({
-      values: quarterValues$k,
+    quarter: buildLocalizeFn$1({
+      values: quarterValues$l,
       defaultWidth: "wide",
       argumentCallback: (quarter) => Number(quarter) - 1
     }),
-    month: buildLocalizeFn({
-      values: monthValues$k,
+    month: buildLocalizeFn$1({
+      values: monthValues$l,
       defaultWidth: "wide"
     }),
-    day: buildLocalizeFn({
-      values: dayValues$k,
+    day: buildLocalizeFn$1({
+      values: dayValues$l,
       defaultWidth: "wide"
     }),
-    dayPeriod: buildLocalizeFn({
-      values: dayPeriodValues$k,
+    dayPeriod: buildLocalizeFn$1({
+      values: dayPeriodValues$l,
       defaultWidth: "wide",
-      formattingValues: formattingDayPeriodValues$e,
+      formattingValues: formattingDayPeriodValues$f,
       defaultFormattingWidth: "wide"
     })
   };
-  const matchOrdinalNumberPattern$k = /^(\d+)(º)?/i;
-  const parseOrdinalNumberPattern$k = /\d+/i;
-  const matchEraPatterns$k = {
+  const matchOrdinalNumberPattern$l = /^(\d+)(º)?/i;
+  const parseOrdinalNumberPattern$l = /\d+/i;
+  const matchEraPatterns$l = {
     narrow: /^(ac|dc|a|d)/i,
     abbreviated: /^(a\.?\s?c\.?|a\.?\s?e\.?\s?c\.?|d\.?\s?c\.?|e\.?\s?c\.?)/i,
     wide: /^(antes de cristo|antes de la era com[uú]n|despu[eé]s de cristo|era com[uú]n)/i
   };
-  const parseEraPatterns$k = {
+  const parseEraPatterns$l = {
     any: [/^ac/i, /^dc/i],
     wide: [
       /^(antes de cristo|antes de la era com[uú]n)/i,
       /^(despu[eé]s de cristo|era com[uú]n)/i
     ]
   };
-  const matchQuarterPatterns$k = {
+  const matchQuarterPatterns$l = {
     narrow: /^[1234]/i,
     abbreviated: /^T[1234]/i,
     wide: /^[1234](º)? trimestre/i
   };
-  const parseQuarterPatterns$k = {
+  const parseQuarterPatterns$l = {
     any: [/1/i, /2/i, /3/i, /4/i]
   };
-  const matchMonthPatterns$k = {
+  const matchMonthPatterns$l = {
     narrow: /^[efmajsond]/i,
     abbreviated: /^(ene|feb|mar|abr|may|jun|jul|ago|sep|oct|nov|dic)/i,
     wide: /^(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)/i
   };
-  const parseMonthPatterns$k = {
+  const parseMonthPatterns$l = {
     narrow: [
       /^e/i,
       /^f/i,
@@ -42473,21 +42384,21 @@ var __async = (__this, __arguments, generator) => {
       /^dic/i
     ]
   };
-  const matchDayPatterns$k = {
+  const matchDayPatterns$l = {
     narrow: /^[dlmjvs]/i,
     short: /^(do|lu|ma|mi|ju|vi|s[áa])/i,
     abbreviated: /^(dom|lun|mar|mi[ée]|jue|vie|s[áa]b)/i,
     wide: /^(domingo|lunes|martes|mi[ée]rcoles|jueves|viernes|s[áa]bado)/i
   };
-  const parseDayPatterns$k = {
+  const parseDayPatterns$l = {
     narrow: [/^d/i, /^l/i, /^m/i, /^m/i, /^j/i, /^v/i, /^s/i],
     any: [/^do/i, /^lu/i, /^ma/i, /^mi/i, /^ju/i, /^vi/i, /^sa/i]
   };
-  const matchDayPeriodPatterns$k = {
+  const matchDayPeriodPatterns$l = {
     narrow: /^(a|p|mn|md|(de la|a las) (mañana|tarde|noche))/i,
     any: /^([ap]\.?\s?m\.?|medianoche|mediodia|(de la|a las) (mañana|tarde|noche))/i
   };
-  const parseDayPeriodPatterns$k = {
+  const parseDayPeriodPatterns$l = {
     any: {
       am: /^a/i,
       pm: /^p/i,
@@ -42499,53 +42410,53 @@ var __async = (__this, __arguments, generator) => {
       night: /noche/i
     }
   };
-  const match$k = {
-    ordinalNumber: buildMatchPatternFn({
-      matchPattern: matchOrdinalNumberPattern$k,
-      parsePattern: parseOrdinalNumberPattern$k,
+  const match$l = {
+    ordinalNumber: buildMatchPatternFn$1({
+      matchPattern: matchOrdinalNumberPattern$l,
+      parsePattern: parseOrdinalNumberPattern$l,
       valueCallback: function(value) {
         return parseInt(value, 10);
       }
     }),
-    era: buildMatchFn({
-      matchPatterns: matchEraPatterns$k,
+    era: buildMatchFn$1({
+      matchPatterns: matchEraPatterns$l,
       defaultMatchWidth: "wide",
-      parsePatterns: parseEraPatterns$k,
+      parsePatterns: parseEraPatterns$l,
       defaultParseWidth: "any"
     }),
-    quarter: buildMatchFn({
-      matchPatterns: matchQuarterPatterns$k,
+    quarter: buildMatchFn$1({
+      matchPatterns: matchQuarterPatterns$l,
       defaultMatchWidth: "wide",
-      parsePatterns: parseQuarterPatterns$k,
+      parsePatterns: parseQuarterPatterns$l,
       defaultParseWidth: "any",
       valueCallback: (index2) => index2 + 1
     }),
-    month: buildMatchFn({
-      matchPatterns: matchMonthPatterns$k,
+    month: buildMatchFn$1({
+      matchPatterns: matchMonthPatterns$l,
       defaultMatchWidth: "wide",
-      parsePatterns: parseMonthPatterns$k,
+      parsePatterns: parseMonthPatterns$l,
       defaultParseWidth: "any"
     }),
-    day: buildMatchFn({
-      matchPatterns: matchDayPatterns$k,
+    day: buildMatchFn$1({
+      matchPatterns: matchDayPatterns$l,
       defaultMatchWidth: "wide",
-      parsePatterns: parseDayPatterns$k,
+      parsePatterns: parseDayPatterns$l,
       defaultParseWidth: "any"
     }),
-    dayPeriod: buildMatchFn({
-      matchPatterns: matchDayPeriodPatterns$k,
+    dayPeriod: buildMatchFn$1({
+      matchPatterns: matchDayPeriodPatterns$l,
       defaultMatchWidth: "any",
-      parsePatterns: parseDayPeriodPatterns$k,
+      parsePatterns: parseDayPeriodPatterns$l,
       defaultParseWidth: "any"
     })
   };
   const es = {
     code: "es",
-    formatDistance: formatDistance$k,
-    formatLong: formatLong$k,
-    formatRelative: formatRelative$k,
-    localize: localize$k,
-    match: match$k,
+    formatDistance: formatDistance$l,
+    formatLong: formatLong$l,
+    formatRelative: formatRelative$l,
+    localize: localize$l,
+    match: match$l,
     options: {
       weekStartsOn: 1,
       firstWeekContainsDate: 1
@@ -42572,7 +42483,7 @@ var __async = (__this, __arguments, generator) => {
   function futureYears(text) {
     return text.replace(/(vuosi|vuotta)/, "vuoden");
   }
-  const formatDistanceLocale$i = {
+  const formatDistanceLocale$j = {
     lessThanXSeconds: {
       one: "alle sekunti",
       other: "alle {{count}} sekuntia",
@@ -42654,8 +42565,8 @@ var __async = (__this, __arguments, generator) => {
       futureTense: futureYears
     }
   };
-  const formatDistance$j = (token, count2, options2) => {
-    const tokenValue = formatDistanceLocale$i[token];
+  const formatDistance$k = (token, count2, options2) => {
+    const tokenValue = formatDistanceLocale$j[token];
     const result = count2 === 1 ? tokenValue.one : tokenValue.other.replace("{{count}}", String(count2));
     if (options2 == null ? void 0 : options2.addSuffix) {
       if (options2.comparison && options2.comparison > 0) {
@@ -42666,39 +42577,39 @@ var __async = (__this, __arguments, generator) => {
     }
     return result;
   };
-  const dateFormats$k = {
+  const dateFormats$l = {
     full: "eeee d. MMMM y",
     long: "d. MMMM y",
     medium: "d. MMM y",
     short: "d.M.y"
   };
-  const timeFormats$j = {
+  const timeFormats$k = {
     full: "HH.mm.ss zzzz",
     long: "HH.mm.ss z",
     medium: "HH.mm.ss",
     short: "HH.mm"
   };
-  const dateTimeFormats$j = {
+  const dateTimeFormats$k = {
     full: "{{date}} 'klo' {{time}}",
     long: "{{date}} 'klo' {{time}}",
     medium: "{{date}} {{time}}",
     short: "{{date}} {{time}}"
   };
-  const formatLong$j = {
-    date: buildFormatLongFn({
-      formats: dateFormats$k,
+  const formatLong$k = {
+    date: buildFormatLongFn$1({
+      formats: dateFormats$l,
       defaultWidth: "full"
     }),
-    time: buildFormatLongFn({
-      formats: timeFormats$j,
+    time: buildFormatLongFn$1({
+      formats: timeFormats$k,
       defaultWidth: "full"
     }),
-    dateTime: buildFormatLongFn({
-      formats: dateTimeFormats$j,
+    dateTime: buildFormatLongFn$1({
+      formats: dateTimeFormats$k,
       defaultWidth: "full"
     })
   };
-  const formatRelativeLocale$j = {
+  const formatRelativeLocale$k = {
     lastWeek: "'viime' eeee 'klo' p",
     yesterday: "'eilen klo' p",
     today: "'tänään klo' p",
@@ -42706,18 +42617,18 @@ var __async = (__this, __arguments, generator) => {
     nextWeek: "'ensi' eeee 'klo' p",
     other: "P"
   };
-  const formatRelative$j = (token, _date, _baseDate, _options) => formatRelativeLocale$j[token];
-  const eraValues$j = {
+  const formatRelative$k = (token, _date, _baseDate, _options) => formatRelativeLocale$k[token];
+  const eraValues$k = {
     narrow: ["eaa.", "jaa."],
     abbreviated: ["eaa.", "jaa."],
     wide: ["ennen ajanlaskun alkua", "jälkeen ajanlaskun alun"]
   };
-  const quarterValues$j = {
+  const quarterValues$k = {
     narrow: ["1", "2", "3", "4"],
     abbreviated: ["Q1", "Q2", "Q3", "Q4"],
     wide: ["1. kvartaali", "2. kvartaali", "3. kvartaali", "4. kvartaali"]
   };
-  const monthValues$j = {
+  const monthValues$k = {
     narrow: ["T", "H", "M", "H", "T", "K", "H", "E", "S", "L", "M", "J"],
     abbreviated: [
       "tammi",
@@ -42749,8 +42660,8 @@ var __async = (__this, __arguments, generator) => {
     ]
   };
   const formattingMonthValues$2 = {
-    narrow: monthValues$j.narrow,
-    abbreviated: monthValues$j.abbreviated,
+    narrow: monthValues$k.narrow,
+    abbreviated: monthValues$k.abbreviated,
     wide: [
       "tammikuuta",
       "helmikuuta",
@@ -42766,7 +42677,7 @@ var __async = (__this, __arguments, generator) => {
       "joulukuuta"
     ]
   };
-  const dayValues$j = {
+  const dayValues$k = {
     narrow: ["S", "M", "T", "K", "T", "P", "L"],
     short: ["su", "ma", "ti", "ke", "to", "pe", "la"],
     abbreviated: ["sunn.", "maan.", "tiis.", "kesk.", "torst.", "perj.", "la"],
@@ -42781,9 +42692,9 @@ var __async = (__this, __arguments, generator) => {
     ]
   };
   const formattingDayValues = {
-    narrow: dayValues$j.narrow,
-    short: dayValues$j.short,
-    abbreviated: dayValues$j.abbreviated,
+    narrow: dayValues$k.narrow,
+    short: dayValues$k.short,
+    abbreviated: dayValues$k.abbreviated,
     wide: [
       "sunnuntaina",
       "maanantaina",
@@ -42794,7 +42705,7 @@ var __async = (__this, __arguments, generator) => {
       "lauantaina"
     ]
   };
-  const dayPeriodValues$j = {
+  const dayPeriodValues$k = {
     narrow: {
       am: "ap",
       pm: "ip",
@@ -42826,62 +42737,62 @@ var __async = (__this, __arguments, generator) => {
       night: "yöllä"
     }
   };
-  const ordinalNumber$j = (dirtyNumber, _options) => {
+  const ordinalNumber$k = (dirtyNumber, _options) => {
     const number = Number(dirtyNumber);
     return number + ".";
   };
-  const localize$j = {
-    ordinalNumber: ordinalNumber$j,
-    era: buildLocalizeFn({
-      values: eraValues$j,
+  const localize$k = {
+    ordinalNumber: ordinalNumber$k,
+    era: buildLocalizeFn$1({
+      values: eraValues$k,
       defaultWidth: "wide"
     }),
-    quarter: buildLocalizeFn({
-      values: quarterValues$j,
+    quarter: buildLocalizeFn$1({
+      values: quarterValues$k,
       defaultWidth: "wide",
       argumentCallback: (quarter) => quarter - 1
     }),
-    month: buildLocalizeFn({
-      values: monthValues$j,
+    month: buildLocalizeFn$1({
+      values: monthValues$k,
       defaultWidth: "wide",
       formattingValues: formattingMonthValues$2,
       defaultFormattingWidth: "wide"
     }),
-    day: buildLocalizeFn({
-      values: dayValues$j,
+    day: buildLocalizeFn$1({
+      values: dayValues$k,
       defaultWidth: "wide",
       formattingValues: formattingDayValues,
       defaultFormattingWidth: "wide"
     }),
-    dayPeriod: buildLocalizeFn({
-      values: dayPeriodValues$j,
+    dayPeriod: buildLocalizeFn$1({
+      values: dayPeriodValues$k,
       defaultWidth: "wide"
     })
   };
-  const matchOrdinalNumberPattern$j = /^(\d+)(\.)/i;
-  const parseOrdinalNumberPattern$j = /\d+/i;
-  const matchEraPatterns$j = {
+  const matchOrdinalNumberPattern$k = /^(\d+)(\.)/i;
+  const parseOrdinalNumberPattern$k = /\d+/i;
+  const matchEraPatterns$k = {
     narrow: /^(e|j)/i,
     abbreviated: /^(eaa.|jaa.)/i,
     wide: /^(ennen ajanlaskun alkua|jälkeen ajanlaskun alun)/i
   };
-  const parseEraPatterns$j = {
+  const parseEraPatterns$k = {
     any: [/^e/i, /^j/i]
   };
-  const matchQuarterPatterns$j = {
+  const matchQuarterPatterns$k = {
     narrow: /^[1234]/i,
     abbreviated: /^q[1234]/i,
     wide: /^[1234]\.? kvartaali/i
   };
-  const parseQuarterPatterns$j = {
+  const parseQuarterPatterns$k = {
     any: [/1/i, /2/i, /3/i, /4/i]
   };
-  const matchMonthPatterns$j = {
+  const matchMonthPatterns$k = {
     narrow: /^[thmkeslj]/i,
     abbreviated: /^(tammi|helmi|maalis|huhti|touko|kesä|heinä|elo|syys|loka|marras|joulu)/i,
     wide: /^(tammikuu|helmikuu|maaliskuu|huhtikuu|toukokuu|kesäkuu|heinäkuu|elokuu|syyskuu|lokakuu|marraskuu|joulukuu)(ta)?/i
   };
-  const parseMonthPatterns$j = {
+  const parseMonthPatterns$k = {
     narrow: [
       /^t/i,
       /^h/i,
@@ -42911,21 +42822,21 @@ var __async = (__this, __arguments, generator) => {
       /^j/i
     ]
   };
-  const matchDayPatterns$j = {
+  const matchDayPatterns$k = {
     narrow: /^[smtkpl]/i,
     short: /^(su|ma|ti|ke|to|pe|la)/i,
     abbreviated: /^(sunn.|maan.|tiis.|kesk.|torst.|perj.|la)/i,
     wide: /^(sunnuntai|maanantai|tiistai|keskiviikko|torstai|perjantai|lauantai)(na)?/i
   };
-  const parseDayPatterns$j = {
+  const parseDayPatterns$k = {
     narrow: [/^s/i, /^m/i, /^t/i, /^k/i, /^t/i, /^p/i, /^l/i],
     any: [/^s/i, /^m/i, /^ti/i, /^k/i, /^to/i, /^p/i, /^l/i]
   };
-  const matchDayPeriodPatterns$j = {
+  const matchDayPeriodPatterns$k = {
     narrow: /^(ap|ip|keskiyö|keskipäivä|aamupäivällä|iltapäivällä|illalla|yöllä)/i,
     any: /^(ap|ip|keskiyöllä|keskipäivällä|aamupäivällä|iltapäivällä|illalla|yöllä)/i
   };
-  const parseDayPeriodPatterns$j = {
+  const parseDayPeriodPatterns$k = {
     any: {
       am: /^ap/i,
       pm: /^ip/i,
@@ -42937,57 +42848,57 @@ var __async = (__this, __arguments, generator) => {
       night: /yöllä/i
     }
   };
-  const match$j = {
-    ordinalNumber: buildMatchPatternFn({
-      matchPattern: matchOrdinalNumberPattern$j,
-      parsePattern: parseOrdinalNumberPattern$j,
+  const match$k = {
+    ordinalNumber: buildMatchPatternFn$1({
+      matchPattern: matchOrdinalNumberPattern$k,
+      parsePattern: parseOrdinalNumberPattern$k,
       valueCallback: (value) => parseInt(value, 10)
     }),
-    era: buildMatchFn({
-      matchPatterns: matchEraPatterns$j,
+    era: buildMatchFn$1({
+      matchPatterns: matchEraPatterns$k,
       defaultMatchWidth: "wide",
-      parsePatterns: parseEraPatterns$j,
+      parsePatterns: parseEraPatterns$k,
       defaultParseWidth: "any"
     }),
-    quarter: buildMatchFn({
-      matchPatterns: matchQuarterPatterns$j,
+    quarter: buildMatchFn$1({
+      matchPatterns: matchQuarterPatterns$k,
       defaultMatchWidth: "wide",
-      parsePatterns: parseQuarterPatterns$j,
+      parsePatterns: parseQuarterPatterns$k,
       defaultParseWidth: "any",
       valueCallback: (index2) => index2 + 1
     }),
-    month: buildMatchFn({
-      matchPatterns: matchMonthPatterns$j,
+    month: buildMatchFn$1({
+      matchPatterns: matchMonthPatterns$k,
       defaultMatchWidth: "wide",
-      parsePatterns: parseMonthPatterns$j,
+      parsePatterns: parseMonthPatterns$k,
       defaultParseWidth: "any"
     }),
-    day: buildMatchFn({
-      matchPatterns: matchDayPatterns$j,
+    day: buildMatchFn$1({
+      matchPatterns: matchDayPatterns$k,
       defaultMatchWidth: "wide",
-      parsePatterns: parseDayPatterns$j,
+      parsePatterns: parseDayPatterns$k,
       defaultParseWidth: "any"
     }),
-    dayPeriod: buildMatchFn({
-      matchPatterns: matchDayPeriodPatterns$j,
+    dayPeriod: buildMatchFn$1({
+      matchPatterns: matchDayPeriodPatterns$k,
       defaultMatchWidth: "any",
-      parsePatterns: parseDayPeriodPatterns$j,
+      parsePatterns: parseDayPeriodPatterns$k,
       defaultParseWidth: "any"
     })
   };
   const fi = {
     code: "fi",
-    formatDistance: formatDistance$j,
-    formatLong: formatLong$j,
-    formatRelative: formatRelative$j,
-    localize: localize$j,
-    match: match$j,
+    formatDistance: formatDistance$k,
+    formatLong: formatLong$k,
+    formatRelative: formatRelative$k,
+    localize: localize$k,
+    match: match$k,
     options: {
       weekStartsOn: 1,
       firstWeekContainsDate: 4
     }
   };
-  const formatDistanceLocale$h = {
+  const formatDistanceLocale$i = {
     lessThanXSeconds: {
       one: "moins d’une seconde",
       other: "moins de {{count}} secondes"
@@ -43050,9 +42961,9 @@ var __async = (__this, __arguments, generator) => {
       other: "presque {{count}} ans"
     }
   };
-  const formatDistance$i = (token, count2, options2) => {
+  const formatDistance$j = (token, count2, options2) => {
     let result;
-    const form = formatDistanceLocale$h[token];
+    const form = formatDistanceLocale$i[token];
     if (typeof form === "string") {
       result = form;
     } else if (count2 === 1) {
@@ -43069,39 +42980,39 @@ var __async = (__this, __arguments, generator) => {
     }
     return result;
   };
-  const dateFormats$j = {
+  const dateFormats$k = {
     full: "EEEE d MMMM y",
     long: "d MMMM y",
     medium: "d MMM y",
     short: "dd/MM/y"
   };
-  const timeFormats$i = {
+  const timeFormats$j = {
     full: "HH:mm:ss zzzz",
     long: "HH:mm:ss z",
     medium: "HH:mm:ss",
     short: "HH:mm"
   };
-  const dateTimeFormats$i = {
+  const dateTimeFormats$j = {
     full: "{{date}} 'à' {{time}}",
     long: "{{date}} 'à' {{time}}",
     medium: "{{date}}, {{time}}",
     short: "{{date}}, {{time}}"
   };
-  const formatLong$i = {
-    date: buildFormatLongFn({
-      formats: dateFormats$j,
+  const formatLong$j = {
+    date: buildFormatLongFn$1({
+      formats: dateFormats$k,
       defaultWidth: "full"
     }),
-    time: buildFormatLongFn({
-      formats: timeFormats$i,
+    time: buildFormatLongFn$1({
+      formats: timeFormats$j,
       defaultWidth: "full"
     }),
-    dateTime: buildFormatLongFn({
-      formats: dateTimeFormats$i,
+    dateTime: buildFormatLongFn$1({
+      formats: dateTimeFormats$j,
       defaultWidth: "full"
     })
   };
-  const formatRelativeLocale$i = {
+  const formatRelativeLocale$j = {
     lastWeek: "eeee 'dernier à' p",
     yesterday: "'hier à' p",
     today: "'aujourd’hui à' p",
@@ -43109,18 +43020,18 @@ var __async = (__this, __arguments, generator) => {
     nextWeek: "eeee 'prochain à' p",
     other: "P"
   };
-  const formatRelative$i = (token, _date, _baseDate, _options) => formatRelativeLocale$i[token];
-  const eraValues$i = {
+  const formatRelative$j = (token, _date, _baseDate, _options) => formatRelativeLocale$j[token];
+  const eraValues$j = {
     narrow: ["av. J.-C", "ap. J.-C"],
     abbreviated: ["av. J.-C", "ap. J.-C"],
     wide: ["avant Jésus-Christ", "après Jésus-Christ"]
   };
-  const quarterValues$i = {
+  const quarterValues$j = {
     narrow: ["T1", "T2", "T3", "T4"],
     abbreviated: ["1er trim.", "2ème trim.", "3ème trim.", "4ème trim."],
     wide: ["1er trimestre", "2ème trimestre", "3ème trimestre", "4ème trimestre"]
   };
-  const monthValues$i = {
+  const monthValues$j = {
     narrow: ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"],
     abbreviated: [
       "janv.",
@@ -43151,7 +43062,7 @@ var __async = (__this, __arguments, generator) => {
       "décembre"
     ]
   };
-  const dayValues$i = {
+  const dayValues$j = {
     narrow: ["D", "L", "M", "M", "J", "V", "S"],
     short: ["di", "lu", "ma", "me", "je", "ve", "sa"],
     abbreviated: ["dim.", "lun.", "mar.", "mer.", "jeu.", "ven.", "sam."],
@@ -43165,7 +43076,7 @@ var __async = (__this, __arguments, generator) => {
       "samedi"
     ]
   };
-  const dayPeriodValues$i = {
+  const dayPeriodValues$j = {
     narrow: {
       am: "AM",
       pm: "PM",
@@ -43197,7 +43108,7 @@ var __async = (__this, __arguments, generator) => {
       night: "du matin"
     }
   };
-  const ordinalNumber$i = (dirtyNumber, options2) => {
+  const ordinalNumber$j = (dirtyNumber, options2) => {
     const number = Number(dirtyNumber);
     const unit = options2 == null ? void 0 : options2.unit;
     if (number === 0) return "0";
@@ -43211,7 +43122,7 @@ var __async = (__this, __arguments, generator) => {
     return number + suffix2;
   };
   const LONG_MONTHS_TOKENS = ["MMM", "MMMM"];
-  const localize$i = {
+  const localize$j = {
     preprocessor: (date, parts) => {
       if (date.getDate() === 1) return parts;
       const hasLongMonthToken = parts.some(
@@ -43222,53 +43133,53 @@ var __async = (__this, __arguments, generator) => {
         (part) => part.isToken && part.value === "do" ? { isToken: true, value: "d" } : part
       );
     },
-    ordinalNumber: ordinalNumber$i,
-    era: buildLocalizeFn({
-      values: eraValues$i,
+    ordinalNumber: ordinalNumber$j,
+    era: buildLocalizeFn$1({
+      values: eraValues$j,
       defaultWidth: "wide"
     }),
-    quarter: buildLocalizeFn({
-      values: quarterValues$i,
+    quarter: buildLocalizeFn$1({
+      values: quarterValues$j,
       defaultWidth: "wide",
       argumentCallback: (quarter) => quarter - 1
     }),
-    month: buildLocalizeFn({
-      values: monthValues$i,
+    month: buildLocalizeFn$1({
+      values: monthValues$j,
       defaultWidth: "wide"
     }),
-    day: buildLocalizeFn({
-      values: dayValues$i,
+    day: buildLocalizeFn$1({
+      values: dayValues$j,
       defaultWidth: "wide"
     }),
-    dayPeriod: buildLocalizeFn({
-      values: dayPeriodValues$i,
+    dayPeriod: buildLocalizeFn$1({
+      values: dayPeriodValues$j,
       defaultWidth: "wide"
     })
   };
-  const matchOrdinalNumberPattern$i = /^(\d+)(ième|ère|ème|er|e)?/i;
-  const parseOrdinalNumberPattern$i = /\d+/i;
-  const matchEraPatterns$i = {
+  const matchOrdinalNumberPattern$j = /^(\d+)(ième|ère|ème|er|e)?/i;
+  const parseOrdinalNumberPattern$j = /\d+/i;
+  const matchEraPatterns$j = {
     narrow: /^(av\.J\.C|ap\.J\.C|ap\.J\.-C)/i,
     abbreviated: /^(av\.J\.-C|av\.J-C|apr\.J\.-C|apr\.J-C|ap\.J-C)/i,
     wide: /^(avant Jésus-Christ|après Jésus-Christ)/i
   };
-  const parseEraPatterns$i = {
+  const parseEraPatterns$j = {
     any: [/^av/i, /^ap/i]
   };
-  const matchQuarterPatterns$i = {
+  const matchQuarterPatterns$j = {
     narrow: /^T?[1234]/i,
     abbreviated: /^[1234](er|ème|e)? trim\.?/i,
     wide: /^[1234](er|ème|e)? trimestre/i
   };
-  const parseQuarterPatterns$i = {
+  const parseQuarterPatterns$j = {
     any: [/1/i, /2/i, /3/i, /4/i]
   };
-  const matchMonthPatterns$i = {
+  const matchMonthPatterns$j = {
     narrow: /^[jfmasond]/i,
     abbreviated: /^(janv|févr|mars|avr|mai|juin|juill|juil|août|sept|oct|nov|déc)\.?/i,
     wide: /^(janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre)/i
   };
-  const parseMonthPatterns$i = {
+  const parseMonthPatterns$j = {
     narrow: [
       /^j/i,
       /^f/i,
@@ -43298,21 +43209,21 @@ var __async = (__this, __arguments, generator) => {
       /^d/i
     ]
   };
-  const matchDayPatterns$i = {
+  const matchDayPatterns$j = {
     narrow: /^[lmjvsd]/i,
     short: /^(di|lu|ma|me|je|ve|sa)/i,
     abbreviated: /^(dim|lun|mar|mer|jeu|ven|sam)\.?/i,
     wide: /^(dimanche|lundi|mardi|mercredi|jeudi|vendredi|samedi)/i
   };
-  const parseDayPatterns$i = {
+  const parseDayPatterns$j = {
     narrow: [/^d/i, /^l/i, /^m/i, /^m/i, /^j/i, /^v/i, /^s/i],
     any: [/^di/i, /^lu/i, /^ma/i, /^me/i, /^je/i, /^ve/i, /^sa/i]
   };
-  const matchDayPeriodPatterns$i = {
+  const matchDayPeriodPatterns$j = {
     narrow: /^(a|p|minuit|midi|mat\.?|ap\.?m\.?|soir|nuit)/i,
     any: /^([ap]\.?\s?m\.?|du matin|de l'après[-\s]midi|du soir|de la nuit)/i
   };
-  const parseDayPeriodPatterns$i = {
+  const parseDayPeriodPatterns$j = {
     any: {
       am: /^a/i,
       pm: /^p/i,
@@ -43324,51 +43235,51 @@ var __async = (__this, __arguments, generator) => {
       night: /nuit/i
     }
   };
-  const match$i = {
-    ordinalNumber: buildMatchPatternFn({
-      matchPattern: matchOrdinalNumberPattern$i,
-      parsePattern: parseOrdinalNumberPattern$i,
+  const match$j = {
+    ordinalNumber: buildMatchPatternFn$1({
+      matchPattern: matchOrdinalNumberPattern$j,
+      parsePattern: parseOrdinalNumberPattern$j,
       valueCallback: (value) => parseInt(value)
     }),
-    era: buildMatchFn({
-      matchPatterns: matchEraPatterns$i,
+    era: buildMatchFn$1({
+      matchPatterns: matchEraPatterns$j,
       defaultMatchWidth: "wide",
-      parsePatterns: parseEraPatterns$i,
+      parsePatterns: parseEraPatterns$j,
       defaultParseWidth: "any"
     }),
-    quarter: buildMatchFn({
-      matchPatterns: matchQuarterPatterns$i,
+    quarter: buildMatchFn$1({
+      matchPatterns: matchQuarterPatterns$j,
       defaultMatchWidth: "wide",
-      parsePatterns: parseQuarterPatterns$i,
+      parsePatterns: parseQuarterPatterns$j,
       defaultParseWidth: "any",
       valueCallback: (index2) => index2 + 1
     }),
-    month: buildMatchFn({
-      matchPatterns: matchMonthPatterns$i,
+    month: buildMatchFn$1({
+      matchPatterns: matchMonthPatterns$j,
       defaultMatchWidth: "wide",
-      parsePatterns: parseMonthPatterns$i,
+      parsePatterns: parseMonthPatterns$j,
       defaultParseWidth: "any"
     }),
-    day: buildMatchFn({
-      matchPatterns: matchDayPatterns$i,
+    day: buildMatchFn$1({
+      matchPatterns: matchDayPatterns$j,
       defaultMatchWidth: "wide",
-      parsePatterns: parseDayPatterns$i,
+      parsePatterns: parseDayPatterns$j,
       defaultParseWidth: "any"
     }),
-    dayPeriod: buildMatchFn({
-      matchPatterns: matchDayPeriodPatterns$i,
+    dayPeriod: buildMatchFn$1({
+      matchPatterns: matchDayPeriodPatterns$j,
       defaultMatchWidth: "any",
-      parsePatterns: parseDayPeriodPatterns$i,
+      parsePatterns: parseDayPeriodPatterns$j,
       defaultParseWidth: "any"
     })
   };
   const fr = {
     code: "fr",
-    formatDistance: formatDistance$i,
-    formatLong: formatLong$i,
-    formatRelative: formatRelative$i,
-    localize: localize$i,
-    match: match$i,
+    formatDistance: formatDistance$j,
+    formatLong: formatLong$j,
+    formatRelative: formatRelative$j,
+    localize: localize$j,
+    match: match$j,
     options: {
       weekStartsOn: 1,
       firstWeekContainsDate: 4
@@ -43400,17 +43311,17 @@ var __async = (__this, __arguments, generator) => {
       "०": "0"
     }
   };
-  const eraValues$h = {
+  const eraValues$i = {
     narrow: ["ईसा-पूर्व", "ईस्वी"],
     abbreviated: ["ईसा-पूर्व", "ईस्वी"],
     wide: ["ईसा-पूर्व", "ईसवी सन"]
   };
-  const quarterValues$h = {
+  const quarterValues$i = {
     narrow: ["1", "2", "3", "4"],
     abbreviated: ["ति1", "ति2", "ति3", "ति4"],
     wide: ["पहली तिमाही", "दूसरी तिमाही", "तीसरी तिमाही", "चौथी तिमाही"]
   };
-  const monthValues$h = {
+  const monthValues$i = {
     narrow: [
       "ज",
       "फ़",
@@ -43454,7 +43365,7 @@ var __async = (__this, __arguments, generator) => {
       "दिसंबर"
     ]
   };
-  const dayValues$h = {
+  const dayValues$i = {
     narrow: ["र", "सो", "मं", "बु", "गु", "शु", "श"],
     short: ["र", "सो", "मं", "बु", "गु", "शु", "श"],
     abbreviated: ["रवि", "सोम", "मंगल", "बुध", "गुरु", "शुक्र", "शनि"],
@@ -43468,7 +43379,7 @@ var __async = (__this, __arguments, generator) => {
       "शनिवार"
     ]
   };
-  const dayPeriodValues$h = {
+  const dayPeriodValues$i = {
     narrow: {
       am: "पूर्वाह्न",
       pm: "अपराह्न",
@@ -43500,7 +43411,7 @@ var __async = (__this, __arguments, generator) => {
       night: "रात"
     }
   };
-  const formattingDayPeriodValues$d = {
+  const formattingDayPeriodValues$e = {
     narrow: {
       am: "पूर्वाह्न",
       pm: "अपराह्न",
@@ -43532,7 +43443,7 @@ var __async = (__this, __arguments, generator) => {
       night: "रात"
     }
   };
-  const ordinalNumber$h = (dirtyNumber, _options) => {
+  const ordinalNumber$i = (dirtyNumber, _options) => {
     const number = Number(dirtyNumber);
     return numberToLocale(number);
   };
@@ -43547,33 +43458,33 @@ var __async = (__this, __arguments, generator) => {
       return numberValues.locale[match2];
     });
   }
-  const localize$h = {
-    ordinalNumber: ordinalNumber$h,
-    era: buildLocalizeFn({
-      values: eraValues$h,
+  const localize$i = {
+    ordinalNumber: ordinalNumber$i,
+    era: buildLocalizeFn$1({
+      values: eraValues$i,
       defaultWidth: "wide"
     }),
-    quarter: buildLocalizeFn({
-      values: quarterValues$h,
+    quarter: buildLocalizeFn$1({
+      values: quarterValues$i,
       defaultWidth: "wide",
       argumentCallback: (quarter) => quarter - 1
     }),
-    month: buildLocalizeFn({
-      values: monthValues$h,
+    month: buildLocalizeFn$1({
+      values: monthValues$i,
       defaultWidth: "wide"
     }),
-    day: buildLocalizeFn({
-      values: dayValues$h,
+    day: buildLocalizeFn$1({
+      values: dayValues$i,
       defaultWidth: "wide"
     }),
-    dayPeriod: buildLocalizeFn({
-      values: dayPeriodValues$h,
+    dayPeriod: buildLocalizeFn$1({
+      values: dayPeriodValues$i,
       defaultWidth: "wide",
-      formattingValues: formattingDayPeriodValues$d,
+      formattingValues: formattingDayPeriodValues$e,
       defaultFormattingWidth: "wide"
     })
   };
-  const formatDistanceLocale$g = {
+  const formatDistanceLocale$h = {
     lessThanXSeconds: {
       one: "१ सेकंड से कम",
       // CLDR #1310
@@ -43642,9 +43553,9 @@ var __async = (__this, __arguments, generator) => {
       other: "लगभग {{count}} वर्ष"
     }
   };
-  const formatDistance$h = (token, count2, options2) => {
+  const formatDistance$i = (token, count2, options2) => {
     let result;
-    const tokenValue = formatDistanceLocale$g[token];
+    const tokenValue = formatDistanceLocale$h[token];
     if (typeof tokenValue === "string") {
       result = tokenValue;
     } else if (count2 === 1) {
@@ -43661,7 +43572,7 @@ var __async = (__this, __arguments, generator) => {
     }
     return result;
   };
-  const dateFormats$i = {
+  const dateFormats$j = {
     full: "EEEE, do MMMM, y",
     // CLDR #1787
     long: "do MMMM, y",
@@ -43671,7 +43582,7 @@ var __async = (__this, __arguments, generator) => {
     short: "dd/MM/yyyy"
     // CLDR #1790
   };
-  const timeFormats$h = {
+  const timeFormats$i = {
     full: "h:mm:ss a zzzz",
     // CLDR #1791
     long: "h:mm:ss a z",
@@ -43681,7 +43592,7 @@ var __async = (__this, __arguments, generator) => {
     short: "h:mm a"
     // CLDR #1794
   };
-  const dateTimeFormats$h = {
+  const dateTimeFormats$i = {
     full: "{{date}} 'को' {{time}}",
     // CLDR #1795
     long: "{{date}} 'को' {{time}}",
@@ -43691,21 +43602,21 @@ var __async = (__this, __arguments, generator) => {
     short: "{{date}}, {{time}}"
     // CLDR #1798
   };
-  const formatLong$h = {
-    date: buildFormatLongFn({
-      formats: dateFormats$i,
+  const formatLong$i = {
+    date: buildFormatLongFn$1({
+      formats: dateFormats$j,
       defaultWidth: "full"
     }),
-    time: buildFormatLongFn({
-      formats: timeFormats$h,
+    time: buildFormatLongFn$1({
+      formats: timeFormats$i,
       defaultWidth: "full"
     }),
-    dateTime: buildFormatLongFn({
-      formats: dateTimeFormats$h,
+    dateTime: buildFormatLongFn$1({
+      formats: dateTimeFormats$i,
       defaultWidth: "full"
     })
   };
-  const formatRelativeLocale$h = {
+  const formatRelativeLocale$i = {
     lastWeek: "'पिछले' eeee p",
     yesterday: "'कल' p",
     today: "'आज' p",
@@ -43713,32 +43624,32 @@ var __async = (__this, __arguments, generator) => {
     nextWeek: "eeee 'को' p",
     other: "P"
   };
-  const formatRelative$h = (token, _date, _baseDate, _options) => formatRelativeLocale$h[token];
-  const matchOrdinalNumberPattern$h = /^[०१२३४५६७८९]+/i;
-  const parseOrdinalNumberPattern$h = /^[०१२३४५६७८९]+/i;
-  const matchEraPatterns$h = {
+  const formatRelative$i = (token, _date, _baseDate, _options) => formatRelativeLocale$i[token];
+  const matchOrdinalNumberPattern$i = /^[०१२३४५६७८९]+/i;
+  const parseOrdinalNumberPattern$i = /^[०१२३४५६७८९]+/i;
+  const matchEraPatterns$i = {
     narrow: /^(ईसा-पूर्व|ईस्वी)/i,
     abbreviated: /^(ईसा\.?\s?पूर्व\.?|ईसा\.?)/i,
     wide: /^(ईसा-पूर्व|ईसवी पूर्व|ईसवी सन|ईसवी)/i
   };
-  const parseEraPatterns$h = {
+  const parseEraPatterns$i = {
     any: [/^b/i, /^(a|c)/i]
   };
-  const matchQuarterPatterns$h = {
+  const matchQuarterPatterns$i = {
     narrow: /^[1234]/i,
     abbreviated: /^ति[1234]/i,
     wide: /^[1234](पहली|दूसरी|तीसरी|चौथी)? तिमाही/i
   };
-  const parseQuarterPatterns$h = {
+  const parseQuarterPatterns$i = {
     any: [/1/i, /2/i, /3/i, /4/i]
   };
-  const matchMonthPatterns$h = {
+  const matchMonthPatterns$i = {
     // eslint-disable-next-line no-misleading-character-class
     narrow: /^[जफ़माअप्मईजूनजुअगसिअक्तनदि]/i,
     abbreviated: /^(जन|फ़र|मार्च|अप्|मई|जून|जुल|अग|सित|अक्तू|नव|दिस)/i,
     wide: /^(जनवरी|फ़रवरी|मार्च|अप्रैल|मई|जून|जुलाई|अगस्त|सितंबर|अक्तूबर|नवंबर|दिसंबर)/i
   };
-  const parseMonthPatterns$h = {
+  const parseMonthPatterns$i = {
     narrow: [
       /^ज/i,
       /^फ़/i,
@@ -43768,22 +43679,22 @@ var __async = (__this, __arguments, generator) => {
       /^दिस/i
     ]
   };
-  const matchDayPatterns$h = {
+  const matchDayPatterns$i = {
     // eslint-disable-next-line no-misleading-character-class
     narrow: /^[रविसोममंगलबुधगुरुशुक्रशनि]/i,
     short: /^(रवि|सोम|मंगल|बुध|गुरु|शुक्र|शनि)/i,
     abbreviated: /^(रवि|सोम|मंगल|बुध|गुरु|शुक्र|शनि)/i,
     wide: /^(रविवार|सोमवार|मंगलवार|बुधवार|गुरुवार|शुक्रवार|शनिवार)/i
   };
-  const parseDayPatterns$h = {
+  const parseDayPatterns$i = {
     narrow: [/^रवि/i, /^सोम/i, /^मंगल/i, /^बुध/i, /^गुरु/i, /^शुक्र/i, /^शनि/i],
     any: [/^रवि/i, /^सोम/i, /^मंगल/i, /^बुध/i, /^गुरु/i, /^शुक्र/i, /^शनि/i]
   };
-  const matchDayPeriodPatterns$h = {
+  const matchDayPeriodPatterns$i = {
     narrow: /^(पू|अ|म|द.\?|सु|दो|शा|रा)/i,
     any: /^(पूर्वाह्न|अपराह्न|म|द.\?|सु|दो|शा|रा)/i
   };
-  const parseDayPeriodPatterns$h = {
+  const parseDayPeriodPatterns$i = {
     any: {
       am: /^पूर्वाह्न/i,
       pm: /^अपराह्न/i,
@@ -43795,51 +43706,51 @@ var __async = (__this, __arguments, generator) => {
       night: /रा/i
     }
   };
-  const match$h = {
-    ordinalNumber: buildMatchPatternFn({
-      matchPattern: matchOrdinalNumberPattern$h,
-      parsePattern: parseOrdinalNumberPattern$h,
+  const match$i = {
+    ordinalNumber: buildMatchPatternFn$1({
+      matchPattern: matchOrdinalNumberPattern$i,
+      parsePattern: parseOrdinalNumberPattern$i,
       valueCallback: localeToNumber
     }),
-    era: buildMatchFn({
-      matchPatterns: matchEraPatterns$h,
+    era: buildMatchFn$1({
+      matchPatterns: matchEraPatterns$i,
       defaultMatchWidth: "wide",
-      parsePatterns: parseEraPatterns$h,
+      parsePatterns: parseEraPatterns$i,
       defaultParseWidth: "any"
     }),
-    quarter: buildMatchFn({
-      matchPatterns: matchQuarterPatterns$h,
+    quarter: buildMatchFn$1({
+      matchPatterns: matchQuarterPatterns$i,
       defaultMatchWidth: "wide",
-      parsePatterns: parseQuarterPatterns$h,
+      parsePatterns: parseQuarterPatterns$i,
       defaultParseWidth: "any",
       valueCallback: (index2) => index2 + 1
     }),
-    month: buildMatchFn({
-      matchPatterns: matchMonthPatterns$h,
+    month: buildMatchFn$1({
+      matchPatterns: matchMonthPatterns$i,
       defaultMatchWidth: "wide",
-      parsePatterns: parseMonthPatterns$h,
+      parsePatterns: parseMonthPatterns$i,
       defaultParseWidth: "any"
     }),
-    day: buildMatchFn({
-      matchPatterns: matchDayPatterns$h,
+    day: buildMatchFn$1({
+      matchPatterns: matchDayPatterns$i,
       defaultMatchWidth: "wide",
-      parsePatterns: parseDayPatterns$h,
+      parsePatterns: parseDayPatterns$i,
       defaultParseWidth: "any"
     }),
-    dayPeriod: buildMatchFn({
-      matchPatterns: matchDayPeriodPatterns$h,
+    dayPeriod: buildMatchFn$1({
+      matchPatterns: matchDayPeriodPatterns$i,
       defaultMatchWidth: "any",
-      parsePatterns: parseDayPeriodPatterns$h,
+      parsePatterns: parseDayPeriodPatterns$i,
       defaultParseWidth: "any"
     })
   };
   const hi = {
     code: "hi",
-    formatDistance: formatDistance$h,
-    formatLong: formatLong$h,
-    formatRelative: formatRelative$h,
-    localize: localize$h,
-    match: match$h,
+    formatDistance: formatDistance$i,
+    formatLong: formatLong$i,
+    formatRelative: formatRelative$i,
+    localize: localize$i,
+    match: match$i,
     options: {
       weekStartsOn: 0,
       firstWeekContainsDate: 4
@@ -43903,7 +43814,7 @@ var __async = (__this, __arguments, generator) => {
       0: " éve"
     }
   };
-  const formatDistance$g = (token, count2, options2) => {
+  const formatDistance$h = (token, count2, options2) => {
     const adverb = token.match(/about|over|almost|lessthan/i);
     const unit = adverb ? token.replace(adverb[0], "") : token;
     const addSuffix = (options2 == null ? void 0 : options2.addSuffix) === true;
@@ -43917,35 +43828,35 @@ var __async = (__this, __arguments, generator) => {
     }
     return result;
   };
-  const dateFormats$h = {
+  const dateFormats$i = {
     full: "y. MMMM d., EEEE",
     long: "y. MMMM d.",
     medium: "y. MMM d.",
     short: "y. MM. dd."
   };
-  const timeFormats$g = {
+  const timeFormats$h = {
     full: "H:mm:ss zzzz",
     long: "H:mm:ss z",
     medium: "H:mm:ss",
     short: "H:mm"
   };
-  const dateTimeFormats$g = {
+  const dateTimeFormats$h = {
     full: "{{date}} {{time}}",
     long: "{{date}} {{time}}",
     medium: "{{date}} {{time}}",
     short: "{{date}} {{time}}"
   };
-  const formatLong$g = {
-    date: buildFormatLongFn({
-      formats: dateFormats$h,
+  const formatLong$h = {
+    date: buildFormatLongFn$1({
+      formats: dateFormats$i,
       defaultWidth: "full"
     }),
-    time: buildFormatLongFn({
-      formats: timeFormats$g,
+    time: buildFormatLongFn$1({
+      formats: timeFormats$h,
       defaultWidth: "full"
     }),
-    dateTime: buildFormatLongFn({
-      formats: dateTimeFormats$g,
+    dateTime: buildFormatLongFn$1({
+      formats: dateTimeFormats$h,
       defaultWidth: "full"
     })
   };
@@ -43965,7 +43876,7 @@ var __async = (__this, __arguments, generator) => {
       return `${prefix2}'${weekday}' p'-kor'`;
     };
   }
-  const formatRelativeLocale$g = {
+  const formatRelativeLocale$h = {
     lastWeek: week(false),
     yesterday: "'tegnap' p'-kor'",
     today: "'ma' p'-kor'",
@@ -43973,19 +43884,19 @@ var __async = (__this, __arguments, generator) => {
     nextWeek: week(true),
     other: "P"
   };
-  const formatRelative$g = (token, date) => {
-    const format2 = formatRelativeLocale$g[token];
+  const formatRelative$h = (token, date) => {
+    const format2 = formatRelativeLocale$h[token];
     if (typeof format2 === "function") {
       return format2(date);
     }
     return format2;
   };
-  const eraValues$g = {
+  const eraValues$h = {
     narrow: ["ie.", "isz."],
     abbreviated: ["i. e.", "i. sz."],
     wide: ["Krisztus előtt", "időszámításunk szerint"]
   };
-  const quarterValues$g = {
+  const quarterValues$h = {
     narrow: ["1.", "2.", "3.", "4."],
     abbreviated: ["1. n.év", "2. n.év", "3. n.év", "4. n.év"],
     wide: ["1. negyedév", "2. negyedév", "3. negyedév", "4. negyedév"]
@@ -43995,7 +43906,7 @@ var __async = (__this, __arguments, generator) => {
     abbreviated: ["I. n.év", "II. n.év", "III. n.év", "IV. n.év"],
     wide: ["I. negyedév", "II. negyedév", "III. negyedév", "IV. negyedév"]
   };
-  const monthValues$g = {
+  const monthValues$h = {
     narrow: ["J", "F", "M", "Á", "M", "J", "J", "A", "Sz", "O", "N", "D"],
     abbreviated: [
       "jan.",
@@ -44026,7 +43937,7 @@ var __async = (__this, __arguments, generator) => {
       "december"
     ]
   };
-  const dayValues$g = {
+  const dayValues$h = {
     narrow: ["V", "H", "K", "Sz", "Cs", "P", "Sz"],
     short: ["V", "H", "K", "Sze", "Cs", "P", "Szo"],
     abbreviated: ["V", "H", "K", "Sze", "Cs", "P", "Szo"],
@@ -44040,7 +43951,7 @@ var __async = (__this, __arguments, generator) => {
       "szombat"
     ]
   };
-  const dayPeriodValues$g = {
+  const dayPeriodValues$h = {
     narrow: {
       am: "de.",
       pm: "du.",
@@ -44072,62 +43983,62 @@ var __async = (__this, __arguments, generator) => {
       night: "éjjel"
     }
   };
-  const ordinalNumber$g = (dirtyNumber, _options) => {
+  const ordinalNumber$h = (dirtyNumber, _options) => {
     const number = Number(dirtyNumber);
     return number + ".";
   };
-  const localize$g = {
-    ordinalNumber: ordinalNumber$g,
-    era: buildLocalizeFn({
-      values: eraValues$g,
+  const localize$h = {
+    ordinalNumber: ordinalNumber$h,
+    era: buildLocalizeFn$1({
+      values: eraValues$h,
       defaultWidth: "wide"
     }),
-    quarter: buildLocalizeFn({
-      values: quarterValues$g,
+    quarter: buildLocalizeFn$1({
+      values: quarterValues$h,
       defaultWidth: "wide",
       argumentCallback: (quarter) => quarter - 1,
       formattingValues: formattingQuarterValues$1,
       defaultFormattingWidth: "wide"
     }),
-    month: buildLocalizeFn({
-      values: monthValues$g,
+    month: buildLocalizeFn$1({
+      values: monthValues$h,
       defaultWidth: "wide"
     }),
-    day: buildLocalizeFn({
-      values: dayValues$g,
+    day: buildLocalizeFn$1({
+      values: dayValues$h,
       defaultWidth: "wide"
     }),
-    dayPeriod: buildLocalizeFn({
-      values: dayPeriodValues$g,
+    dayPeriod: buildLocalizeFn$1({
+      values: dayPeriodValues$h,
       defaultWidth: "wide"
     })
   };
-  const matchOrdinalNumberPattern$g = /^(\d+)\.?/i;
-  const parseOrdinalNumberPattern$g = /\d+/i;
-  const matchEraPatterns$g = {
+  const matchOrdinalNumberPattern$h = /^(\d+)\.?/i;
+  const parseOrdinalNumberPattern$h = /\d+/i;
+  const matchEraPatterns$h = {
     narrow: /^(ie\.|isz\.)/i,
     abbreviated: /^(i\.\s?e\.?|b?\s?c\s?e|i\.\s?sz\.?)/i,
     wide: /^(Krisztus előtt|időszámításunk előtt|időszámításunk szerint|i\. sz\.)/i
   };
-  const parseEraPatterns$g = {
+  const parseEraPatterns$h = {
     narrow: [/ie/i, /isz/i],
     abbreviated: [/^(i\.?\s?e\.?|b\s?ce)/i, /^(i\.?\s?sz\.?|c\s?e)/i],
     any: [/előtt/i, /(szerint|i. sz.)/i]
   };
-  const matchQuarterPatterns$g = {
+  const matchQuarterPatterns$h = {
     narrow: /^[1234]\.?/i,
     abbreviated: /^[1234]?\.?\s?n\.év/i,
     wide: /^([1234]|I|II|III|IV)?\.?\s?negyedév/i
   };
-  const parseQuarterPatterns$g = {
+  const parseQuarterPatterns$h = {
     any: [/1|I$/i, /2|II$/i, /3|III/i, /4|IV/i]
   };
-  const matchMonthPatterns$g = {
+  const matchMonthPatterns$h = {
     narrow: /^[jfmaásond]|sz/i,
     abbreviated: /^(jan\.?|febr\.?|márc\.?|ápr\.?|máj\.?|jún\.?|júl\.?|aug\.?|szept\.?|okt\.?|nov\.?|dec\.?)/i,
     wide: /^(január|február|március|április|május|június|július|augusztus|szeptember|október|november|december)/i
   };
-  const parseMonthPatterns$g = {
+  const parseMonthPatterns$h = {
     narrow: [
       /^j/i,
       /^f/i,
@@ -44157,20 +44068,20 @@ var __async = (__this, __arguments, generator) => {
       /^d/i
     ]
   };
-  const matchDayPatterns$g = {
+  const matchDayPatterns$h = {
     narrow: /^([vhkpc]|sz|cs|sz)/i,
     short: /^([vhkp]|sze|cs|szo)/i,
     abbreviated: /^([vhkp]|sze|cs|szo)/i,
     wide: /^(vasárnap|hétfő|kedd|szerda|csütörtök|péntek|szombat)/i
   };
-  const parseDayPatterns$g = {
+  const parseDayPatterns$h = {
     narrow: [/^v/i, /^h/i, /^k/i, /^sz/i, /^c/i, /^p/i, /^sz/i],
     any: [/^v/i, /^h/i, /^k/i, /^sze/i, /^c/i, /^p/i, /^szo/i]
   };
-  const matchDayPeriodPatterns$g = {
+  const matchDayPeriodPatterns$h = {
     any: /^((de|du)\.?|éjfél|délután|dél|reggel|este|éjjel)/i
   };
-  const parseDayPeriodPatterns$g = {
+  const parseDayPeriodPatterns$h = {
     any: {
       am: /^de\.?/i,
       pm: /^du\.?/i,
@@ -44182,57 +44093,57 @@ var __async = (__this, __arguments, generator) => {
       night: /éjj/i
     }
   };
-  const match$g = {
-    ordinalNumber: buildMatchPatternFn({
-      matchPattern: matchOrdinalNumberPattern$g,
-      parsePattern: parseOrdinalNumberPattern$g,
+  const match$h = {
+    ordinalNumber: buildMatchPatternFn$1({
+      matchPattern: matchOrdinalNumberPattern$h,
+      parsePattern: parseOrdinalNumberPattern$h,
       valueCallback: (value) => parseInt(value, 10)
     }),
-    era: buildMatchFn({
-      matchPatterns: matchEraPatterns$g,
+    era: buildMatchFn$1({
+      matchPatterns: matchEraPatterns$h,
       defaultMatchWidth: "wide",
-      parsePatterns: parseEraPatterns$g,
+      parsePatterns: parseEraPatterns$h,
       defaultParseWidth: "any"
     }),
-    quarter: buildMatchFn({
-      matchPatterns: matchQuarterPatterns$g,
+    quarter: buildMatchFn$1({
+      matchPatterns: matchQuarterPatterns$h,
       defaultMatchWidth: "wide",
-      parsePatterns: parseQuarterPatterns$g,
+      parsePatterns: parseQuarterPatterns$h,
       defaultParseWidth: "any",
       valueCallback: (index2) => index2 + 1
     }),
-    month: buildMatchFn({
-      matchPatterns: matchMonthPatterns$g,
+    month: buildMatchFn$1({
+      matchPatterns: matchMonthPatterns$h,
       defaultMatchWidth: "wide",
-      parsePatterns: parseMonthPatterns$g,
+      parsePatterns: parseMonthPatterns$h,
       defaultParseWidth: "any"
     }),
-    day: buildMatchFn({
-      matchPatterns: matchDayPatterns$g,
+    day: buildMatchFn$1({
+      matchPatterns: matchDayPatterns$h,
       defaultMatchWidth: "wide",
-      parsePatterns: parseDayPatterns$g,
+      parsePatterns: parseDayPatterns$h,
       defaultParseWidth: "any"
     }),
-    dayPeriod: buildMatchFn({
-      matchPatterns: matchDayPeriodPatterns$g,
+    dayPeriod: buildMatchFn$1({
+      matchPatterns: matchDayPeriodPatterns$h,
       defaultMatchWidth: "any",
-      parsePatterns: parseDayPeriodPatterns$g,
+      parsePatterns: parseDayPeriodPatterns$h,
       defaultParseWidth: "any"
     })
   };
   const hu = {
     code: "hu",
-    formatDistance: formatDistance$g,
-    formatLong: formatLong$g,
-    formatRelative: formatRelative$g,
-    localize: localize$g,
-    match: match$g,
+    formatDistance: formatDistance$h,
+    formatLong: formatLong$h,
+    formatRelative: formatRelative$h,
+    localize: localize$h,
+    match: match$h,
     options: {
       weekStartsOn: 1,
       firstWeekContainsDate: 4
     }
   };
-  const formatDistanceLocale$f = {
+  const formatDistanceLocale$g = {
     lessThanXSeconds: {
       one: "kurang dari 1 detik",
       other: "kurang dari {{count}} detik"
@@ -44295,9 +44206,9 @@ var __async = (__this, __arguments, generator) => {
       other: "hampir {{count}} tahun"
     }
   };
-  const formatDistance$f = (token, count2, options2) => {
+  const formatDistance$g = (token, count2, options2) => {
     let result;
-    const tokenValue = formatDistanceLocale$f[token];
+    const tokenValue = formatDistanceLocale$g[token];
     if (typeof tokenValue === "string") {
       result = tokenValue;
     } else if (count2 === 1) {
@@ -44314,39 +44225,39 @@ var __async = (__this, __arguments, generator) => {
     }
     return result;
   };
-  const dateFormats$g = {
+  const dateFormats$h = {
     full: "EEEE, d MMMM yyyy",
     long: "d MMMM yyyy",
     medium: "d MMM yyyy",
     short: "d/M/yyyy"
   };
-  const timeFormats$f = {
+  const timeFormats$g = {
     full: "HH.mm.ss",
     long: "HH.mm.ss",
     medium: "HH.mm",
     short: "HH.mm"
   };
-  const dateTimeFormats$f = {
+  const dateTimeFormats$g = {
     full: "{{date}} 'pukul' {{time}}",
     long: "{{date}} 'pukul' {{time}}",
     medium: "{{date}}, {{time}}",
     short: "{{date}}, {{time}}"
   };
-  const formatLong$f = {
-    date: buildFormatLongFn({
-      formats: dateFormats$g,
+  const formatLong$g = {
+    date: buildFormatLongFn$1({
+      formats: dateFormats$h,
       defaultWidth: "full"
     }),
-    time: buildFormatLongFn({
-      formats: timeFormats$f,
+    time: buildFormatLongFn$1({
+      formats: timeFormats$g,
       defaultWidth: "full"
     }),
-    dateTime: buildFormatLongFn({
-      formats: dateTimeFormats$f,
+    dateTime: buildFormatLongFn$1({
+      formats: dateTimeFormats$g,
       defaultWidth: "full"
     })
   };
-  const formatRelativeLocale$f = {
+  const formatRelativeLocale$g = {
     lastWeek: "eeee 'lalu pukul' p",
     yesterday: "'Kemarin pukul' p",
     today: "'Hari ini pukul' p",
@@ -44354,18 +44265,18 @@ var __async = (__this, __arguments, generator) => {
     nextWeek: "eeee 'pukul' p",
     other: "P"
   };
-  const formatRelative$f = (token, _date, _baseDate, _options) => formatRelativeLocale$f[token];
-  const eraValues$f = {
+  const formatRelative$g = (token, _date, _baseDate, _options) => formatRelativeLocale$g[token];
+  const eraValues$g = {
     narrow: ["SM", "M"],
     abbreviated: ["SM", "M"],
     wide: ["Sebelum Masehi", "Masehi"]
   };
-  const quarterValues$f = {
+  const quarterValues$g = {
     narrow: ["1", "2", "3", "4"],
     abbreviated: ["K1", "K2", "K3", "K4"],
     wide: ["Kuartal ke-1", "Kuartal ke-2", "Kuartal ke-3", "Kuartal ke-4"]
   };
-  const monthValues$f = {
+  const monthValues$g = {
     narrow: ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"],
     abbreviated: [
       "Jan",
@@ -44396,13 +44307,13 @@ var __async = (__this, __arguments, generator) => {
       "Desember"
     ]
   };
-  const dayValues$f = {
+  const dayValues$g = {
     narrow: ["M", "S", "S", "R", "K", "J", "S"],
     short: ["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"],
     abbreviated: ["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"],
     wide: ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"]
   };
-  const dayPeriodValues$f = {
+  const dayPeriodValues$g = {
     narrow: {
       am: "AM",
       pm: "PM",
@@ -44434,7 +44345,7 @@ var __async = (__this, __arguments, generator) => {
       night: "malam"
     }
   };
-  const formattingDayPeriodValues$c = {
+  const formattingDayPeriodValues$d = {
     narrow: {
       am: "AM",
       pm: "PM",
@@ -44466,60 +44377,60 @@ var __async = (__this, __arguments, generator) => {
       night: "malam"
     }
   };
-  const ordinalNumber$f = (dirtyNumber, _options) => {
+  const ordinalNumber$g = (dirtyNumber, _options) => {
     const number = Number(dirtyNumber);
     return "ke-" + number;
   };
-  const localize$f = {
-    ordinalNumber: ordinalNumber$f,
-    era: buildLocalizeFn({
-      values: eraValues$f,
+  const localize$g = {
+    ordinalNumber: ordinalNumber$g,
+    era: buildLocalizeFn$1({
+      values: eraValues$g,
       defaultWidth: "wide"
     }),
-    quarter: buildLocalizeFn({
-      values: quarterValues$f,
+    quarter: buildLocalizeFn$1({
+      values: quarterValues$g,
       defaultWidth: "wide",
       argumentCallback: (quarter) => quarter - 1
     }),
-    month: buildLocalizeFn({
-      values: monthValues$f,
+    month: buildLocalizeFn$1({
+      values: monthValues$g,
       defaultWidth: "wide"
     }),
-    day: buildLocalizeFn({
-      values: dayValues$f,
+    day: buildLocalizeFn$1({
+      values: dayValues$g,
       defaultWidth: "wide"
     }),
-    dayPeriod: buildLocalizeFn({
-      values: dayPeriodValues$f,
+    dayPeriod: buildLocalizeFn$1({
+      values: dayPeriodValues$g,
       defaultWidth: "wide",
-      formattingValues: formattingDayPeriodValues$c,
+      formattingValues: formattingDayPeriodValues$d,
       defaultFormattingWidth: "wide"
     })
   };
-  const matchOrdinalNumberPattern$f = /^ke-(\d+)?/i;
-  const parseOrdinalNumberPattern$f = /\d+/i;
-  const matchEraPatterns$f = {
+  const matchOrdinalNumberPattern$g = /^ke-(\d+)?/i;
+  const parseOrdinalNumberPattern$g = /\d+/i;
+  const matchEraPatterns$g = {
     narrow: /^(sm|m)/i,
     abbreviated: /^(s\.?\s?m\.?|s\.?\s?e\.?\s?u\.?|m\.?|e\.?\s?u\.?)/i,
     wide: /^(sebelum masehi|sebelum era umum|masehi|era umum)/i
   };
-  const parseEraPatterns$f = {
+  const parseEraPatterns$g = {
     any: [/^s/i, /^(m|e)/i]
   };
-  const matchQuarterPatterns$f = {
+  const matchQuarterPatterns$g = {
     narrow: /^[1234]/i,
     abbreviated: /^K-?\s[1234]/i,
     wide: /^Kuartal ke-?\s?[1234]/i
   };
-  const parseQuarterPatterns$f = {
+  const parseQuarterPatterns$g = {
     any: [/1/i, /2/i, /3/i, /4/i]
   };
-  const matchMonthPatterns$f = {
+  const matchMonthPatterns$g = {
     narrow: /^[jfmasond]/i,
     abbreviated: /^(jan|feb|mar|apr|mei|jun|jul|agt|sep|okt|nov|des)/i,
     wide: /^(januari|februari|maret|april|mei|juni|juli|agustus|september|oktober|november|desember)/i
   };
-  const parseMonthPatterns$f = {
+  const parseMonthPatterns$g = {
     narrow: [
       /^j/i,
       /^f/i,
@@ -44549,21 +44460,21 @@ var __async = (__this, __arguments, generator) => {
       /^d/i
     ]
   };
-  const matchDayPatterns$f = {
+  const matchDayPatterns$g = {
     narrow: /^[srkjm]/i,
     short: /^(min|sen|sel|rab|kam|jum|sab)/i,
     abbreviated: /^(min|sen|sel|rab|kam|jum|sab)/i,
     wide: /^(minggu|senin|selasa|rabu|kamis|jumat|sabtu)/i
   };
-  const parseDayPatterns$f = {
+  const parseDayPatterns$g = {
     narrow: [/^m/i, /^s/i, /^s/i, /^r/i, /^k/i, /^j/i, /^s/i],
     any: [/^m/i, /^sen/i, /^sel/i, /^r/i, /^k/i, /^j/i, /^sa/i]
   };
-  const matchDayPeriodPatterns$f = {
+  const matchDayPeriodPatterns$g = {
     narrow: /^(a|p|tengah m|tengah h|(di(\swaktu)?) (pagi|siang|sore|malam))/i,
     any: /^([ap]\.?\s?m\.?|tengah malam|tengah hari|(di(\swaktu)?) (pagi|siang|sore|malam))/i
   };
-  const parseDayPeriodPatterns$f = {
+  const parseDayPeriodPatterns$g = {
     any: {
       am: /^a/i,
       pm: /^pm/i,
@@ -44575,57 +44486,57 @@ var __async = (__this, __arguments, generator) => {
       night: /malam/i
     }
   };
-  const match$f = {
-    ordinalNumber: buildMatchPatternFn({
-      matchPattern: matchOrdinalNumberPattern$f,
-      parsePattern: parseOrdinalNumberPattern$f,
+  const match$g = {
+    ordinalNumber: buildMatchPatternFn$1({
+      matchPattern: matchOrdinalNumberPattern$g,
+      parsePattern: parseOrdinalNumberPattern$g,
       valueCallback: (value) => parseInt(value, 10)
     }),
-    era: buildMatchFn({
-      matchPatterns: matchEraPatterns$f,
+    era: buildMatchFn$1({
+      matchPatterns: matchEraPatterns$g,
       defaultMatchWidth: "wide",
-      parsePatterns: parseEraPatterns$f,
+      parsePatterns: parseEraPatterns$g,
       defaultParseWidth: "any"
     }),
-    quarter: buildMatchFn({
-      matchPatterns: matchQuarterPatterns$f,
+    quarter: buildMatchFn$1({
+      matchPatterns: matchQuarterPatterns$g,
       defaultMatchWidth: "wide",
-      parsePatterns: parseQuarterPatterns$f,
+      parsePatterns: parseQuarterPatterns$g,
       defaultParseWidth: "any",
       valueCallback: (index2) => index2 + 1
     }),
-    month: buildMatchFn({
-      matchPatterns: matchMonthPatterns$f,
+    month: buildMatchFn$1({
+      matchPatterns: matchMonthPatterns$g,
       defaultMatchWidth: "wide",
-      parsePatterns: parseMonthPatterns$f,
+      parsePatterns: parseMonthPatterns$g,
       defaultParseWidth: "any"
     }),
-    day: buildMatchFn({
-      matchPatterns: matchDayPatterns$f,
+    day: buildMatchFn$1({
+      matchPatterns: matchDayPatterns$g,
       defaultMatchWidth: "wide",
-      parsePatterns: parseDayPatterns$f,
+      parsePatterns: parseDayPatterns$g,
       defaultParseWidth: "any"
     }),
-    dayPeriod: buildMatchFn({
-      matchPatterns: matchDayPeriodPatterns$f,
+    dayPeriod: buildMatchFn$1({
+      matchPatterns: matchDayPeriodPatterns$g,
       defaultMatchWidth: "any",
-      parsePatterns: parseDayPeriodPatterns$f,
+      parsePatterns: parseDayPeriodPatterns$g,
       defaultParseWidth: "any"
     })
   };
   const id = {
     code: "id",
-    formatDistance: formatDistance$f,
-    formatLong: formatLong$f,
-    formatRelative: formatRelative$f,
-    localize: localize$f,
-    match: match$f,
+    formatDistance: formatDistance$g,
+    formatLong: formatLong$g,
+    formatRelative: formatRelative$g,
+    localize: localize$g,
+    match: match$g,
     options: {
       weekStartsOn: 1,
       firstWeekContainsDate: 1
     }
   };
-  const formatDistanceLocale$e = {
+  const formatDistanceLocale$f = {
     lessThanXSeconds: {
       one: "meno di un secondo",
       other: "meno di {{count}} secondi"
@@ -44688,9 +44599,9 @@ var __async = (__this, __arguments, generator) => {
       other: "quasi {{count}} anni"
     }
   };
-  const formatDistance$e = (token, count2, options2) => {
+  const formatDistance$f = (token, count2, options2) => {
     let result;
-    const tokenValue = formatDistanceLocale$e[token];
+    const tokenValue = formatDistanceLocale$f[token];
     if (typeof tokenValue === "string") {
       result = tokenValue;
     } else if (count2 === 1) {
@@ -44707,35 +44618,35 @@ var __async = (__this, __arguments, generator) => {
     }
     return result;
   };
-  const dateFormats$f = {
+  const dateFormats$g = {
     full: "EEEE d MMMM y",
     long: "d MMMM y",
     medium: "d MMM y",
     short: "dd/MM/y"
   };
-  const timeFormats$e = {
+  const timeFormats$f = {
     full: "HH:mm:ss zzzz",
     long: "HH:mm:ss z",
     medium: "HH:mm:ss",
     short: "HH:mm"
   };
-  const dateTimeFormats$e = {
+  const dateTimeFormats$f = {
     full: "{{date}} {{time}}",
     long: "{{date}} {{time}}",
     medium: "{{date}} {{time}}",
     short: "{{date}} {{time}}"
   };
-  const formatLong$e = {
-    date: buildFormatLongFn({
-      formats: dateFormats$f,
+  const formatLong$f = {
+    date: buildFormatLongFn$1({
+      formats: dateFormats$g,
       defaultWidth: "full"
     }),
-    time: buildFormatLongFn({
-      formats: timeFormats$e,
+    time: buildFormatLongFn$1({
+      formats: timeFormats$f,
       defaultWidth: "full"
     }),
-    dateTime: buildFormatLongFn({
-      formats: dateTimeFormats$e,
+    dateTime: buildFormatLongFn$1({
+      formats: dateTimeFormats$f,
       defaultWidth: "full"
     })
   };
@@ -44767,7 +44678,7 @@ var __async = (__this, __arguments, generator) => {
         return "'" + weekdays$4[day] + " prossimo alle' p";
     }
   }
-  const formatRelativeLocale$e = {
+  const formatRelativeLocale$f = {
     lastWeek: (date, baseDate, options2) => {
       const day = date.getDay();
       if (isSameWeek(date, baseDate, options2)) {
@@ -44789,24 +44700,24 @@ var __async = (__this, __arguments, generator) => {
     },
     other: "P"
   };
-  const formatRelative$e = (token, date, baseDate, options2) => {
-    const format2 = formatRelativeLocale$e[token];
+  const formatRelative$f = (token, date, baseDate, options2) => {
+    const format2 = formatRelativeLocale$f[token];
     if (typeof format2 === "function") {
       return format2(date, baseDate, options2);
     }
     return format2;
   };
-  const eraValues$e = {
+  const eraValues$f = {
     narrow: ["aC", "dC"],
     abbreviated: ["a.C.", "d.C."],
     wide: ["avanti Cristo", "dopo Cristo"]
   };
-  const quarterValues$e = {
+  const quarterValues$f = {
     narrow: ["1", "2", "3", "4"],
     abbreviated: ["T1", "T2", "T3", "T4"],
     wide: ["1º trimestre", "2º trimestre", "3º trimestre", "4º trimestre"]
   };
-  const monthValues$e = {
+  const monthValues$f = {
     narrow: ["G", "F", "M", "A", "M", "G", "L", "A", "S", "O", "N", "D"],
     abbreviated: [
       "gen",
@@ -44837,7 +44748,7 @@ var __async = (__this, __arguments, generator) => {
       "dicembre"
     ]
   };
-  const dayValues$e = {
+  const dayValues$f = {
     narrow: ["D", "L", "M", "M", "G", "V", "S"],
     short: ["dom", "lun", "mar", "mer", "gio", "ven", "sab"],
     abbreviated: ["dom", "lun", "mar", "mer", "gio", "ven", "sab"],
@@ -44851,7 +44762,7 @@ var __async = (__this, __arguments, generator) => {
       "sabato"
     ]
   };
-  const dayPeriodValues$e = {
+  const dayPeriodValues$f = {
     narrow: {
       am: "m.",
       pm: "p.",
@@ -44883,7 +44794,7 @@ var __async = (__this, __arguments, generator) => {
       night: "notte"
     }
   };
-  const formattingDayPeriodValues$b = {
+  const formattingDayPeriodValues$c = {
     narrow: {
       am: "m.",
       pm: "p.",
@@ -44915,60 +44826,60 @@ var __async = (__this, __arguments, generator) => {
       night: "di notte"
     }
   };
-  const ordinalNumber$e = (dirtyNumber, _options) => {
+  const ordinalNumber$f = (dirtyNumber, _options) => {
     const number = Number(dirtyNumber);
     return String(number);
   };
-  const localize$e = {
-    ordinalNumber: ordinalNumber$e,
-    era: buildLocalizeFn({
-      values: eraValues$e,
+  const localize$f = {
+    ordinalNumber: ordinalNumber$f,
+    era: buildLocalizeFn$1({
+      values: eraValues$f,
       defaultWidth: "wide"
     }),
-    quarter: buildLocalizeFn({
-      values: quarterValues$e,
+    quarter: buildLocalizeFn$1({
+      values: quarterValues$f,
       defaultWidth: "wide",
       argumentCallback: (quarter) => quarter - 1
     }),
-    month: buildLocalizeFn({
-      values: monthValues$e,
+    month: buildLocalizeFn$1({
+      values: monthValues$f,
       defaultWidth: "wide"
     }),
-    day: buildLocalizeFn({
-      values: dayValues$e,
+    day: buildLocalizeFn$1({
+      values: dayValues$f,
       defaultWidth: "wide"
     }),
-    dayPeriod: buildLocalizeFn({
-      values: dayPeriodValues$e,
+    dayPeriod: buildLocalizeFn$1({
+      values: dayPeriodValues$f,
       defaultWidth: "wide",
-      formattingValues: formattingDayPeriodValues$b,
+      formattingValues: formattingDayPeriodValues$c,
       defaultFormattingWidth: "wide"
     })
   };
-  const matchOrdinalNumberPattern$e = /^(\d+)(º)?/i;
-  const parseOrdinalNumberPattern$e = /\d+/i;
-  const matchEraPatterns$e = {
+  const matchOrdinalNumberPattern$f = /^(\d+)(º)?/i;
+  const parseOrdinalNumberPattern$f = /\d+/i;
+  const matchEraPatterns$f = {
     narrow: /^(aC|dC)/i,
     abbreviated: /^(a\.?\s?C\.?|a\.?\s?e\.?\s?v\.?|d\.?\s?C\.?|e\.?\s?v\.?)/i,
     wide: /^(avanti Cristo|avanti Era Volgare|dopo Cristo|Era Volgare)/i
   };
-  const parseEraPatterns$e = {
+  const parseEraPatterns$f = {
     any: [/^a/i, /^(d|e)/i]
   };
-  const matchQuarterPatterns$e = {
+  const matchQuarterPatterns$f = {
     narrow: /^[1234]/i,
     abbreviated: /^t[1234]/i,
     wide: /^[1234](º)? trimestre/i
   };
-  const parseQuarterPatterns$e = {
+  const parseQuarterPatterns$f = {
     any: [/1/i, /2/i, /3/i, /4/i]
   };
-  const matchMonthPatterns$e = {
+  const matchMonthPatterns$f = {
     narrow: /^[gfmalsond]/i,
     abbreviated: /^(gen|feb|mar|apr|mag|giu|lug|ago|set|ott|nov|dic)/i,
     wide: /^(gennaio|febbraio|marzo|aprile|maggio|giugno|luglio|agosto|settembre|ottobre|novembre|dicembre)/i
   };
-  const parseMonthPatterns$e = {
+  const parseMonthPatterns$f = {
     narrow: [
       /^g/i,
       /^f/i,
@@ -44998,21 +44909,21 @@ var __async = (__this, __arguments, generator) => {
       /^d/i
     ]
   };
-  const matchDayPatterns$e = {
+  const matchDayPatterns$f = {
     narrow: /^[dlmgvs]/i,
     short: /^(do|lu|ma|me|gi|ve|sa)/i,
     abbreviated: /^(dom|lun|mar|mer|gio|ven|sab)/i,
     wide: /^(domenica|luned[i|ì]|marted[i|ì]|mercoled[i|ì]|gioved[i|ì]|venerd[i|ì]|sabato)/i
   };
-  const parseDayPatterns$e = {
+  const parseDayPatterns$f = {
     narrow: [/^d/i, /^l/i, /^m/i, /^m/i, /^g/i, /^v/i, /^s/i],
     any: [/^d/i, /^l/i, /^ma/i, /^me/i, /^g/i, /^v/i, /^s/i]
   };
-  const matchDayPeriodPatterns$e = {
+  const matchDayPeriodPatterns$f = {
     narrow: /^(a|m\.|p|mezzanotte|mezzogiorno|(di|del) (mattina|pomeriggio|sera|notte))/i,
     any: /^([ap]\.?\s?m\.?|mezzanotte|mezzogiorno|(di|del) (mattina|pomeriggio|sera|notte))/i
   };
-  const parseDayPeriodPatterns$e = {
+  const parseDayPeriodPatterns$f = {
     any: {
       am: /^a/i,
       pm: /^p/i,
@@ -45024,57 +44935,57 @@ var __async = (__this, __arguments, generator) => {
       night: /notte/i
     }
   };
-  const match$e = {
-    ordinalNumber: buildMatchPatternFn({
-      matchPattern: matchOrdinalNumberPattern$e,
-      parsePattern: parseOrdinalNumberPattern$e,
+  const match$f = {
+    ordinalNumber: buildMatchPatternFn$1({
+      matchPattern: matchOrdinalNumberPattern$f,
+      parsePattern: parseOrdinalNumberPattern$f,
       valueCallback: (value) => parseInt(value, 10)
     }),
-    era: buildMatchFn({
-      matchPatterns: matchEraPatterns$e,
+    era: buildMatchFn$1({
+      matchPatterns: matchEraPatterns$f,
       defaultMatchWidth: "wide",
-      parsePatterns: parseEraPatterns$e,
+      parsePatterns: parseEraPatterns$f,
       defaultParseWidth: "any"
     }),
-    quarter: buildMatchFn({
-      matchPatterns: matchQuarterPatterns$e,
+    quarter: buildMatchFn$1({
+      matchPatterns: matchQuarterPatterns$f,
       defaultMatchWidth: "wide",
-      parsePatterns: parseQuarterPatterns$e,
+      parsePatterns: parseQuarterPatterns$f,
       defaultParseWidth: "any",
       valueCallback: (index2) => index2 + 1
     }),
-    month: buildMatchFn({
-      matchPatterns: matchMonthPatterns$e,
+    month: buildMatchFn$1({
+      matchPatterns: matchMonthPatterns$f,
       defaultMatchWidth: "wide",
-      parsePatterns: parseMonthPatterns$e,
+      parsePatterns: parseMonthPatterns$f,
       defaultParseWidth: "any"
     }),
-    day: buildMatchFn({
-      matchPatterns: matchDayPatterns$e,
+    day: buildMatchFn$1({
+      matchPatterns: matchDayPatterns$f,
       defaultMatchWidth: "wide",
-      parsePatterns: parseDayPatterns$e,
+      parsePatterns: parseDayPatterns$f,
       defaultParseWidth: "any"
     }),
-    dayPeriod: buildMatchFn({
-      matchPatterns: matchDayPeriodPatterns$e,
+    dayPeriod: buildMatchFn$1({
+      matchPatterns: matchDayPeriodPatterns$f,
       defaultMatchWidth: "any",
-      parsePatterns: parseDayPeriodPatterns$e,
+      parsePatterns: parseDayPeriodPatterns$f,
       defaultParseWidth: "any"
     })
   };
   const it = {
     code: "it",
-    formatDistance: formatDistance$e,
-    formatLong: formatLong$e,
-    formatRelative: formatRelative$e,
-    localize: localize$e,
-    match: match$e,
+    formatDistance: formatDistance$f,
+    formatLong: formatLong$f,
+    formatRelative: formatRelative$f,
+    localize: localize$f,
+    match: match$f,
     options: {
       weekStartsOn: 1,
       firstWeekContainsDate: 4
     }
   };
-  const formatDistanceLocale$d = {
+  const formatDistanceLocale$e = {
     lessThanXSeconds: {
       one: "1秒未満",
       other: "{{count}}秒未満",
@@ -45141,10 +45052,10 @@ var __async = (__this, __arguments, generator) => {
       other: "{{count}}年近く"
     }
   };
-  const formatDistance$d = (token, count2, options2) => {
+  const formatDistance$e = (token, count2, options2) => {
     options2 = options2 || {};
     let result;
-    const tokenValue = formatDistanceLocale$d[token];
+    const tokenValue = formatDistanceLocale$e[token];
     if (typeof tokenValue === "string") {
       result = tokenValue;
     } else if (count2 === 1) {
@@ -45169,39 +45080,39 @@ var __async = (__this, __arguments, generator) => {
     }
     return result;
   };
-  const dateFormats$e = {
+  const dateFormats$f = {
     full: "y年M月d日EEEE",
     long: "y年M月d日",
     medium: "y/MM/dd",
     short: "y/MM/dd"
   };
-  const timeFormats$d = {
+  const timeFormats$e = {
     full: "H時mm分ss秒 zzzz",
     long: "H:mm:ss z",
     medium: "H:mm:ss",
     short: "H:mm"
   };
-  const dateTimeFormats$d = {
+  const dateTimeFormats$e = {
     full: "{{date}} {{time}}",
     long: "{{date}} {{time}}",
     medium: "{{date}} {{time}}",
     short: "{{date}} {{time}}"
   };
-  const formatLong$d = {
-    date: buildFormatLongFn({
-      formats: dateFormats$e,
+  const formatLong$e = {
+    date: buildFormatLongFn$1({
+      formats: dateFormats$f,
       defaultWidth: "full"
     }),
-    time: buildFormatLongFn({
-      formats: timeFormats$d,
+    time: buildFormatLongFn$1({
+      formats: timeFormats$e,
       defaultWidth: "full"
     }),
-    dateTime: buildFormatLongFn({
-      formats: dateTimeFormats$d,
+    dateTime: buildFormatLongFn$1({
+      formats: dateTimeFormats$e,
       defaultWidth: "full"
     })
   };
-  const formatRelativeLocale$d = {
+  const formatRelativeLocale$e = {
     lastWeek: "先週のeeeeのp",
     yesterday: "昨日のp",
     today: "今日のp",
@@ -45209,20 +45120,20 @@ var __async = (__this, __arguments, generator) => {
     nextWeek: "翌週のeeeeのp",
     other: "P"
   };
-  const formatRelative$d = (token, _date, _baseDate, _options) => {
-    return formatRelativeLocale$d[token];
+  const formatRelative$e = (token, _date, _baseDate, _options) => {
+    return formatRelativeLocale$e[token];
   };
-  const eraValues$d = {
+  const eraValues$e = {
     narrow: ["BC", "AC"],
     abbreviated: ["紀元前", "西暦"],
     wide: ["紀元前", "西暦"]
   };
-  const quarterValues$d = {
+  const quarterValues$e = {
     narrow: ["1", "2", "3", "4"],
     abbreviated: ["Q1", "Q2", "Q3", "Q4"],
     wide: ["第1四半期", "第2四半期", "第3四半期", "第4四半期"]
   };
-  const monthValues$d = {
+  const monthValues$e = {
     narrow: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
     abbreviated: [
       "1月",
@@ -45253,13 +45164,13 @@ var __async = (__this, __arguments, generator) => {
       "12月"
     ]
   };
-  const dayValues$d = {
+  const dayValues$e = {
     narrow: ["日", "月", "火", "水", "木", "金", "土"],
     short: ["日", "月", "火", "水", "木", "金", "土"],
     abbreviated: ["日", "月", "火", "水", "木", "金", "土"],
     wide: ["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"]
   };
-  const dayPeriodValues$d = {
+  const dayPeriodValues$e = {
     narrow: {
       am: "午前",
       pm: "午後",
@@ -45291,7 +45202,7 @@ var __async = (__this, __arguments, generator) => {
       night: "深夜"
     }
   };
-  const formattingDayPeriodValues$a = {
+  const formattingDayPeriodValues$b = {
     narrow: {
       am: "午前",
       pm: "午後",
@@ -45323,7 +45234,7 @@ var __async = (__this, __arguments, generator) => {
       night: "深夜"
     }
   };
-  const ordinalNumber$d = (dirtyNumber, options2) => {
+  const ordinalNumber$e = (dirtyNumber, options2) => {
     const number = Number(dirtyNumber);
     const unit = String(options2 == null ? void 0 : options2.unit);
     switch (unit) {
@@ -45347,57 +45258,57 @@ var __async = (__this, __arguments, generator) => {
         return `${number}`;
     }
   };
-  const localize$d = {
-    ordinalNumber: ordinalNumber$d,
-    era: buildLocalizeFn({
-      values: eraValues$d,
+  const localize$e = {
+    ordinalNumber: ordinalNumber$e,
+    era: buildLocalizeFn$1({
+      values: eraValues$e,
       defaultWidth: "wide"
     }),
-    quarter: buildLocalizeFn({
-      values: quarterValues$d,
+    quarter: buildLocalizeFn$1({
+      values: quarterValues$e,
       defaultWidth: "wide",
       argumentCallback: (quarter) => Number(quarter) - 1
     }),
-    month: buildLocalizeFn({
-      values: monthValues$d,
+    month: buildLocalizeFn$1({
+      values: monthValues$e,
       defaultWidth: "wide"
     }),
-    day: buildLocalizeFn({
-      values: dayValues$d,
+    day: buildLocalizeFn$1({
+      values: dayValues$e,
       defaultWidth: "wide"
     }),
-    dayPeriod: buildLocalizeFn({
-      values: dayPeriodValues$d,
+    dayPeriod: buildLocalizeFn$1({
+      values: dayPeriodValues$e,
       defaultWidth: "wide",
-      formattingValues: formattingDayPeriodValues$a,
+      formattingValues: formattingDayPeriodValues$b,
       defaultFormattingWidth: "wide"
     })
   };
-  const matchOrdinalNumberPattern$d = /^第?\d+(年|四半期|月|週|日|時|分|秒)?/i;
-  const parseOrdinalNumberPattern$d = /\d+/i;
-  const matchEraPatterns$d = {
+  const matchOrdinalNumberPattern$e = /^第?\d+(年|四半期|月|週|日|時|分|秒)?/i;
+  const parseOrdinalNumberPattern$e = /\d+/i;
+  const matchEraPatterns$e = {
     narrow: /^(B\.?C\.?|A\.?D\.?)/i,
     abbreviated: /^(紀元[前後]|西暦)/i,
     wide: /^(紀元[前後]|西暦)/i
   };
-  const parseEraPatterns$d = {
+  const parseEraPatterns$e = {
     narrow: [/^B/i, /^A/i],
     any: [/^(紀元前)/i, /^(西暦|紀元後)/i]
   };
-  const matchQuarterPatterns$d = {
+  const matchQuarterPatterns$e = {
     narrow: /^[1234]/i,
     abbreviated: /^Q[1234]/i,
     wide: /^第[1234一二三四１２３４]四半期/i
   };
-  const parseQuarterPatterns$d = {
+  const parseQuarterPatterns$e = {
     any: [/(1|一|１)/i, /(2|二|２)/i, /(3|三|３)/i, /(4|四|４)/i]
   };
-  const matchMonthPatterns$d = {
+  const matchMonthPatterns$e = {
     narrow: /^([123456789]|1[012])/,
     abbreviated: /^([123456789]|1[012])月/i,
     wide: /^([123456789]|1[012])月/i
   };
-  const parseMonthPatterns$d = {
+  const parseMonthPatterns$e = {
     any: [
       /^1\D/,
       /^2/,
@@ -45413,19 +45324,19 @@ var __async = (__this, __arguments, generator) => {
       /^12/
     ]
   };
-  const matchDayPatterns$d = {
+  const matchDayPatterns$e = {
     narrow: /^[日月火水木金土]/,
     short: /^[日月火水木金土]/,
     abbreviated: /^[日月火水木金土]/,
     wide: /^[日月火水木金土]曜日/
   };
-  const parseDayPatterns$d = {
+  const parseDayPatterns$e = {
     any: [/^日/, /^月/, /^火/, /^水/, /^木/, /^金/, /^土/]
   };
-  const matchDayPeriodPatterns$d = {
+  const matchDayPeriodPatterns$e = {
     any: /^(AM|PM|午前|午後|正午|深夜|真夜中|夜|朝)/i
   };
-  const parseDayPeriodPatterns$d = {
+  const parseDayPeriodPatterns$e = {
     any: {
       am: /^(A|午前)/i,
       pm: /^(P|午後)/i,
@@ -45437,59 +45348,59 @@ var __async = (__this, __arguments, generator) => {
       night: /^深夜/i
     }
   };
-  const match$d = {
-    ordinalNumber: buildMatchPatternFn({
-      matchPattern: matchOrdinalNumberPattern$d,
-      parsePattern: parseOrdinalNumberPattern$d,
+  const match$e = {
+    ordinalNumber: buildMatchPatternFn$1({
+      matchPattern: matchOrdinalNumberPattern$e,
+      parsePattern: parseOrdinalNumberPattern$e,
       valueCallback: function(value) {
         return parseInt(value, 10);
       }
     }),
-    era: buildMatchFn({
-      matchPatterns: matchEraPatterns$d,
+    era: buildMatchFn$1({
+      matchPatterns: matchEraPatterns$e,
       defaultMatchWidth: "wide",
-      parsePatterns: parseEraPatterns$d,
+      parsePatterns: parseEraPatterns$e,
       defaultParseWidth: "any"
     }),
-    quarter: buildMatchFn({
-      matchPatterns: matchQuarterPatterns$d,
+    quarter: buildMatchFn$1({
+      matchPatterns: matchQuarterPatterns$e,
       defaultMatchWidth: "wide",
-      parsePatterns: parseQuarterPatterns$d,
+      parsePatterns: parseQuarterPatterns$e,
       defaultParseWidth: "any",
       valueCallback: (index2) => index2 + 1
     }),
-    month: buildMatchFn({
-      matchPatterns: matchMonthPatterns$d,
+    month: buildMatchFn$1({
+      matchPatterns: matchMonthPatterns$e,
       defaultMatchWidth: "wide",
-      parsePatterns: parseMonthPatterns$d,
+      parsePatterns: parseMonthPatterns$e,
       defaultParseWidth: "any"
     }),
-    day: buildMatchFn({
-      matchPatterns: matchDayPatterns$d,
+    day: buildMatchFn$1({
+      matchPatterns: matchDayPatterns$e,
       defaultMatchWidth: "wide",
-      parsePatterns: parseDayPatterns$d,
+      parsePatterns: parseDayPatterns$e,
       defaultParseWidth: "any"
     }),
-    dayPeriod: buildMatchFn({
-      matchPatterns: matchDayPeriodPatterns$d,
+    dayPeriod: buildMatchFn$1({
+      matchPatterns: matchDayPeriodPatterns$e,
       defaultMatchWidth: "any",
-      parsePatterns: parseDayPeriodPatterns$d,
+      parsePatterns: parseDayPeriodPatterns$e,
       defaultParseWidth: "any"
     })
   };
   const ja = {
     code: "ja",
-    formatDistance: formatDistance$d,
-    formatLong: formatLong$d,
-    formatRelative: formatRelative$d,
-    localize: localize$d,
-    match: match$d,
+    formatDistance: formatDistance$e,
+    formatLong: formatLong$e,
+    formatRelative: formatRelative$e,
+    localize: localize$e,
+    match: match$e,
     options: {
       weekStartsOn: 0,
       firstWeekContainsDate: 1
     }
   };
-  const formatDistanceLocale$c = {
+  const formatDistanceLocale$d = {
     lessThanXSeconds: {
       one: "1초 미만",
       other: "{{count}}초 미만"
@@ -45552,9 +45463,9 @@ var __async = (__this, __arguments, generator) => {
       other: "거의 {{count}}년"
     }
   };
-  const formatDistance$c = (token, count2, options2) => {
+  const formatDistance$d = (token, count2, options2) => {
     let result;
-    const tokenValue = formatDistanceLocale$c[token];
+    const tokenValue = formatDistanceLocale$d[token];
     if (typeof tokenValue === "string") {
       result = tokenValue;
     } else if (count2 === 1) {
@@ -45571,39 +45482,39 @@ var __async = (__this, __arguments, generator) => {
     }
     return result;
   };
-  const dateFormats$d = {
+  const dateFormats$e = {
     full: "y년 M월 d일 EEEE",
     long: "y년 M월 d일",
     medium: "y.MM.dd",
     short: "y.MM.dd"
   };
-  const timeFormats$c = {
+  const timeFormats$d = {
     full: "a H시 mm분 ss초 zzzz",
     long: "a H:mm:ss z",
     medium: "HH:mm:ss",
     short: "HH:mm"
   };
-  const dateTimeFormats$c = {
+  const dateTimeFormats$d = {
     full: "{{date}} {{time}}",
     long: "{{date}} {{time}}",
     medium: "{{date}} {{time}}",
     short: "{{date}} {{time}}"
   };
-  const formatLong$c = {
-    date: buildFormatLongFn({
-      formats: dateFormats$d,
+  const formatLong$d = {
+    date: buildFormatLongFn$1({
+      formats: dateFormats$e,
       defaultWidth: "full"
     }),
-    time: buildFormatLongFn({
-      formats: timeFormats$c,
+    time: buildFormatLongFn$1({
+      formats: timeFormats$d,
       defaultWidth: "full"
     }),
-    dateTime: buildFormatLongFn({
-      formats: dateTimeFormats$c,
+    dateTime: buildFormatLongFn$1({
+      formats: dateTimeFormats$d,
       defaultWidth: "full"
     })
   };
-  const formatRelativeLocale$c = {
+  const formatRelativeLocale$d = {
     lastWeek: "'지난' eeee p",
     yesterday: "'어제' p",
     today: "'오늘' p",
@@ -45611,18 +45522,18 @@ var __async = (__this, __arguments, generator) => {
     nextWeek: "'다음' eeee p",
     other: "P"
   };
-  const formatRelative$c = (token, _date, _baseDate, _options) => formatRelativeLocale$c[token];
-  const eraValues$c = {
+  const formatRelative$d = (token, _date, _baseDate, _options) => formatRelativeLocale$d[token];
+  const eraValues$d = {
     narrow: ["BC", "AD"],
     abbreviated: ["BC", "AD"],
     wide: ["기원전", "서기"]
   };
-  const quarterValues$c = {
+  const quarterValues$d = {
     narrow: ["1", "2", "3", "4"],
     abbreviated: ["Q1", "Q2", "Q3", "Q4"],
     wide: ["1분기", "2분기", "3분기", "4분기"]
   };
-  const monthValues$c = {
+  const monthValues$d = {
     narrow: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
     abbreviated: [
       "1월",
@@ -45653,13 +45564,13 @@ var __async = (__this, __arguments, generator) => {
       "12월"
     ]
   };
-  const dayValues$c = {
+  const dayValues$d = {
     narrow: ["일", "월", "화", "수", "목", "금", "토"],
     short: ["일", "월", "화", "수", "목", "금", "토"],
     abbreviated: ["일", "월", "화", "수", "목", "금", "토"],
     wide: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"]
   };
-  const dayPeriodValues$c = {
+  const dayPeriodValues$d = {
     narrow: {
       am: "오전",
       pm: "오후",
@@ -45691,7 +45602,7 @@ var __async = (__this, __arguments, generator) => {
       night: "밤"
     }
   };
-  const formattingDayPeriodValues$9 = {
+  const formattingDayPeriodValues$a = {
     narrow: {
       am: "오전",
       pm: "오후",
@@ -45723,7 +45634,7 @@ var __async = (__this, __arguments, generator) => {
       night: "밤"
     }
   };
-  const ordinalNumber$c = (dirtyNumber, options2) => {
+  const ordinalNumber$d = (dirtyNumber, options2) => {
     const number = Number(dirtyNumber);
     const unit = String(options2 == null ? void 0 : options2.unit);
     switch (unit) {
@@ -45736,56 +45647,56 @@ var __async = (__this, __arguments, generator) => {
         return number + "번째";
     }
   };
-  const localize$c = {
-    ordinalNumber: ordinalNumber$c,
-    era: buildLocalizeFn({
-      values: eraValues$c,
+  const localize$d = {
+    ordinalNumber: ordinalNumber$d,
+    era: buildLocalizeFn$1({
+      values: eraValues$d,
       defaultWidth: "wide"
     }),
-    quarter: buildLocalizeFn({
-      values: quarterValues$c,
+    quarter: buildLocalizeFn$1({
+      values: quarterValues$d,
       defaultWidth: "wide",
       argumentCallback: (quarter) => quarter - 1
     }),
-    month: buildLocalizeFn({
-      values: monthValues$c,
+    month: buildLocalizeFn$1({
+      values: monthValues$d,
       defaultWidth: "wide"
     }),
-    day: buildLocalizeFn({
-      values: dayValues$c,
+    day: buildLocalizeFn$1({
+      values: dayValues$d,
       defaultWidth: "wide"
     }),
-    dayPeriod: buildLocalizeFn({
-      values: dayPeriodValues$c,
+    dayPeriod: buildLocalizeFn$1({
+      values: dayPeriodValues$d,
       defaultWidth: "wide",
-      formattingValues: formattingDayPeriodValues$9,
+      formattingValues: formattingDayPeriodValues$a,
       defaultFormattingWidth: "wide"
     })
   };
-  const matchOrdinalNumberPattern$c = /^(\d+)(일|번째)?/i;
-  const parseOrdinalNumberPattern$c = /\d+/i;
-  const matchEraPatterns$c = {
+  const matchOrdinalNumberPattern$d = /^(\d+)(일|번째)?/i;
+  const parseOrdinalNumberPattern$d = /\d+/i;
+  const matchEraPatterns$d = {
     narrow: /^(b\.?\s?c\.?|b\.?\s?c\.?\s?e\.?|a\.?\s?d\.?|c\.?\s?e\.?)/i,
     abbreviated: /^(b\.?\s?c\.?|b\.?\s?c\.?\s?e\.?|a\.?\s?d\.?|c\.?\s?e\.?)/i,
     wide: /^(기원전|서기)/i
   };
-  const parseEraPatterns$c = {
+  const parseEraPatterns$d = {
     any: [/^(bc|기원전)/i, /^(ad|서기)/i]
   };
-  const matchQuarterPatterns$c = {
+  const matchQuarterPatterns$d = {
     narrow: /^[1234]/i,
     abbreviated: /^q[1234]/i,
     wide: /^[1234]사?분기/i
   };
-  const parseQuarterPatterns$c = {
+  const parseQuarterPatterns$d = {
     any: [/1/i, /2/i, /3/i, /4/i]
   };
-  const matchMonthPatterns$c = {
+  const matchMonthPatterns$d = {
     narrow: /^(1[012]|[123456789])/,
     abbreviated: /^(1[012]|[123456789])월/i,
     wide: /^(1[012]|[123456789])월/i
   };
-  const parseMonthPatterns$c = {
+  const parseMonthPatterns$d = {
     any: [
       /^1월?$/,
       /^2/,
@@ -45801,19 +45712,19 @@ var __async = (__this, __arguments, generator) => {
       /^12/
     ]
   };
-  const matchDayPatterns$c = {
+  const matchDayPatterns$d = {
     narrow: /^[일월화수목금토]/,
     short: /^[일월화수목금토]/,
     abbreviated: /^[일월화수목금토]/,
     wide: /^[일월화수목금토]요일/
   };
-  const parseDayPatterns$c = {
+  const parseDayPatterns$d = {
     any: [/^일/, /^월/, /^화/, /^수/, /^목/, /^금/, /^토/]
   };
-  const matchDayPeriodPatterns$c = {
+  const matchDayPeriodPatterns$d = {
     any: /^(am|pm|오전|오후|자정|정오|아침|저녁|밤)/i
   };
-  const parseDayPeriodPatterns$c = {
+  const parseDayPeriodPatterns$d = {
     any: {
       am: /^(am|오전)/i,
       pm: /^(pm|오후)/i,
@@ -45825,57 +45736,57 @@ var __async = (__this, __arguments, generator) => {
       night: /^밤/i
     }
   };
-  const match$c = {
-    ordinalNumber: buildMatchPatternFn({
-      matchPattern: matchOrdinalNumberPattern$c,
-      parsePattern: parseOrdinalNumberPattern$c,
+  const match$d = {
+    ordinalNumber: buildMatchPatternFn$1({
+      matchPattern: matchOrdinalNumberPattern$d,
+      parsePattern: parseOrdinalNumberPattern$d,
       valueCallback: (value) => parseInt(value, 10)
     }),
-    era: buildMatchFn({
-      matchPatterns: matchEraPatterns$c,
+    era: buildMatchFn$1({
+      matchPatterns: matchEraPatterns$d,
       defaultMatchWidth: "wide",
-      parsePatterns: parseEraPatterns$c,
+      parsePatterns: parseEraPatterns$d,
       defaultParseWidth: "any"
     }),
-    quarter: buildMatchFn({
-      matchPatterns: matchQuarterPatterns$c,
+    quarter: buildMatchFn$1({
+      matchPatterns: matchQuarterPatterns$d,
       defaultMatchWidth: "wide",
-      parsePatterns: parseQuarterPatterns$c,
+      parsePatterns: parseQuarterPatterns$d,
       defaultParseWidth: "any",
       valueCallback: (index2) => index2 + 1
     }),
-    month: buildMatchFn({
-      matchPatterns: matchMonthPatterns$c,
+    month: buildMatchFn$1({
+      matchPatterns: matchMonthPatterns$d,
       defaultMatchWidth: "wide",
-      parsePatterns: parseMonthPatterns$c,
+      parsePatterns: parseMonthPatterns$d,
       defaultParseWidth: "any"
     }),
-    day: buildMatchFn({
-      matchPatterns: matchDayPatterns$c,
+    day: buildMatchFn$1({
+      matchPatterns: matchDayPatterns$d,
       defaultMatchWidth: "wide",
-      parsePatterns: parseDayPatterns$c,
+      parsePatterns: parseDayPatterns$d,
       defaultParseWidth: "any"
     }),
-    dayPeriod: buildMatchFn({
-      matchPatterns: matchDayPeriodPatterns$c,
+    dayPeriod: buildMatchFn$1({
+      matchPatterns: matchDayPeriodPatterns$d,
       defaultMatchWidth: "any",
-      parsePatterns: parseDayPeriodPatterns$c,
+      parsePatterns: parseDayPeriodPatterns$d,
       defaultParseWidth: "any"
     })
   };
   const ko = {
     code: "ko",
-    formatDistance: formatDistance$c,
-    formatLong: formatLong$c,
-    formatRelative: formatRelative$c,
-    localize: localize$c,
-    match: match$c,
+    formatDistance: formatDistance$d,
+    formatLong: formatLong$d,
+    formatRelative: formatRelative$d,
+    localize: localize$d,
+    match: match$d,
     options: {
       weekStartsOn: 0,
       firstWeekContainsDate: 1
     }
   };
-  const formatDistanceLocale$b = {
+  const formatDistanceLocale$c = {
     lessThanXSeconds: {
       one: "mindre enn ett sekund",
       other: "mindre enn {{count}} sekunder"
@@ -45938,9 +45849,9 @@ var __async = (__this, __arguments, generator) => {
       other: "nesten {{count}} år"
     }
   };
-  const formatDistance$b = (token, count2, options2) => {
+  const formatDistance$c = (token, count2, options2) => {
     let result;
-    const tokenValue = formatDistanceLocale$b[token];
+    const tokenValue = formatDistanceLocale$c[token];
     if (typeof tokenValue === "string") {
       result = tokenValue;
     } else if (count2 === 1) {
@@ -45957,39 +45868,39 @@ var __async = (__this, __arguments, generator) => {
     }
     return result;
   };
-  const dateFormats$c = {
+  const dateFormats$d = {
     full: "EEEE d. MMMM y",
     long: "d. MMMM y",
     medium: "d. MMM y",
     short: "dd.MM.y"
   };
-  const timeFormats$b = {
+  const timeFormats$c = {
     full: "'kl'. HH:mm:ss zzzz",
     long: "HH:mm:ss z",
     medium: "HH:mm:ss",
     short: "HH:mm"
   };
-  const dateTimeFormats$b = {
+  const dateTimeFormats$c = {
     full: "{{date}} 'kl.' {{time}}",
     long: "{{date}} 'kl.' {{time}}",
     medium: "{{date}} {{time}}",
     short: "{{date}} {{time}}"
   };
-  const formatLong$b = {
-    date: buildFormatLongFn({
-      formats: dateFormats$c,
+  const formatLong$c = {
+    date: buildFormatLongFn$1({
+      formats: dateFormats$d,
       defaultWidth: "full"
     }),
-    time: buildFormatLongFn({
-      formats: timeFormats$b,
+    time: buildFormatLongFn$1({
+      formats: timeFormats$c,
       defaultWidth: "full"
     }),
-    dateTime: buildFormatLongFn({
-      formats: dateTimeFormats$b,
+    dateTime: buildFormatLongFn$1({
+      formats: dateTimeFormats$c,
       defaultWidth: "full"
     })
   };
-  const formatRelativeLocale$b = {
+  const formatRelativeLocale$c = {
     lastWeek: "'forrige' eeee 'kl.' p",
     yesterday: "'i går kl.' p",
     today: "'i dag kl.' p",
@@ -45997,18 +45908,18 @@ var __async = (__this, __arguments, generator) => {
     nextWeek: "EEEE 'kl.' p",
     other: "P"
   };
-  const formatRelative$b = (token, _date, _baseDate, _options) => formatRelativeLocale$b[token];
-  const eraValues$b = {
+  const formatRelative$c = (token, _date, _baseDate, _options) => formatRelativeLocale$c[token];
+  const eraValues$c = {
     narrow: ["f.Kr.", "e.Kr."],
     abbreviated: ["f.Kr.", "e.Kr."],
     wide: ["før Kristus", "etter Kristus"]
   };
-  const quarterValues$b = {
+  const quarterValues$c = {
     narrow: ["1", "2", "3", "4"],
     abbreviated: ["Q1", "Q2", "Q3", "Q4"],
     wide: ["1. kvartal", "2. kvartal", "3. kvartal", "4. kvartal"]
   };
-  const monthValues$b = {
+  const monthValues$c = {
     narrow: ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"],
     abbreviated: [
       "jan.",
@@ -46039,7 +45950,7 @@ var __async = (__this, __arguments, generator) => {
       "desember"
     ]
   };
-  const dayValues$b = {
+  const dayValues$c = {
     narrow: ["S", "M", "T", "O", "T", "F", "L"],
     short: ["sø", "ma", "ti", "on", "to", "fr", "lø"],
     abbreviated: ["søn", "man", "tir", "ons", "tor", "fre", "lør"],
@@ -46053,7 +45964,7 @@ var __async = (__this, __arguments, generator) => {
       "lørdag"
     ]
   };
-  const dayPeriodValues$b = {
+  const dayPeriodValues$c = {
     narrow: {
       am: "a",
       pm: "p",
@@ -46085,58 +45996,58 @@ var __async = (__this, __arguments, generator) => {
       night: "på natten"
     }
   };
-  const ordinalNumber$b = (dirtyNumber, _options) => {
+  const ordinalNumber$c = (dirtyNumber, _options) => {
     const number = Number(dirtyNumber);
     return number + ".";
   };
-  const localize$b = {
-    ordinalNumber: ordinalNumber$b,
-    era: buildLocalizeFn({
-      values: eraValues$b,
+  const localize$c = {
+    ordinalNumber: ordinalNumber$c,
+    era: buildLocalizeFn$1({
+      values: eraValues$c,
       defaultWidth: "wide"
     }),
-    quarter: buildLocalizeFn({
-      values: quarterValues$b,
+    quarter: buildLocalizeFn$1({
+      values: quarterValues$c,
       defaultWidth: "wide",
       argumentCallback: (quarter) => quarter - 1
     }),
-    month: buildLocalizeFn({
-      values: monthValues$b,
+    month: buildLocalizeFn$1({
+      values: monthValues$c,
       defaultWidth: "wide"
     }),
-    day: buildLocalizeFn({
-      values: dayValues$b,
+    day: buildLocalizeFn$1({
+      values: dayValues$c,
       defaultWidth: "wide"
     }),
-    dayPeriod: buildLocalizeFn({
-      values: dayPeriodValues$b,
+    dayPeriod: buildLocalizeFn$1({
+      values: dayPeriodValues$c,
       defaultWidth: "wide"
     })
   };
-  const matchOrdinalNumberPattern$b = /^(\d+)\.?/i;
-  const parseOrdinalNumberPattern$b = /\d+/i;
-  const matchEraPatterns$b = {
+  const matchOrdinalNumberPattern$c = /^(\d+)\.?/i;
+  const parseOrdinalNumberPattern$c = /\d+/i;
+  const matchEraPatterns$c = {
     narrow: /^(f\.? ?Kr\.?|fvt\.?|e\.? ?Kr\.?|evt\.?)/i,
     abbreviated: /^(f\.? ?Kr\.?|fvt\.?|e\.? ?Kr\.?|evt\.?)/i,
     wide: /^(før Kristus|før vår tid|etter Kristus|vår tid)/i
   };
-  const parseEraPatterns$b = {
+  const parseEraPatterns$c = {
     any: [/^f/i, /^e/i]
   };
-  const matchQuarterPatterns$b = {
+  const matchQuarterPatterns$c = {
     narrow: /^[1234]/i,
     abbreviated: /^q[1234]/i,
     wide: /^[1234](\.)? kvartal/i
   };
-  const parseQuarterPatterns$b = {
+  const parseQuarterPatterns$c = {
     any: [/1/i, /2/i, /3/i, /4/i]
   };
-  const matchMonthPatterns$b = {
+  const matchMonthPatterns$c = {
     narrow: /^[jfmasond]/i,
     abbreviated: /^(jan|feb|mars?|apr|mai|juni?|juli?|aug|sep|okt|nov|des)\.?/i,
     wide: /^(januar|februar|mars|april|mai|juni|juli|august|september|oktober|november|desember)/i
   };
-  const parseMonthPatterns$b = {
+  const parseMonthPatterns$c = {
     narrow: [
       /^j/i,
       /^f/i,
@@ -46166,20 +46077,20 @@ var __async = (__this, __arguments, generator) => {
       /^d/i
     ]
   };
-  const matchDayPatterns$b = {
+  const matchDayPatterns$c = {
     narrow: /^[smtofl]/i,
     short: /^(sø|ma|ti|on|to|fr|lø)/i,
     abbreviated: /^(søn|man|tir|ons|tor|fre|lør)/i,
     wide: /^(søndag|mandag|tirsdag|onsdag|torsdag|fredag|lørdag)/i
   };
-  const parseDayPatterns$b = {
+  const parseDayPatterns$c = {
     any: [/^s/i, /^m/i, /^ti/i, /^o/i, /^to/i, /^f/i, /^l/i]
   };
-  const matchDayPeriodPatterns$b = {
+  const matchDayPeriodPatterns$c = {
     narrow: /^(midnatt|middag|(på) (morgenen|ettermiddagen|kvelden|natten)|[ap])/i,
     any: /^([ap]\.?\s?m\.?|midnatt|middag|(på) (morgenen|ettermiddagen|kvelden|natten))/i
   };
-  const parseDayPeriodPatterns$b = {
+  const parseDayPeriodPatterns$c = {
     any: {
       am: /^a(\.?\s?m\.?)?$/i,
       pm: /^p(\.?\s?m\.?)?$/i,
@@ -46191,57 +46102,57 @@ var __async = (__this, __arguments, generator) => {
       night: /natt/i
     }
   };
-  const match$b = {
-    ordinalNumber: buildMatchPatternFn({
-      matchPattern: matchOrdinalNumberPattern$b,
-      parsePattern: parseOrdinalNumberPattern$b,
+  const match$c = {
+    ordinalNumber: buildMatchPatternFn$1({
+      matchPattern: matchOrdinalNumberPattern$c,
+      parsePattern: parseOrdinalNumberPattern$c,
       valueCallback: (value) => parseInt(value, 10)
     }),
-    era: buildMatchFn({
-      matchPatterns: matchEraPatterns$b,
+    era: buildMatchFn$1({
+      matchPatterns: matchEraPatterns$c,
       defaultMatchWidth: "wide",
-      parsePatterns: parseEraPatterns$b,
+      parsePatterns: parseEraPatterns$c,
       defaultParseWidth: "any"
     }),
-    quarter: buildMatchFn({
-      matchPatterns: matchQuarterPatterns$b,
+    quarter: buildMatchFn$1({
+      matchPatterns: matchQuarterPatterns$c,
       defaultMatchWidth: "wide",
-      parsePatterns: parseQuarterPatterns$b,
+      parsePatterns: parseQuarterPatterns$c,
       defaultParseWidth: "any",
       valueCallback: (index2) => index2 + 1
     }),
-    month: buildMatchFn({
-      matchPatterns: matchMonthPatterns$b,
+    month: buildMatchFn$1({
+      matchPatterns: matchMonthPatterns$c,
       defaultMatchWidth: "wide",
-      parsePatterns: parseMonthPatterns$b,
+      parsePatterns: parseMonthPatterns$c,
       defaultParseWidth: "any"
     }),
-    day: buildMatchFn({
-      matchPatterns: matchDayPatterns$b,
+    day: buildMatchFn$1({
+      matchPatterns: matchDayPatterns$c,
       defaultMatchWidth: "wide",
-      parsePatterns: parseDayPatterns$b,
+      parsePatterns: parseDayPatterns$c,
       defaultParseWidth: "any"
     }),
-    dayPeriod: buildMatchFn({
-      matchPatterns: matchDayPeriodPatterns$b,
+    dayPeriod: buildMatchFn$1({
+      matchPatterns: matchDayPeriodPatterns$c,
       defaultMatchWidth: "any",
-      parsePatterns: parseDayPeriodPatterns$b,
+      parsePatterns: parseDayPeriodPatterns$c,
       defaultParseWidth: "any"
     })
   };
   const nb = {
     code: "nb",
-    formatDistance: formatDistance$b,
-    formatLong: formatLong$b,
-    formatRelative: formatRelative$b,
-    localize: localize$b,
-    match: match$b,
+    formatDistance: formatDistance$c,
+    formatLong: formatLong$c,
+    formatRelative: formatRelative$c,
+    localize: localize$c,
+    match: match$c,
     options: {
       weekStartsOn: 1,
       firstWeekContainsDate: 4
     }
   };
-  const formatDistanceLocale$a = {
+  const formatDistanceLocale$b = {
     lessThanXSeconds: {
       one: "minder dan een seconde",
       other: "minder dan {{count}} seconden"
@@ -46304,9 +46215,9 @@ var __async = (__this, __arguments, generator) => {
       other: "bijna {{count}} jaar"
     }
   };
-  const formatDistance$a = (token, count2, options2) => {
+  const formatDistance$b = (token, count2, options2) => {
     let result;
-    const tokenValue = formatDistanceLocale$a[token];
+    const tokenValue = formatDistanceLocale$b[token];
     if (typeof tokenValue === "string") {
       result = tokenValue;
     } else if (count2 === 1) {
@@ -46323,39 +46234,39 @@ var __async = (__this, __arguments, generator) => {
     }
     return result;
   };
-  const dateFormats$b = {
+  const dateFormats$c = {
     full: "EEEE d MMMM y",
     long: "d MMMM y",
     medium: "d MMM y",
     short: "dd-MM-y"
   };
-  const timeFormats$a = {
+  const timeFormats$b = {
     full: "HH:mm:ss zzzz",
     long: "HH:mm:ss z",
     medium: "HH:mm:ss",
     short: "HH:mm"
   };
-  const dateTimeFormats$a = {
+  const dateTimeFormats$b = {
     full: "{{date}} 'om' {{time}}",
     long: "{{date}} 'om' {{time}}",
     medium: "{{date}}, {{time}}",
     short: "{{date}}, {{time}}"
   };
-  const formatLong$a = {
-    date: buildFormatLongFn({
-      formats: dateFormats$b,
+  const formatLong$b = {
+    date: buildFormatLongFn$1({
+      formats: dateFormats$c,
       defaultWidth: "full"
     }),
-    time: buildFormatLongFn({
-      formats: timeFormats$a,
+    time: buildFormatLongFn$1({
+      formats: timeFormats$b,
       defaultWidth: "full"
     }),
-    dateTime: buildFormatLongFn({
-      formats: dateTimeFormats$a,
+    dateTime: buildFormatLongFn$1({
+      formats: dateTimeFormats$b,
       defaultWidth: "full"
     })
   };
-  const formatRelativeLocale$a = {
+  const formatRelativeLocale$b = {
     lastWeek: "'afgelopen' eeee 'om' p",
     yesterday: "'gisteren om' p",
     today: "'vandaag om' p",
@@ -46363,18 +46274,18 @@ var __async = (__this, __arguments, generator) => {
     nextWeek: "eeee 'om' p",
     other: "P"
   };
-  const formatRelative$a = (token, _date, _baseDate, _options) => formatRelativeLocale$a[token];
-  const eraValues$a = {
+  const formatRelative$b = (token, _date, _baseDate, _options) => formatRelativeLocale$b[token];
+  const eraValues$b = {
     narrow: ["v.C.", "n.C."],
     abbreviated: ["v.Chr.", "n.Chr."],
     wide: ["voor Christus", "na Christus"]
   };
-  const quarterValues$a = {
+  const quarterValues$b = {
     narrow: ["1", "2", "3", "4"],
     abbreviated: ["K1", "K2", "K3", "K4"],
     wide: ["1e kwartaal", "2e kwartaal", "3e kwartaal", "4e kwartaal"]
   };
-  const monthValues$a = {
+  const monthValues$b = {
     narrow: ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"],
     abbreviated: [
       "jan.",
@@ -46405,7 +46316,7 @@ var __async = (__this, __arguments, generator) => {
       "december"
     ]
   };
-  const dayValues$a = {
+  const dayValues$b = {
     narrow: ["Z", "M", "D", "W", "D", "V", "Z"],
     short: ["zo", "ma", "di", "wo", "do", "vr", "za"],
     abbreviated: ["zon", "maa", "din", "woe", "don", "vri", "zat"],
@@ -46419,7 +46330,7 @@ var __async = (__this, __arguments, generator) => {
       "zaterdag"
     ]
   };
-  const dayPeriodValues$a = {
+  const dayPeriodValues$b = {
     narrow: {
       am: "AM",
       pm: "PM",
@@ -46451,58 +46362,58 @@ var __async = (__this, __arguments, generator) => {
       night: "'s nachts"
     }
   };
-  const ordinalNumber$a = (dirtyNumber, _options) => {
+  const ordinalNumber$b = (dirtyNumber, _options) => {
     const number = Number(dirtyNumber);
     return number + "e";
   };
-  const localize$a = {
-    ordinalNumber: ordinalNumber$a,
-    era: buildLocalizeFn({
-      values: eraValues$a,
+  const localize$b = {
+    ordinalNumber: ordinalNumber$b,
+    era: buildLocalizeFn$1({
+      values: eraValues$b,
       defaultWidth: "wide"
     }),
-    quarter: buildLocalizeFn({
-      values: quarterValues$a,
+    quarter: buildLocalizeFn$1({
+      values: quarterValues$b,
       defaultWidth: "wide",
       argumentCallback: (quarter) => quarter - 1
     }),
-    month: buildLocalizeFn({
-      values: monthValues$a,
+    month: buildLocalizeFn$1({
+      values: monthValues$b,
       defaultWidth: "wide"
     }),
-    day: buildLocalizeFn({
-      values: dayValues$a,
+    day: buildLocalizeFn$1({
+      values: dayValues$b,
       defaultWidth: "wide"
     }),
-    dayPeriod: buildLocalizeFn({
-      values: dayPeriodValues$a,
+    dayPeriod: buildLocalizeFn$1({
+      values: dayPeriodValues$b,
       defaultWidth: "wide"
     })
   };
-  const matchOrdinalNumberPattern$a = /^(\d+)e?/i;
-  const parseOrdinalNumberPattern$a = /\d+/i;
-  const matchEraPatterns$a = {
+  const matchOrdinalNumberPattern$b = /^(\d+)e?/i;
+  const parseOrdinalNumberPattern$b = /\d+/i;
+  const matchEraPatterns$b = {
     narrow: /^([vn]\.? ?C\.?)/,
     abbreviated: /^([vn]\. ?Chr\.?)/,
     wide: /^((voor|na) Christus)/
   };
-  const parseEraPatterns$a = {
+  const parseEraPatterns$b = {
     any: [/^v/, /^n/]
   };
-  const matchQuarterPatterns$a = {
+  const matchQuarterPatterns$b = {
     narrow: /^[1234]/i,
     abbreviated: /^K[1234]/i,
     wide: /^[1234]e kwartaal/i
   };
-  const parseQuarterPatterns$a = {
+  const parseQuarterPatterns$b = {
     any: [/1/i, /2/i, /3/i, /4/i]
   };
-  const matchMonthPatterns$a = {
+  const matchMonthPatterns$b = {
     narrow: /^[jfmasond]/i,
     abbreviated: /^(jan.|feb.|mrt.|apr.|mei|jun.|jul.|aug.|sep.|okt.|nov.|dec.)/i,
     wide: /^(januari|februari|maart|april|mei|juni|juli|augustus|september|oktober|november|december)/i
   };
-  const parseMonthPatterns$a = {
+  const parseMonthPatterns$b = {
     narrow: [
       /^j/i,
       /^f/i,
@@ -46532,20 +46443,20 @@ var __async = (__this, __arguments, generator) => {
       /^dec/i
     ]
   };
-  const matchDayPatterns$a = {
+  const matchDayPatterns$b = {
     narrow: /^[zmdwv]/i,
     short: /^(zo|ma|di|wo|do|vr|za)/i,
     abbreviated: /^(zon|maa|din|woe|don|vri|zat)/i,
     wide: /^(zondag|maandag|dinsdag|woensdag|donderdag|vrijdag|zaterdag)/i
   };
-  const parseDayPatterns$a = {
+  const parseDayPatterns$b = {
     narrow: [/^z/i, /^m/i, /^d/i, /^w/i, /^d/i, /^v/i, /^z/i],
     any: [/^zo/i, /^ma/i, /^di/i, /^wo/i, /^do/i, /^vr/i, /^za/i]
   };
-  const matchDayPeriodPatterns$a = {
+  const matchDayPeriodPatterns$b = {
     any: /^(am|pm|middernacht|het middaguur|'s (ochtends|middags|avonds|nachts))/i
   };
-  const parseDayPeriodPatterns$a = {
+  const parseDayPeriodPatterns$b = {
     any: {
       am: /^am/i,
       pm: /^pm/i,
@@ -46557,57 +46468,57 @@ var __async = (__this, __arguments, generator) => {
       night: /nacht/i
     }
   };
-  const match$a = {
-    ordinalNumber: buildMatchPatternFn({
-      matchPattern: matchOrdinalNumberPattern$a,
-      parsePattern: parseOrdinalNumberPattern$a,
+  const match$b = {
+    ordinalNumber: buildMatchPatternFn$1({
+      matchPattern: matchOrdinalNumberPattern$b,
+      parsePattern: parseOrdinalNumberPattern$b,
       valueCallback: (value) => parseInt(value, 10)
     }),
-    era: buildMatchFn({
-      matchPatterns: matchEraPatterns$a,
+    era: buildMatchFn$1({
+      matchPatterns: matchEraPatterns$b,
       defaultMatchWidth: "wide",
-      parsePatterns: parseEraPatterns$a,
+      parsePatterns: parseEraPatterns$b,
       defaultParseWidth: "any"
     }),
-    quarter: buildMatchFn({
-      matchPatterns: matchQuarterPatterns$a,
+    quarter: buildMatchFn$1({
+      matchPatterns: matchQuarterPatterns$b,
       defaultMatchWidth: "wide",
-      parsePatterns: parseQuarterPatterns$a,
+      parsePatterns: parseQuarterPatterns$b,
       defaultParseWidth: "any",
       valueCallback: (index2) => index2 + 1
     }),
-    month: buildMatchFn({
-      matchPatterns: matchMonthPatterns$a,
+    month: buildMatchFn$1({
+      matchPatterns: matchMonthPatterns$b,
       defaultMatchWidth: "wide",
-      parsePatterns: parseMonthPatterns$a,
+      parsePatterns: parseMonthPatterns$b,
       defaultParseWidth: "any"
     }),
-    day: buildMatchFn({
-      matchPatterns: matchDayPatterns$a,
+    day: buildMatchFn$1({
+      matchPatterns: matchDayPatterns$b,
       defaultMatchWidth: "wide",
-      parsePatterns: parseDayPatterns$a,
+      parsePatterns: parseDayPatterns$b,
       defaultParseWidth: "any"
     }),
-    dayPeriod: buildMatchFn({
-      matchPatterns: matchDayPeriodPatterns$a,
+    dayPeriod: buildMatchFn$1({
+      matchPatterns: matchDayPeriodPatterns$b,
       defaultMatchWidth: "any",
-      parsePatterns: parseDayPeriodPatterns$a,
+      parsePatterns: parseDayPeriodPatterns$b,
       defaultParseWidth: "any"
     })
   };
   const nl = {
     code: "nl",
-    formatDistance: formatDistance$a,
-    formatLong: formatLong$a,
-    formatRelative: formatRelative$a,
-    localize: localize$a,
-    match: match$a,
+    formatDistance: formatDistance$b,
+    formatLong: formatLong$b,
+    formatRelative: formatRelative$b,
+    localize: localize$b,
+    match: match$b,
     options: {
       weekStartsOn: 1,
       firstWeekContainsDate: 4
     }
   };
-  const formatDistanceLocale$9 = {
+  const formatDistanceLocale$a = {
     lessThanXSeconds: {
       one: {
         regular: "mniej niż sekunda",
@@ -46736,8 +46647,8 @@ var __async = (__this, __arguments, generator) => {
     const finalText = typeof group === "string" ? group : group[time];
     return finalText.replace("{{count}}", String(count2));
   }
-  const formatDistance$9 = (token, count2, options2) => {
-    const scheme = formatDistanceLocale$9[token];
+  const formatDistance$a = (token, count2, options2) => {
+    const scheme = formatDistanceLocale$a[token];
     if (!(options2 == null ? void 0 : options2.addSuffix)) {
       return declension$1(scheme, count2, "regular");
     }
@@ -46747,35 +46658,35 @@ var __async = (__this, __arguments, generator) => {
       return declension$1(scheme, count2, "past") + " temu";
     }
   };
-  const dateFormats$a = {
+  const dateFormats$b = {
     full: "EEEE, do MMMM y",
     long: "do MMMM y",
     medium: "do MMM y",
     short: "dd.MM.y"
   };
-  const timeFormats$9 = {
+  const timeFormats$a = {
     full: "HH:mm:ss zzzz",
     long: "HH:mm:ss z",
     medium: "HH:mm:ss",
     short: "HH:mm"
   };
-  const dateTimeFormats$9 = {
+  const dateTimeFormats$a = {
     full: "{{date}} {{time}}",
     long: "{{date}} {{time}}",
     medium: "{{date}}, {{time}}",
     short: "{{date}}, {{time}}"
   };
-  const formatLong$9 = {
-    date: buildFormatLongFn({
-      formats: dateFormats$a,
+  const formatLong$a = {
+    date: buildFormatLongFn$1({
+      formats: dateFormats$b,
       defaultWidth: "full"
     }),
-    time: buildFormatLongFn({
-      formats: timeFormats$9,
+    time: buildFormatLongFn$1({
+      formats: timeFormats$a,
       defaultWidth: "full"
     }),
-    dateTime: buildFormatLongFn({
-      formats: dateTimeFormats$9,
+    dateTime: buildFormatLongFn$1({
+      formats: dateTimeFormats$a,
       defaultWidth: "full"
     })
   };
@@ -46816,7 +46727,7 @@ var __async = (__this, __arguments, generator) => {
     const adjective = adjectives[grammaticalGender];
     return `'${adjective}' eeee 'o' p`;
   }
-  const formatRelativeLocale$9 = {
+  const formatRelativeLocale$a = {
     lastWeek: dayAndTimeWithAdjective,
     yesterday: "'wczoraj o' p",
     today: "'dzisiaj o' p",
@@ -46824,24 +46735,24 @@ var __async = (__this, __arguments, generator) => {
     nextWeek: dayAndTimeWithAdjective,
     other: "P"
   };
-  const formatRelative$9 = (token, date, baseDate, options2) => {
-    const format2 = formatRelativeLocale$9[token];
+  const formatRelative$a = (token, date, baseDate, options2) => {
+    const format2 = formatRelativeLocale$a[token];
     if (typeof format2 === "function") {
       return format2(token, date, baseDate, options2);
     }
     return format2;
   };
-  const eraValues$9 = {
+  const eraValues$a = {
     narrow: ["p.n.e.", "n.e."],
     abbreviated: ["p.n.e.", "n.e."],
     wide: ["przed naszą erą", "naszej ery"]
   };
-  const quarterValues$9 = {
+  const quarterValues$a = {
     narrow: ["1", "2", "3", "4"],
     abbreviated: ["I kw.", "II kw.", "III kw.", "IV kw."],
     wide: ["I kwartał", "II kwartał", "III kwartał", "IV kwartał"]
   };
-  const monthValues$9 = {
+  const monthValues$a = {
     narrow: ["S", "L", "M", "K", "M", "C", "L", "S", "W", "P", "L", "G"],
     abbreviated: [
       "sty",
@@ -46903,7 +46814,7 @@ var __async = (__this, __arguments, generator) => {
       "grudnia"
     ]
   };
-  const dayValues$9 = {
+  const dayValues$a = {
     narrow: ["N", "P", "W", "Ś", "C", "P", "S"],
     short: ["nie", "pon", "wto", "śro", "czw", "pią", "sob"],
     abbreviated: ["niedz.", "pon.", "wt.", "śr.", "czw.", "pt.", "sob."],
@@ -46931,7 +46842,7 @@ var __async = (__this, __arguments, generator) => {
       "sobota"
     ]
   };
-  const dayPeriodValues$9 = {
+  const dayPeriodValues$a = {
     narrow: {
       am: "a",
       pm: "p",
@@ -46995,64 +46906,64 @@ var __async = (__this, __arguments, generator) => {
       night: "w nocy"
     }
   };
-  const ordinalNumber$9 = (dirtyNumber, _options) => {
+  const ordinalNumber$a = (dirtyNumber, _options) => {
     return String(dirtyNumber);
   };
-  const localize$9 = {
-    ordinalNumber: ordinalNumber$9,
-    era: buildLocalizeFn({
-      values: eraValues$9,
+  const localize$a = {
+    ordinalNumber: ordinalNumber$a,
+    era: buildLocalizeFn$1({
+      values: eraValues$a,
       defaultWidth: "wide"
     }),
-    quarter: buildLocalizeFn({
-      values: quarterValues$9,
+    quarter: buildLocalizeFn$1({
+      values: quarterValues$a,
       defaultWidth: "wide",
       argumentCallback: (quarter) => quarter - 1
     }),
-    month: buildLocalizeFn({
-      values: monthValues$9,
+    month: buildLocalizeFn$1({
+      values: monthValues$a,
       defaultWidth: "wide",
       formattingValues: monthFormattingValues,
       defaultFormattingWidth: "wide"
     }),
-    day: buildLocalizeFn({
-      values: dayValues$9,
+    day: buildLocalizeFn$1({
+      values: dayValues$a,
       defaultWidth: "wide",
       formattingValues: dayFormattingValues,
       defaultFormattingWidth: "wide"
     }),
-    dayPeriod: buildLocalizeFn({
-      values: dayPeriodValues$9,
+    dayPeriod: buildLocalizeFn$1({
+      values: dayPeriodValues$a,
       defaultWidth: "wide",
       formattingValues: dayPeriodFormattingValues,
       defaultFormattingWidth: "wide"
     })
   };
-  const matchOrdinalNumberPattern$9 = /^(\d+)?/i;
-  const parseOrdinalNumberPattern$9 = /\d+/i;
-  const matchEraPatterns$9 = {
+  const matchOrdinalNumberPattern$a = /^(\d+)?/i;
+  const parseOrdinalNumberPattern$a = /\d+/i;
+  const matchEraPatterns$a = {
     narrow: /^(p\.?\s*n\.?\s*e\.?\s*|n\.?\s*e\.?\s*)/i,
     abbreviated: /^(p\.?\s*n\.?\s*e\.?\s*|n\.?\s*e\.?\s*)/i,
     wide: /^(przed\s*nasz(ą|a)\s*er(ą|a)|naszej\s*ery)/i
   };
-  const parseEraPatterns$9 = {
+  const parseEraPatterns$a = {
     any: [/^p/i, /^n/i]
   };
-  const matchQuarterPatterns$9 = {
+  const matchQuarterPatterns$a = {
     narrow: /^[1234]/i,
     abbreviated: /^(I|II|III|IV)\s*kw\.?/i,
     wide: /^(I|II|III|IV)\s*kwarta(ł|l)/i
   };
-  const parseQuarterPatterns$9 = {
+  const parseQuarterPatterns$a = {
     narrow: [/1/i, /2/i, /3/i, /4/i],
     any: [/^I kw/i, /^II kw/i, /^III kw/i, /^IV kw/i]
   };
-  const matchMonthPatterns$9 = {
+  const matchMonthPatterns$a = {
     narrow: /^[slmkcwpg]/i,
     abbreviated: /^(sty|lut|mar|kwi|maj|cze|lip|sie|wrz|pa(ź|z)|lis|gru)/i,
     wide: /^(stycznia|stycze(ń|n)|lutego|luty|marca|marzec|kwietnia|kwiecie(ń|n)|maja|maj|czerwca|czerwiec|lipca|lipiec|sierpnia|sierpie(ń|n)|wrze(ś|s)nia|wrzesie(ń|n)|pa(ź|z)dziernika|pa(ź|z)dziernik|listopada|listopad|grudnia|grudzie(ń|n))/i
   };
-  const parseMonthPatterns$9 = {
+  const parseMonthPatterns$a = {
     narrow: [
       /^s/i,
       /^l/i,
@@ -47082,22 +46993,22 @@ var __async = (__this, __arguments, generator) => {
       /^g/i
     ]
   };
-  const matchDayPatterns$9 = {
+  const matchDayPatterns$a = {
     narrow: /^[npwścs]/i,
     short: /^(nie|pon|wto|(ś|s)ro|czw|pi(ą|a)|sob)/i,
     abbreviated: /^(niedz|pon|wt|(ś|s)r|czw|pt|sob)\.?/i,
     wide: /^(niedziela|poniedzia(ł|l)ek|wtorek|(ś|s)roda|czwartek|pi(ą|a)tek|sobota)/i
   };
-  const parseDayPatterns$9 = {
+  const parseDayPatterns$a = {
     narrow: [/^n/i, /^p/i, /^w/i, /^ś/i, /^c/i, /^p/i, /^s/i],
     abbreviated: [/^n/i, /^po/i, /^w/i, /^(ś|s)r/i, /^c/i, /^pt/i, /^so/i],
     any: [/^n/i, /^po/i, /^w/i, /^(ś|s)r/i, /^c/i, /^pi/i, /^so/i]
   };
-  const matchDayPeriodPatterns$9 = {
+  const matchDayPeriodPatterns$a = {
     narrow: /^(^a$|^p$|pó(ł|l)n\.?|o\s*pó(ł|l)n\.?|po(ł|l)\.?|w\s*po(ł|l)\.?|po\s*po(ł|l)\.?|rano|wiecz\.?|noc|w\s*nocy)/i,
     any: /^(am|pm|pó(ł|l)noc|o\s*pó(ł|l)nocy|po(ł|l)udnie|w\s*po(ł|l)udnie|popo(ł|l)udnie|po\s*po(ł|l)udniu|rano|wieczór|wieczorem|noc|w\s*nocy)/i
   };
-  const parseDayPeriodPatterns$9 = {
+  const parseDayPeriodPatterns$a = {
     narrow: {
       am: /^a$/i,
       pm: /^p$/i,
@@ -47119,57 +47030,57 @@ var __async = (__this, __arguments, generator) => {
       night: /noc/i
     }
   };
-  const match$9 = {
-    ordinalNumber: buildMatchPatternFn({
-      matchPattern: matchOrdinalNumberPattern$9,
-      parsePattern: parseOrdinalNumberPattern$9,
+  const match$a = {
+    ordinalNumber: buildMatchPatternFn$1({
+      matchPattern: matchOrdinalNumberPattern$a,
+      parsePattern: parseOrdinalNumberPattern$a,
       valueCallback: (value) => parseInt(value, 10)
     }),
-    era: buildMatchFn({
-      matchPatterns: matchEraPatterns$9,
+    era: buildMatchFn$1({
+      matchPatterns: matchEraPatterns$a,
       defaultMatchWidth: "wide",
-      parsePatterns: parseEraPatterns$9,
+      parsePatterns: parseEraPatterns$a,
       defaultParseWidth: "any"
     }),
-    quarter: buildMatchFn({
-      matchPatterns: matchQuarterPatterns$9,
+    quarter: buildMatchFn$1({
+      matchPatterns: matchQuarterPatterns$a,
       defaultMatchWidth: "wide",
-      parsePatterns: parseQuarterPatterns$9,
+      parsePatterns: parseQuarterPatterns$a,
       defaultParseWidth: "any",
       valueCallback: (index2) => index2 + 1
     }),
-    month: buildMatchFn({
-      matchPatterns: matchMonthPatterns$9,
+    month: buildMatchFn$1({
+      matchPatterns: matchMonthPatterns$a,
       defaultMatchWidth: "wide",
-      parsePatterns: parseMonthPatterns$9,
+      parsePatterns: parseMonthPatterns$a,
       defaultParseWidth: "any"
     }),
-    day: buildMatchFn({
-      matchPatterns: matchDayPatterns$9,
+    day: buildMatchFn$1({
+      matchPatterns: matchDayPatterns$a,
       defaultMatchWidth: "wide",
-      parsePatterns: parseDayPatterns$9,
+      parsePatterns: parseDayPatterns$a,
       defaultParseWidth: "any"
     }),
-    dayPeriod: buildMatchFn({
-      matchPatterns: matchDayPeriodPatterns$9,
+    dayPeriod: buildMatchFn$1({
+      matchPatterns: matchDayPeriodPatterns$a,
       defaultMatchWidth: "any",
-      parsePatterns: parseDayPeriodPatterns$9,
+      parsePatterns: parseDayPeriodPatterns$a,
       defaultParseWidth: "any"
     })
   };
   const pl = {
     code: "pl",
-    formatDistance: formatDistance$9,
-    formatLong: formatLong$9,
-    formatRelative: formatRelative$9,
-    localize: localize$9,
-    match: match$9,
+    formatDistance: formatDistance$a,
+    formatLong: formatLong$a,
+    formatRelative: formatRelative$a,
+    localize: localize$a,
+    match: match$a,
     options: {
       weekStartsOn: 1,
       firstWeekContainsDate: 4
     }
   };
-  const formatDistanceLocale$8 = {
+  const formatDistanceLocale$9 = {
     lessThanXSeconds: {
       one: "menos de um segundo",
       other: "menos de {{count}} segundos"
@@ -47232,9 +47143,9 @@ var __async = (__this, __arguments, generator) => {
       other: "quase {{count}} anos"
     }
   };
-  const formatDistance$8 = (token, count2, options2) => {
+  const formatDistance$9 = (token, count2, options2) => {
     let result;
-    const tokenValue = formatDistanceLocale$8[token];
+    const tokenValue = formatDistanceLocale$9[token];
     if (typeof tokenValue === "string") {
       result = tokenValue;
     } else if (count2 === 1) {
@@ -47251,39 +47162,39 @@ var __async = (__this, __arguments, generator) => {
     }
     return result;
   };
-  const dateFormats$9 = {
+  const dateFormats$a = {
     full: "EEEE, d 'de' MMMM 'de' y",
     long: "d 'de' MMMM 'de' y",
     medium: "d 'de' MMM 'de' y",
     short: "dd/MM/y"
   };
-  const timeFormats$8 = {
+  const timeFormats$9 = {
     full: "HH:mm:ss zzzz",
     long: "HH:mm:ss z",
     medium: "HH:mm:ss",
     short: "HH:mm"
   };
-  const dateTimeFormats$8 = {
+  const dateTimeFormats$9 = {
     full: "{{date}} 'às' {{time}}",
     long: "{{date}} 'às' {{time}}",
     medium: "{{date}}, {{time}}",
     short: "{{date}}, {{time}}"
   };
-  const formatLong$8 = {
-    date: buildFormatLongFn({
-      formats: dateFormats$9,
+  const formatLong$9 = {
+    date: buildFormatLongFn$1({
+      formats: dateFormats$a,
       defaultWidth: "full"
     }),
-    time: buildFormatLongFn({
-      formats: timeFormats$8,
+    time: buildFormatLongFn$1({
+      formats: timeFormats$9,
       defaultWidth: "full"
     }),
-    dateTime: buildFormatLongFn({
-      formats: dateTimeFormats$8,
+    dateTime: buildFormatLongFn$1({
+      formats: dateTimeFormats$9,
       defaultWidth: "full"
     })
   };
-  const formatRelativeLocale$8 = {
+  const formatRelativeLocale$9 = {
     lastWeek: (date) => {
       const weekday = date.getDay();
       const last2 = weekday === 0 || weekday === 6 ? "último" : "última";
@@ -47295,24 +47206,24 @@ var __async = (__this, __arguments, generator) => {
     nextWeek: "eeee 'às' p",
     other: "P"
   };
-  const formatRelative$8 = (token, date, _baseDate, _options) => {
-    const format2 = formatRelativeLocale$8[token];
+  const formatRelative$9 = (token, date, _baseDate, _options) => {
+    const format2 = formatRelativeLocale$9[token];
     if (typeof format2 === "function") {
       return format2(date);
     }
     return format2;
   };
-  const eraValues$8 = {
+  const eraValues$9 = {
     narrow: ["aC", "dC"],
     abbreviated: ["a.C.", "d.C."],
     wide: ["antes de Cristo", "depois de Cristo"]
   };
-  const quarterValues$8 = {
+  const quarterValues$9 = {
     narrow: ["1", "2", "3", "4"],
     abbreviated: ["T1", "T2", "T3", "T4"],
     wide: ["1º trimestre", "2º trimestre", "3º trimestre", "4º trimestre"]
   };
-  const monthValues$8 = {
+  const monthValues$9 = {
     narrow: ["j", "f", "m", "a", "m", "j", "j", "a", "s", "o", "n", "d"],
     abbreviated: [
       "jan",
@@ -47343,7 +47254,7 @@ var __async = (__this, __arguments, generator) => {
       "dezembro"
     ]
   };
-  const dayValues$8 = {
+  const dayValues$9 = {
     narrow: ["d", "s", "t", "q", "q", "s", "s"],
     short: ["dom", "seg", "ter", "qua", "qui", "sex", "sáb"],
     abbreviated: ["dom", "seg", "ter", "qua", "qui", "sex", "sáb"],
@@ -47357,7 +47268,7 @@ var __async = (__this, __arguments, generator) => {
       "sábado"
     ]
   };
-  const dayPeriodValues$8 = {
+  const dayPeriodValues$9 = {
     narrow: {
       am: "AM",
       pm: "PM",
@@ -47389,7 +47300,7 @@ var __async = (__this, __arguments, generator) => {
       night: "madrugada"
     }
   };
-  const formattingDayPeriodValues$8 = {
+  const formattingDayPeriodValues$9 = {
     narrow: {
       am: "AM",
       pm: "PM",
@@ -47421,64 +47332,64 @@ var __async = (__this, __arguments, generator) => {
       night: "da madrugada"
     }
   };
-  const ordinalNumber$8 = (dirtyNumber, _options) => {
+  const ordinalNumber$9 = (dirtyNumber, _options) => {
     const number = Number(dirtyNumber);
     return number + "º";
   };
-  const localize$8 = {
-    ordinalNumber: ordinalNumber$8,
-    era: buildLocalizeFn({
-      values: eraValues$8,
+  const localize$9 = {
+    ordinalNumber: ordinalNumber$9,
+    era: buildLocalizeFn$1({
+      values: eraValues$9,
       defaultWidth: "wide"
     }),
-    quarter: buildLocalizeFn({
-      values: quarterValues$8,
+    quarter: buildLocalizeFn$1({
+      values: quarterValues$9,
       defaultWidth: "wide",
       argumentCallback: (quarter) => quarter - 1
     }),
-    month: buildLocalizeFn({
-      values: monthValues$8,
+    month: buildLocalizeFn$1({
+      values: monthValues$9,
       defaultWidth: "wide"
     }),
-    day: buildLocalizeFn({
-      values: dayValues$8,
+    day: buildLocalizeFn$1({
+      values: dayValues$9,
       defaultWidth: "wide"
     }),
-    dayPeriod: buildLocalizeFn({
-      values: dayPeriodValues$8,
+    dayPeriod: buildLocalizeFn$1({
+      values: dayPeriodValues$9,
       defaultWidth: "wide",
-      formattingValues: formattingDayPeriodValues$8,
+      formattingValues: formattingDayPeriodValues$9,
       defaultFormattingWidth: "wide"
     })
   };
-  const matchOrdinalNumberPattern$8 = /^(\d+)(º|ª)?/i;
-  const parseOrdinalNumberPattern$8 = /\d+/i;
-  const matchEraPatterns$8 = {
+  const matchOrdinalNumberPattern$9 = /^(\d+)(º|ª)?/i;
+  const parseOrdinalNumberPattern$9 = /\d+/i;
+  const matchEraPatterns$9 = {
     narrow: /^(ac|dc|a|d)/i,
     abbreviated: /^(a\.?\s?c\.?|a\.?\s?e\.?\s?c\.?|d\.?\s?c\.?|e\.?\s?c\.?)/i,
     wide: /^(antes de cristo|antes da era comum|depois de cristo|era comum)/i
   };
-  const parseEraPatterns$8 = {
+  const parseEraPatterns$9 = {
     any: [/^ac/i, /^dc/i],
     wide: [
       /^(antes de cristo|antes da era comum)/i,
       /^(depois de cristo|era comum)/i
     ]
   };
-  const matchQuarterPatterns$8 = {
+  const matchQuarterPatterns$9 = {
     narrow: /^[1234]/i,
     abbreviated: /^T[1234]/i,
     wide: /^[1234](º|ª)? trimestre/i
   };
-  const parseQuarterPatterns$8 = {
+  const parseQuarterPatterns$9 = {
     any: [/1/i, /2/i, /3/i, /4/i]
   };
-  const matchMonthPatterns$8 = {
+  const matchMonthPatterns$9 = {
     narrow: /^[jfmasond]/i,
     abbreviated: /^(jan|fev|mar|abr|mai|jun|jul|ago|set|out|nov|dez)/i,
     wide: /^(janeiro|fevereiro|março|abril|maio|junho|julho|agosto|setembro|outubro|novembro|dezembro)/i
   };
-  const parseMonthPatterns$8 = {
+  const parseMonthPatterns$9 = {
     narrow: [
       /^j/i,
       /^f/i,
@@ -47508,21 +47419,21 @@ var __async = (__this, __arguments, generator) => {
       /^d/i
     ]
   };
-  const matchDayPatterns$8 = {
+  const matchDayPatterns$9 = {
     narrow: /^[dstq]/i,
     short: /^(dom|seg|ter|qua|qui|sex|s[áa]b)/i,
     abbreviated: /^(dom|seg|ter|qua|qui|sex|s[áa]b)/i,
     wide: /^(domingo|segunda-?\s?feira|terça-?\s?feira|quarta-?\s?feira|quinta-?\s?feira|sexta-?\s?feira|s[áa]bado)/i
   };
-  const parseDayPatterns$8 = {
+  const parseDayPatterns$9 = {
     narrow: [/^d/i, /^s/i, /^t/i, /^q/i, /^q/i, /^s/i, /^s/i],
     any: [/^d/i, /^seg/i, /^t/i, /^qua/i, /^qui/i, /^sex/i, /^s[áa]/i]
   };
-  const matchDayPeriodPatterns$8 = {
+  const matchDayPeriodPatterns$9 = {
     narrow: /^(a|p|meia-?\s?noite|meio-?\s?dia|(da) (manh[ãa]|tarde|noite|madrugada))/i,
     any: /^([ap]\.?\s?m\.?|meia-?\s?noite|meio-?\s?dia|(da) (manh[ãa]|tarde|noite|madrugada))/i
   };
-  const parseDayPeriodPatterns$8 = {
+  const parseDayPeriodPatterns$9 = {
     any: {
       am: /^a/i,
       pm: /^p/i,
@@ -47534,57 +47445,57 @@ var __async = (__this, __arguments, generator) => {
       night: /madrugada/i
     }
   };
-  const match$8 = {
-    ordinalNumber: buildMatchPatternFn({
-      matchPattern: matchOrdinalNumberPattern$8,
-      parsePattern: parseOrdinalNumberPattern$8,
+  const match$9 = {
+    ordinalNumber: buildMatchPatternFn$1({
+      matchPattern: matchOrdinalNumberPattern$9,
+      parsePattern: parseOrdinalNumberPattern$9,
       valueCallback: (value) => parseInt(value, 10)
     }),
-    era: buildMatchFn({
-      matchPatterns: matchEraPatterns$8,
+    era: buildMatchFn$1({
+      matchPatterns: matchEraPatterns$9,
       defaultMatchWidth: "wide",
-      parsePatterns: parseEraPatterns$8,
+      parsePatterns: parseEraPatterns$9,
       defaultParseWidth: "any"
     }),
-    quarter: buildMatchFn({
-      matchPatterns: matchQuarterPatterns$8,
+    quarter: buildMatchFn$1({
+      matchPatterns: matchQuarterPatterns$9,
       defaultMatchWidth: "wide",
-      parsePatterns: parseQuarterPatterns$8,
+      parsePatterns: parseQuarterPatterns$9,
       defaultParseWidth: "any",
       valueCallback: (index2) => index2 + 1
     }),
-    month: buildMatchFn({
-      matchPatterns: matchMonthPatterns$8,
+    month: buildMatchFn$1({
+      matchPatterns: matchMonthPatterns$9,
       defaultMatchWidth: "wide",
-      parsePatterns: parseMonthPatterns$8,
+      parsePatterns: parseMonthPatterns$9,
       defaultParseWidth: "any"
     }),
-    day: buildMatchFn({
-      matchPatterns: matchDayPatterns$8,
+    day: buildMatchFn$1({
+      matchPatterns: matchDayPatterns$9,
       defaultMatchWidth: "wide",
-      parsePatterns: parseDayPatterns$8,
+      parsePatterns: parseDayPatterns$9,
       defaultParseWidth: "any"
     }),
-    dayPeriod: buildMatchFn({
-      matchPatterns: matchDayPeriodPatterns$8,
+    dayPeriod: buildMatchFn$1({
+      matchPatterns: matchDayPeriodPatterns$9,
       defaultMatchWidth: "any",
-      parsePatterns: parseDayPeriodPatterns$8,
+      parsePatterns: parseDayPeriodPatterns$9,
       defaultParseWidth: "any"
     })
   };
   const pt = {
     code: "pt",
-    formatDistance: formatDistance$8,
-    formatLong: formatLong$8,
-    formatRelative: formatRelative$8,
-    localize: localize$8,
-    match: match$8,
+    formatDistance: formatDistance$9,
+    formatLong: formatLong$9,
+    formatRelative: formatRelative$9,
+    localize: localize$9,
+    match: match$9,
     options: {
       weekStartsOn: 1,
       firstWeekContainsDate: 4
     }
   };
-  const formatDistanceLocale$7 = {
+  const formatDistanceLocale$8 = {
     lessThanXSeconds: {
       one: "menos de um segundo",
       other: "menos de {{count}} segundos"
@@ -47647,9 +47558,9 @@ var __async = (__this, __arguments, generator) => {
       other: "quase {{count}} anos"
     }
   };
-  const formatDistance$7 = (token, count2, options2) => {
+  const formatDistance$8 = (token, count2, options2) => {
     let result;
-    const tokenValue = formatDistanceLocale$7[token];
+    const tokenValue = formatDistanceLocale$8[token];
     if (typeof tokenValue === "string") {
       result = tokenValue;
     } else if (count2 === 1) {
@@ -47666,39 +47577,39 @@ var __async = (__this, __arguments, generator) => {
     }
     return result;
   };
-  const dateFormats$8 = {
+  const dateFormats$9 = {
     full: "EEEE, d 'de' MMMM 'de' y",
     long: "d 'de' MMMM 'de' y",
     medium: "d MMM y",
     short: "dd/MM/yyyy"
   };
-  const timeFormats$7 = {
+  const timeFormats$8 = {
     full: "HH:mm:ss zzzz",
     long: "HH:mm:ss z",
     medium: "HH:mm:ss",
     short: "HH:mm"
   };
-  const dateTimeFormats$7 = {
+  const dateTimeFormats$8 = {
     full: "{{date}} 'às' {{time}}",
     long: "{{date}} 'às' {{time}}",
     medium: "{{date}}, {{time}}",
     short: "{{date}}, {{time}}"
   };
-  const formatLong$7 = {
-    date: buildFormatLongFn({
-      formats: dateFormats$8,
+  const formatLong$8 = {
+    date: buildFormatLongFn$1({
+      formats: dateFormats$9,
       defaultWidth: "full"
     }),
-    time: buildFormatLongFn({
-      formats: timeFormats$7,
+    time: buildFormatLongFn$1({
+      formats: timeFormats$8,
       defaultWidth: "full"
     }),
-    dateTime: buildFormatLongFn({
-      formats: dateTimeFormats$7,
+    dateTime: buildFormatLongFn$1({
+      formats: dateTimeFormats$8,
       defaultWidth: "full"
     })
   };
-  const formatRelativeLocale$7 = {
+  const formatRelativeLocale$8 = {
     lastWeek: (date) => {
       const weekday = date.getDay();
       const last2 = weekday === 0 || weekday === 6 ? "último" : "última";
@@ -47710,24 +47621,24 @@ var __async = (__this, __arguments, generator) => {
     nextWeek: "eeee 'às' p",
     other: "P"
   };
-  const formatRelative$7 = (token, date, _baseDate, _options) => {
-    const format2 = formatRelativeLocale$7[token];
+  const formatRelative$8 = (token, date, _baseDate, _options) => {
+    const format2 = formatRelativeLocale$8[token];
     if (typeof format2 === "function") {
       return format2(date);
     }
     return format2;
   };
-  const eraValues$7 = {
+  const eraValues$8 = {
     narrow: ["AC", "DC"],
     abbreviated: ["AC", "DC"],
     wide: ["antes de cristo", "depois de cristo"]
   };
-  const quarterValues$7 = {
+  const quarterValues$8 = {
     narrow: ["1", "2", "3", "4"],
     abbreviated: ["T1", "T2", "T3", "T4"],
     wide: ["1º trimestre", "2º trimestre", "3º trimestre", "4º trimestre"]
   };
-  const monthValues$7 = {
+  const monthValues$8 = {
     narrow: ["j", "f", "m", "a", "m", "j", "j", "a", "s", "o", "n", "d"],
     abbreviated: [
       "jan",
@@ -47758,7 +47669,7 @@ var __async = (__this, __arguments, generator) => {
       "dezembro"
     ]
   };
-  const dayValues$7 = {
+  const dayValues$8 = {
     narrow: ["D", "S", "T", "Q", "Q", "S", "S"],
     short: ["dom", "seg", "ter", "qua", "qui", "sex", "sab"],
     abbreviated: [
@@ -47780,7 +47691,7 @@ var __async = (__this, __arguments, generator) => {
       "sábado"
     ]
   };
-  const dayPeriodValues$7 = {
+  const dayPeriodValues$8 = {
     narrow: {
       am: "a",
       pm: "p",
@@ -47812,7 +47723,7 @@ var __async = (__this, __arguments, generator) => {
       night: "noite"
     }
   };
-  const formattingDayPeriodValues$7 = {
+  const formattingDayPeriodValues$8 = {
     narrow: {
       am: "a",
       pm: "p",
@@ -47844,64 +47755,64 @@ var __async = (__this, __arguments, generator) => {
       night: "da noite"
     }
   };
-  const ordinalNumber$7 = (dirtyNumber, options2) => {
+  const ordinalNumber$8 = (dirtyNumber, options2) => {
     const number = Number(dirtyNumber);
     if ((options2 == null ? void 0 : options2.unit) === "week") {
       return number + "ª";
     }
     return number + "º";
   };
-  const localize$7 = {
-    ordinalNumber: ordinalNumber$7,
-    era: buildLocalizeFn({
-      values: eraValues$7,
+  const localize$8 = {
+    ordinalNumber: ordinalNumber$8,
+    era: buildLocalizeFn$1({
+      values: eraValues$8,
       defaultWidth: "wide"
     }),
-    quarter: buildLocalizeFn({
-      values: quarterValues$7,
+    quarter: buildLocalizeFn$1({
+      values: quarterValues$8,
       defaultWidth: "wide",
       argumentCallback: (quarter) => quarter - 1
     }),
-    month: buildLocalizeFn({
-      values: monthValues$7,
+    month: buildLocalizeFn$1({
+      values: monthValues$8,
       defaultWidth: "wide"
     }),
-    day: buildLocalizeFn({
-      values: dayValues$7,
+    day: buildLocalizeFn$1({
+      values: dayValues$8,
       defaultWidth: "wide"
     }),
-    dayPeriod: buildLocalizeFn({
-      values: dayPeriodValues$7,
+    dayPeriod: buildLocalizeFn$1({
+      values: dayPeriodValues$8,
       defaultWidth: "wide",
-      formattingValues: formattingDayPeriodValues$7,
+      formattingValues: formattingDayPeriodValues$8,
       defaultFormattingWidth: "wide"
     })
   };
-  const matchOrdinalNumberPattern$7 = /^(\d+)[ºªo]?/i;
-  const parseOrdinalNumberPattern$7 = /\d+/i;
-  const matchEraPatterns$7 = {
+  const matchOrdinalNumberPattern$8 = /^(\d+)[ºªo]?/i;
+  const parseOrdinalNumberPattern$8 = /\d+/i;
+  const matchEraPatterns$8 = {
     narrow: /^(ac|dc|a|d)/i,
     abbreviated: /^(a\.?\s?c\.?|d\.?\s?c\.?)/i,
     wide: /^(antes de cristo|depois de cristo)/i
   };
-  const parseEraPatterns$7 = {
+  const parseEraPatterns$8 = {
     any: [/^ac/i, /^dc/i],
     wide: [/^antes de cristo/i, /^depois de cristo/i]
   };
-  const matchQuarterPatterns$7 = {
+  const matchQuarterPatterns$8 = {
     narrow: /^[1234]/i,
     abbreviated: /^T[1234]/i,
     wide: /^[1234](º)? trimestre/i
   };
-  const parseQuarterPatterns$7 = {
+  const parseQuarterPatterns$8 = {
     any: [/1/i, /2/i, /3/i, /4/i]
   };
-  const matchMonthPatterns$7 = {
+  const matchMonthPatterns$8 = {
     narrow: /^[jfmajsond]/i,
     abbreviated: /^(jan|fev|mar|abr|mai|jun|jul|ago|set|out|nov|dez)/i,
     wide: /^(janeiro|fevereiro|março|abril|maio|junho|julho|agosto|setembro|outubro|novembro|dezembro)/i
   };
-  const parseMonthPatterns$7 = {
+  const parseMonthPatterns$8 = {
     narrow: [
       /^j/i,
       /^f/i,
@@ -47931,22 +47842,22 @@ var __async = (__this, __arguments, generator) => {
       /^dez/i
     ]
   };
-  const matchDayPatterns$7 = {
+  const matchDayPatterns$8 = {
     narrow: /^(dom|[23456]ª?|s[aá]b)/i,
     short: /^(dom|[23456]ª?|s[aá]b)/i,
     abbreviated: /^(dom|seg|ter|qua|qui|sex|s[aá]b)/i,
     wide: /^(domingo|(segunda|ter[cç]a|quarta|quinta|sexta)([- ]feira)?|s[aá]bado)/i
   };
-  const parseDayPatterns$7 = {
+  const parseDayPatterns$8 = {
     short: [/^d/i, /^2/i, /^3/i, /^4/i, /^5/i, /^6/i, /^s[aá]/i],
     narrow: [/^d/i, /^2/i, /^3/i, /^4/i, /^5/i, /^6/i, /^s[aá]/i],
     any: [/^d/i, /^seg/i, /^t/i, /^qua/i, /^qui/i, /^sex/i, /^s[aá]b/i]
   };
-  const matchDayPeriodPatterns$7 = {
+  const matchDayPeriodPatterns$8 = {
     narrow: /^(a|p|mn|md|(da) (manhã|tarde|noite))/i,
     any: /^([ap]\.?\s?m\.?|meia[-\s]noite|meio[-\s]dia|(da) (manhã|tarde|noite))/i
   };
-  const parseDayPeriodPatterns$7 = {
+  const parseDayPeriodPatterns$8 = {
     any: {
       am: /^a/i,
       pm: /^p/i,
@@ -47958,51 +47869,51 @@ var __async = (__this, __arguments, generator) => {
       night: /noite/i
     }
   };
-  const match$7 = {
-    ordinalNumber: buildMatchPatternFn({
-      matchPattern: matchOrdinalNumberPattern$7,
-      parsePattern: parseOrdinalNumberPattern$7,
+  const match$8 = {
+    ordinalNumber: buildMatchPatternFn$1({
+      matchPattern: matchOrdinalNumberPattern$8,
+      parsePattern: parseOrdinalNumberPattern$8,
       valueCallback: (value) => parseInt(value, 10)
     }),
-    era: buildMatchFn({
-      matchPatterns: matchEraPatterns$7,
+    era: buildMatchFn$1({
+      matchPatterns: matchEraPatterns$8,
       defaultMatchWidth: "wide",
-      parsePatterns: parseEraPatterns$7,
+      parsePatterns: parseEraPatterns$8,
       defaultParseWidth: "any"
     }),
-    quarter: buildMatchFn({
-      matchPatterns: matchQuarterPatterns$7,
+    quarter: buildMatchFn$1({
+      matchPatterns: matchQuarterPatterns$8,
       defaultMatchWidth: "wide",
-      parsePatterns: parseQuarterPatterns$7,
+      parsePatterns: parseQuarterPatterns$8,
       defaultParseWidth: "any",
       valueCallback: (index2) => index2 + 1
     }),
-    month: buildMatchFn({
-      matchPatterns: matchMonthPatterns$7,
+    month: buildMatchFn$1({
+      matchPatterns: matchMonthPatterns$8,
       defaultMatchWidth: "wide",
-      parsePatterns: parseMonthPatterns$7,
+      parsePatterns: parseMonthPatterns$8,
       defaultParseWidth: "any"
     }),
-    day: buildMatchFn({
-      matchPatterns: matchDayPatterns$7,
+    day: buildMatchFn$1({
+      matchPatterns: matchDayPatterns$8,
       defaultMatchWidth: "wide",
-      parsePatterns: parseDayPatterns$7,
+      parsePatterns: parseDayPatterns$8,
       defaultParseWidth: "any"
     }),
-    dayPeriod: buildMatchFn({
-      matchPatterns: matchDayPeriodPatterns$7,
+    dayPeriod: buildMatchFn$1({
+      matchPatterns: matchDayPeriodPatterns$8,
       defaultMatchWidth: "any",
-      parsePatterns: parseDayPeriodPatterns$7,
+      parsePatterns: parseDayPeriodPatterns$8,
       defaultParseWidth: "any"
     })
   };
   const ptBR = {
     code: "pt-BR",
-    formatDistance: formatDistance$7,
-    formatLong: formatLong$7,
-    formatRelative: formatRelative$7,
-    localize: localize$7,
-    match: match$7,
+    formatDistance: formatDistance$8,
+    formatLong: formatLong$8,
+    formatRelative: formatRelative$8,
+    localize: localize$8,
+    match: match$8,
     options: {
       weekStartsOn: 0,
       firstWeekContainsDate: 1
@@ -48043,7 +47954,7 @@ var __async = (__this, __arguments, generator) => {
       }
     };
   }
-  const formatDistanceLocale$6 = {
+  const formatDistanceLocale$7 = {
     lessThanXSeconds: buildLocalizeTokenFn({
       regular: {
         one: "меньше секунды",
@@ -48224,35 +48135,35 @@ var __async = (__this, __arguments, generator) => {
       }
     })
   };
-  const formatDistance$6 = (token, count2, options2) => {
-    return formatDistanceLocale$6[token](count2, options2);
+  const formatDistance$7 = (token, count2, options2) => {
+    return formatDistanceLocale$7[token](count2, options2);
   };
-  const dateFormats$7 = {
+  const dateFormats$8 = {
     full: "EEEE, d MMMM y 'г.'",
     long: "d MMMM y 'г.'",
     medium: "d MMM y 'г.'",
     short: "dd.MM.y"
   };
-  const timeFormats$6 = {
+  const timeFormats$7 = {
     full: "H:mm:ss zzzz",
     long: "H:mm:ss z",
     medium: "H:mm:ss",
     short: "H:mm"
   };
-  const dateTimeFormats$6 = {
+  const dateTimeFormats$7 = {
     any: "{{date}}, {{time}}"
   };
-  const formatLong$6 = {
-    date: buildFormatLongFn({
-      formats: dateFormats$7,
+  const formatLong$7 = {
+    date: buildFormatLongFn$1({
+      formats: dateFormats$8,
       defaultWidth: "full"
     }),
-    time: buildFormatLongFn({
-      formats: timeFormats$6,
+    time: buildFormatLongFn$1({
+      formats: timeFormats$7,
       defaultWidth: "full"
     }),
-    dateTime: buildFormatLongFn({
-      formats: dateTimeFormats$6,
+    dateTime: buildFormatLongFn$1({
+      formats: dateTimeFormats$7,
       defaultWidth: "any"
     })
   };
@@ -48303,7 +48214,7 @@ var __async = (__this, __arguments, generator) => {
         return "'в следующую " + weekday + " в' p";
     }
   }
-  const formatRelativeLocale$6 = {
+  const formatRelativeLocale$7 = {
     lastWeek: (date, baseDate, options2) => {
       const day = date.getDay();
       if (isSameWeek(date, baseDate, options2)) {
@@ -48325,24 +48236,24 @@ var __async = (__this, __arguments, generator) => {
     },
     other: "P"
   };
-  const formatRelative$6 = (token, date, baseDate, options2) => {
-    const format2 = formatRelativeLocale$6[token];
+  const formatRelative$7 = (token, date, baseDate, options2) => {
+    const format2 = formatRelativeLocale$7[token];
     if (typeof format2 === "function") {
       return format2(date, baseDate, options2);
     }
     return format2;
   };
-  const eraValues$6 = {
+  const eraValues$7 = {
     narrow: ["до н.э.", "н.э."],
     abbreviated: ["до н. э.", "н. э."],
     wide: ["до нашей эры", "нашей эры"]
   };
-  const quarterValues$6 = {
+  const quarterValues$7 = {
     narrow: ["1", "2", "3", "4"],
     abbreviated: ["1-й кв.", "2-й кв.", "3-й кв.", "4-й кв."],
     wide: ["1-й квартал", "2-й квартал", "3-й квартал", "4-й квартал"]
   };
-  const monthValues$6 = {
+  const monthValues$7 = {
     narrow: ["Я", "Ф", "М", "А", "М", "И", "И", "А", "С", "О", "Н", "Д"],
     abbreviated: [
       "янв.",
@@ -48404,7 +48315,7 @@ var __async = (__this, __arguments, generator) => {
       "декабря"
     ]
   };
-  const dayValues$6 = {
+  const dayValues$7 = {
     narrow: ["В", "П", "В", "С", "Ч", "П", "С"],
     short: ["вс", "пн", "вт", "ср", "чт", "пт", "сб"],
     abbreviated: ["вск", "пнд", "втр", "срд", "чтв", "птн", "суб"],
@@ -48418,7 +48329,7 @@ var __async = (__this, __arguments, generator) => {
       "суббота"
     ]
   };
-  const dayPeriodValues$6 = {
+  const dayPeriodValues$7 = {
     narrow: {
       am: "ДП",
       pm: "ПП",
@@ -48450,7 +48361,7 @@ var __async = (__this, __arguments, generator) => {
       night: "ночь"
     }
   };
-  const formattingDayPeriodValues$6 = {
+  const formattingDayPeriodValues$7 = {
     narrow: {
       am: "ДП",
       pm: "ПП",
@@ -48482,7 +48393,7 @@ var __async = (__this, __arguments, generator) => {
       night: "ночи"
     }
   };
-  const ordinalNumber$6 = (dirtyNumber, options2) => {
+  const ordinalNumber$7 = (dirtyNumber, options2) => {
     const number = Number(dirtyNumber);
     const unit = options2 == null ? void 0 : options2.unit;
     let suffix2;
@@ -48495,58 +48406,58 @@ var __async = (__this, __arguments, generator) => {
     }
     return number + suffix2;
   };
-  const localize$6 = {
-    ordinalNumber: ordinalNumber$6,
-    era: buildLocalizeFn({
-      values: eraValues$6,
+  const localize$7 = {
+    ordinalNumber: ordinalNumber$7,
+    era: buildLocalizeFn$1({
+      values: eraValues$7,
       defaultWidth: "wide"
     }),
-    quarter: buildLocalizeFn({
-      values: quarterValues$6,
+    quarter: buildLocalizeFn$1({
+      values: quarterValues$7,
       defaultWidth: "wide",
       argumentCallback: (quarter) => quarter - 1
     }),
-    month: buildLocalizeFn({
-      values: monthValues$6,
+    month: buildLocalizeFn$1({
+      values: monthValues$7,
       defaultWidth: "wide",
       formattingValues: formattingMonthValues$1,
       defaultFormattingWidth: "wide"
     }),
-    day: buildLocalizeFn({
-      values: dayValues$6,
+    day: buildLocalizeFn$1({
+      values: dayValues$7,
       defaultWidth: "wide"
     }),
-    dayPeriod: buildLocalizeFn({
-      values: dayPeriodValues$6,
+    dayPeriod: buildLocalizeFn$1({
+      values: dayPeriodValues$7,
       defaultWidth: "any",
-      formattingValues: formattingDayPeriodValues$6,
+      formattingValues: formattingDayPeriodValues$7,
       defaultFormattingWidth: "wide"
     })
   };
-  const matchOrdinalNumberPattern$6 = /^(\d+)(-?(е|я|й|ое|ье|ая|ья|ый|ой|ий|ый))?/i;
-  const parseOrdinalNumberPattern$6 = /\d+/i;
-  const matchEraPatterns$6 = {
+  const matchOrdinalNumberPattern$7 = /^(\d+)(-?(е|я|й|ое|ье|ая|ья|ый|ой|ий|ый))?/i;
+  const parseOrdinalNumberPattern$7 = /\d+/i;
+  const matchEraPatterns$7 = {
     narrow: /^((до )?н\.?\s?э\.?)/i,
     abbreviated: /^((до )?н\.?\s?э\.?)/i,
     wide: /^(до нашей эры|нашей эры|наша эра)/i
   };
-  const parseEraPatterns$6 = {
+  const parseEraPatterns$7 = {
     any: [/^д/i, /^н/i]
   };
-  const matchQuarterPatterns$6 = {
+  const matchQuarterPatterns$7 = {
     narrow: /^[1234]/i,
     abbreviated: /^[1234](-?[ыои]?й?)? кв.?/i,
     wide: /^[1234](-?[ыои]?й?)? квартал/i
   };
-  const parseQuarterPatterns$6 = {
+  const parseQuarterPatterns$7 = {
     any: [/1/i, /2/i, /3/i, /4/i]
   };
-  const matchMonthPatterns$6 = {
+  const matchMonthPatterns$7 = {
     narrow: /^[яфмаисонд]/i,
     abbreviated: /^(янв|фев|март?|апр|ма[йя]|июн[ья]?|июл[ья]?|авг|сент?|окт|нояб?|дек)\.?/i,
     wide: /^(январ[ья]|феврал[ья]|марта?|апрел[ья]|ма[йя]|июн[ья]|июл[ья]|августа?|сентябр[ья]|октябр[ья]|октябр[ья]|ноябр[ья]|декабр[ья])/i
   };
-  const parseMonthPatterns$6 = {
+  const parseMonthPatterns$7 = {
     narrow: [
       /^я/i,
       /^ф/i,
@@ -48576,22 +48487,22 @@ var __async = (__this, __arguments, generator) => {
       /^д/i
     ]
   };
-  const matchDayPatterns$6 = {
+  const matchDayPatterns$7 = {
     narrow: /^[впсч]/i,
     short: /^(вс|во|пн|по|вт|ср|чт|че|пт|пя|сб|су)\.?/i,
     abbreviated: /^(вск|вос|пнд|пон|втр|вто|срд|сре|чтв|чет|птн|пят|суб).?/i,
     wide: /^(воскресень[ея]|понедельника?|вторника?|сред[аы]|четверга?|пятниц[аы]|суббот[аы])/i
   };
-  const parseDayPatterns$6 = {
+  const parseDayPatterns$7 = {
     narrow: [/^в/i, /^п/i, /^в/i, /^с/i, /^ч/i, /^п/i, /^с/i],
     any: [/^в[ос]/i, /^п[он]/i, /^в/i, /^ср/i, /^ч/i, /^п[ят]/i, /^с[уб]/i]
   };
-  const matchDayPeriodPatterns$6 = {
+  const matchDayPeriodPatterns$7 = {
     narrow: /^([дп]п|полн\.?|полд\.?|утр[оа]|день|дня|веч\.?|ноч[ьи])/i,
     abbreviated: /^([дп]п|полн\.?|полд\.?|утр[оа]|день|дня|веч\.?|ноч[ьи])/i,
     wide: /^([дп]п|полночь|полдень|утр[оа]|день|дня|вечера?|ноч[ьи])/i
   };
-  const parseDayPeriodPatterns$6 = {
+  const parseDayPeriodPatterns$7 = {
     any: {
       am: /^дп/i,
       pm: /^пп/i,
@@ -48603,57 +48514,57 @@ var __async = (__this, __arguments, generator) => {
       night: /^н/i
     }
   };
-  const match$6 = {
-    ordinalNumber: buildMatchPatternFn({
-      matchPattern: matchOrdinalNumberPattern$6,
-      parsePattern: parseOrdinalNumberPattern$6,
+  const match$7 = {
+    ordinalNumber: buildMatchPatternFn$1({
+      matchPattern: matchOrdinalNumberPattern$7,
+      parsePattern: parseOrdinalNumberPattern$7,
       valueCallback: (value) => parseInt(value, 10)
     }),
-    era: buildMatchFn({
-      matchPatterns: matchEraPatterns$6,
+    era: buildMatchFn$1({
+      matchPatterns: matchEraPatterns$7,
       defaultMatchWidth: "wide",
-      parsePatterns: parseEraPatterns$6,
+      parsePatterns: parseEraPatterns$7,
       defaultParseWidth: "any"
     }),
-    quarter: buildMatchFn({
-      matchPatterns: matchQuarterPatterns$6,
+    quarter: buildMatchFn$1({
+      matchPatterns: matchQuarterPatterns$7,
       defaultMatchWidth: "wide",
-      parsePatterns: parseQuarterPatterns$6,
+      parsePatterns: parseQuarterPatterns$7,
       defaultParseWidth: "any",
       valueCallback: (index2) => index2 + 1
     }),
-    month: buildMatchFn({
-      matchPatterns: matchMonthPatterns$6,
+    month: buildMatchFn$1({
+      matchPatterns: matchMonthPatterns$7,
       defaultMatchWidth: "wide",
-      parsePatterns: parseMonthPatterns$6,
+      parsePatterns: parseMonthPatterns$7,
       defaultParseWidth: "any"
     }),
-    day: buildMatchFn({
-      matchPatterns: matchDayPatterns$6,
+    day: buildMatchFn$1({
+      matchPatterns: matchDayPatterns$7,
       defaultMatchWidth: "wide",
-      parsePatterns: parseDayPatterns$6,
+      parsePatterns: parseDayPatterns$7,
       defaultParseWidth: "any"
     }),
-    dayPeriod: buildMatchFn({
-      matchPatterns: matchDayPeriodPatterns$6,
+    dayPeriod: buildMatchFn$1({
+      matchPatterns: matchDayPeriodPatterns$7,
       defaultMatchWidth: "wide",
-      parsePatterns: parseDayPeriodPatterns$6,
+      parsePatterns: parseDayPeriodPatterns$7,
       defaultParseWidth: "any"
     })
   };
   const ru = {
     code: "ru",
-    formatDistance: formatDistance$6,
-    formatLong: formatLong$6,
-    formatRelative: formatRelative$6,
-    localize: localize$6,
-    match: match$6,
+    formatDistance: formatDistance$7,
+    formatLong: formatLong$7,
+    formatRelative: formatRelative$7,
+    localize: localize$7,
+    match: match$7,
     options: {
       weekStartsOn: 1,
       firstWeekContainsDate: 1
     }
   };
-  const formatDistanceLocale$5 = {
+  const formatDistanceLocale$6 = {
     lessThanXSeconds: {
       one: "mindre än en sekund",
       other: "mindre än {{count}} sekunder"
@@ -48731,9 +48642,9 @@ var __async = (__this, __arguments, generator) => {
     "elva",
     "tolv"
   ];
-  const formatDistance$5 = (token, count2, options2) => {
+  const formatDistance$6 = (token, count2, options2) => {
     let result;
-    const tokenValue = formatDistanceLocale$5[token];
+    const tokenValue = formatDistanceLocale$6[token];
     if (typeof tokenValue === "string") {
       result = tokenValue;
     } else if (count2 === 1) {
@@ -48753,39 +48664,39 @@ var __async = (__this, __arguments, generator) => {
     }
     return result;
   };
-  const dateFormats$6 = {
+  const dateFormats$7 = {
     full: "EEEE d MMMM y",
     long: "d MMMM y",
     medium: "d MMM y",
     short: "y-MM-dd"
   };
-  const timeFormats$5 = {
+  const timeFormats$6 = {
     full: "'kl'. HH:mm:ss zzzz",
     long: "HH:mm:ss z",
     medium: "HH:mm:ss",
     short: "HH:mm"
   };
-  const dateTimeFormats$5 = {
+  const dateTimeFormats$6 = {
     full: "{{date}} 'kl.' {{time}}",
     long: "{{date}} 'kl.' {{time}}",
     medium: "{{date}} {{time}}",
     short: "{{date}} {{time}}"
   };
-  const formatLong$5 = {
-    date: buildFormatLongFn({
-      formats: dateFormats$6,
+  const formatLong$6 = {
+    date: buildFormatLongFn$1({
+      formats: dateFormats$7,
       defaultWidth: "full"
     }),
-    time: buildFormatLongFn({
-      formats: timeFormats$5,
+    time: buildFormatLongFn$1({
+      formats: timeFormats$6,
       defaultWidth: "full"
     }),
-    dateTime: buildFormatLongFn({
-      formats: dateTimeFormats$5,
+    dateTime: buildFormatLongFn$1({
+      formats: dateTimeFormats$6,
       defaultWidth: "full"
     })
   };
-  const formatRelativeLocale$5 = {
+  const formatRelativeLocale$6 = {
     lastWeek: "'i' EEEE's kl.' p",
     yesterday: "'igår kl.' p",
     today: "'idag kl.' p",
@@ -48793,18 +48704,18 @@ var __async = (__this, __arguments, generator) => {
     nextWeek: "EEEE 'kl.' p",
     other: "P"
   };
-  const formatRelative$5 = (token, _date, _baseDate, _options) => formatRelativeLocale$5[token];
-  const eraValues$5 = {
+  const formatRelative$6 = (token, _date, _baseDate, _options) => formatRelativeLocale$6[token];
+  const eraValues$6 = {
     narrow: ["f.Kr.", "e.Kr."],
     abbreviated: ["f.Kr.", "e.Kr."],
     wide: ["före Kristus", "efter Kristus"]
   };
-  const quarterValues$5 = {
+  const quarterValues$6 = {
     narrow: ["1", "2", "3", "4"],
     abbreviated: ["Q1", "Q2", "Q3", "Q4"],
     wide: ["1:a kvartalet", "2:a kvartalet", "3:e kvartalet", "4:e kvartalet"]
   };
-  const monthValues$5 = {
+  const monthValues$6 = {
     narrow: ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"],
     abbreviated: [
       "jan.",
@@ -48835,13 +48746,13 @@ var __async = (__this, __arguments, generator) => {
       "december"
     ]
   };
-  const dayValues$5 = {
+  const dayValues$6 = {
     narrow: ["S", "M", "T", "O", "T", "F", "L"],
     short: ["sö", "må", "ti", "on", "to", "fr", "lö"],
     abbreviated: ["sön", "mån", "tis", "ons", "tors", "fre", "lör"],
     wide: ["söndag", "måndag", "tisdag", "onsdag", "torsdag", "fredag", "lördag"]
   };
-  const dayPeriodValues$5 = {
+  const dayPeriodValues$6 = {
     narrow: {
       am: "fm",
       pm: "em",
@@ -48873,7 +48784,7 @@ var __async = (__this, __arguments, generator) => {
       night: "natt"
     }
   };
-  const formattingDayPeriodValues$5 = {
+  const formattingDayPeriodValues$6 = {
     narrow: {
       am: "fm",
       pm: "em",
@@ -48905,7 +48816,7 @@ var __async = (__this, __arguments, generator) => {
       night: "på natten"
     }
   };
-  const ordinalNumber$5 = (dirtyNumber, _options) => {
+  const ordinalNumber$6 = (dirtyNumber, _options) => {
     const number = Number(dirtyNumber);
     const rem100 = number % 100;
     if (rem100 > 20 || rem100 < 10) {
@@ -48917,56 +48828,56 @@ var __async = (__this, __arguments, generator) => {
     }
     return number + ":e";
   };
-  const localize$5 = {
-    ordinalNumber: ordinalNumber$5,
-    era: buildLocalizeFn({
-      values: eraValues$5,
+  const localize$6 = {
+    ordinalNumber: ordinalNumber$6,
+    era: buildLocalizeFn$1({
+      values: eraValues$6,
       defaultWidth: "wide"
     }),
-    quarter: buildLocalizeFn({
-      values: quarterValues$5,
+    quarter: buildLocalizeFn$1({
+      values: quarterValues$6,
       defaultWidth: "wide",
       argumentCallback: (quarter) => quarter - 1
     }),
-    month: buildLocalizeFn({
-      values: monthValues$5,
+    month: buildLocalizeFn$1({
+      values: monthValues$6,
       defaultWidth: "wide"
     }),
-    day: buildLocalizeFn({
-      values: dayValues$5,
+    day: buildLocalizeFn$1({
+      values: dayValues$6,
       defaultWidth: "wide"
     }),
-    dayPeriod: buildLocalizeFn({
-      values: dayPeriodValues$5,
+    dayPeriod: buildLocalizeFn$1({
+      values: dayPeriodValues$6,
       defaultWidth: "wide",
-      formattingValues: formattingDayPeriodValues$5,
+      formattingValues: formattingDayPeriodValues$6,
       defaultFormattingWidth: "wide"
     })
   };
-  const matchOrdinalNumberPattern$5 = /^(\d+)(:a|:e)?/i;
-  const parseOrdinalNumberPattern$5 = /\d+/i;
-  const matchEraPatterns$5 = {
+  const matchOrdinalNumberPattern$6 = /^(\d+)(:a|:e)?/i;
+  const parseOrdinalNumberPattern$6 = /\d+/i;
+  const matchEraPatterns$6 = {
     narrow: /^(f\.? ?Kr\.?|f\.? ?v\.? ?t\.?|e\.? ?Kr\.?|v\.? ?t\.?)/i,
     abbreviated: /^(f\.? ?Kr\.?|f\.? ?v\.? ?t\.?|e\.? ?Kr\.?|v\.? ?t\.?)/i,
     wide: /^(före Kristus|före vår tid|efter Kristus|vår tid)/i
   };
-  const parseEraPatterns$5 = {
+  const parseEraPatterns$6 = {
     any: [/^f/i, /^[ev]/i]
   };
-  const matchQuarterPatterns$5 = {
+  const matchQuarterPatterns$6 = {
     narrow: /^[1234]/i,
     abbreviated: /^q[1234]/i,
     wide: /^[1234](:a|:e)? kvartalet/i
   };
-  const parseQuarterPatterns$5 = {
+  const parseQuarterPatterns$6 = {
     any: [/1/i, /2/i, /3/i, /4/i]
   };
-  const matchMonthPatterns$5 = {
+  const matchMonthPatterns$6 = {
     narrow: /^[jfmasond]/i,
     abbreviated: /^(jan|feb|mar[s]?|apr|maj|jun[i]?|jul[i]?|aug|sep|okt|nov|dec)\.?/i,
     wide: /^(januari|februari|mars|april|maj|juni|juli|augusti|september|oktober|november|december)/i
   };
-  const parseMonthPatterns$5 = {
+  const parseMonthPatterns$6 = {
     narrow: [
       /^j/i,
       /^f/i,
@@ -48996,19 +48907,19 @@ var __async = (__this, __arguments, generator) => {
       /^d/i
     ]
   };
-  const matchDayPatterns$5 = {
+  const matchDayPatterns$6 = {
     narrow: /^[smtofl]/i,
     short: /^(sö|må|ti|on|to|fr|lö)/i,
     abbreviated: /^(sön|mån|tis|ons|tors|fre|lör)/i,
     wide: /^(söndag|måndag|tisdag|onsdag|torsdag|fredag|lördag)/i
   };
-  const parseDayPatterns$5 = {
+  const parseDayPatterns$6 = {
     any: [/^s/i, /^m/i, /^ti/i, /^o/i, /^to/i, /^f/i, /^l/i]
   };
-  const matchDayPeriodPatterns$5 = {
+  const matchDayPeriodPatterns$6 = {
     any: /^([fe]\.?\s?m\.?|midn(att)?|midd(ag)?|(på) (morgonen|eftermiddagen|kvällen|natten))/i
   };
-  const parseDayPeriodPatterns$5 = {
+  const parseDayPeriodPatterns$6 = {
     any: {
       am: /^f/i,
       pm: /^e/i,
@@ -49020,57 +48931,57 @@ var __async = (__this, __arguments, generator) => {
       night: /natt/i
     }
   };
-  const match$5 = {
-    ordinalNumber: buildMatchPatternFn({
-      matchPattern: matchOrdinalNumberPattern$5,
-      parsePattern: parseOrdinalNumberPattern$5,
+  const match$6 = {
+    ordinalNumber: buildMatchPatternFn$1({
+      matchPattern: matchOrdinalNumberPattern$6,
+      parsePattern: parseOrdinalNumberPattern$6,
       valueCallback: (value) => parseInt(value, 10)
     }),
-    era: buildMatchFn({
-      matchPatterns: matchEraPatterns$5,
+    era: buildMatchFn$1({
+      matchPatterns: matchEraPatterns$6,
       defaultMatchWidth: "wide",
-      parsePatterns: parseEraPatterns$5,
+      parsePatterns: parseEraPatterns$6,
       defaultParseWidth: "any"
     }),
-    quarter: buildMatchFn({
-      matchPatterns: matchQuarterPatterns$5,
+    quarter: buildMatchFn$1({
+      matchPatterns: matchQuarterPatterns$6,
       defaultMatchWidth: "wide",
-      parsePatterns: parseQuarterPatterns$5,
+      parsePatterns: parseQuarterPatterns$6,
       defaultParseWidth: "any",
       valueCallback: (index2) => index2 + 1
     }),
-    month: buildMatchFn({
-      matchPatterns: matchMonthPatterns$5,
+    month: buildMatchFn$1({
+      matchPatterns: matchMonthPatterns$6,
       defaultMatchWidth: "wide",
-      parsePatterns: parseMonthPatterns$5,
+      parsePatterns: parseMonthPatterns$6,
       defaultParseWidth: "any"
     }),
-    day: buildMatchFn({
-      matchPatterns: matchDayPatterns$5,
+    day: buildMatchFn$1({
+      matchPatterns: matchDayPatterns$6,
       defaultMatchWidth: "wide",
-      parsePatterns: parseDayPatterns$5,
+      parsePatterns: parseDayPatterns$6,
       defaultParseWidth: "any"
     }),
-    dayPeriod: buildMatchFn({
-      matchPatterns: matchDayPeriodPatterns$5,
+    dayPeriod: buildMatchFn$1({
+      matchPatterns: matchDayPeriodPatterns$6,
       defaultMatchWidth: "any",
-      parsePatterns: parseDayPeriodPatterns$5,
+      parsePatterns: parseDayPeriodPatterns$6,
       defaultParseWidth: "any"
     })
   };
   const sv = {
     code: "sv",
-    formatDistance: formatDistance$5,
-    formatLong: formatLong$5,
-    formatRelative: formatRelative$5,
-    localize: localize$5,
-    match: match$5,
+    formatDistance: formatDistance$6,
+    formatLong: formatLong$6,
+    formatRelative: formatRelative$6,
+    localize: localize$6,
+    match: match$6,
     options: {
       weekStartsOn: 1,
       firstWeekContainsDate: 4
     }
   };
-  const formatDistanceLocale$4 = {
+  const formatDistanceLocale$5 = {
     lessThanXSeconds: {
       one: "น้อยกว่า 1 วินาที",
       other: "น้อยกว่า {{count}} วินาที"
@@ -49133,9 +49044,9 @@ var __async = (__this, __arguments, generator) => {
       other: "เกือบ {{count}} ปี"
     }
   };
-  const formatDistance$4 = (token, count2, options2) => {
+  const formatDistance$5 = (token, count2, options2) => {
     let result;
-    const tokenValue = formatDistanceLocale$4[token];
+    const tokenValue = formatDistanceLocale$5[token];
     if (typeof tokenValue === "string") {
       result = tokenValue;
     } else if (count2 === 1) {
@@ -49156,39 +49067,39 @@ var __async = (__this, __arguments, generator) => {
     }
     return result;
   };
-  const dateFormats$5 = {
+  const dateFormats$6 = {
     full: "วันEEEEที่ do MMMM y",
     long: "do MMMM y",
     medium: "d MMM y",
     short: "dd/MM/yyyy"
   };
-  const timeFormats$4 = {
+  const timeFormats$5 = {
     full: "H:mm:ss น. zzzz",
     long: "H:mm:ss น. z",
     medium: "H:mm:ss น.",
     short: "H:mm น."
   };
-  const dateTimeFormats$4 = {
+  const dateTimeFormats$5 = {
     full: "{{date}} 'เวลา' {{time}}",
     long: "{{date}} 'เวลา' {{time}}",
     medium: "{{date}}, {{time}}",
     short: "{{date}}, {{time}}"
   };
-  const formatLong$4 = {
-    date: buildFormatLongFn({
-      formats: dateFormats$5,
+  const formatLong$5 = {
+    date: buildFormatLongFn$1({
+      formats: dateFormats$6,
       defaultWidth: "full"
     }),
-    time: buildFormatLongFn({
-      formats: timeFormats$4,
+    time: buildFormatLongFn$1({
+      formats: timeFormats$5,
       defaultWidth: "medium"
     }),
-    dateTime: buildFormatLongFn({
-      formats: dateTimeFormats$4,
+    dateTime: buildFormatLongFn$1({
+      formats: dateTimeFormats$5,
       defaultWidth: "full"
     })
   };
-  const formatRelativeLocale$4 = {
+  const formatRelativeLocale$5 = {
     lastWeek: "eeee'ที่แล้วเวลา' p",
     yesterday: "'เมื่อวานนี้เวลา' p",
     today: "'วันนี้เวลา' p",
@@ -49196,24 +49107,24 @@ var __async = (__this, __arguments, generator) => {
     nextWeek: "eeee 'เวลา' p",
     other: "P"
   };
-  const formatRelative$4 = (token, _date, _baseDate, _options) => formatRelativeLocale$4[token];
-  const eraValues$4 = {
+  const formatRelative$5 = (token, _date, _baseDate, _options) => formatRelativeLocale$5[token];
+  const eraValues$5 = {
     narrow: ["B", "คศ"],
     abbreviated: ["BC", "ค.ศ."],
     wide: ["ปีก่อนคริสตกาล", "คริสต์ศักราช"]
   };
-  const quarterValues$4 = {
+  const quarterValues$5 = {
     narrow: ["1", "2", "3", "4"],
     abbreviated: ["Q1", "Q2", "Q3", "Q4"],
     wide: ["ไตรมาสแรก", "ไตรมาสที่สอง", "ไตรมาสที่สาม", "ไตรมาสที่สี่"]
   };
-  const dayValues$4 = {
+  const dayValues$5 = {
     narrow: ["อา.", "จ.", "อ.", "พ.", "พฤ.", "ศ.", "ส."],
     short: ["อา.", "จ.", "อ.", "พ.", "พฤ.", "ศ.", "ส."],
     abbreviated: ["อา.", "จ.", "อ.", "พ.", "พฤ.", "ศ.", "ส."],
     wide: ["อาทิตย์", "จันทร์", "อังคาร", "พุธ", "พฤหัสบดี", "ศุกร์", "เสาร์"]
   };
-  const monthValues$4 = {
+  const monthValues$5 = {
     narrow: [
       "ม.ค.",
       "ก.พ.",
@@ -49257,7 +49168,7 @@ var __async = (__this, __arguments, generator) => {
       "ธันวาคม"
     ]
   };
-  const dayPeriodValues$4 = {
+  const dayPeriodValues$5 = {
     narrow: {
       am: "ก่อนเที่ยง",
       pm: "หลังเที่ยง",
@@ -49289,7 +49200,7 @@ var __async = (__this, __arguments, generator) => {
       night: "กลางคืน"
     }
   };
-  const formattingDayPeriodValues$4 = {
+  const formattingDayPeriodValues$5 = {
     narrow: {
       am: "ก่อนเที่ยง",
       pm: "หลังเที่ยง",
@@ -49321,59 +49232,59 @@ var __async = (__this, __arguments, generator) => {
       night: "ตอนกลางคืน"
     }
   };
-  const ordinalNumber$4 = (dirtyNumber, _options) => {
+  const ordinalNumber$5 = (dirtyNumber, _options) => {
     return String(dirtyNumber);
   };
-  const localize$4 = {
-    ordinalNumber: ordinalNumber$4,
-    era: buildLocalizeFn({
-      values: eraValues$4,
+  const localize$5 = {
+    ordinalNumber: ordinalNumber$5,
+    era: buildLocalizeFn$1({
+      values: eraValues$5,
       defaultWidth: "wide"
     }),
-    quarter: buildLocalizeFn({
-      values: quarterValues$4,
+    quarter: buildLocalizeFn$1({
+      values: quarterValues$5,
       defaultWidth: "wide",
       argumentCallback: (quarter) => quarter - 1
     }),
-    month: buildLocalizeFn({
-      values: monthValues$4,
+    month: buildLocalizeFn$1({
+      values: monthValues$5,
       defaultWidth: "wide"
     }),
-    day: buildLocalizeFn({
-      values: dayValues$4,
+    day: buildLocalizeFn$1({
+      values: dayValues$5,
       defaultWidth: "wide"
     }),
-    dayPeriod: buildLocalizeFn({
-      values: dayPeriodValues$4,
+    dayPeriod: buildLocalizeFn$1({
+      values: dayPeriodValues$5,
       defaultWidth: "wide",
-      formattingValues: formattingDayPeriodValues$4,
+      formattingValues: formattingDayPeriodValues$5,
       defaultFormattingWidth: "wide"
     })
   };
-  const matchOrdinalNumberPattern$4 = /^\d+/i;
-  const parseOrdinalNumberPattern$4 = /\d+/i;
-  const matchEraPatterns$4 = {
+  const matchOrdinalNumberPattern$5 = /^\d+/i;
+  const parseOrdinalNumberPattern$5 = /\d+/i;
+  const matchEraPatterns$5 = {
     narrow: /^([bB]|[aA]|คศ)/i,
     abbreviated: /^([bB]\.?\s?[cC]\.?|b\.?\s?c\.?\s?e\.?|a\.?\s?d\.?|c\.?\s?e\.?|ค\.?ศ\.?)/i,
     wide: /^(ก่อนคริสตกาล|คริสต์ศักราช|คริสตกาล)/i
   };
-  const parseEraPatterns$4 = {
+  const parseEraPatterns$5 = {
     any: [/^[bB]/i, /^(^[aA]|ค\.?ศ\.?|คริสตกาล|คริสต์ศักราช|)/i]
   };
-  const matchQuarterPatterns$4 = {
+  const matchQuarterPatterns$5 = {
     narrow: /^[1234]/i,
     abbreviated: /^q[1234]/i,
     wide: /^ไตรมาส(ที่)? ?[1234]/i
   };
-  const parseQuarterPatterns$4 = {
+  const parseQuarterPatterns$5 = {
     any: [/(1|แรก|หนึ่ง)/i, /(2|สอง)/i, /(3|สาม)/i, /(4|สี่)/i]
   };
-  const matchMonthPatterns$4 = {
+  const matchMonthPatterns$5 = {
     narrow: /^(ม\.?ค\.?|ก\.?พ\.?|มี\.?ค\.?|เม\.?ย\.?|พ\.?ค\.?|มิ\.?ย\.?|ก\.?ค\.?|ส\.?ค\.?|ก\.?ย\.?|ต\.?ค\.?|พ\.?ย\.?|ธ\.?ค\.?)/i,
     abbreviated: /^(ม\.?ค\.?|ก\.?พ\.?|มี\.?ค\.?|เม\.?ย\.?|พ\.?ค\.?|มิ\.?ย\.?|ก\.?ค\.?|ส\.?ค\.?|ก\.?ย\.?|ต\.?ค\.?|พ\.?ย\.?|ธ\.?ค\.?')/i,
     wide: /^(มกราคม|กุมภาพันธ์|มีนาคม|เมษายน|พฤษภาคม|มิถุนายน|กรกฎาคม|สิงหาคม|กันยายน|ตุลาคม|พฤศจิกายน|ธันวาคม)/i
   };
-  const parseMonthPatterns$4 = {
+  const parseMonthPatterns$5 = {
     wide: [
       /^มก/i,
       /^กุม/i,
@@ -49403,20 +49314,20 @@ var __async = (__this, __arguments, generator) => {
       /^ธ\.?ค\.?/i
     ]
   };
-  const matchDayPatterns$4 = {
+  const matchDayPatterns$5 = {
     narrow: /^(อา\.?|จ\.?|อ\.?|พฤ\.?|พ\.?|ศ\.?|ส\.?)/i,
     short: /^(อา\.?|จ\.?|อ\.?|พฤ\.?|พ\.?|ศ\.?|ส\.?)/i,
     abbreviated: /^(อา\.?|จ\.?|อ\.?|พฤ\.?|พ\.?|ศ\.?|ส\.?)/i,
     wide: /^(อาทิตย์|จันทร์|อังคาร|พุธ|พฤหัสบดี|ศุกร์|เสาร์)/i
   };
-  const parseDayPatterns$4 = {
+  const parseDayPatterns$5 = {
     wide: [/^อา/i, /^จั/i, /^อั/i, /^พุธ/i, /^พฤ/i, /^ศ/i, /^เส/i],
     any: [/^อา/i, /^จ/i, /^อ/i, /^พ(?!ฤ)/i, /^พฤ/i, /^ศ/i, /^ส/i]
   };
-  const matchDayPeriodPatterns$4 = {
+  const matchDayPeriodPatterns$5 = {
     any: /^(ก่อนเที่ยง|หลังเที่ยง|เที่ยงคืน|เที่ยง|(ตอน.*?)?.*(เที่ยง|เช้า|บ่าย|เย็น|กลางคืน))/i
   };
-  const parseDayPeriodPatterns$4 = {
+  const parseDayPeriodPatterns$5 = {
     any: {
       am: /^ก่อนเที่ยง/i,
       pm: /^หลังเที่ยง/i,
@@ -49428,57 +49339,57 @@ var __async = (__this, __arguments, generator) => {
       night: /กลางคืน/i
     }
   };
-  const match$4 = {
-    ordinalNumber: buildMatchPatternFn({
-      matchPattern: matchOrdinalNumberPattern$4,
-      parsePattern: parseOrdinalNumberPattern$4,
+  const match$5 = {
+    ordinalNumber: buildMatchPatternFn$1({
+      matchPattern: matchOrdinalNumberPattern$5,
+      parsePattern: parseOrdinalNumberPattern$5,
       valueCallback: (value) => parseInt(value, 10)
     }),
-    era: buildMatchFn({
-      matchPatterns: matchEraPatterns$4,
+    era: buildMatchFn$1({
+      matchPatterns: matchEraPatterns$5,
       defaultMatchWidth: "wide",
-      parsePatterns: parseEraPatterns$4,
+      parsePatterns: parseEraPatterns$5,
       defaultParseWidth: "any"
     }),
-    quarter: buildMatchFn({
-      matchPatterns: matchQuarterPatterns$4,
+    quarter: buildMatchFn$1({
+      matchPatterns: matchQuarterPatterns$5,
       defaultMatchWidth: "wide",
-      parsePatterns: parseQuarterPatterns$4,
+      parsePatterns: parseQuarterPatterns$5,
       defaultParseWidth: "any",
       valueCallback: (index2) => index2 + 1
     }),
-    month: buildMatchFn({
-      matchPatterns: matchMonthPatterns$4,
+    month: buildMatchFn$1({
+      matchPatterns: matchMonthPatterns$5,
       defaultMatchWidth: "wide",
-      parsePatterns: parseMonthPatterns$4,
+      parsePatterns: parseMonthPatterns$5,
       defaultParseWidth: "any"
     }),
-    day: buildMatchFn({
-      matchPatterns: matchDayPatterns$4,
+    day: buildMatchFn$1({
+      matchPatterns: matchDayPatterns$5,
       defaultMatchWidth: "wide",
-      parsePatterns: parseDayPatterns$4,
+      parsePatterns: parseDayPatterns$5,
       defaultParseWidth: "any"
     }),
-    dayPeriod: buildMatchFn({
-      matchPatterns: matchDayPeriodPatterns$4,
+    dayPeriod: buildMatchFn$1({
+      matchPatterns: matchDayPeriodPatterns$5,
       defaultMatchWidth: "any",
-      parsePatterns: parseDayPeriodPatterns$4,
+      parsePatterns: parseDayPeriodPatterns$5,
       defaultParseWidth: "any"
     })
   };
   const th = {
     code: "th",
-    formatDistance: formatDistance$4,
-    formatLong: formatLong$4,
-    formatRelative: formatRelative$4,
-    localize: localize$4,
-    match: match$4,
+    formatDistance: formatDistance$5,
+    formatLong: formatLong$5,
+    formatRelative: formatRelative$5,
+    localize: localize$5,
+    match: match$5,
     options: {
       weekStartsOn: 0,
       firstWeekContainsDate: 1
     }
   };
-  const formatDistanceLocale$3 = {
+  const formatDistanceLocale$4 = {
     lessThanXSeconds: {
       one: "bir saniyeden az",
       other: "{{count}} saniyeden az"
@@ -49541,9 +49452,9 @@ var __async = (__this, __arguments, generator) => {
       other: "neredeyse {{count}} yıl"
     }
   };
-  const formatDistance$3 = (token, count2, options2) => {
+  const formatDistance$4 = (token, count2, options2) => {
     let result;
-    const tokenValue = formatDistanceLocale$3[token];
+    const tokenValue = formatDistanceLocale$4[token];
     if (typeof tokenValue === "string") {
       result = tokenValue;
     } else if (count2 === 1) {
@@ -49560,39 +49471,39 @@ var __async = (__this, __arguments, generator) => {
     }
     return result;
   };
-  const dateFormats$4 = {
+  const dateFormats$5 = {
     full: "d MMMM y EEEE",
     long: "d MMMM y",
     medium: "d MMM y",
     short: "dd.MM.yyyy"
   };
-  const timeFormats$3 = {
+  const timeFormats$4 = {
     full: "HH:mm:ss zzzz",
     long: "HH:mm:ss z",
     medium: "HH:mm:ss",
     short: "HH:mm"
   };
-  const dateTimeFormats$3 = {
+  const dateTimeFormats$4 = {
     full: "{{date}} 'saat' {{time}}",
     long: "{{date}} 'saat' {{time}}",
     medium: "{{date}}, {{time}}",
     short: "{{date}}, {{time}}"
   };
-  const formatLong$3 = {
-    date: buildFormatLongFn({
-      formats: dateFormats$4,
+  const formatLong$4 = {
+    date: buildFormatLongFn$1({
+      formats: dateFormats$5,
       defaultWidth: "full"
     }),
-    time: buildFormatLongFn({
-      formats: timeFormats$3,
+    time: buildFormatLongFn$1({
+      formats: timeFormats$4,
       defaultWidth: "full"
     }),
-    dateTime: buildFormatLongFn({
-      formats: dateTimeFormats$3,
+    dateTime: buildFormatLongFn$1({
+      formats: dateTimeFormats$4,
       defaultWidth: "full"
     })
   };
-  const formatRelativeLocale$3 = {
+  const formatRelativeLocale$4 = {
     lastWeek: "'geçen hafta' eeee 'saat' p",
     yesterday: "'dün saat' p",
     today: "'bugün saat' p",
@@ -49600,18 +49511,18 @@ var __async = (__this, __arguments, generator) => {
     nextWeek: "eeee 'saat' p",
     other: "P"
   };
-  const formatRelative$3 = (token, _date, _baseDate, _options) => formatRelativeLocale$3[token];
-  const eraValues$3 = {
+  const formatRelative$4 = (token, _date, _baseDate, _options) => formatRelativeLocale$4[token];
+  const eraValues$4 = {
     narrow: ["MÖ", "MS"],
     abbreviated: ["MÖ", "MS"],
     wide: ["Milattan Önce", "Milattan Sonra"]
   };
-  const quarterValues$3 = {
+  const quarterValues$4 = {
     narrow: ["1", "2", "3", "4"],
     abbreviated: ["1Ç", "2Ç", "3Ç", "4Ç"],
     wide: ["İlk çeyrek", "İkinci Çeyrek", "Üçüncü çeyrek", "Son çeyrek"]
   };
-  const monthValues$3 = {
+  const monthValues$4 = {
     narrow: ["O", "Ş", "M", "N", "M", "H", "T", "A", "E", "E", "K", "A"],
     abbreviated: [
       "Oca",
@@ -49642,7 +49553,7 @@ var __async = (__this, __arguments, generator) => {
       "Aralık"
     ]
   };
-  const dayValues$3 = {
+  const dayValues$4 = {
     narrow: ["P", "P", "S", "Ç", "P", "C", "C"],
     short: ["Pz", "Pt", "Sa", "Ça", "Pe", "Cu", "Ct"],
     abbreviated: ["Paz", "Pzt", "Sal", "Çar", "Per", "Cum", "Cts"],
@@ -49656,7 +49567,7 @@ var __async = (__this, __arguments, generator) => {
       "Cumartesi"
     ]
   };
-  const dayPeriodValues$3 = {
+  const dayPeriodValues$4 = {
     narrow: {
       am: "öö",
       pm: "ös",
@@ -49688,7 +49599,7 @@ var __async = (__this, __arguments, generator) => {
       night: "gece"
     }
   };
-  const formattingDayPeriodValues$3 = {
+  const formattingDayPeriodValues$4 = {
     narrow: {
       am: "öö",
       pm: "ös",
@@ -49720,52 +49631,52 @@ var __async = (__this, __arguments, generator) => {
       night: "geceleyin"
     }
   };
-  const ordinalNumber$3 = (dirtyNumber, _options) => {
+  const ordinalNumber$4 = (dirtyNumber, _options) => {
     const number = Number(dirtyNumber);
     return number + ".";
   };
-  const localize$3 = {
-    ordinalNumber: ordinalNumber$3,
-    era: buildLocalizeFn({
-      values: eraValues$3,
+  const localize$4 = {
+    ordinalNumber: ordinalNumber$4,
+    era: buildLocalizeFn$1({
+      values: eraValues$4,
       defaultWidth: "wide"
     }),
-    quarter: buildLocalizeFn({
-      values: quarterValues$3,
+    quarter: buildLocalizeFn$1({
+      values: quarterValues$4,
       defaultWidth: "wide",
       argumentCallback: (quarter) => Number(quarter) - 1
     }),
-    month: buildLocalizeFn({
-      values: monthValues$3,
+    month: buildLocalizeFn$1({
+      values: monthValues$4,
       defaultWidth: "wide"
     }),
-    day: buildLocalizeFn({
-      values: dayValues$3,
+    day: buildLocalizeFn$1({
+      values: dayValues$4,
       defaultWidth: "wide"
     }),
-    dayPeriod: buildLocalizeFn({
-      values: dayPeriodValues$3,
+    dayPeriod: buildLocalizeFn$1({
+      values: dayPeriodValues$4,
       defaultWidth: "wide",
-      formattingValues: formattingDayPeriodValues$3,
+      formattingValues: formattingDayPeriodValues$4,
       defaultFormattingWidth: "wide"
     })
   };
-  const matchOrdinalNumberPattern$3 = /^(\d+)(\.)?/i;
-  const parseOrdinalNumberPattern$3 = /\d+/i;
-  const matchEraPatterns$3 = {
+  const matchOrdinalNumberPattern$4 = /^(\d+)(\.)?/i;
+  const parseOrdinalNumberPattern$4 = /\d+/i;
+  const matchEraPatterns$4 = {
     narrow: /^(mö|ms)/i,
     abbreviated: /^(mö|ms)/i,
     wide: /^(milattan önce|milattan sonra)/i
   };
-  const parseEraPatterns$3 = {
+  const parseEraPatterns$4 = {
     any: [/(^mö|^milattan önce)/i, /(^ms|^milattan sonra)/i]
   };
-  const matchQuarterPatterns$3 = {
+  const matchQuarterPatterns$4 = {
     narrow: /^[1234]/i,
     abbreviated: /^[1234]ç/i,
     wide: /^((i|İ)lk|(i|İ)kinci|üçüncü|son) çeyrek/i
   };
-  const parseQuarterPatterns$3 = {
+  const parseQuarterPatterns$4 = {
     any: [/1/i, /2/i, /3/i, /4/i],
     abbreviated: [/1ç/i, /2ç/i, /3ç/i, /4ç/i],
     wide: [
@@ -49775,12 +49686,12 @@ var __async = (__this, __arguments, generator) => {
       /son çeyrek/i
     ]
   };
-  const matchMonthPatterns$3 = {
+  const matchMonthPatterns$4 = {
     narrow: /^[oşmnhtaek]/i,
     abbreviated: /^(oca|şub|mar|nis|may|haz|tem|ağu|eyl|eki|kas|ara)/i,
     wide: /^(ocak|şubat|mart|nisan|mayıs|haziran|temmuz|ağustos|eylül|ekim|kasım|aralık)/i
   };
-  const parseMonthPatterns$3 = {
+  const parseMonthPatterns$4 = {
     narrow: [
       /^o/i,
       /^ş/i,
@@ -49810,13 +49721,13 @@ var __async = (__this, __arguments, generator) => {
       /^ar/i
     ]
   };
-  const matchDayPatterns$3 = {
+  const matchDayPatterns$4 = {
     narrow: /^[psçc]/i,
     short: /^(pz|pt|sa|ça|pe|cu|ct)/i,
     abbreviated: /^(paz|pzt|sal|çar|per|cum|cts)/i,
     wide: /^(pazar(?!tesi)|pazartesi|salı|çarşamba|perşembe|cuma(?!rtesi)|cumartesi)/i
   };
-  const parseDayPatterns$3 = {
+  const parseDayPatterns$4 = {
     narrow: [/^p/i, /^p/i, /^s/i, /^ç/i, /^p/i, /^c/i, /^c/i],
     any: [/^pz/i, /^pt/i, /^sa/i, /^ça/i, /^pe/i, /^cu/i, /^ct/i],
     wide: [
@@ -49829,11 +49740,11 @@ var __async = (__this, __arguments, generator) => {
       /^cumartesi/i
     ]
   };
-  const matchDayPeriodPatterns$3 = {
+  const matchDayPeriodPatterns$4 = {
     narrow: /^(öö|ös|gy|ö|sa|ös|ak|ge)/i,
     any: /^(ö\.?\s?[ös]\.?|öğleden sonra|gece yarısı|öğle|(sabah|öğ|akşam|gece)(leyin))/i
   };
-  const parseDayPeriodPatterns$3 = {
+  const parseDayPeriodPatterns$4 = {
     any: {
       am: /^ö\.?ö\.?/i,
       pm: /^ö\.?s\.?/i,
@@ -49845,59 +49756,59 @@ var __async = (__this, __arguments, generator) => {
       night: /^ge/i
     }
   };
-  const match$3 = {
-    ordinalNumber: buildMatchPatternFn({
-      matchPattern: matchOrdinalNumberPattern$3,
-      parsePattern: parseOrdinalNumberPattern$3,
+  const match$4 = {
+    ordinalNumber: buildMatchPatternFn$1({
+      matchPattern: matchOrdinalNumberPattern$4,
+      parsePattern: parseOrdinalNumberPattern$4,
       valueCallback: function(value) {
         return parseInt(value, 10);
       }
     }),
-    era: buildMatchFn({
-      matchPatterns: matchEraPatterns$3,
+    era: buildMatchFn$1({
+      matchPatterns: matchEraPatterns$4,
       defaultMatchWidth: "wide",
-      parsePatterns: parseEraPatterns$3,
+      parsePatterns: parseEraPatterns$4,
       defaultParseWidth: "any"
     }),
-    quarter: buildMatchFn({
-      matchPatterns: matchQuarterPatterns$3,
+    quarter: buildMatchFn$1({
+      matchPatterns: matchQuarterPatterns$4,
       defaultMatchWidth: "wide",
-      parsePatterns: parseQuarterPatterns$3,
+      parsePatterns: parseQuarterPatterns$4,
       defaultParseWidth: "any",
       valueCallback: (index2) => index2 + 1
     }),
-    month: buildMatchFn({
-      matchPatterns: matchMonthPatterns$3,
+    month: buildMatchFn$1({
+      matchPatterns: matchMonthPatterns$4,
       defaultMatchWidth: "wide",
-      parsePatterns: parseMonthPatterns$3,
+      parsePatterns: parseMonthPatterns$4,
       defaultParseWidth: "any"
     }),
-    day: buildMatchFn({
-      matchPatterns: matchDayPatterns$3,
+    day: buildMatchFn$1({
+      matchPatterns: matchDayPatterns$4,
       defaultMatchWidth: "wide",
-      parsePatterns: parseDayPatterns$3,
+      parsePatterns: parseDayPatterns$4,
       defaultParseWidth: "any"
     }),
-    dayPeriod: buildMatchFn({
-      matchPatterns: matchDayPeriodPatterns$3,
+    dayPeriod: buildMatchFn$1({
+      matchPatterns: matchDayPeriodPatterns$4,
       defaultMatchWidth: "any",
-      parsePatterns: parseDayPeriodPatterns$3,
+      parsePatterns: parseDayPeriodPatterns$4,
       defaultParseWidth: "any"
     })
   };
   const tr = {
     code: "tr",
-    formatDistance: formatDistance$3,
-    formatLong: formatLong$3,
-    formatRelative: formatRelative$3,
-    localize: localize$3,
-    match: match$3,
+    formatDistance: formatDistance$4,
+    formatLong: formatLong$4,
+    formatRelative: formatRelative$4,
+    localize: localize$4,
+    match: match$4,
     options: {
       weekStartsOn: 1,
       firstWeekContainsDate: 1
     }
   };
-  const formatDistanceLocale$2 = {
+  const formatDistanceLocale$3 = {
     lessThanXSeconds: {
       one: "dưới 1 giây",
       other: "dưới {{count}} giây"
@@ -49960,9 +49871,9 @@ var __async = (__this, __arguments, generator) => {
       other: "gần {{count}} năm"
     }
   };
-  const formatDistance$2 = (token, count2, options2) => {
+  const formatDistance$3 = (token, count2, options2) => {
     let result;
-    const tokenValue = formatDistanceLocale$2[token];
+    const tokenValue = formatDistanceLocale$3[token];
     if (typeof tokenValue === "string") {
       result = tokenValue;
     } else if (count2 === 1) {
@@ -49979,7 +49890,7 @@ var __async = (__this, __arguments, generator) => {
     }
     return result;
   };
-  const dateFormats$3 = {
+  const dateFormats$4 = {
     // thứ Sáu, ngày 25 tháng 08 năm 2017
     full: "EEEE, 'ngày' d MMMM 'năm' y",
     // ngày 25 tháng 08 năm 2017
@@ -49989,13 +49900,13 @@ var __async = (__this, __arguments, generator) => {
     // 25/08/2017
     short: "dd/MM/y"
   };
-  const timeFormats$2 = {
+  const timeFormats$3 = {
     full: "HH:mm:ss zzzz",
     long: "HH:mm:ss z",
     medium: "HH:mm:ss",
     short: "HH:mm"
   };
-  const dateTimeFormats$2 = {
+  const dateTimeFormats$3 = {
     // thứ Sáu, ngày 25 tháng 08 năm 2017 23:25:59
     full: "{{date}} {{time}}",
     // ngày 25 tháng 08 năm 2017 23:25
@@ -50003,21 +49914,21 @@ var __async = (__this, __arguments, generator) => {
     medium: "{{date}} {{time}}",
     short: "{{date}} {{time}}"
   };
-  const formatLong$2 = {
-    date: buildFormatLongFn({
-      formats: dateFormats$3,
+  const formatLong$3 = {
+    date: buildFormatLongFn$1({
+      formats: dateFormats$4,
       defaultWidth: "full"
     }),
-    time: buildFormatLongFn({
-      formats: timeFormats$2,
+    time: buildFormatLongFn$1({
+      formats: timeFormats$3,
       defaultWidth: "full"
     }),
-    dateTime: buildFormatLongFn({
-      formats: dateTimeFormats$2,
+    dateTime: buildFormatLongFn$1({
+      formats: dateTimeFormats$3,
       defaultWidth: "full"
     })
   };
-  const formatRelativeLocale$2 = {
+  const formatRelativeLocale$3 = {
     lastWeek: "eeee 'tuần trước vào lúc' p",
     yesterday: "'hôm qua vào lúc' p",
     today: "'hôm nay vào lúc' p",
@@ -50025,13 +49936,13 @@ var __async = (__this, __arguments, generator) => {
     nextWeek: "eeee 'tới vào lúc' p",
     other: "P"
   };
-  const formatRelative$2 = (token, _date, _baseDate, _options) => formatRelativeLocale$2[token];
-  const eraValues$2 = {
+  const formatRelative$3 = (token, _date, _baseDate, _options) => formatRelativeLocale$3[token];
+  const eraValues$3 = {
     narrow: ["TCN", "SCN"],
     abbreviated: ["trước CN", "sau CN"],
     wide: ["trước Công Nguyên", "sau Công Nguyên"]
   };
-  const quarterValues$2 = {
+  const quarterValues$3 = {
     narrow: ["1", "2", "3", "4"],
     abbreviated: ["Q1", "Q2", "Q3", "Q4"],
     wide: ["Quý 1", "Quý 2", "Quý 3", "Quý 4"]
@@ -50042,7 +49953,7 @@ var __async = (__this, __arguments, generator) => {
     // I notice many news outlet use this "quý II/2018"
     wide: ["quý I", "quý II", "quý III", "quý IV"]
   };
-  const monthValues$2 = {
+  const monthValues$3 = {
     narrow: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
     abbreviated: [
       "Thg 1",
@@ -50117,7 +50028,7 @@ var __async = (__this, __arguments, generator) => {
       "tháng 12"
     ]
   };
-  const dayValues$2 = {
+  const dayValues$3 = {
     narrow: ["CN", "T2", "T3", "T4", "T5", "T6", "T7"],
     short: ["CN", "Th 2", "Th 3", "Th 4", "Th 5", "Th 6", "Th 7"],
     abbreviated: ["CN", "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7"],
@@ -50131,7 +50042,7 @@ var __async = (__this, __arguments, generator) => {
       "Thứ Bảy"
     ]
   };
-  const dayPeriodValues$2 = {
+  const dayPeriodValues$3 = {
     // narrow date period is extremely rare in Vietnamese
     // I used abbreviated form for noon, morning and afternoon
     // which are regconizable by Vietnamese, others cannot be any shorter
@@ -50166,7 +50077,7 @@ var __async = (__this, __arguments, generator) => {
       night: "đêm"
     }
   };
-  const formattingDayPeriodValues$2 = {
+  const formattingDayPeriodValues$3 = {
     narrow: {
       am: "am",
       pm: "pm",
@@ -50198,7 +50109,7 @@ var __async = (__this, __arguments, generator) => {
       night: "vào ban đêm"
     }
   };
-  const ordinalNumber$2 = (dirtyNumber, options2) => {
+  const ordinalNumber$3 = (dirtyNumber, options2) => {
     const number = Number(dirtyNumber);
     const unit = options2 == null ? void 0 : options2.unit;
     if (unit === "quarter") {
@@ -50244,55 +50155,55 @@ var __async = (__this, __arguments, generator) => {
     }
     return String(number);
   };
-  const localize$2 = {
-    ordinalNumber: ordinalNumber$2,
-    era: buildLocalizeFn({
-      values: eraValues$2,
+  const localize$3 = {
+    ordinalNumber: ordinalNumber$3,
+    era: buildLocalizeFn$1({
+      values: eraValues$3,
       defaultWidth: "wide"
     }),
-    quarter: buildLocalizeFn({
-      values: quarterValues$2,
+    quarter: buildLocalizeFn$1({
+      values: quarterValues$3,
       defaultWidth: "wide",
       formattingValues: formattingQuarterValues,
       defaultFormattingWidth: "wide",
       argumentCallback: (quarter) => quarter - 1
     }),
-    month: buildLocalizeFn({
-      values: monthValues$2,
+    month: buildLocalizeFn$1({
+      values: monthValues$3,
       defaultWidth: "wide",
       formattingValues: formattingMonthValues,
       defaultFormattingWidth: "wide"
     }),
-    day: buildLocalizeFn({
-      values: dayValues$2,
+    day: buildLocalizeFn$1({
+      values: dayValues$3,
       defaultWidth: "wide"
     }),
-    dayPeriod: buildLocalizeFn({
-      values: dayPeriodValues$2,
+    dayPeriod: buildLocalizeFn$1({
+      values: dayPeriodValues$3,
       defaultWidth: "wide",
-      formattingValues: formattingDayPeriodValues$2,
+      formattingValues: formattingDayPeriodValues$3,
       defaultFormattingWidth: "wide"
     })
   };
-  const matchOrdinalNumberPattern$2 = /^(\d+)/i;
-  const parseOrdinalNumberPattern$2 = /\d+/i;
-  const matchEraPatterns$2 = {
+  const matchOrdinalNumberPattern$3 = /^(\d+)/i;
+  const parseOrdinalNumberPattern$3 = /\d+/i;
+  const matchEraPatterns$3 = {
     narrow: /^(tcn|scn)/i,
     abbreviated: /^(trước CN|sau CN)/i,
     wide: /^(trước Công Nguyên|sau Công Nguyên)/i
   };
-  const parseEraPatterns$2 = {
+  const parseEraPatterns$3 = {
     any: [/^t/i, /^s/i]
   };
-  const matchQuarterPatterns$2 = {
+  const matchQuarterPatterns$3 = {
     narrow: /^([1234]|i{1,3}v?)/i,
     abbreviated: /^q([1234]|i{1,3}v?)/i,
     wide: /^quý ([1234]|i{1,3}v?)/i
   };
-  const parseQuarterPatterns$2 = {
+  const parseQuarterPatterns$3 = {
     any: [/(1|i)$/i, /(2|ii)$/i, /(3|iii)$/i, /(4|iv)$/i]
   };
-  const matchMonthPatterns$2 = {
+  const matchMonthPatterns$3 = {
     // month number may contain leading 0, 'thg' prefix may have space, underscore or empty before number
     // note the order of '1' since it is a sub-string of '10', so must be lower priority
     narrow: /^(0?[2-9]|10|11|12|0?1)/i,
@@ -50301,7 +50212,7 @@ var __async = (__this, __arguments, generator) => {
     // note the order of 'Mười' since it is sub-string of Mười Một, so must be lower priority
     wide: /^tháng ?(Một|Hai|Ba|Tư|Năm|Sáu|Bảy|Tám|Chín|Mười|Mười ?Một|Mười ?Hai|0?[1-9](?!\d)|10|11|12)/i
   };
-  const parseMonthPatterns$2 = {
+  const parseMonthPatterns$3 = {
     narrow: [
       /0?1$/i,
       /0?2/i,
@@ -50345,24 +50256,24 @@ var __async = (__this, __arguments, generator) => {
       /^tháng ?(Mười ?Hai|12)/i
     ]
   };
-  const matchDayPatterns$2 = {
+  const matchDayPatterns$3 = {
     narrow: /^(CN|T2|T3|T4|T5|T6|T7)/i,
     short: /^(CN|Th ?2|Th ?3|Th ?4|Th ?5|Th ?6|Th ?7)/i,
     abbreviated: /^(CN|Th ?2|Th ?3|Th ?4|Th ?5|Th ?6|Th ?7)/i,
     wide: /^(Chủ ?Nhật|Chúa ?Nhật|thứ ?Hai|thứ ?Ba|thứ ?Tư|thứ ?Năm|thứ ?Sáu|thứ ?Bảy)/i
   };
-  const parseDayPatterns$2 = {
+  const parseDayPatterns$3 = {
     narrow: [/CN/i, /2/i, /3/i, /4/i, /5/i, /6/i, /7/i],
     short: [/CN/i, /2/i, /3/i, /4/i, /5/i, /6/i, /7/i],
     abbreviated: [/CN/i, /2/i, /3/i, /4/i, /5/i, /6/i, /7/i],
     wide: [/(Chủ|Chúa) ?Nhật/i, /Hai/i, /Ba/i, /Tư/i, /Năm/i, /Sáu/i, /Bảy/i]
   };
-  const matchDayPeriodPatterns$2 = {
+  const matchDayPeriodPatterns$3 = {
     narrow: /^(a|p|nửa đêm|trưa|(giờ) (sáng|chiều|tối|đêm))/i,
     abbreviated: /^(am|pm|nửa đêm|trưa|(giờ) (sáng|chiều|tối|đêm))/i,
     wide: /^(ch[^i]*|sa|nửa đêm|trưa|(giờ) (sáng|chiều|tối|đêm))/i
   };
-  const parseDayPeriodPatterns$2 = {
+  const parseDayPeriodPatterns$3 = {
     any: {
       am: /^(a|sa)/i,
       pm: /^(p|ch[^i]*)/i,
@@ -50374,57 +50285,57 @@ var __async = (__this, __arguments, generator) => {
       night: /^đêm/i
     }
   };
-  const match$2 = {
-    ordinalNumber: buildMatchPatternFn({
-      matchPattern: matchOrdinalNumberPattern$2,
-      parsePattern: parseOrdinalNumberPattern$2,
+  const match$3 = {
+    ordinalNumber: buildMatchPatternFn$1({
+      matchPattern: matchOrdinalNumberPattern$3,
+      parsePattern: parseOrdinalNumberPattern$3,
       valueCallback: (value) => parseInt(value, 10)
     }),
-    era: buildMatchFn({
-      matchPatterns: matchEraPatterns$2,
+    era: buildMatchFn$1({
+      matchPatterns: matchEraPatterns$3,
       defaultMatchWidth: "wide",
-      parsePatterns: parseEraPatterns$2,
+      parsePatterns: parseEraPatterns$3,
       defaultParseWidth: "any"
     }),
-    quarter: buildMatchFn({
-      matchPatterns: matchQuarterPatterns$2,
+    quarter: buildMatchFn$1({
+      matchPatterns: matchQuarterPatterns$3,
       defaultMatchWidth: "wide",
-      parsePatterns: parseQuarterPatterns$2,
+      parsePatterns: parseQuarterPatterns$3,
       defaultParseWidth: "any",
       valueCallback: (index2) => index2 + 1
     }),
-    month: buildMatchFn({
-      matchPatterns: matchMonthPatterns$2,
+    month: buildMatchFn$1({
+      matchPatterns: matchMonthPatterns$3,
       defaultMatchWidth: "wide",
-      parsePatterns: parseMonthPatterns$2,
+      parsePatterns: parseMonthPatterns$3,
       defaultParseWidth: "wide"
     }),
-    day: buildMatchFn({
-      matchPatterns: matchDayPatterns$2,
+    day: buildMatchFn$1({
+      matchPatterns: matchDayPatterns$3,
       defaultMatchWidth: "wide",
-      parsePatterns: parseDayPatterns$2,
+      parsePatterns: parseDayPatterns$3,
       defaultParseWidth: "wide"
     }),
-    dayPeriod: buildMatchFn({
-      matchPatterns: matchDayPeriodPatterns$2,
+    dayPeriod: buildMatchFn$1({
+      matchPatterns: matchDayPeriodPatterns$3,
       defaultMatchWidth: "wide",
-      parsePatterns: parseDayPeriodPatterns$2,
+      parsePatterns: parseDayPeriodPatterns$3,
       defaultParseWidth: "any"
     })
   };
   const vi = {
     code: "vi",
-    formatDistance: formatDistance$2,
-    formatLong: formatLong$2,
-    formatRelative: formatRelative$2,
-    localize: localize$2,
-    match: match$2,
+    formatDistance: formatDistance$3,
+    formatLong: formatLong$3,
+    formatRelative: formatRelative$3,
+    localize: localize$3,
+    match: match$3,
     options: {
       weekStartsOn: 1,
       firstWeekContainsDate: 1
     }
   };
-  const formatDistanceLocale$1 = {
+  const formatDistanceLocale$2 = {
     lessThanXSeconds: {
       one: "不到 1 秒",
       other: "不到 {{count}} 秒"
@@ -50487,9 +50398,9 @@ var __async = (__this, __arguments, generator) => {
       other: "将近 {{count}} 年"
     }
   };
-  const formatDistance$1 = (token, count2, options2) => {
+  const formatDistance$2 = (token, count2, options2) => {
     let result;
-    const tokenValue = formatDistanceLocale$1[token];
+    const tokenValue = formatDistanceLocale$2[token];
     if (typeof tokenValue === "string") {
       result = tokenValue;
     } else if (count2 === 1) {
@@ -50506,35 +50417,35 @@ var __async = (__this, __arguments, generator) => {
     }
     return result;
   };
-  const dateFormats$2 = {
+  const dateFormats$3 = {
     full: "y'年'M'月'd'日' EEEE",
     long: "y'年'M'月'd'日'",
     medium: "yyyy-MM-dd",
     short: "yy-MM-dd"
   };
-  const timeFormats$1 = {
+  const timeFormats$2 = {
     full: "zzzz a h:mm:ss",
     long: "z a h:mm:ss",
     medium: "a h:mm:ss",
     short: "a h:mm"
   };
-  const dateTimeFormats$1 = {
+  const dateTimeFormats$2 = {
     full: "{{date}} {{time}}",
     long: "{{date}} {{time}}",
     medium: "{{date}} {{time}}",
     short: "{{date}} {{time}}"
   };
-  const formatLong$1 = {
-    date: buildFormatLongFn({
-      formats: dateFormats$2,
+  const formatLong$2 = {
+    date: buildFormatLongFn$1({
+      formats: dateFormats$3,
       defaultWidth: "full"
     }),
-    time: buildFormatLongFn({
-      formats: timeFormats$1,
+    time: buildFormatLongFn$1({
+      formats: timeFormats$2,
       defaultWidth: "full"
     }),
-    dateTime: buildFormatLongFn({
-      formats: dateTimeFormats$1,
+    dateTime: buildFormatLongFn$1({
+      formats: dateTimeFormats$2,
       defaultWidth: "full"
     })
   };
@@ -50547,7 +50458,7 @@ var __async = (__this, __arguments, generator) => {
     }
     return "'上个'" + baseFormat;
   }
-  const formatRelativeLocale$1 = {
+  const formatRelativeLocale$2 = {
     lastWeek: checkWeek,
     // days before yesterday, maybe in this week or last week
     yesterday: "'昨天' p",
@@ -50557,24 +50468,24 @@ var __async = (__this, __arguments, generator) => {
     // days after tomorrow, maybe in this week or next week
     other: "PP p"
   };
-  const formatRelative$1 = (token, date, baseDate, options2) => {
-    const format2 = formatRelativeLocale$1[token];
+  const formatRelative$2 = (token, date, baseDate, options2) => {
+    const format2 = formatRelativeLocale$2[token];
     if (typeof format2 === "function") {
       return format2(date, baseDate, options2);
     }
     return format2;
   };
-  const eraValues$1 = {
+  const eraValues$2 = {
     narrow: ["前", "公元"],
     abbreviated: ["前", "公元"],
     wide: ["公元前", "公元"]
   };
-  const quarterValues$1 = {
+  const quarterValues$2 = {
     narrow: ["1", "2", "3", "4"],
     abbreviated: ["第一季", "第二季", "第三季", "第四季"],
     wide: ["第一季度", "第二季度", "第三季度", "第四季度"]
   };
-  const monthValues$1 = {
+  const monthValues$2 = {
     narrow: [
       "一",
       "二",
@@ -50618,13 +50529,13 @@ var __async = (__this, __arguments, generator) => {
       "十二月"
     ]
   };
-  const dayValues$1 = {
+  const dayValues$2 = {
     narrow: ["日", "一", "二", "三", "四", "五", "六"],
     short: ["日", "一", "二", "三", "四", "五", "六"],
     abbreviated: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],
     wide: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]
   };
-  const dayPeriodValues$1 = {
+  const dayPeriodValues$2 = {
     narrow: {
       am: "上",
       pm: "下",
@@ -50656,7 +50567,7 @@ var __async = (__this, __arguments, generator) => {
       night: "夜间"
     }
   };
-  const formattingDayPeriodValues$1 = {
+  const formattingDayPeriodValues$2 = {
     narrow: {
       am: "上",
       pm: "下",
@@ -50688,7 +50599,7 @@ var __async = (__this, __arguments, generator) => {
       night: "夜间"
     }
   };
-  const ordinalNumber$1 = (dirtyNumber, options2) => {
+  const ordinalNumber$2 = (dirtyNumber, options2) => {
     const number = Number(dirtyNumber);
     switch (options2 == null ? void 0 : options2.unit) {
       case "date":
@@ -50703,56 +50614,56 @@ var __async = (__this, __arguments, generator) => {
         return "第 " + number.toString();
     }
   };
-  const localize$1 = {
-    ordinalNumber: ordinalNumber$1,
-    era: buildLocalizeFn({
-      values: eraValues$1,
+  const localize$2 = {
+    ordinalNumber: ordinalNumber$2,
+    era: buildLocalizeFn$1({
+      values: eraValues$2,
       defaultWidth: "wide"
     }),
-    quarter: buildLocalizeFn({
-      values: quarterValues$1,
+    quarter: buildLocalizeFn$1({
+      values: quarterValues$2,
       defaultWidth: "wide",
       argumentCallback: (quarter) => quarter - 1
     }),
-    month: buildLocalizeFn({
-      values: monthValues$1,
+    month: buildLocalizeFn$1({
+      values: monthValues$2,
       defaultWidth: "wide"
     }),
-    day: buildLocalizeFn({
-      values: dayValues$1,
+    day: buildLocalizeFn$1({
+      values: dayValues$2,
       defaultWidth: "wide"
     }),
-    dayPeriod: buildLocalizeFn({
-      values: dayPeriodValues$1,
+    dayPeriod: buildLocalizeFn$1({
+      values: dayPeriodValues$2,
       defaultWidth: "wide",
-      formattingValues: formattingDayPeriodValues$1,
+      formattingValues: formattingDayPeriodValues$2,
       defaultFormattingWidth: "wide"
     })
   };
-  const matchOrdinalNumberPattern$1 = /^(第\s*)?\d+(日|时|分|秒)?/i;
-  const parseOrdinalNumberPattern$1 = /\d+/i;
-  const matchEraPatterns$1 = {
+  const matchOrdinalNumberPattern$2 = /^(第\s*)?\d+(日|时|分|秒)?/i;
+  const parseOrdinalNumberPattern$2 = /\d+/i;
+  const matchEraPatterns$2 = {
     narrow: /^(前)/i,
     abbreviated: /^(前)/i,
     wide: /^(公元前|公元)/i
   };
-  const parseEraPatterns$1 = {
+  const parseEraPatterns$2 = {
     any: [/^(前)/i, /^(公元)/i]
   };
-  const matchQuarterPatterns$1 = {
+  const matchQuarterPatterns$2 = {
     narrow: /^[1234]/i,
     abbreviated: /^第[一二三四]刻/i,
     wide: /^第[一二三四]刻钟/i
   };
-  const parseQuarterPatterns$1 = {
+  const parseQuarterPatterns$2 = {
     any: [/(1|一)/i, /(2|二)/i, /(3|三)/i, /(4|四)/i]
   };
-  const matchMonthPatterns$1 = {
+  const matchMonthPatterns$2 = {
     narrow: /^(一|二|三|四|五|六|七|八|九|十[二一])/i,
     abbreviated: /^(一|二|三|四|五|六|七|八|九|十[二一]|\d|1[12])月/i,
     wide: /^(一|二|三|四|五|六|七|八|九|十[二一])月/i
   };
-  const parseMonthPatterns$1 = {
+  const parseMonthPatterns$2 = {
     narrow: [
       /^一/i,
       /^二/i,
@@ -50782,19 +50693,19 @@ var __async = (__this, __arguments, generator) => {
       /^十二|12/i
     ]
   };
-  const matchDayPatterns$1 = {
+  const matchDayPatterns$2 = {
     narrow: /^[一二三四五六日]/i,
     short: /^[一二三四五六日]/i,
     abbreviated: /^周[一二三四五六日]/i,
     wide: /^星期[一二三四五六日]/i
   };
-  const parseDayPatterns$1 = {
+  const parseDayPatterns$2 = {
     any: [/日/i, /一/i, /二/i, /三/i, /四/i, /五/i, /六/i]
   };
-  const matchDayPeriodPatterns$1 = {
+  const matchDayPeriodPatterns$2 = {
     any: /^(上午?|下午?|午夜|[中正]午|早上?|下午|晚上?|凌晨|)/i
   };
-  const parseDayPeriodPatterns$1 = {
+  const parseDayPeriodPatterns$2 = {
     any: {
       am: /^上午?/i,
       pm: /^下午?/i,
@@ -50806,57 +50717,57 @@ var __async = (__this, __arguments, generator) => {
       night: /^凌晨/i
     }
   };
-  const match$1 = {
-    ordinalNumber: buildMatchPatternFn({
-      matchPattern: matchOrdinalNumberPattern$1,
-      parsePattern: parseOrdinalNumberPattern$1,
+  const match$2 = {
+    ordinalNumber: buildMatchPatternFn$1({
+      matchPattern: matchOrdinalNumberPattern$2,
+      parsePattern: parseOrdinalNumberPattern$2,
       valueCallback: (value) => parseInt(value, 10)
     }),
-    era: buildMatchFn({
-      matchPatterns: matchEraPatterns$1,
+    era: buildMatchFn$1({
+      matchPatterns: matchEraPatterns$2,
       defaultMatchWidth: "wide",
-      parsePatterns: parseEraPatterns$1,
+      parsePatterns: parseEraPatterns$2,
       defaultParseWidth: "any"
     }),
-    quarter: buildMatchFn({
-      matchPatterns: matchQuarterPatterns$1,
+    quarter: buildMatchFn$1({
+      matchPatterns: matchQuarterPatterns$2,
       defaultMatchWidth: "wide",
-      parsePatterns: parseQuarterPatterns$1,
+      parsePatterns: parseQuarterPatterns$2,
       defaultParseWidth: "any",
       valueCallback: (index2) => index2 + 1
     }),
-    month: buildMatchFn({
-      matchPatterns: matchMonthPatterns$1,
+    month: buildMatchFn$1({
+      matchPatterns: matchMonthPatterns$2,
       defaultMatchWidth: "wide",
-      parsePatterns: parseMonthPatterns$1,
+      parsePatterns: parseMonthPatterns$2,
       defaultParseWidth: "any"
     }),
-    day: buildMatchFn({
-      matchPatterns: matchDayPatterns$1,
+    day: buildMatchFn$1({
+      matchPatterns: matchDayPatterns$2,
       defaultMatchWidth: "wide",
-      parsePatterns: parseDayPatterns$1,
+      parsePatterns: parseDayPatterns$2,
       defaultParseWidth: "any"
     }),
-    dayPeriod: buildMatchFn({
-      matchPatterns: matchDayPeriodPatterns$1,
+    dayPeriod: buildMatchFn$1({
+      matchPatterns: matchDayPeriodPatterns$2,
       defaultMatchWidth: "any",
-      parsePatterns: parseDayPeriodPatterns$1,
+      parsePatterns: parseDayPeriodPatterns$2,
       defaultParseWidth: "any"
     })
   };
   const zhCN = {
     code: "zh-CN",
-    formatDistance: formatDistance$1,
-    formatLong: formatLong$1,
-    formatRelative: formatRelative$1,
-    localize: localize$1,
-    match: match$1,
+    formatDistance: formatDistance$2,
+    formatLong: formatLong$2,
+    formatRelative: formatRelative$2,
+    localize: localize$2,
+    match: match$2,
     options: {
       weekStartsOn: 1,
       firstWeekContainsDate: 4
     }
   };
-  const formatDistanceLocale = {
+  const formatDistanceLocale$1 = {
     lessThanXSeconds: {
       one: "少於 1 秒",
       other: "少於 {{count}} 秒"
@@ -50919,9 +50830,9 @@ var __async = (__this, __arguments, generator) => {
       other: "將近 {{count}} 年"
     }
   };
-  const formatDistance = (token, count2, options2) => {
+  const formatDistance$1 = (token, count2, options2) => {
     let result;
-    const tokenValue = formatDistanceLocale[token];
+    const tokenValue = formatDistanceLocale$1[token];
     if (typeof tokenValue === "string") {
       result = tokenValue;
     } else if (count2 === 1) {
@@ -50938,39 +50849,39 @@ var __async = (__this, __arguments, generator) => {
     }
     return result;
   };
-  const dateFormats$1 = {
+  const dateFormats$2 = {
     full: "y'年'M'月'd'日' EEEE",
     long: "y'年'M'月'd'日'",
     medium: "yyyy-MM-dd",
     short: "yy-MM-dd"
   };
-  const timeFormats = {
+  const timeFormats$1 = {
     full: "zzzz a h:mm:ss",
     long: "z a h:mm:ss",
     medium: "a h:mm:ss",
     short: "a h:mm"
   };
-  const dateTimeFormats = {
+  const dateTimeFormats$1 = {
     full: "{{date}} {{time}}",
     long: "{{date}} {{time}}",
     medium: "{{date}} {{time}}",
     short: "{{date}} {{time}}"
   };
-  const formatLong = {
-    date: buildFormatLongFn({
-      formats: dateFormats$1,
+  const formatLong$1 = {
+    date: buildFormatLongFn$1({
+      formats: dateFormats$2,
       defaultWidth: "full"
     }),
-    time: buildFormatLongFn({
-      formats: timeFormats,
+    time: buildFormatLongFn$1({
+      formats: timeFormats$1,
       defaultWidth: "full"
     }),
-    dateTime: buildFormatLongFn({
-      formats: dateTimeFormats,
+    dateTime: buildFormatLongFn$1({
+      formats: dateTimeFormats$1,
       defaultWidth: "full"
     })
   };
-  const formatRelativeLocale = {
+  const formatRelativeLocale$1 = {
     lastWeek: "'上個'eeee p",
     yesterday: "'昨天' p",
     today: "'今天' p",
@@ -50978,18 +50889,18 @@ var __async = (__this, __arguments, generator) => {
     nextWeek: "'下個'eeee p",
     other: "P"
   };
-  const formatRelative = (token, _date, _baseDate, _options) => formatRelativeLocale[token];
-  const eraValues = {
+  const formatRelative$1 = (token, _date, _baseDate, _options) => formatRelativeLocale$1[token];
+  const eraValues$1 = {
     narrow: ["前", "公元"],
     abbreviated: ["前", "公元"],
     wide: ["公元前", "公元"]
   };
-  const quarterValues = {
+  const quarterValues$1 = {
     narrow: ["1", "2", "3", "4"],
     abbreviated: ["第一刻", "第二刻", "第三刻", "第四刻"],
     wide: ["第一刻鐘", "第二刻鐘", "第三刻鐘", "第四刻鐘"]
   };
-  const monthValues = {
+  const monthValues$1 = {
     narrow: [
       "一",
       "二",
@@ -51033,13 +50944,13 @@ var __async = (__this, __arguments, generator) => {
       "十二月"
     ]
   };
-  const dayValues = {
+  const dayValues$1 = {
     narrow: ["日", "一", "二", "三", "四", "五", "六"],
     short: ["日", "一", "二", "三", "四", "五", "六"],
     abbreviated: ["週日", "週一", "週二", "週三", "週四", "週五", "週六"],
     wide: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]
   };
-  const dayPeriodValues = {
+  const dayPeriodValues$1 = {
     narrow: {
       am: "上",
       pm: "下",
@@ -51071,7 +50982,7 @@ var __async = (__this, __arguments, generator) => {
       night: "夜間"
     }
   };
-  const formattingDayPeriodValues = {
+  const formattingDayPeriodValues$1 = {
     narrow: {
       am: "上",
       pm: "下",
@@ -51103,7 +51014,7 @@ var __async = (__this, __arguments, generator) => {
       night: "夜間"
     }
   };
-  const ordinalNumber = (dirtyNumber, options2) => {
+  const ordinalNumber$1 = (dirtyNumber, options2) => {
     const number = Number(dirtyNumber);
     switch (options2 == null ? void 0 : options2.unit) {
       case "date":
@@ -51118,56 +51029,56 @@ var __async = (__this, __arguments, generator) => {
         return "第 " + number;
     }
   };
-  const localize = {
-    ordinalNumber,
-    era: buildLocalizeFn({
-      values: eraValues,
+  const localize$1 = {
+    ordinalNumber: ordinalNumber$1,
+    era: buildLocalizeFn$1({
+      values: eraValues$1,
       defaultWidth: "wide"
     }),
-    quarter: buildLocalizeFn({
-      values: quarterValues,
+    quarter: buildLocalizeFn$1({
+      values: quarterValues$1,
       defaultWidth: "wide",
       argumentCallback: (quarter) => quarter - 1
     }),
-    month: buildLocalizeFn({
-      values: monthValues,
+    month: buildLocalizeFn$1({
+      values: monthValues$1,
       defaultWidth: "wide"
     }),
-    day: buildLocalizeFn({
-      values: dayValues,
+    day: buildLocalizeFn$1({
+      values: dayValues$1,
       defaultWidth: "wide"
     }),
-    dayPeriod: buildLocalizeFn({
-      values: dayPeriodValues,
+    dayPeriod: buildLocalizeFn$1({
+      values: dayPeriodValues$1,
       defaultWidth: "wide",
-      formattingValues: formattingDayPeriodValues,
+      formattingValues: formattingDayPeriodValues$1,
       defaultFormattingWidth: "wide"
     })
   };
-  const matchOrdinalNumberPattern = /^(第\s*)?\d+(日|時|分|秒)?/i;
-  const parseOrdinalNumberPattern = /\d+/i;
-  const matchEraPatterns = {
+  const matchOrdinalNumberPattern$1 = /^(第\s*)?\d+(日|時|分|秒)?/i;
+  const parseOrdinalNumberPattern$1 = /\d+/i;
+  const matchEraPatterns$1 = {
     narrow: /^(前)/i,
     abbreviated: /^(前)/i,
     wide: /^(公元前|公元)/i
   };
-  const parseEraPatterns = {
+  const parseEraPatterns$1 = {
     any: [/^(前)/i, /^(公元)/i]
   };
-  const matchQuarterPatterns = {
+  const matchQuarterPatterns$1 = {
     narrow: /^[1234]/i,
     abbreviated: /^第[一二三四]刻/i,
     wide: /^第[一二三四]刻鐘/i
   };
-  const parseQuarterPatterns = {
+  const parseQuarterPatterns$1 = {
     any: [/(1|一)/i, /(2|二)/i, /(3|三)/i, /(4|四)/i]
   };
-  const matchMonthPatterns = {
+  const matchMonthPatterns$1 = {
     narrow: /^(一|二|三|四|五|六|七|八|九|十[二一])/i,
     abbreviated: /^(一|二|三|四|五|六|七|八|九|十[二一]|\d|1[12])月/i,
     wide: /^(一|二|三|四|五|六|七|八|九|十[二一])月/i
   };
-  const parseMonthPatterns = {
+  const parseMonthPatterns$1 = {
     narrow: [
       /^一/i,
       /^二/i,
@@ -51197,19 +51108,19 @@ var __async = (__this, __arguments, generator) => {
       /^十二|12/i
     ]
   };
-  const matchDayPatterns = {
+  const matchDayPatterns$1 = {
     narrow: /^[一二三四五六日]/i,
     short: /^[一二三四五六日]/i,
     abbreviated: /^週[一二三四五六日]/i,
     wide: /^星期[一二三四五六日]/i
   };
-  const parseDayPatterns = {
+  const parseDayPatterns$1 = {
     any: [/日/i, /一/i, /二/i, /三/i, /四/i, /五/i, /六/i]
   };
-  const matchDayPeriodPatterns = {
+  const matchDayPeriodPatterns$1 = {
     any: /^(上午?|下午?|午夜|[中正]午|早上?|下午|晚上?|凌晨)/i
   };
-  const parseDayPeriodPatterns = {
+  const parseDayPeriodPatterns$1 = {
     any: {
       am: /^上午?/i,
       pm: /^下午?/i,
@@ -51221,51 +51132,51 @@ var __async = (__this, __arguments, generator) => {
       night: /^凌晨/i
     }
   };
-  const match = {
-    ordinalNumber: buildMatchPatternFn({
-      matchPattern: matchOrdinalNumberPattern,
-      parsePattern: parseOrdinalNumberPattern,
+  const match$1 = {
+    ordinalNumber: buildMatchPatternFn$1({
+      matchPattern: matchOrdinalNumberPattern$1,
+      parsePattern: parseOrdinalNumberPattern$1,
       valueCallback: (value) => parseInt(value, 10)
     }),
-    era: buildMatchFn({
-      matchPatterns: matchEraPatterns,
+    era: buildMatchFn$1({
+      matchPatterns: matchEraPatterns$1,
       defaultMatchWidth: "wide",
-      parsePatterns: parseEraPatterns,
+      parsePatterns: parseEraPatterns$1,
       defaultParseWidth: "any"
     }),
-    quarter: buildMatchFn({
-      matchPatterns: matchQuarterPatterns,
+    quarter: buildMatchFn$1({
+      matchPatterns: matchQuarterPatterns$1,
       defaultMatchWidth: "wide",
-      parsePatterns: parseQuarterPatterns,
+      parsePatterns: parseQuarterPatterns$1,
       defaultParseWidth: "any",
       valueCallback: (index2) => index2 + 1
     }),
-    month: buildMatchFn({
-      matchPatterns: matchMonthPatterns,
+    month: buildMatchFn$1({
+      matchPatterns: matchMonthPatterns$1,
       defaultMatchWidth: "wide",
-      parsePatterns: parseMonthPatterns,
+      parsePatterns: parseMonthPatterns$1,
       defaultParseWidth: "any"
     }),
-    day: buildMatchFn({
-      matchPatterns: matchDayPatterns,
+    day: buildMatchFn$1({
+      matchPatterns: matchDayPatterns$1,
       defaultMatchWidth: "wide",
-      parsePatterns: parseDayPatterns,
+      parsePatterns: parseDayPatterns$1,
       defaultParseWidth: "any"
     }),
-    dayPeriod: buildMatchFn({
-      matchPatterns: matchDayPeriodPatterns,
+    dayPeriod: buildMatchFn$1({
+      matchPatterns: matchDayPeriodPatterns$1,
       defaultMatchWidth: "any",
-      parsePatterns: parseDayPeriodPatterns,
+      parsePatterns: parseDayPeriodPatterns$1,
       defaultParseWidth: "any"
     })
   };
   const zhTW = {
     code: "zh-TW",
-    formatDistance,
-    formatLong,
-    formatRelative,
-    localize,
-    match,
+    formatDistance: formatDistance$1,
+    formatLong: formatLong$1,
+    formatRelative: formatRelative$1,
+    localize: localize$1,
+    match: match$1,
     options: {
       weekStartsOn: 1,
       firstWeekContainsDate: 4
@@ -51328,7 +51239,7 @@ var __async = (__this, __arguments, generator) => {
         return tr;
       case "en":
       default:
-        return enUS$1;
+        return enUS$2;
     }
   };
   function TodayButton() {
@@ -51337,7 +51248,7 @@ var __async = (__this, __arguments, generator) => {
     const today = /* @__PURE__ */ new Date();
     const handleClick = () => setSelectedDate(today);
     const locale = getDateLocale(i18n.language);
-    const monthAbbr = format(today, "MMM", { locale }).toUpperCase();
+    const monthAbbr = format$1(today, "MMM", { locale }).toUpperCase();
     return /* @__PURE__ */ jsxRuntimeExports.jsxs(
       "button",
       {
@@ -51370,7 +51281,7 @@ var __async = (__this, __arguments, generator) => {
     var _ja = _ia, { className, variant } = _ja, props = __objRest(_ja, ["className", "variant"]);
     return /* @__PURE__ */ jsxRuntimeExports.jsx("div", __spreadValues({ className: cn(badgeVariants({ variant }), className) }, props));
   }
-  const dateFormats = {
+  const dateFormats$1 = {
     // East Asian languages
     ko: {
       // Korean formats
@@ -51766,15 +51677,15 @@ var __async = (__this, __arguments, generator) => {
   };
   function getDateFormat(language, formatKey) {
     const langKey = language.split("-")[0];
-    if (langKey in dateFormats) {
+    if (langKey in dateFormats$1) {
       const typedLangKey = langKey;
-      return dateFormats[typedLangKey][formatKey];
+      return dateFormats$1[typedLangKey][formatKey];
     }
-    return dateFormats.en[formatKey];
+    return dateFormats$1.en[formatKey];
   }
   function formatDate(date, formatKey, language, locale) {
     const formatPattern = getDateFormat(language, formatKey);
-    return format(date, formatPattern, { locale });
+    return format$1(date, formatPattern, { locale });
   }
   function formatDateRange(startDate, endDate, language, locale) {
     const formatPattern = getDateFormat(language, "dateRange");
@@ -51785,82 +51696,82 @@ var __async = (__this, __arguments, generator) => {
     if (language === "ko") {
       if (startYear === endYear) {
         if (startMonth === endMonth) {
-          return `${format(startDate, "yyyy년 M월 d일", { locale })} - ${format(endDate, "d일", { locale })}`;
+          return `${format$1(startDate, "yyyy년 M월 d일", { locale })} - ${format$1(endDate, "d일", { locale })}`;
         } else {
-          return `${format(startDate, "yyyy년 M월 d일", { locale })} - ${format(endDate, "M월 d일", { locale })}`;
+          return `${format$1(startDate, "yyyy년 M월 d일", { locale })} - ${format$1(endDate, "M월 d일", { locale })}`;
         }
       }
-      return `${format(startDate, formatPattern, { locale })} - ${format(endDate, formatPattern, { locale })}`;
+      return `${format$1(startDate, formatPattern, { locale })} - ${format$1(endDate, formatPattern, { locale })}`;
     }
     if (language === "ja") {
       if (startYear === endYear) {
         if (startMonth === endMonth) {
-          return `${format(startDate, "yyyy年M月d日", { locale })}～${format(endDate, "d日", { locale })}`;
+          return `${format$1(startDate, "yyyy年M月d日", { locale })}～${format$1(endDate, "d日", { locale })}`;
         } else {
-          return `${format(startDate, "yyyy年M月d日", { locale })}～${format(endDate, "M月d日", { locale })}`;
+          return `${format$1(startDate, "yyyy年M月d日", { locale })}～${format$1(endDate, "M月d日", { locale })}`;
         }
       }
-      return `${format(startDate, formatPattern, { locale })}～${format(endDate, formatPattern, { locale })}`;
+      return `${format$1(startDate, formatPattern, { locale })}～${format$1(endDate, formatPattern, { locale })}`;
     }
     if (language === "zh" || language === "zh-CN" || language === "zh-TW") {
       if (startYear === endYear) {
         if (startMonth === endMonth) {
-          return `${format(startDate, "yyyy年M月d日", { locale })}-${format(endDate, "d日", { locale })}`;
+          return `${format$1(startDate, "yyyy年M月d日", { locale })}-${format$1(endDate, "d日", { locale })}`;
         } else {
-          return `${format(startDate, "yyyy年M月d日", { locale })}-${format(endDate, "M月d日", { locale })}`;
+          return `${format$1(startDate, "yyyy年M月d日", { locale })}-${format$1(endDate, "M月d日", { locale })}`;
         }
       }
-      return `${format(startDate, formatPattern, { locale })}-${format(endDate, formatPattern, { locale })}`;
+      return `${format$1(startDate, formatPattern, { locale })}-${format$1(endDate, formatPattern, { locale })}`;
     }
     if (language === "de" || language === "nl" || language === "da" || language === "no" || language === "nb") {
       const separator = language === "de" ? " – " : " - ";
       if (startYear === endYear) {
         if (startMonth === endMonth) {
-          return `${format(startDate, "d.", { locale })}${separator}${format(endDate, "d. MMMM yyyy", { locale })}`;
+          return `${format$1(startDate, "d.", { locale })}${separator}${format$1(endDate, "d. MMMM yyyy", { locale })}`;
         }
-        return `${format(startDate, "d. MMM", { locale })}${separator}${format(endDate, "d. MMM yyyy", { locale })}`;
+        return `${format$1(startDate, "d. MMM", { locale })}${separator}${format$1(endDate, "d. MMM yyyy", { locale })}`;
       }
-      return `${format(startDate, formatPattern, { locale })}${separator}${format(endDate, formatPattern, { locale })}`;
+      return `${format$1(startDate, formatPattern, { locale })}${separator}${format$1(endDate, formatPattern, { locale })}`;
     }
     if (language === "fr") {
       if (startYear === endYear && startMonth === endMonth) {
-        return `Du ${format(startDate, "d", { locale })} au ${format(endDate, "d MMMM yyyy", { locale })}`;
+        return `Du ${format$1(startDate, "d", { locale })} au ${format$1(endDate, "d MMMM yyyy", { locale })}`;
       }
-      return `Du ${format(startDate, formatPattern, { locale })} au ${format(endDate, formatPattern, { locale })}`;
+      return `Du ${format$1(startDate, formatPattern, { locale })} au ${format$1(endDate, formatPattern, { locale })}`;
     }
     if (language === "es" || language === "it") {
       const separator = language === "es" ? " al " : " al ";
       if (startYear === endYear && startMonth === endMonth) {
-        return `${format(startDate, "d", { locale })}${separator}${format(endDate, "d 'de' MMMM 'de' yyyy", { locale })}`;
+        return `${format$1(startDate, "d", { locale })}${separator}${format$1(endDate, "d 'de' MMMM 'de' yyyy", { locale })}`;
       }
-      return `${format(startDate, formatPattern, { locale })}${separator}${format(endDate, formatPattern, { locale })}`;
+      return `${format$1(startDate, formatPattern, { locale })}${separator}${format$1(endDate, formatPattern, { locale })}`;
     }
     if (language === "pt" || language === "pt-BR") {
       if (startYear === endYear && startMonth === endMonth) {
-        return `${format(startDate, "d", { locale })} a ${format(endDate, "d 'de' MMMM 'de' yyyy", { locale })}`;
+        return `${format$1(startDate, "d", { locale })} a ${format$1(endDate, "d 'de' MMMM 'de' yyyy", { locale })}`;
       }
-      return `${format(startDate, formatPattern, { locale })} a ${format(endDate, formatPattern, { locale })}`;
+      return `${format$1(startDate, formatPattern, { locale })} a ${format$1(endDate, formatPattern, { locale })}`;
     }
     if (language === "ru" || language === "pl" || language === "cs") {
       const separator = " – ";
       if (startYear === endYear && startMonth === endMonth) {
-        return `${format(startDate, "d", { locale })}${separator}${format(endDate, "d MMMM yyyy", { locale })}`;
+        return `${format$1(startDate, "d", { locale })}${separator}${format$1(endDate, "d MMMM yyyy", { locale })}`;
       }
-      return `${format(startDate, formatPattern, { locale })}${separator}${format(endDate, formatPattern, { locale })}`;
+      return `${format$1(startDate, formatPattern, { locale })}${separator}${format$1(endDate, formatPattern, { locale })}`;
     }
     if (language === "hu") {
       if (startYear === endYear && startMonth === endMonth) {
-        return `${format(startDate, "yyyy. MMM d.", { locale })}-${format(endDate, "d.", { locale })}`;
+        return `${format$1(startDate, "yyyy. MMM d.", { locale })}-${format$1(endDate, "d.", { locale })}`;
       }
-      return `${format(startDate, formatPattern, { locale })} – ${format(endDate, formatPattern, { locale })}`;
+      return `${format$1(startDate, formatPattern, { locale })} – ${format$1(endDate, formatPattern, { locale })}`;
     }
     if (startYear === endYear) {
       if (startMonth === endMonth) {
-        return `${format(startDate, "MMM d", { locale })} - ${format(endDate, "d, yyyy", { locale })}`;
+        return `${format$1(startDate, "MMM d", { locale })} - ${format$1(endDate, "d, yyyy", { locale })}`;
       }
-      return `${format(startDate, "MMM d", { locale })} - ${format(endDate, "MMM d, yyyy", { locale })}`;
+      return `${format$1(startDate, "MMM d", { locale })} - ${format$1(endDate, "MMM d, yyyy", { locale })}`;
     }
-    return `${format(startDate, formatPattern, { locale })} - ${format(endDate, formatPattern, { locale })}`;
+    return `${format$1(startDate, formatPattern, { locale })} - ${format$1(endDate, formatPattern, { locale })}`;
   }
   function formatTime(date, language, locale, use24Hour = false) {
     const langKey = language.split("-")[0];
@@ -51892,9 +51803,9 @@ var __async = (__this, __arguments, generator) => {
     const formatKey = actualUse24Hour ? "time24h" : "time12h";
     const formatPattern = getDateFormat(language, formatKey);
     if (langKey === "ko" && !actualUse24Hour) {
-      return format(date, "a h:mm", { locale });
+      return format$1(date, "a h:mm", { locale });
     }
-    return format(date, formatPattern, { locale });
+    return format$1(date, formatPattern, { locale });
   }
   function formatTimeRange(startDate, endDate, language, locale, use24Hour = false) {
     const startTime = formatTime(startDate, language, locale, use24Hour);
@@ -54046,20 +53957,20 @@ var __async = (__this, __arguments, generator) => {
     let end;
     switch (view) {
       case "agenda":
-        start = startOfMonth(date);
-        end = endOfMonth(date);
+        start = startOfMonth$1(date);
+        end = endOfMonth$1(date);
         break;
       case "year":
-        start = startOfYear(date);
-        end = endOfYear(date);
+        start = startOfYear$1(date);
+        end = endOfYear$1(date);
         break;
       case "month":
-        start = startOfMonth(date);
-        end = endOfMonth(date);
+        start = startOfMonth$1(date);
+        end = endOfMonth$1(date);
         break;
       case "week":
-        start = startOfWeek(date, { locale });
-        end = endOfWeek(date, { locale });
+        start = startOfWeek$1(date, { locale });
+        end = endOfWeek$1(date, { locale });
         break;
       case "day":
         return formatDate(date, "fullDate", language, locale);
@@ -54068,31 +53979,31 @@ var __async = (__this, __arguments, generator) => {
     }
     if (view === "year") {
       if (language === "ko") {
-        return `${format(start, "yyyy년", { locale })}`;
+        return `${format$1(start, "yyyy년", { locale })}`;
       } else {
-        return format(start, "yyyy", { locale });
+        return format$1(start, "yyyy", { locale });
       }
     }
     return formatDateRange(start, end, language, locale);
   }
   function navigateDate(date, view, direction) {
     const operations = {
-      agenda: direction === "next" ? addMonths : subMonths,
-      year: direction === "next" ? addYears : subYears,
-      month: direction === "next" ? addMonths : subMonths,
-      week: direction === "next" ? addWeeks : subWeeks,
-      day: direction === "next" ? addDays : subDays
+      agenda: direction === "next" ? addMonths$1 : subMonths,
+      year: direction === "next" ? addYears$1 : subYears,
+      month: direction === "next" ? addMonths$1 : subMonths,
+      week: direction === "next" ? addWeeks$1 : subWeeks,
+      day: direction === "next" ? addDays$1 : subDays
     };
     return operations[view](date, 1);
   }
   function getEventsCount(events2, date, view) {
     const locale = getDateLocale(instance.language);
     const compareFns = {
-      agenda: isSameMonth,
-      year: isSameYear,
-      day: isSameDay,
+      agenda: isSameMonth$1,
+      year: isSameYear$1,
+      day: isSameDay$1,
       week: (d1, d2) => isSameWeek(d1, d2, { locale }),
-      month: isSameMonth
+      month: isSameMonth$1
     };
     return events2.filter((event) => compareFns[view](new Date(event.startDate), date)).length;
   }
@@ -54163,7 +54074,7 @@ var __async = (__this, __arguments, generator) => {
     const getDaysInMonth2 = (year, month) => new Date(year, month + 1, 0).getDate();
     const getFirstDayOfMonth = (year, month) => {
       const firstDay = new Date(year, month, 1);
-      const weekStart = startOfWeek(firstDay, { locale });
+      const weekStart = startOfWeek$1(firstDay, { locale });
       return differenceInDays(firstDay, weekStart);
     };
     const daysInMonth = getDaysInMonth2(currentYear, currentMonth);
@@ -54188,8 +54099,8 @@ var __async = (__this, __arguments, generator) => {
     return [...prevMonthCells, ...currentMonthCells, ...nextMonthCells];
   }
   function calculateMonthEventPositions(multiDayEvents, singleDayEvents, selectedDate) {
-    const monthStart = startOfMonth(selectedDate);
-    const monthEnd = endOfMonth(selectedDate);
+    const monthStart = startOfMonth$1(selectedDate);
+    const monthEnd = endOfMonth$1(selectedDate);
     const eventPositions = {};
     const occupiedPositions = {};
     eachDayOfInterval({ start: monthStart, end: monthEnd }).forEach((day) => {
@@ -54213,7 +54124,7 @@ var __async = (__this, __arguments, generator) => {
       let position = -1;
       for (let i2 = 0; i2 < 3; i2++) {
         if (eventDays.every((day) => {
-          const dayPositions = occupiedPositions[startOfDay(day).toISOString()];
+          const dayPositions = occupiedPositions[startOfDay$1(day).toISOString()];
           return dayPositions && !dayPositions[i2];
         })) {
           position = i2;
@@ -54222,7 +54133,7 @@ var __async = (__this, __arguments, generator) => {
       }
       if (position !== -1) {
         eventDays.forEach((day) => {
-          const dayKey = startOfDay(day).toISOString();
+          const dayKey = startOfDay$1(day).toISOString();
           occupiedPositions[dayKey][position] = true;
         });
         eventPositions[event.id] = position;
@@ -54234,7 +54145,7 @@ var __async = (__this, __arguments, generator) => {
     const eventsForDate = events2.filter((event) => {
       const eventStart = parseISO(event.startDate);
       const eventEnd = parseISO(event.endDate);
-      return date >= eventStart && date <= eventEnd || isSameDay(date, eventStart) || isSameDay(date, eventEnd);
+      return date >= eventStart && date <= eventEnd || isSameDay$1(date, eventStart) || isSameDay$1(date, eventEnd);
     });
     return eventsForDate.map((event) => {
       var _a;
@@ -54471,14 +54382,14 @@ var __async = (__this, __arguments, generator) => {
       return filteredEvents.filter((event) => {
         const startDate = parseISO(event.startDate);
         const endDate = parseISO(event.endDate);
-        return isSameDay(startDate, endDate);
+        return isSameDay$1(startDate, endDate);
       });
     }, [filteredEvents]);
     const multiDayEvents = reactExports.useMemo(() => {
       return filteredEvents.filter((event) => {
         const startDate = parseISO(event.startDate);
         const endDate = parseISO(event.endDate);
-        return !isSameDay(startDate, endDate);
+        return !isSameDay$1(startDate, endDate);
       });
     }, [filteredEvents]);
     if (isLoading) {
@@ -56931,13 +56842,13 @@ var __async = (__this, __arguments, generator) => {
     setCustomValidity(true);
     return error;
   });
-  const defaultOptions = {
+  const defaultOptions$1 = {
     mode: VALIDATION_MODE.onSubmit,
     reValidateMode: VALIDATION_MODE.onChange,
     shouldFocusError: true
   };
   function createFormControl(props = {}) {
-    let _options = __spreadValues(__spreadValues({}, defaultOptions), props);
+    let _options = __spreadValues(__spreadValues({}, defaultOptions$1), props);
     let _formState = {
       submitCount: 0,
       isDirty: false,
@@ -58376,6 +58287,1624 @@ var __async = (__this, __arguments, generator) => {
       return new TZDate(+new Date(date), this.timeZone);
     }
     //#endregion
+  }
+  const millisecondsInWeek = 6048e5;
+  const millisecondsInDay = 864e5;
+  const constructFromSymbol = Symbol.for("constructDateFrom");
+  function constructFrom(date, value) {
+    if (typeof date === "function") return date(value);
+    if (date && typeof date === "object" && constructFromSymbol in date)
+      return date[constructFromSymbol](value);
+    if (date instanceof Date) return new date.constructor(value);
+    return new Date(value);
+  }
+  function toDate(argument, context) {
+    return constructFrom(context || argument, argument);
+  }
+  function addDays(date, amount, options2) {
+    const _date = toDate(date, options2 == null ? void 0 : options2.in);
+    if (isNaN(amount)) return constructFrom(date, NaN);
+    if (!amount) return _date;
+    _date.setDate(_date.getDate() + amount);
+    return _date;
+  }
+  function addMonths(date, amount, options2) {
+    const _date = toDate(date, options2 == null ? void 0 : options2.in);
+    if (isNaN(amount)) return constructFrom(date, NaN);
+    if (!amount) {
+      return _date;
+    }
+    const dayOfMonth = _date.getDate();
+    const endOfDesiredMonth = constructFrom(date, _date.getTime());
+    endOfDesiredMonth.setMonth(_date.getMonth() + amount + 1, 0);
+    const daysInMonth = endOfDesiredMonth.getDate();
+    if (dayOfMonth >= daysInMonth) {
+      return endOfDesiredMonth;
+    } else {
+      _date.setFullYear(
+        endOfDesiredMonth.getFullYear(),
+        endOfDesiredMonth.getMonth(),
+        dayOfMonth
+      );
+      return _date;
+    }
+  }
+  let defaultOptions = {};
+  function getDefaultOptions() {
+    return defaultOptions;
+  }
+  function startOfWeek(date, options2) {
+    var _a, _b, _c, _d, _e, _f, _g2, _h2;
+    const defaultOptions2 = getDefaultOptions();
+    const weekStartsOn = (_h2 = (_g2 = (_d = (_c = options2 == null ? void 0 : options2.weekStartsOn) != null ? _c : (_b = (_a = options2 == null ? void 0 : options2.locale) == null ? void 0 : _a.options) == null ? void 0 : _b.weekStartsOn) != null ? _d : defaultOptions2.weekStartsOn) != null ? _g2 : (_f = (_e = defaultOptions2.locale) == null ? void 0 : _e.options) == null ? void 0 : _f.weekStartsOn) != null ? _h2 : 0;
+    const _date = toDate(date, options2 == null ? void 0 : options2.in);
+    const day = _date.getDay();
+    const diff = (day < weekStartsOn ? 7 : 0) + day - weekStartsOn;
+    _date.setDate(_date.getDate() - diff);
+    _date.setHours(0, 0, 0, 0);
+    return _date;
+  }
+  function startOfISOWeek(date, options2) {
+    return startOfWeek(date, __spreadProps(__spreadValues({}, options2), { weekStartsOn: 1 }));
+  }
+  function getISOWeekYear(date, options2) {
+    const _date = toDate(date, options2 == null ? void 0 : options2.in);
+    const year = _date.getFullYear();
+    const fourthOfJanuaryOfNextYear = constructFrom(_date, 0);
+    fourthOfJanuaryOfNextYear.setFullYear(year + 1, 0, 4);
+    fourthOfJanuaryOfNextYear.setHours(0, 0, 0, 0);
+    const startOfNextYear = startOfISOWeek(fourthOfJanuaryOfNextYear);
+    const fourthOfJanuaryOfThisYear = constructFrom(_date, 0);
+    fourthOfJanuaryOfThisYear.setFullYear(year, 0, 4);
+    fourthOfJanuaryOfThisYear.setHours(0, 0, 0, 0);
+    const startOfThisYear = startOfISOWeek(fourthOfJanuaryOfThisYear);
+    if (_date.getTime() >= startOfNextYear.getTime()) {
+      return year + 1;
+    } else if (_date.getTime() >= startOfThisYear.getTime()) {
+      return year;
+    } else {
+      return year - 1;
+    }
+  }
+  function getTimezoneOffsetInMilliseconds(date) {
+    const _date = toDate(date);
+    const utcDate = new Date(
+      Date.UTC(
+        _date.getFullYear(),
+        _date.getMonth(),
+        _date.getDate(),
+        _date.getHours(),
+        _date.getMinutes(),
+        _date.getSeconds(),
+        _date.getMilliseconds()
+      )
+    );
+    utcDate.setUTCFullYear(_date.getFullYear());
+    return +date - +utcDate;
+  }
+  function normalizeDates(context, ...dates) {
+    const normalize = constructFrom.bind(
+      null,
+      dates.find((date) => typeof date === "object")
+    );
+    return dates.map(normalize);
+  }
+  function startOfDay(date, options2) {
+    const _date = toDate(date, options2 == null ? void 0 : options2.in);
+    _date.setHours(0, 0, 0, 0);
+    return _date;
+  }
+  function differenceInCalendarDays(laterDate, earlierDate, options2) {
+    const [laterDate_, earlierDate_] = normalizeDates(
+      options2 == null ? void 0 : options2.in,
+      laterDate,
+      earlierDate
+    );
+    const laterStartOfDay = startOfDay(laterDate_);
+    const earlierStartOfDay = startOfDay(earlierDate_);
+    const laterTimestamp = +laterStartOfDay - getTimezoneOffsetInMilliseconds(laterStartOfDay);
+    const earlierTimestamp = +earlierStartOfDay - getTimezoneOffsetInMilliseconds(earlierStartOfDay);
+    return Math.round((laterTimestamp - earlierTimestamp) / millisecondsInDay);
+  }
+  function startOfISOWeekYear(date, options2) {
+    const year = getISOWeekYear(date, options2);
+    const fourthOfJanuary = constructFrom(date, 0);
+    fourthOfJanuary.setFullYear(year, 0, 4);
+    fourthOfJanuary.setHours(0, 0, 0, 0);
+    return startOfISOWeek(fourthOfJanuary);
+  }
+  function addWeeks(date, amount, options2) {
+    return addDays(date, amount * 7, options2);
+  }
+  function addYears(date, amount, options2) {
+    return addMonths(date, amount * 12, options2);
+  }
+  function max(dates, options2) {
+    let result;
+    let context = options2 == null ? void 0 : options2.in;
+    dates.forEach((date) => {
+      if (!context && typeof date === "object")
+        context = constructFrom.bind(null, date);
+      const date_ = toDate(date, context);
+      if (!result || result < date_ || isNaN(+date_)) result = date_;
+    });
+    return constructFrom(context, result || NaN);
+  }
+  function min(dates, options2) {
+    let result;
+    let context = options2 == null ? void 0 : options2.in;
+    dates.forEach((date) => {
+      if (!context && typeof date === "object")
+        context = constructFrom.bind(null, date);
+      const date_ = toDate(date, context);
+      if (!result || result > date_ || isNaN(+date_)) result = date_;
+    });
+    return constructFrom(context, result || NaN);
+  }
+  function isSameDay(laterDate, earlierDate, options2) {
+    const [dateLeft_, dateRight_] = normalizeDates(
+      options2 == null ? void 0 : options2.in,
+      laterDate,
+      earlierDate
+    );
+    return +startOfDay(dateLeft_) === +startOfDay(dateRight_);
+  }
+  function isDate(value) {
+    return value instanceof Date || typeof value === "object" && Object.prototype.toString.call(value) === "[object Date]";
+  }
+  function isValid(date) {
+    return !(!isDate(date) && typeof date !== "number" || isNaN(+toDate(date)));
+  }
+  function differenceInCalendarMonths(laterDate, earlierDate, options2) {
+    const [laterDate_, earlierDate_] = normalizeDates(
+      options2 == null ? void 0 : options2.in,
+      laterDate,
+      earlierDate
+    );
+    const yearsDiff = laterDate_.getFullYear() - earlierDate_.getFullYear();
+    const monthsDiff = laterDate_.getMonth() - earlierDate_.getMonth();
+    return yearsDiff * 12 + monthsDiff;
+  }
+  function endOfMonth(date, options2) {
+    const _date = toDate(date, options2 == null ? void 0 : options2.in);
+    const month = _date.getMonth();
+    _date.setFullYear(_date.getFullYear(), month + 1, 0);
+    _date.setHours(23, 59, 59, 999);
+    return _date;
+  }
+  function normalizeInterval(context, interval) {
+    const [start, end] = normalizeDates(context, interval.start, interval.end);
+    return { start, end };
+  }
+  function eachMonthOfInterval(interval, options2) {
+    const { start, end } = normalizeInterval(options2 == null ? void 0 : options2.in, interval);
+    let reversed = +start > +end;
+    const endTime = reversed ? +start : +end;
+    const date = reversed ? end : start;
+    date.setHours(0, 0, 0, 0);
+    date.setDate(1);
+    let step = 1;
+    const dates = [];
+    while (+date <= endTime) {
+      dates.push(constructFrom(start, date));
+      date.setMonth(date.getMonth() + step);
+    }
+    return reversed ? dates.reverse() : dates;
+  }
+  function startOfMonth(date, options2) {
+    const _date = toDate(date, options2 == null ? void 0 : options2.in);
+    _date.setDate(1);
+    _date.setHours(0, 0, 0, 0);
+    return _date;
+  }
+  function endOfYear(date, options2) {
+    const _date = toDate(date, options2 == null ? void 0 : options2.in);
+    const year = _date.getFullYear();
+    _date.setFullYear(year + 1, 0, 0);
+    _date.setHours(23, 59, 59, 999);
+    return _date;
+  }
+  function startOfYear(date, options2) {
+    const date_ = toDate(date, options2 == null ? void 0 : options2.in);
+    date_.setFullYear(date_.getFullYear(), 0, 1);
+    date_.setHours(0, 0, 0, 0);
+    return date_;
+  }
+  function eachYearOfInterval(interval, options2) {
+    const { start, end } = normalizeInterval(options2 == null ? void 0 : options2.in, interval);
+    let reversed = +start > +end;
+    const endTime = reversed ? +start : +end;
+    const date = reversed ? end : start;
+    date.setHours(0, 0, 0, 0);
+    date.setMonth(0, 1);
+    let step = 1;
+    const dates = [];
+    while (+date <= endTime) {
+      dates.push(constructFrom(start, date));
+      date.setFullYear(date.getFullYear() + step);
+    }
+    return reversed ? dates.reverse() : dates;
+  }
+  function endOfWeek(date, options2) {
+    var _a, _b, _c, _d, _e, _f, _g2, _h2;
+    const defaultOptions2 = getDefaultOptions();
+    const weekStartsOn = (_h2 = (_g2 = (_d = (_c = options2 == null ? void 0 : options2.weekStartsOn) != null ? _c : (_b = (_a = options2 == null ? void 0 : options2.locale) == null ? void 0 : _a.options) == null ? void 0 : _b.weekStartsOn) != null ? _d : defaultOptions2.weekStartsOn) != null ? _g2 : (_f = (_e = defaultOptions2.locale) == null ? void 0 : _e.options) == null ? void 0 : _f.weekStartsOn) != null ? _h2 : 0;
+    const _date = toDate(date, options2 == null ? void 0 : options2.in);
+    const day = _date.getDay();
+    const diff = (day < weekStartsOn ? -7 : 0) + 6 - (day - weekStartsOn);
+    _date.setDate(_date.getDate() + diff);
+    _date.setHours(23, 59, 59, 999);
+    return _date;
+  }
+  function endOfISOWeek(date, options2) {
+    return endOfWeek(date, __spreadProps(__spreadValues({}, options2), { weekStartsOn: 1 }));
+  }
+  const formatDistanceLocale = {
+    lessThanXSeconds: {
+      one: "less than a second",
+      other: "less than {{count}} seconds"
+    },
+    xSeconds: {
+      one: "1 second",
+      other: "{{count}} seconds"
+    },
+    halfAMinute: "half a minute",
+    lessThanXMinutes: {
+      one: "less than a minute",
+      other: "less than {{count}} minutes"
+    },
+    xMinutes: {
+      one: "1 minute",
+      other: "{{count}} minutes"
+    },
+    aboutXHours: {
+      one: "about 1 hour",
+      other: "about {{count}} hours"
+    },
+    xHours: {
+      one: "1 hour",
+      other: "{{count}} hours"
+    },
+    xDays: {
+      one: "1 day",
+      other: "{{count}} days"
+    },
+    aboutXWeeks: {
+      one: "about 1 week",
+      other: "about {{count}} weeks"
+    },
+    xWeeks: {
+      one: "1 week",
+      other: "{{count}} weeks"
+    },
+    aboutXMonths: {
+      one: "about 1 month",
+      other: "about {{count}} months"
+    },
+    xMonths: {
+      one: "1 month",
+      other: "{{count}} months"
+    },
+    aboutXYears: {
+      one: "about 1 year",
+      other: "about {{count}} years"
+    },
+    xYears: {
+      one: "1 year",
+      other: "{{count}} years"
+    },
+    overXYears: {
+      one: "over 1 year",
+      other: "over {{count}} years"
+    },
+    almostXYears: {
+      one: "almost 1 year",
+      other: "almost {{count}} years"
+    }
+  };
+  const formatDistance = (token, count2, options2) => {
+    let result;
+    const tokenValue = formatDistanceLocale[token];
+    if (typeof tokenValue === "string") {
+      result = tokenValue;
+    } else if (count2 === 1) {
+      result = tokenValue.one;
+    } else {
+      result = tokenValue.other.replace("{{count}}", count2.toString());
+    }
+    if (options2 == null ? void 0 : options2.addSuffix) {
+      if (options2.comparison && options2.comparison > 0) {
+        return "in " + result;
+      } else {
+        return result + " ago";
+      }
+    }
+    return result;
+  };
+  function buildFormatLongFn(args) {
+    return (options2 = {}) => {
+      const width = options2.width ? String(options2.width) : args.defaultWidth;
+      const format2 = args.formats[width] || args.formats[args.defaultWidth];
+      return format2;
+    };
+  }
+  const dateFormats = {
+    full: "EEEE, MMMM do, y",
+    long: "MMMM do, y",
+    medium: "MMM d, y",
+    short: "MM/dd/yyyy"
+  };
+  const timeFormats = {
+    full: "h:mm:ss a zzzz",
+    long: "h:mm:ss a z",
+    medium: "h:mm:ss a",
+    short: "h:mm a"
+  };
+  const dateTimeFormats = {
+    full: "{{date}} 'at' {{time}}",
+    long: "{{date}} 'at' {{time}}",
+    medium: "{{date}}, {{time}}",
+    short: "{{date}}, {{time}}"
+  };
+  const formatLong = {
+    date: buildFormatLongFn({
+      formats: dateFormats,
+      defaultWidth: "full"
+    }),
+    time: buildFormatLongFn({
+      formats: timeFormats,
+      defaultWidth: "full"
+    }),
+    dateTime: buildFormatLongFn({
+      formats: dateTimeFormats,
+      defaultWidth: "full"
+    })
+  };
+  const formatRelativeLocale = {
+    lastWeek: "'last' eeee 'at' p",
+    yesterday: "'yesterday at' p",
+    today: "'today at' p",
+    tomorrow: "'tomorrow at' p",
+    nextWeek: "eeee 'at' p",
+    other: "P"
+  };
+  const formatRelative = (token, _date, _baseDate, _options) => formatRelativeLocale[token];
+  function buildLocalizeFn(args) {
+    return (value, options2) => {
+      const context = (options2 == null ? void 0 : options2.context) ? String(options2.context) : "standalone";
+      let valuesArray;
+      if (context === "formatting" && args.formattingValues) {
+        const defaultWidth = args.defaultFormattingWidth || args.defaultWidth;
+        const width = (options2 == null ? void 0 : options2.width) ? String(options2.width) : defaultWidth;
+        valuesArray = args.formattingValues[width] || args.formattingValues[defaultWidth];
+      } else {
+        const defaultWidth = args.defaultWidth;
+        const width = (options2 == null ? void 0 : options2.width) ? String(options2.width) : args.defaultWidth;
+        valuesArray = args.values[width] || args.values[defaultWidth];
+      }
+      const index2 = args.argumentCallback ? args.argumentCallback(value) : value;
+      return valuesArray[index2];
+    };
+  }
+  const eraValues = {
+    narrow: ["B", "A"],
+    abbreviated: ["BC", "AD"],
+    wide: ["Before Christ", "Anno Domini"]
+  };
+  const quarterValues = {
+    narrow: ["1", "2", "3", "4"],
+    abbreviated: ["Q1", "Q2", "Q3", "Q4"],
+    wide: ["1st quarter", "2nd quarter", "3rd quarter", "4th quarter"]
+  };
+  const monthValues = {
+    narrow: ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"],
+    abbreviated: [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
+    wide: [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ]
+  };
+  const dayValues = {
+    narrow: ["S", "M", "T", "W", "T", "F", "S"],
+    short: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+    abbreviated: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    wide: [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  };
+  const dayPeriodValues = {
+    narrow: {
+      am: "a",
+      pm: "p",
+      midnight: "mi",
+      noon: "n",
+      morning: "morning",
+      afternoon: "afternoon",
+      evening: "evening",
+      night: "night"
+    },
+    abbreviated: {
+      am: "AM",
+      pm: "PM",
+      midnight: "midnight",
+      noon: "noon",
+      morning: "morning",
+      afternoon: "afternoon",
+      evening: "evening",
+      night: "night"
+    },
+    wide: {
+      am: "a.m.",
+      pm: "p.m.",
+      midnight: "midnight",
+      noon: "noon",
+      morning: "morning",
+      afternoon: "afternoon",
+      evening: "evening",
+      night: "night"
+    }
+  };
+  const formattingDayPeriodValues = {
+    narrow: {
+      am: "a",
+      pm: "p",
+      midnight: "mi",
+      noon: "n",
+      morning: "in the morning",
+      afternoon: "in the afternoon",
+      evening: "in the evening",
+      night: "at night"
+    },
+    abbreviated: {
+      am: "AM",
+      pm: "PM",
+      midnight: "midnight",
+      noon: "noon",
+      morning: "in the morning",
+      afternoon: "in the afternoon",
+      evening: "in the evening",
+      night: "at night"
+    },
+    wide: {
+      am: "a.m.",
+      pm: "p.m.",
+      midnight: "midnight",
+      noon: "noon",
+      morning: "in the morning",
+      afternoon: "in the afternoon",
+      evening: "in the evening",
+      night: "at night"
+    }
+  };
+  const ordinalNumber = (dirtyNumber, _options) => {
+    const number = Number(dirtyNumber);
+    const rem100 = number % 100;
+    if (rem100 > 20 || rem100 < 10) {
+      switch (rem100 % 10) {
+        case 1:
+          return number + "st";
+        case 2:
+          return number + "nd";
+        case 3:
+          return number + "rd";
+      }
+    }
+    return number + "th";
+  };
+  const localize = {
+    ordinalNumber,
+    era: buildLocalizeFn({
+      values: eraValues,
+      defaultWidth: "wide"
+    }),
+    quarter: buildLocalizeFn({
+      values: quarterValues,
+      defaultWidth: "wide",
+      argumentCallback: (quarter) => quarter - 1
+    }),
+    month: buildLocalizeFn({
+      values: monthValues,
+      defaultWidth: "wide"
+    }),
+    day: buildLocalizeFn({
+      values: dayValues,
+      defaultWidth: "wide"
+    }),
+    dayPeriod: buildLocalizeFn({
+      values: dayPeriodValues,
+      defaultWidth: "wide",
+      formattingValues: formattingDayPeriodValues,
+      defaultFormattingWidth: "wide"
+    })
+  };
+  function buildMatchFn(args) {
+    return (string, options2 = {}) => {
+      const width = options2.width;
+      const matchPattern = width && args.matchPatterns[width] || args.matchPatterns[args.defaultMatchWidth];
+      const matchResult = string.match(matchPattern);
+      if (!matchResult) {
+        return null;
+      }
+      const matchedString = matchResult[0];
+      const parsePatterns = width && args.parsePatterns[width] || args.parsePatterns[args.defaultParseWidth];
+      const key = Array.isArray(parsePatterns) ? findIndex(parsePatterns, (pattern) => pattern.test(matchedString)) : (
+        // [TODO] -- I challenge you to fix the type
+        findKey(parsePatterns, (pattern) => pattern.test(matchedString))
+      );
+      let value;
+      value = args.valueCallback ? args.valueCallback(key) : key;
+      value = options2.valueCallback ? (
+        // [TODO] -- I challenge you to fix the type
+        options2.valueCallback(value)
+      ) : value;
+      const rest = string.slice(matchedString.length);
+      return { value, rest };
+    };
+  }
+  function findKey(object, predicate) {
+    for (const key in object) {
+      if (Object.prototype.hasOwnProperty.call(object, key) && predicate(object[key])) {
+        return key;
+      }
+    }
+    return void 0;
+  }
+  function findIndex(array, predicate) {
+    for (let key = 0; key < array.length; key++) {
+      if (predicate(array[key])) {
+        return key;
+      }
+    }
+    return void 0;
+  }
+  function buildMatchPatternFn(args) {
+    return (string, options2 = {}) => {
+      const matchResult = string.match(args.matchPattern);
+      if (!matchResult) return null;
+      const matchedString = matchResult[0];
+      const parseResult = string.match(args.parsePattern);
+      if (!parseResult) return null;
+      let value = args.valueCallback ? args.valueCallback(parseResult[0]) : parseResult[0];
+      value = options2.valueCallback ? options2.valueCallback(value) : value;
+      const rest = string.slice(matchedString.length);
+      return { value, rest };
+    };
+  }
+  const matchOrdinalNumberPattern = /^(\d+)(th|st|nd|rd)?/i;
+  const parseOrdinalNumberPattern = /\d+/i;
+  const matchEraPatterns = {
+    narrow: /^(b|a)/i,
+    abbreviated: /^(b\.?\s?c\.?|b\.?\s?c\.?\s?e\.?|a\.?\s?d\.?|c\.?\s?e\.?)/i,
+    wide: /^(before christ|before common era|anno domini|common era)/i
+  };
+  const parseEraPatterns = {
+    any: [/^b/i, /^(a|c)/i]
+  };
+  const matchQuarterPatterns = {
+    narrow: /^[1234]/i,
+    abbreviated: /^q[1234]/i,
+    wide: /^[1234](th|st|nd|rd)? quarter/i
+  };
+  const parseQuarterPatterns = {
+    any: [/1/i, /2/i, /3/i, /4/i]
+  };
+  const matchMonthPatterns = {
+    narrow: /^[jfmasond]/i,
+    abbreviated: /^(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)/i,
+    wide: /^(january|february|march|april|may|june|july|august|september|october|november|december)/i
+  };
+  const parseMonthPatterns = {
+    narrow: [
+      /^j/i,
+      /^f/i,
+      /^m/i,
+      /^a/i,
+      /^m/i,
+      /^j/i,
+      /^j/i,
+      /^a/i,
+      /^s/i,
+      /^o/i,
+      /^n/i,
+      /^d/i
+    ],
+    any: [
+      /^ja/i,
+      /^f/i,
+      /^mar/i,
+      /^ap/i,
+      /^may/i,
+      /^jun/i,
+      /^jul/i,
+      /^au/i,
+      /^s/i,
+      /^o/i,
+      /^n/i,
+      /^d/i
+    ]
+  };
+  const matchDayPatterns = {
+    narrow: /^[smtwf]/i,
+    short: /^(su|mo|tu|we|th|fr|sa)/i,
+    abbreviated: /^(sun|mon|tue|wed|thu|fri|sat)/i,
+    wide: /^(sunday|monday|tuesday|wednesday|thursday|friday|saturday)/i
+  };
+  const parseDayPatterns = {
+    narrow: [/^s/i, /^m/i, /^t/i, /^w/i, /^t/i, /^f/i, /^s/i],
+    any: [/^su/i, /^m/i, /^tu/i, /^w/i, /^th/i, /^f/i, /^sa/i]
+  };
+  const matchDayPeriodPatterns = {
+    narrow: /^(a|p|mi|n|(in the|at) (morning|afternoon|evening|night))/i,
+    any: /^([ap]\.?\s?m\.?|midnight|noon|(in the|at) (morning|afternoon|evening|night))/i
+  };
+  const parseDayPeriodPatterns = {
+    any: {
+      am: /^a/i,
+      pm: /^p/i,
+      midnight: /^mi/i,
+      noon: /^no/i,
+      morning: /morning/i,
+      afternoon: /afternoon/i,
+      evening: /evening/i,
+      night: /night/i
+    }
+  };
+  const match = {
+    ordinalNumber: buildMatchPatternFn({
+      matchPattern: matchOrdinalNumberPattern,
+      parsePattern: parseOrdinalNumberPattern,
+      valueCallback: (value) => parseInt(value, 10)
+    }),
+    era: buildMatchFn({
+      matchPatterns: matchEraPatterns,
+      defaultMatchWidth: "wide",
+      parsePatterns: parseEraPatterns,
+      defaultParseWidth: "any"
+    }),
+    quarter: buildMatchFn({
+      matchPatterns: matchQuarterPatterns,
+      defaultMatchWidth: "wide",
+      parsePatterns: parseQuarterPatterns,
+      defaultParseWidth: "any",
+      valueCallback: (index2) => index2 + 1
+    }),
+    month: buildMatchFn({
+      matchPatterns: matchMonthPatterns,
+      defaultMatchWidth: "wide",
+      parsePatterns: parseMonthPatterns,
+      defaultParseWidth: "any"
+    }),
+    day: buildMatchFn({
+      matchPatterns: matchDayPatterns,
+      defaultMatchWidth: "wide",
+      parsePatterns: parseDayPatterns,
+      defaultParseWidth: "any"
+    }),
+    dayPeriod: buildMatchFn({
+      matchPatterns: matchDayPeriodPatterns,
+      defaultMatchWidth: "any",
+      parsePatterns: parseDayPeriodPatterns,
+      defaultParseWidth: "any"
+    })
+  };
+  const enUS$1 = {
+    code: "en-US",
+    formatDistance,
+    formatLong,
+    formatRelative,
+    localize,
+    match,
+    options: {
+      weekStartsOn: 0,
+      firstWeekContainsDate: 1
+    }
+  };
+  function getDayOfYear(date, options2) {
+    const _date = toDate(date, options2 == null ? void 0 : options2.in);
+    const diff = differenceInCalendarDays(_date, startOfYear(_date));
+    const dayOfYear = diff + 1;
+    return dayOfYear;
+  }
+  function getISOWeek(date, options2) {
+    const _date = toDate(date, options2 == null ? void 0 : options2.in);
+    const diff = +startOfISOWeek(_date) - +startOfISOWeekYear(_date);
+    return Math.round(diff / millisecondsInWeek) + 1;
+  }
+  function getWeekYear(date, options2) {
+    var _a, _b, _c, _d, _e, _f, _g2, _h2;
+    const _date = toDate(date, options2 == null ? void 0 : options2.in);
+    const year = _date.getFullYear();
+    const defaultOptions2 = getDefaultOptions();
+    const firstWeekContainsDate = (_h2 = (_g2 = (_d = (_c = options2 == null ? void 0 : options2.firstWeekContainsDate) != null ? _c : (_b = (_a = options2 == null ? void 0 : options2.locale) == null ? void 0 : _a.options) == null ? void 0 : _b.firstWeekContainsDate) != null ? _d : defaultOptions2.firstWeekContainsDate) != null ? _g2 : (_f = (_e = defaultOptions2.locale) == null ? void 0 : _e.options) == null ? void 0 : _f.firstWeekContainsDate) != null ? _h2 : 1;
+    const firstWeekOfNextYear = constructFrom((options2 == null ? void 0 : options2.in) || date, 0);
+    firstWeekOfNextYear.setFullYear(year + 1, 0, firstWeekContainsDate);
+    firstWeekOfNextYear.setHours(0, 0, 0, 0);
+    const startOfNextYear = startOfWeek(firstWeekOfNextYear, options2);
+    const firstWeekOfThisYear = constructFrom((options2 == null ? void 0 : options2.in) || date, 0);
+    firstWeekOfThisYear.setFullYear(year, 0, firstWeekContainsDate);
+    firstWeekOfThisYear.setHours(0, 0, 0, 0);
+    const startOfThisYear = startOfWeek(firstWeekOfThisYear, options2);
+    if (+_date >= +startOfNextYear) {
+      return year + 1;
+    } else if (+_date >= +startOfThisYear) {
+      return year;
+    } else {
+      return year - 1;
+    }
+  }
+  function startOfWeekYear(date, options2) {
+    var _a, _b, _c, _d, _e, _f, _g2, _h2;
+    const defaultOptions2 = getDefaultOptions();
+    const firstWeekContainsDate = (_h2 = (_g2 = (_d = (_c = options2 == null ? void 0 : options2.firstWeekContainsDate) != null ? _c : (_b = (_a = options2 == null ? void 0 : options2.locale) == null ? void 0 : _a.options) == null ? void 0 : _b.firstWeekContainsDate) != null ? _d : defaultOptions2.firstWeekContainsDate) != null ? _g2 : (_f = (_e = defaultOptions2.locale) == null ? void 0 : _e.options) == null ? void 0 : _f.firstWeekContainsDate) != null ? _h2 : 1;
+    const year = getWeekYear(date, options2);
+    const firstWeek = constructFrom((options2 == null ? void 0 : options2.in) || date, 0);
+    firstWeek.setFullYear(year, 0, firstWeekContainsDate);
+    firstWeek.setHours(0, 0, 0, 0);
+    const _date = startOfWeek(firstWeek, options2);
+    return _date;
+  }
+  function getWeek(date, options2) {
+    const _date = toDate(date, options2 == null ? void 0 : options2.in);
+    const diff = +startOfWeek(_date, options2) - +startOfWeekYear(_date, options2);
+    return Math.round(diff / millisecondsInWeek) + 1;
+  }
+  function addLeadingZeros(number, targetLength) {
+    const sign = number < 0 ? "-" : "";
+    const output = Math.abs(number).toString().padStart(targetLength, "0");
+    return sign + output;
+  }
+  const lightFormatters = {
+    // Year
+    y(date, token) {
+      const signedYear = date.getFullYear();
+      const year = signedYear > 0 ? signedYear : 1 - signedYear;
+      return addLeadingZeros(token === "yy" ? year % 100 : year, token.length);
+    },
+    // Month
+    M(date, token) {
+      const month = date.getMonth();
+      return token === "M" ? String(month + 1) : addLeadingZeros(month + 1, 2);
+    },
+    // Day of the month
+    d(date, token) {
+      return addLeadingZeros(date.getDate(), token.length);
+    },
+    // AM or PM
+    a(date, token) {
+      const dayPeriodEnumValue = date.getHours() / 12 >= 1 ? "pm" : "am";
+      switch (token) {
+        case "a":
+        case "aa":
+          return dayPeriodEnumValue.toUpperCase();
+        case "aaa":
+          return dayPeriodEnumValue;
+        case "aaaaa":
+          return dayPeriodEnumValue[0];
+        case "aaaa":
+        default:
+          return dayPeriodEnumValue === "am" ? "a.m." : "p.m.";
+      }
+    },
+    // Hour [1-12]
+    h(date, token) {
+      return addLeadingZeros(date.getHours() % 12 || 12, token.length);
+    },
+    // Hour [0-23]
+    H(date, token) {
+      return addLeadingZeros(date.getHours(), token.length);
+    },
+    // Minute
+    m(date, token) {
+      return addLeadingZeros(date.getMinutes(), token.length);
+    },
+    // Second
+    s(date, token) {
+      return addLeadingZeros(date.getSeconds(), token.length);
+    },
+    // Fraction of second
+    S(date, token) {
+      const numberOfDigits = token.length;
+      const milliseconds = date.getMilliseconds();
+      const fractionalSeconds = Math.trunc(
+        milliseconds * Math.pow(10, numberOfDigits - 3)
+      );
+      return addLeadingZeros(fractionalSeconds, token.length);
+    }
+  };
+  const dayPeriodEnum = {
+    midnight: "midnight",
+    noon: "noon",
+    morning: "morning",
+    afternoon: "afternoon",
+    evening: "evening",
+    night: "night"
+  };
+  const formatters = {
+    // Era
+    G: function(date, token, localize2) {
+      const era = date.getFullYear() > 0 ? 1 : 0;
+      switch (token) {
+        case "G":
+        case "GG":
+        case "GGG":
+          return localize2.era(era, { width: "abbreviated" });
+        case "GGGGG":
+          return localize2.era(era, { width: "narrow" });
+        case "GGGG":
+        default:
+          return localize2.era(era, { width: "wide" });
+      }
+    },
+    // Year
+    y: function(date, token, localize2) {
+      if (token === "yo") {
+        const signedYear = date.getFullYear();
+        const year = signedYear > 0 ? signedYear : 1 - signedYear;
+        return localize2.ordinalNumber(year, { unit: "year" });
+      }
+      return lightFormatters.y(date, token);
+    },
+    // Local week-numbering year
+    Y: function(date, token, localize2, options2) {
+      const signedWeekYear = getWeekYear(date, options2);
+      const weekYear = signedWeekYear > 0 ? signedWeekYear : 1 - signedWeekYear;
+      if (token === "YY") {
+        const twoDigitYear = weekYear % 100;
+        return addLeadingZeros(twoDigitYear, 2);
+      }
+      if (token === "Yo") {
+        return localize2.ordinalNumber(weekYear, { unit: "year" });
+      }
+      return addLeadingZeros(weekYear, token.length);
+    },
+    // ISO week-numbering year
+    R: function(date, token) {
+      const isoWeekYear = getISOWeekYear(date);
+      return addLeadingZeros(isoWeekYear, token.length);
+    },
+    // Extended year. This is a single number designating the year of this calendar system.
+    // The main difference between `y` and `u` localizers are B.C. years:
+    // | Year | `y` | `u` |
+    // |------|-----|-----|
+    // | AC 1 |   1 |   1 |
+    // | BC 1 |   1 |   0 |
+    // | BC 2 |   2 |  -1 |
+    // Also `yy` always returns the last two digits of a year,
+    // while `uu` pads single digit years to 2 characters and returns other years unchanged.
+    u: function(date, token) {
+      const year = date.getFullYear();
+      return addLeadingZeros(year, token.length);
+    },
+    // Quarter
+    Q: function(date, token, localize2) {
+      const quarter = Math.ceil((date.getMonth() + 1) / 3);
+      switch (token) {
+        case "Q":
+          return String(quarter);
+        case "QQ":
+          return addLeadingZeros(quarter, 2);
+        case "Qo":
+          return localize2.ordinalNumber(quarter, { unit: "quarter" });
+        case "QQQ":
+          return localize2.quarter(quarter, {
+            width: "abbreviated",
+            context: "formatting"
+          });
+        case "QQQQQ":
+          return localize2.quarter(quarter, {
+            width: "narrow",
+            context: "formatting"
+          });
+        case "QQQQ":
+        default:
+          return localize2.quarter(quarter, {
+            width: "wide",
+            context: "formatting"
+          });
+      }
+    },
+    // Stand-alone quarter
+    q: function(date, token, localize2) {
+      const quarter = Math.ceil((date.getMonth() + 1) / 3);
+      switch (token) {
+        case "q":
+          return String(quarter);
+        case "qq":
+          return addLeadingZeros(quarter, 2);
+        case "qo":
+          return localize2.ordinalNumber(quarter, { unit: "quarter" });
+        case "qqq":
+          return localize2.quarter(quarter, {
+            width: "abbreviated",
+            context: "standalone"
+          });
+        case "qqqqq":
+          return localize2.quarter(quarter, {
+            width: "narrow",
+            context: "standalone"
+          });
+        case "qqqq":
+        default:
+          return localize2.quarter(quarter, {
+            width: "wide",
+            context: "standalone"
+          });
+      }
+    },
+    // Month
+    M: function(date, token, localize2) {
+      const month = date.getMonth();
+      switch (token) {
+        case "M":
+        case "MM":
+          return lightFormatters.M(date, token);
+        case "Mo":
+          return localize2.ordinalNumber(month + 1, { unit: "month" });
+        case "MMM":
+          return localize2.month(month, {
+            width: "abbreviated",
+            context: "formatting"
+          });
+        case "MMMMM":
+          return localize2.month(month, {
+            width: "narrow",
+            context: "formatting"
+          });
+        case "MMMM":
+        default:
+          return localize2.month(month, { width: "wide", context: "formatting" });
+      }
+    },
+    // Stand-alone month
+    L: function(date, token, localize2) {
+      const month = date.getMonth();
+      switch (token) {
+        case "L":
+          return String(month + 1);
+        case "LL":
+          return addLeadingZeros(month + 1, 2);
+        case "Lo":
+          return localize2.ordinalNumber(month + 1, { unit: "month" });
+        case "LLL":
+          return localize2.month(month, {
+            width: "abbreviated",
+            context: "standalone"
+          });
+        case "LLLLL":
+          return localize2.month(month, {
+            width: "narrow",
+            context: "standalone"
+          });
+        case "LLLL":
+        default:
+          return localize2.month(month, { width: "wide", context: "standalone" });
+      }
+    },
+    // Local week of year
+    w: function(date, token, localize2, options2) {
+      const week2 = getWeek(date, options2);
+      if (token === "wo") {
+        return localize2.ordinalNumber(week2, { unit: "week" });
+      }
+      return addLeadingZeros(week2, token.length);
+    },
+    // ISO week of year
+    I: function(date, token, localize2) {
+      const isoWeek = getISOWeek(date);
+      if (token === "Io") {
+        return localize2.ordinalNumber(isoWeek, { unit: "week" });
+      }
+      return addLeadingZeros(isoWeek, token.length);
+    },
+    // Day of the month
+    d: function(date, token, localize2) {
+      if (token === "do") {
+        return localize2.ordinalNumber(date.getDate(), { unit: "date" });
+      }
+      return lightFormatters.d(date, token);
+    },
+    // Day of year
+    D: function(date, token, localize2) {
+      const dayOfYear = getDayOfYear(date);
+      if (token === "Do") {
+        return localize2.ordinalNumber(dayOfYear, { unit: "dayOfYear" });
+      }
+      return addLeadingZeros(dayOfYear, token.length);
+    },
+    // Day of week
+    E: function(date, token, localize2) {
+      const dayOfWeek = date.getDay();
+      switch (token) {
+        case "E":
+        case "EE":
+        case "EEE":
+          return localize2.day(dayOfWeek, {
+            width: "abbreviated",
+            context: "formatting"
+          });
+        case "EEEEE":
+          return localize2.day(dayOfWeek, {
+            width: "narrow",
+            context: "formatting"
+          });
+        case "EEEEEE":
+          return localize2.day(dayOfWeek, {
+            width: "short",
+            context: "formatting"
+          });
+        case "EEEE":
+        default:
+          return localize2.day(dayOfWeek, {
+            width: "wide",
+            context: "formatting"
+          });
+      }
+    },
+    // Local day of week
+    e: function(date, token, localize2, options2) {
+      const dayOfWeek = date.getDay();
+      const localDayOfWeek = (dayOfWeek - options2.weekStartsOn + 8) % 7 || 7;
+      switch (token) {
+        case "e":
+          return String(localDayOfWeek);
+        case "ee":
+          return addLeadingZeros(localDayOfWeek, 2);
+        case "eo":
+          return localize2.ordinalNumber(localDayOfWeek, { unit: "day" });
+        case "eee":
+          return localize2.day(dayOfWeek, {
+            width: "abbreviated",
+            context: "formatting"
+          });
+        case "eeeee":
+          return localize2.day(dayOfWeek, {
+            width: "narrow",
+            context: "formatting"
+          });
+        case "eeeeee":
+          return localize2.day(dayOfWeek, {
+            width: "short",
+            context: "formatting"
+          });
+        case "eeee":
+        default:
+          return localize2.day(dayOfWeek, {
+            width: "wide",
+            context: "formatting"
+          });
+      }
+    },
+    // Stand-alone local day of week
+    c: function(date, token, localize2, options2) {
+      const dayOfWeek = date.getDay();
+      const localDayOfWeek = (dayOfWeek - options2.weekStartsOn + 8) % 7 || 7;
+      switch (token) {
+        case "c":
+          return String(localDayOfWeek);
+        case "cc":
+          return addLeadingZeros(localDayOfWeek, token.length);
+        case "co":
+          return localize2.ordinalNumber(localDayOfWeek, { unit: "day" });
+        case "ccc":
+          return localize2.day(dayOfWeek, {
+            width: "abbreviated",
+            context: "standalone"
+          });
+        case "ccccc":
+          return localize2.day(dayOfWeek, {
+            width: "narrow",
+            context: "standalone"
+          });
+        case "cccccc":
+          return localize2.day(dayOfWeek, {
+            width: "short",
+            context: "standalone"
+          });
+        case "cccc":
+        default:
+          return localize2.day(dayOfWeek, {
+            width: "wide",
+            context: "standalone"
+          });
+      }
+    },
+    // ISO day of week
+    i: function(date, token, localize2) {
+      const dayOfWeek = date.getDay();
+      const isoDayOfWeek = dayOfWeek === 0 ? 7 : dayOfWeek;
+      switch (token) {
+        case "i":
+          return String(isoDayOfWeek);
+        case "ii":
+          return addLeadingZeros(isoDayOfWeek, token.length);
+        case "io":
+          return localize2.ordinalNumber(isoDayOfWeek, { unit: "day" });
+        case "iii":
+          return localize2.day(dayOfWeek, {
+            width: "abbreviated",
+            context: "formatting"
+          });
+        case "iiiii":
+          return localize2.day(dayOfWeek, {
+            width: "narrow",
+            context: "formatting"
+          });
+        case "iiiiii":
+          return localize2.day(dayOfWeek, {
+            width: "short",
+            context: "formatting"
+          });
+        case "iiii":
+        default:
+          return localize2.day(dayOfWeek, {
+            width: "wide",
+            context: "formatting"
+          });
+      }
+    },
+    // AM or PM
+    a: function(date, token, localize2) {
+      const hours = date.getHours();
+      const dayPeriodEnumValue = hours / 12 >= 1 ? "pm" : "am";
+      switch (token) {
+        case "a":
+        case "aa":
+          return localize2.dayPeriod(dayPeriodEnumValue, {
+            width: "abbreviated",
+            context: "formatting"
+          });
+        case "aaa":
+          return localize2.dayPeriod(dayPeriodEnumValue, {
+            width: "abbreviated",
+            context: "formatting"
+          }).toLowerCase();
+        case "aaaaa":
+          return localize2.dayPeriod(dayPeriodEnumValue, {
+            width: "narrow",
+            context: "formatting"
+          });
+        case "aaaa":
+        default:
+          return localize2.dayPeriod(dayPeriodEnumValue, {
+            width: "wide",
+            context: "formatting"
+          });
+      }
+    },
+    // AM, PM, midnight, noon
+    b: function(date, token, localize2) {
+      const hours = date.getHours();
+      let dayPeriodEnumValue;
+      if (hours === 12) {
+        dayPeriodEnumValue = dayPeriodEnum.noon;
+      } else if (hours === 0) {
+        dayPeriodEnumValue = dayPeriodEnum.midnight;
+      } else {
+        dayPeriodEnumValue = hours / 12 >= 1 ? "pm" : "am";
+      }
+      switch (token) {
+        case "b":
+        case "bb":
+          return localize2.dayPeriod(dayPeriodEnumValue, {
+            width: "abbreviated",
+            context: "formatting"
+          });
+        case "bbb":
+          return localize2.dayPeriod(dayPeriodEnumValue, {
+            width: "abbreviated",
+            context: "formatting"
+          }).toLowerCase();
+        case "bbbbb":
+          return localize2.dayPeriod(dayPeriodEnumValue, {
+            width: "narrow",
+            context: "formatting"
+          });
+        case "bbbb":
+        default:
+          return localize2.dayPeriod(dayPeriodEnumValue, {
+            width: "wide",
+            context: "formatting"
+          });
+      }
+    },
+    // in the morning, in the afternoon, in the evening, at night
+    B: function(date, token, localize2) {
+      const hours = date.getHours();
+      let dayPeriodEnumValue;
+      if (hours >= 17) {
+        dayPeriodEnumValue = dayPeriodEnum.evening;
+      } else if (hours >= 12) {
+        dayPeriodEnumValue = dayPeriodEnum.afternoon;
+      } else if (hours >= 4) {
+        dayPeriodEnumValue = dayPeriodEnum.morning;
+      } else {
+        dayPeriodEnumValue = dayPeriodEnum.night;
+      }
+      switch (token) {
+        case "B":
+        case "BB":
+        case "BBB":
+          return localize2.dayPeriod(dayPeriodEnumValue, {
+            width: "abbreviated",
+            context: "formatting"
+          });
+        case "BBBBB":
+          return localize2.dayPeriod(dayPeriodEnumValue, {
+            width: "narrow",
+            context: "formatting"
+          });
+        case "BBBB":
+        default:
+          return localize2.dayPeriod(dayPeriodEnumValue, {
+            width: "wide",
+            context: "formatting"
+          });
+      }
+    },
+    // Hour [1-12]
+    h: function(date, token, localize2) {
+      if (token === "ho") {
+        let hours = date.getHours() % 12;
+        if (hours === 0) hours = 12;
+        return localize2.ordinalNumber(hours, { unit: "hour" });
+      }
+      return lightFormatters.h(date, token);
+    },
+    // Hour [0-23]
+    H: function(date, token, localize2) {
+      if (token === "Ho") {
+        return localize2.ordinalNumber(date.getHours(), { unit: "hour" });
+      }
+      return lightFormatters.H(date, token);
+    },
+    // Hour [0-11]
+    K: function(date, token, localize2) {
+      const hours = date.getHours() % 12;
+      if (token === "Ko") {
+        return localize2.ordinalNumber(hours, { unit: "hour" });
+      }
+      return addLeadingZeros(hours, token.length);
+    },
+    // Hour [1-24]
+    k: function(date, token, localize2) {
+      let hours = date.getHours();
+      if (hours === 0) hours = 24;
+      if (token === "ko") {
+        return localize2.ordinalNumber(hours, { unit: "hour" });
+      }
+      return addLeadingZeros(hours, token.length);
+    },
+    // Minute
+    m: function(date, token, localize2) {
+      if (token === "mo") {
+        return localize2.ordinalNumber(date.getMinutes(), { unit: "minute" });
+      }
+      return lightFormatters.m(date, token);
+    },
+    // Second
+    s: function(date, token, localize2) {
+      if (token === "so") {
+        return localize2.ordinalNumber(date.getSeconds(), { unit: "second" });
+      }
+      return lightFormatters.s(date, token);
+    },
+    // Fraction of second
+    S: function(date, token) {
+      return lightFormatters.S(date, token);
+    },
+    // Timezone (ISO-8601. If offset is 0, output is always `'Z'`)
+    X: function(date, token, _localize) {
+      const timezoneOffset = date.getTimezoneOffset();
+      if (timezoneOffset === 0) {
+        return "Z";
+      }
+      switch (token) {
+        case "X":
+          return formatTimezoneWithOptionalMinutes(timezoneOffset);
+        case "XXXX":
+        case "XX":
+          return formatTimezone(timezoneOffset);
+        case "XXXXX":
+        case "XXX":
+        default:
+          return formatTimezone(timezoneOffset, ":");
+      }
+    },
+    // Timezone (ISO-8601. If offset is 0, output is `'+00:00'` or equivalent)
+    x: function(date, token, _localize) {
+      const timezoneOffset = date.getTimezoneOffset();
+      switch (token) {
+        case "x":
+          return formatTimezoneWithOptionalMinutes(timezoneOffset);
+        case "xxxx":
+        case "xx":
+          return formatTimezone(timezoneOffset);
+        case "xxxxx":
+        case "xxx":
+        default:
+          return formatTimezone(timezoneOffset, ":");
+      }
+    },
+    // Timezone (GMT)
+    O: function(date, token, _localize) {
+      const timezoneOffset = date.getTimezoneOffset();
+      switch (token) {
+        case "O":
+        case "OO":
+        case "OOO":
+          return "GMT" + formatTimezoneShort(timezoneOffset, ":");
+        case "OOOO":
+        default:
+          return "GMT" + formatTimezone(timezoneOffset, ":");
+      }
+    },
+    // Timezone (specific non-location)
+    z: function(date, token, _localize) {
+      const timezoneOffset = date.getTimezoneOffset();
+      switch (token) {
+        case "z":
+        case "zz":
+        case "zzz":
+          return "GMT" + formatTimezoneShort(timezoneOffset, ":");
+        case "zzzz":
+        default:
+          return "GMT" + formatTimezone(timezoneOffset, ":");
+      }
+    },
+    // Seconds timestamp
+    t: function(date, token, _localize) {
+      const timestamp = Math.trunc(+date / 1e3);
+      return addLeadingZeros(timestamp, token.length);
+    },
+    // Milliseconds timestamp
+    T: function(date, token, _localize) {
+      return addLeadingZeros(+date, token.length);
+    }
+  };
+  function formatTimezoneShort(offset2, delimiter = "") {
+    const sign = offset2 > 0 ? "-" : "+";
+    const absOffset = Math.abs(offset2);
+    const hours = Math.trunc(absOffset / 60);
+    const minutes = absOffset % 60;
+    if (minutes === 0) {
+      return sign + String(hours);
+    }
+    return sign + String(hours) + delimiter + addLeadingZeros(minutes, 2);
+  }
+  function formatTimezoneWithOptionalMinutes(offset2, delimiter) {
+    if (offset2 % 60 === 0) {
+      const sign = offset2 > 0 ? "-" : "+";
+      return sign + addLeadingZeros(Math.abs(offset2) / 60, 2);
+    }
+    return formatTimezone(offset2, delimiter);
+  }
+  function formatTimezone(offset2, delimiter = "") {
+    const sign = offset2 > 0 ? "-" : "+";
+    const absOffset = Math.abs(offset2);
+    const hours = addLeadingZeros(Math.trunc(absOffset / 60), 2);
+    const minutes = addLeadingZeros(absOffset % 60, 2);
+    return sign + hours + delimiter + minutes;
+  }
+  const dateLongFormatter = (pattern, formatLong2) => {
+    switch (pattern) {
+      case "P":
+        return formatLong2.date({ width: "short" });
+      case "PP":
+        return formatLong2.date({ width: "medium" });
+      case "PPP":
+        return formatLong2.date({ width: "long" });
+      case "PPPP":
+      default:
+        return formatLong2.date({ width: "full" });
+    }
+  };
+  const timeLongFormatter = (pattern, formatLong2) => {
+    switch (pattern) {
+      case "p":
+        return formatLong2.time({ width: "short" });
+      case "pp":
+        return formatLong2.time({ width: "medium" });
+      case "ppp":
+        return formatLong2.time({ width: "long" });
+      case "pppp":
+      default:
+        return formatLong2.time({ width: "full" });
+    }
+  };
+  const dateTimeLongFormatter = (pattern, formatLong2) => {
+    const matchResult = pattern.match(/(P+)(p+)?/) || [];
+    const datePattern = matchResult[1];
+    const timePattern = matchResult[2];
+    if (!timePattern) {
+      return dateLongFormatter(pattern, formatLong2);
+    }
+    let dateTimeFormat;
+    switch (datePattern) {
+      case "P":
+        dateTimeFormat = formatLong2.dateTime({ width: "short" });
+        break;
+      case "PP":
+        dateTimeFormat = formatLong2.dateTime({ width: "medium" });
+        break;
+      case "PPP":
+        dateTimeFormat = formatLong2.dateTime({ width: "long" });
+        break;
+      case "PPPP":
+      default:
+        dateTimeFormat = formatLong2.dateTime({ width: "full" });
+        break;
+    }
+    return dateTimeFormat.replace("{{date}}", dateLongFormatter(datePattern, formatLong2)).replace("{{time}}", timeLongFormatter(timePattern, formatLong2));
+  };
+  const longFormatters = {
+    p: timeLongFormatter,
+    P: dateTimeLongFormatter
+  };
+  const dayOfYearTokenRE = /^D+$/;
+  const weekYearTokenRE = /^Y+$/;
+  const throwTokens = ["D", "DD", "YY", "YYYY"];
+  function isProtectedDayOfYearToken(token) {
+    return dayOfYearTokenRE.test(token);
+  }
+  function isProtectedWeekYearToken(token) {
+    return weekYearTokenRE.test(token);
+  }
+  function warnOrThrowProtectedError(token, format2, input) {
+    const _message = message(token, format2, input);
+    console.warn(_message);
+    if (throwTokens.includes(token)) throw new RangeError(_message);
+  }
+  function message(token, format2, input) {
+    const subject = token[0] === "Y" ? "years" : "days of the month";
+    return `Use \`${token.toLowerCase()}\` instead of \`${token}\` (in \`${format2}\`) for formatting ${subject} to the input \`${input}\`; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md`;
+  }
+  const formattingTokensRegExp = /[yYQqMLwIdDecihHKkms]o|(\w)\1*|''|'(''|[^'])+('|$)|./g;
+  const longFormattingTokensRegExp = /P+p+|P+|p+|''|'(''|[^'])+('|$)|./g;
+  const escapedStringRegExp = /^'([^]*?)'?$/;
+  const doubleQuoteRegExp = /''/g;
+  const unescapedLatinCharacterRegExp = /[a-zA-Z]/;
+  function format(date, formatStr, options2) {
+    var _a, _b, _c, _d, _e, _f, _g2, _h2, _i2, _j2, _k2, _l, _m2, _n2, _o2, _p2, _q2, _r2;
+    const defaultOptions2 = getDefaultOptions();
+    const locale = (_b = (_a = options2 == null ? void 0 : options2.locale) != null ? _a : defaultOptions2.locale) != null ? _b : enUS$1;
+    const firstWeekContainsDate = (_j2 = (_i2 = (_f = (_e = options2 == null ? void 0 : options2.firstWeekContainsDate) != null ? _e : (_d = (_c = options2 == null ? void 0 : options2.locale) == null ? void 0 : _c.options) == null ? void 0 : _d.firstWeekContainsDate) != null ? _f : defaultOptions2.firstWeekContainsDate) != null ? _i2 : (_h2 = (_g2 = defaultOptions2.locale) == null ? void 0 : _g2.options) == null ? void 0 : _h2.firstWeekContainsDate) != null ? _j2 : 1;
+    const weekStartsOn = (_r2 = (_q2 = (_n2 = (_m2 = options2 == null ? void 0 : options2.weekStartsOn) != null ? _m2 : (_l = (_k2 = options2 == null ? void 0 : options2.locale) == null ? void 0 : _k2.options) == null ? void 0 : _l.weekStartsOn) != null ? _n2 : defaultOptions2.weekStartsOn) != null ? _q2 : (_p2 = (_o2 = defaultOptions2.locale) == null ? void 0 : _o2.options) == null ? void 0 : _p2.weekStartsOn) != null ? _r2 : 0;
+    const originalDate = toDate(date, options2 == null ? void 0 : options2.in);
+    if (!isValid(originalDate)) {
+      throw new RangeError("Invalid time value");
+    }
+    let parts = formatStr.match(longFormattingTokensRegExp).map((substring) => {
+      const firstCharacter = substring[0];
+      if (firstCharacter === "p" || firstCharacter === "P") {
+        const longFormatter = longFormatters[firstCharacter];
+        return longFormatter(substring, locale.formatLong);
+      }
+      return substring;
+    }).join("").match(formattingTokensRegExp).map((substring) => {
+      if (substring === "''") {
+        return { isToken: false, value: "'" };
+      }
+      const firstCharacter = substring[0];
+      if (firstCharacter === "'") {
+        return { isToken: false, value: cleanEscapedString(substring) };
+      }
+      if (formatters[firstCharacter]) {
+        return { isToken: true, value: substring };
+      }
+      if (firstCharacter.match(unescapedLatinCharacterRegExp)) {
+        throw new RangeError(
+          "Format string contains an unescaped latin alphabet character `" + firstCharacter + "`"
+        );
+      }
+      return { isToken: false, value: substring };
+    });
+    if (locale.localize.preprocessor) {
+      parts = locale.localize.preprocessor(originalDate, parts);
+    }
+    const formatterOptions = {
+      firstWeekContainsDate,
+      weekStartsOn,
+      locale
+    };
+    return parts.map((part) => {
+      if (!part.isToken) return part.value;
+      const token = part.value;
+      if (!(options2 == null ? void 0 : options2.useAdditionalWeekYearTokens) && isProtectedWeekYearToken(token) || !(options2 == null ? void 0 : options2.useAdditionalDayOfYearTokens) && isProtectedDayOfYearToken(token)) {
+        warnOrThrowProtectedError(token, formatStr, String(date));
+      }
+      const formatter = formatters[token[0]];
+      return formatter(originalDate, token, locale.localize, formatterOptions);
+    }).join("");
+  }
+  function cleanEscapedString(input) {
+    const matched = input.match(escapedStringRegExp);
+    if (!matched) {
+      return input;
+    }
+    return matched[1].replace(doubleQuoteRegExp, "'");
+  }
+  function getDaysInMonth(date, options2) {
+    const _date = toDate(date, options2 == null ? void 0 : options2.in);
+    const year = _date.getFullYear();
+    const monthIndex = _date.getMonth();
+    const lastDayOfMonth = constructFrom(_date, 0);
+    lastDayOfMonth.setFullYear(year, monthIndex + 1, 0);
+    lastDayOfMonth.setHours(0, 0, 0, 0);
+    return lastDayOfMonth.getDate();
+  }
+  function getMonth(date, options2) {
+    return toDate(date, options2 == null ? void 0 : options2.in).getMonth();
+  }
+  function getYear(date, options2) {
+    return toDate(date, options2 == null ? void 0 : options2.in).getFullYear();
+  }
+  function isAfter(date, dateToCompare) {
+    return +toDate(date) > +toDate(dateToCompare);
+  }
+  function isBefore(date, dateToCompare) {
+    return +toDate(date) < +toDate(dateToCompare);
+  }
+  function isSameMonth(laterDate, earlierDate, options2) {
+    const [laterDate_, earlierDate_] = normalizeDates(
+      options2 == null ? void 0 : options2.in,
+      laterDate,
+      earlierDate
+    );
+    return laterDate_.getFullYear() === earlierDate_.getFullYear() && laterDate_.getMonth() === earlierDate_.getMonth();
+  }
+  function isSameYear(laterDate, earlierDate, options2) {
+    const [laterDate_, earlierDate_] = normalizeDates(
+      options2 == null ? void 0 : options2.in,
+      laterDate,
+      earlierDate
+    );
+    return laterDate_.getFullYear() === earlierDate_.getFullYear();
+  }
+  function setMonth(date, month, options2) {
+    const _date = toDate(date, options2 == null ? void 0 : options2.in);
+    const year = _date.getFullYear();
+    const day = _date.getDate();
+    const midMonth = constructFrom(date, 0);
+    midMonth.setFullYear(year, month, 15);
+    midMonth.setHours(0, 0, 0, 0);
+    const daysInMonth = getDaysInMonth(midMonth);
+    _date.setMonth(month, Math.min(day, daysInMonth));
+    return _date;
+  }
+  function setYear(date, year, options2) {
+    const date_ = toDate(date, options2 == null ? void 0 : options2.in);
+    if (isNaN(+date_)) return constructFrom(date, NaN);
+    date_.setFullYear(year);
+    return date_;
   }
   const FIVE_WEEKS = 5;
   const FOUR_WEEKS = 4;
@@ -60598,78 +62127,78 @@ var __async = (__this, __arguments, generator) => {
     const formatters2 = {
       formatCaption: (date) => {
         if (i18n.language === "ko") {
-          return format(date, "yyyy년 M월", { locale });
+          return format$1(date, "yyyy년 M월", { locale });
         }
         if (i18n.language === "ja") {
-          return format(date, "yyyy年M月", { locale });
+          return format$1(date, "yyyy年M月", { locale });
         }
         if (i18n.language === "zh" || i18n.language === "zh-CN" || i18n.language === "zh-TW") {
-          return format(date, "yyyy年M月", { locale });
+          return format$1(date, "yyyy年M月", { locale });
         }
         if (i18n.language === "de") {
-          return format(date, "MMMM yyyy", { locale });
+          return format$1(date, "MMMM yyyy", { locale });
         }
         if (i18n.language === "fr") {
-          return format(date, "MMMM yyyy", { locale });
+          return format$1(date, "MMMM yyyy", { locale });
         }
         if (i18n.language === "es") {
-          return format(date, "MMMM 'de' yyyy", { locale });
+          return format$1(date, "MMMM 'de' yyyy", { locale });
         }
         if (i18n.language === "it") {
-          return format(date, "MMMM yyyy", { locale });
+          return format$1(date, "MMMM yyyy", { locale });
         }
         if (i18n.language === "pt" || i18n.language === "pt-BR") {
-          return format(date, "MMMM 'de' yyyy", { locale });
+          return format$1(date, "MMMM 'de' yyyy", { locale });
         }
         if (i18n.language === "ru") {
-          return format(date, "LLLL yyyy", { locale });
+          return format$1(date, "LLLL yyyy", { locale });
         }
         if (i18n.language === "nl") {
-          return format(date, "MMMM yyyy", { locale });
+          return format$1(date, "MMMM yyyy", { locale });
         }
         if (i18n.language === "ar") {
-          return format(date, "MMMM yyyy", { locale });
+          return format$1(date, "MMMM yyyy", { locale });
         }
         if (i18n.language === "hi") {
-          return format(date, "MMMM yyyy", { locale });
+          return format$1(date, "MMMM yyyy", { locale });
         }
         if (i18n.language === "th") {
-          return format(date, "MMMM yyyy", { locale });
+          return format$1(date, "MMMM yyyy", { locale });
         }
         if (i18n.language === "vi") {
-          return format(date, "'Tháng' M 'năm' yyyy", { locale });
+          return format$1(date, "'Tháng' M 'năm' yyyy", { locale });
         }
         if (i18n.language === "id") {
-          return format(date, "MMMM yyyy", { locale });
+          return format$1(date, "MMMM yyyy", { locale });
         }
         if (i18n.language === "sv") {
-          return format(date, "MMMM yyyy", { locale });
+          return format$1(date, "MMMM yyyy", { locale });
         }
         if (i18n.language === "fi") {
-          return format(date, "MMMM yyyy", { locale });
+          return format$1(date, "MMMM yyyy", { locale });
         }
         if (i18n.language === "da") {
-          return format(date, "MMMM yyyy", { locale });
+          return format$1(date, "MMMM yyyy", { locale });
         }
         if (i18n.language === "no" || i18n.language === "nb") {
-          return format(date, "MMMM yyyy", { locale });
+          return format$1(date, "MMMM yyyy", { locale });
         }
         if (i18n.language === "pl") {
-          return format(date, "LLLL yyyy", { locale });
+          return format$1(date, "LLLL yyyy", { locale });
         }
         if (i18n.language === "cs") {
-          return format(date, "LLLL yyyy", { locale });
+          return format$1(date, "LLLL yyyy", { locale });
         }
         if (i18n.language === "hu") {
-          return format(date, "yyyy. MMMM", { locale });
+          return format$1(date, "yyyy. MMMM", { locale });
         }
         if (i18n.language === "tr") {
-          return format(date, "MMMM yyyy", { locale });
+          return format$1(date, "MMMM yyyy", { locale });
         }
-        return format(date, "MMMM yyyy", { locale });
+        return format$1(date, "MMMM yyyy", { locale });
       },
       formatWeekdayName: (date) => {
-        return format(date, "EEE", { locale });
+        return format$1(date, "EEE", { locale });
       }
     };
     return /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -62200,7 +63729,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
     const { badgeVariant } = useCalendarPreferences();
     const { t: t2, i18n } = useTranslation("calendar");
     const locale = getDateLocale(i18n.language);
-    const itemStart = startOfDay(parseISO(event.startDate));
+    const itemStart = startOfDay$1(parseISO(event.startDate));
     const itemEnd = endOfDay(parseISO(event.endDate));
     if (cellDate < itemStart || cellDate > itemEnd) return null;
     let position;
@@ -62208,11 +63737,11 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
       position = propPosition;
     } else if (eventCurrentDay && eventTotalDays) {
       position = "none";
-    } else if (isSameDay(itemStart, itemEnd)) {
+    } else if (isSameDay$1(itemStart, itemEnd)) {
       position = "none";
-    } else if (isSameDay(cellDate, itemStart)) {
+    } else if (isSameDay$1(cellDate, itemStart)) {
       position = "first";
-    } else if (isSameDay(cellDate, itemEnd)) {
+    } else if (isSameDay$1(cellDate, itemEnd)) {
       position = "last";
     } else {
       position = "middle";
@@ -62265,7 +63794,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
         const eventKey = event ? `event-${event.id}-${position}` : `empty-${position}`;
         return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "lg:flex-1", children: event && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(EventBullet, { className: "lg:hidden", color: event.color }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(MonthEventBadge, { className: "hidden lg:flex", event, cellDate: startOfDay(date) })
+          /* @__PURE__ */ jsxRuntimeExports.jsx(MonthEventBadge, { className: "hidden lg:flex", event, cellDate: startOfDay$1(date) })
         ] }) }, eventKey);
       }) }),
       cellEvents.length > MAX_VISIBLE_EVENTS && /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: cn("h-4.5 px-1.5 text-xs font-semibold text-muted-foreground", !currentMonth && "opacity-50"), children: [
@@ -62292,10 +63821,10 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
       [multiDayEvents, singleDayEvents, selectedDate]
     );
     const weekDays = reactExports.useMemo(() => {
-      const weekStart = startOfWeek(/* @__PURE__ */ new Date(), { locale });
+      const weekStart = startOfWeek$1(/* @__PURE__ */ new Date(), { locale });
       return Array.from({ length: 7 }, (_, i2) => {
-        const day = addDays(weekStart, i2);
-        return format(day, "EEE", { locale });
+        const day = addDays$1(weekStart, i2);
+        return format$1(day, "EEE", { locale });
       });
     }, [locale]);
     return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
@@ -63176,15 +64705,15 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
     ] });
   }
   function WeekViewMultiDayEventsRow({ selectedDate, multiDayEvents }) {
-    const weekStart = startOfWeek(selectedDate);
-    const weekEnd = endOfWeek(selectedDate);
-    const weekDays = Array.from({ length: 7 }, (_, i2) => addDays(weekStart, i2));
+    const weekStart = startOfWeek$1(selectedDate);
+    const weekEnd = endOfWeek$1(selectedDate);
+    const weekDays = Array.from({ length: 7 }, (_, i2) => addDays$1(weekStart, i2));
     const processedEvents = reactExports.useMemo(() => {
       return multiDayEvents.map((event) => {
         const start = parseISO(event.startDate);
         const end = parseISO(event.endDate);
-        const adjustedStart = isBefore(start, weekStart) ? weekStart : start;
-        const adjustedEnd = isAfter(end, weekEnd) ? weekEnd : end;
+        const adjustedStart = isBefore$1(start, weekStart) ? weekStart : start;
+        const adjustedEnd = isAfter$1(end, weekEnd) ? weekEnd : end;
         const startIndex = differenceInDays(adjustedStart, weekStart);
         const endIndex = differenceInDays(adjustedEnd, weekStart);
         return __spreadProps(__spreadValues({}, event), {
@@ -63243,7 +64772,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
         } else {
           position = "middle";
         }
-        return /* @__PURE__ */ jsxRuntimeExports.jsx(MonthEventBadge, { event, cellDate: startOfDay(day), position }, `${event.id}-${dayIndex}`);
+        return /* @__PURE__ */ jsxRuntimeExports.jsx(MonthEventBadge, { event, cellDate: startOfDay$1(day), position }, `${event.id}-${dayIndex}`);
       }) }, day.toISOString())) })
     ] });
   }
@@ -63253,12 +64782,12 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
     const { t: t2, i18n } = useTranslation("calendar");
     const locale = getDateLocale(i18n.language);
     const { hours, earliestEventHour, latestEventHour } = getVisibleHours(visibleHours, singleDayEvents);
-    const weekStart = startOfWeek(selectedDate, { locale });
-    const weekDays = Array.from({ length: 7 }, (_, i2) => addDays(weekStart, i2));
+    const weekStart = startOfWeek$1(selectedDate, { locale });
+    const weekDays = Array.from({ length: 7 }, (_, i2) => addDays$1(weekStart, i2));
     const hourLabels = reactExports.useMemo(
       () => hours.map((h) => {
         const date = (/* @__PURE__ */ new Date()).setHours(h, 0, 0, 0);
-        return format(new Date(date), i18n.language === "ko" ? "HH시" : "hh a", { locale });
+        return format$1(new Date(date), i18n.language === "ko" ? "HH시" : "hh a", { locale });
       }),
       [hours, locale, i18n.language]
     );
@@ -63268,7 +64797,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
     );
     const dayEventsMap = reactExports.useMemo(() => {
       return weekDays.map((day) => {
-        const dayEvents = parsedSingleDayEvents.filter((pe) => isSameDay(pe.start, day) || isSameDay(pe.end, day)).map((pe) => pe.event);
+        const dayEvents = parsedSingleDayEvents.filter((pe) => isSameDay$1(pe.start, day) || isSameDay$1(pe.end, day)).map((pe) => pe.event);
         return dayEvents;
       });
     }, [parsedSingleDayEvents, weekDays]);
@@ -63284,9 +64813,9 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative z-20 flex border-b", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-18" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid flex-1 grid-cols-7 divide-x border-l", children: weekDays.map((day, index2) => /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "py-2 text-center text-xs font-medium text-muted-foreground", children: [
-              format(day, "EE", { locale }),
+              format$1(day, "EE", { locale }),
               " ",
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "ml-1 font-semibold text-foreground", children: format(day, "d", { locale }) })
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "ml-1 font-semibold text-foreground", children: format$1(day, "d", { locale }) })
             ] }, index2)) })
           ] })
         ] }),
@@ -63342,78 +64871,78 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
     const formatters2 = {
       formatCaption: (date) => {
         if (i18n.language === "ko") {
-          return format(date, "yyyy년 M월", { locale });
+          return format$1(date, "yyyy년 M월", { locale });
         }
         if (i18n.language === "ja") {
-          return format(date, "yyyy年M月", { locale });
+          return format$1(date, "yyyy年M月", { locale });
         }
         if (i18n.language === "zh" || i18n.language === "zh-CN" || i18n.language === "zh-TW") {
-          return format(date, "yyyy年M月", { locale });
+          return format$1(date, "yyyy年M月", { locale });
         }
         if (i18n.language === "de") {
-          return format(date, "MMMM yyyy", { locale });
+          return format$1(date, "MMMM yyyy", { locale });
         }
         if (i18n.language === "fr") {
-          return format(date, "MMMM yyyy", { locale });
+          return format$1(date, "MMMM yyyy", { locale });
         }
         if (i18n.language === "es") {
-          return format(date, "MMMM 'de' yyyy", { locale });
+          return format$1(date, "MMMM 'de' yyyy", { locale });
         }
         if (i18n.language === "it") {
-          return format(date, "MMMM yyyy", { locale });
+          return format$1(date, "MMMM yyyy", { locale });
         }
         if (i18n.language === "pt" || i18n.language === "pt-BR") {
-          return format(date, "MMMM 'de' yyyy", { locale });
+          return format$1(date, "MMMM 'de' yyyy", { locale });
         }
         if (i18n.language === "ru") {
-          return format(date, "LLLL yyyy", { locale });
+          return format$1(date, "LLLL yyyy", { locale });
         }
         if (i18n.language === "nl") {
-          return format(date, "MMMM yyyy", { locale });
+          return format$1(date, "MMMM yyyy", { locale });
         }
         if (i18n.language === "ar") {
-          return format(date, "MMMM yyyy", { locale });
+          return format$1(date, "MMMM yyyy", { locale });
         }
         if (i18n.language === "hi") {
-          return format(date, "MMMM yyyy", { locale });
+          return format$1(date, "MMMM yyyy", { locale });
         }
         if (i18n.language === "th") {
-          return format(date, "MMMM yyyy", { locale });
+          return format$1(date, "MMMM yyyy", { locale });
         }
         if (i18n.language === "vi") {
-          return format(date, "'Tháng' M 'năm' yyyy", { locale });
+          return format$1(date, "'Tháng' M 'năm' yyyy", { locale });
         }
         if (i18n.language === "id") {
-          return format(date, "MMMM yyyy", { locale });
+          return format$1(date, "MMMM yyyy", { locale });
         }
         if (i18n.language === "sv") {
-          return format(date, "MMMM yyyy", { locale });
+          return format$1(date, "MMMM yyyy", { locale });
         }
         if (i18n.language === "fi") {
-          return format(date, "MMMM yyyy", { locale });
+          return format$1(date, "MMMM yyyy", { locale });
         }
         if (i18n.language === "da") {
-          return format(date, "MMMM yyyy", { locale });
+          return format$1(date, "MMMM yyyy", { locale });
         }
         if (i18n.language === "no" || i18n.language === "nb") {
-          return format(date, "MMMM yyyy", { locale });
+          return format$1(date, "MMMM yyyy", { locale });
         }
         if (i18n.language === "pl") {
-          return format(date, "LLLL yyyy", { locale });
+          return format$1(date, "LLLL yyyy", { locale });
         }
         if (i18n.language === "cs") {
-          return format(date, "LLLL yyyy", { locale });
+          return format$1(date, "LLLL yyyy", { locale });
         }
         if (i18n.language === "hu") {
-          return format(date, "yyyy. MMMM", { locale });
+          return format$1(date, "yyyy. MMMM", { locale });
         }
         if (i18n.language === "tr") {
-          return format(date, "MMMM yyyy", { locale });
+          return format$1(date, "MMMM yyyy", { locale });
         }
-        return format(date, "MMMM yyyy", { locale });
+        return format$1(date, "MMMM yyyy", { locale });
       },
       formatWeekdayName: (date) => {
-        return format(date, "EEE", { locale });
+        return format$1(date, "EEE", { locale });
       }
     };
     return /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -63468,7 +64997,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
   }
   SingleCalendar.displayName = "Calendar";
   function DayViewMultiDayEventsRow({ selectedDate, multiDayEvents }) {
-    const dayStart = startOfDay(selectedDate);
+    const dayStart = startOfDay$1(selectedDate);
     const dayEnd = endOfDay(selectedDate);
     const multiDayEventsInDay = multiDayEvents.filter((event) => {
       const eventStart = parseISO(event.startDate);
@@ -63484,9 +65013,9 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
     return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex border-b", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-18" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-1 flex-col gap-1 border-l py-1", children: multiDayEventsInDay.map((event) => {
-        const eventStart = startOfDay(parseISO(event.startDate));
-        const eventEnd = startOfDay(parseISO(event.endDate));
-        const currentDate = startOfDay(selectedDate);
+        const eventStart = startOfDay$1(parseISO(event.startDate));
+        const eventEnd = startOfDay$1(parseISO(event.endDate));
+        const currentDate = startOfDay$1(selectedDate);
         const eventTotalDays = differenceInDays(eventEnd, eventStart) + 1;
         const eventCurrentDay = differenceInDays(currentDate, eventStart) + 1;
         return /* @__PURE__ */ jsxRuntimeExports.jsx(MonthEventBadge, { event, cellDate: selectedDate, eventCurrentDay, eventTotalDays }, event.id);
@@ -63513,14 +65042,14 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative z-20 flex border-b", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-18" }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "flex-1 border-l py-2 text-center text-xs font-medium text-muted-foreground", children: [
-              format(selectedDate, "EE", { locale }),
+              format$1(selectedDate, "EE", { locale }),
               " ",
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-semibold text-foreground", children: format(selectedDate, "d", { locale }) })
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-semibold text-foreground", children: format$1(selectedDate, "d", { locale }) })
             ] })
           ] })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollArea, { className: "h-[800px]", type: "always", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "relative w-18", children: hours.map((hour, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "relative", style: { height: "96px" }, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute -top-3 right-2 flex h-6 items-center", children: index2 !== 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs text-muted-foreground", children: format((/* @__PURE__ */ new Date()).setHours(hour, 0, 0, 0), i18n.language === "ko" ? "HH시" : "hh a", { locale }) }) }) }, hour)) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "relative w-18", children: hours.map((hour, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "relative", style: { height: "96px" }, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute -top-3 right-2 flex h-6 items-center", children: index2 !== 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs text-muted-foreground", children: format$1((/* @__PURE__ */ new Date()).setHours(hour, 0, 0, 0), i18n.language === "ko" ? "HH시" : "hh a", { locale }) }) }) }, hour)) }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative flex-1 border-l", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative", children: [
               hours.map((hour, index2) => {
@@ -63660,21 +65189,21 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
     const { setSelectedDate } = useCalendarDate();
     const { i18n } = useTranslation("calendar");
     const locale = getDateLocale(i18n.language);
-    const monthName = format(month, "MMMM", { locale });
+    const monthName = format$1(month, "MMMM", { locale });
     const daysInMonth = reactExports.useMemo(() => {
-      const totalDays = getDaysInMonth(month);
-      const monthStart = startOfMonth(month);
-      const weekStart = startOfWeek(monthStart, { locale });
+      const totalDays = getDaysInMonth$1(month);
+      const monthStart = startOfMonth$1(month);
+      const weekStart = startOfWeek$1(monthStart, { locale });
       const firstDayOffset = (monthStart.getTime() - weekStart.getTime()) / (1e3 * 60 * 60 * 24);
       const days2 = Array.from({ length: totalDays }, (_, i2) => i2 + 1);
       const blanks = Array(firstDayOffset).fill(null);
       return [...blanks, ...days2];
     }, [month, locale]);
     const weekDays = reactExports.useMemo(() => {
-      const weekStart = startOfWeek(/* @__PURE__ */ new Date(), { locale });
+      const weekStart = startOfWeek$1(/* @__PURE__ */ new Date(), { locale });
       return Array.from({ length: 7 }, (_, i2) => {
-        const day = addDays(weekStart, i2);
-        return format(day, "EEE", { locale });
+        const day = addDays$1(weekStart, i2);
+        return format$1(day, "EEE", { locale });
       });
     }, [locale]);
     const handleClick = () => {
@@ -63696,7 +65225,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-7 gap-x-0.5 gap-y-2", children: daysInMonth.map((day, index2) => {
           if (day === null) return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "h-10" }, `blank-${index2}`);
           const date = new Date(month.getFullYear(), month.getMonth(), day);
-          const dayEvents = events2.filter((event) => isSameDay(parseISO(event.startDate), date) || isSameDay(parseISO(event.endDate), date));
+          const dayEvents = events2.filter((event) => isSameDay$1(parseISO(event.startDate), date) || isSameDay$1(parseISO(event.endDate), date));
           return /* @__PURE__ */ jsxRuntimeExports.jsx(YearViewDayCell, { day, date, events: dayEvents }, `day-${day}`);
         }) })
       ] })
@@ -63705,8 +65234,8 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
   function CalendarYearView({ allEvents }) {
     const { selectedDate } = useCalendarDate();
     const months2 = reactExports.useMemo(() => {
-      const yearStart = startOfYear(selectedDate);
-      return Array.from({ length: 12 }, (_, i2) => addMonths(yearStart, i2));
+      const yearStart = startOfYear$1(selectedDate);
+      return Array.from({ length: 12 }, (_, i2) => addMonths$1(yearStart, i2));
     }, [selectedDate]);
     return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "p-4", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4", children: months2.map((month) => /* @__PURE__ */ jsxRuntimeExports.jsx(YearViewMonth, { month, events: allEvents }, month.toString())) }) });
   }
@@ -63789,9 +65318,9 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
       /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "sticky top-0 flex items-center gap-4 bg-background py-2", children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-semibold", children: formatDate(date, "dateTime", i18n.language, locale) }) }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
         multiDayEvents.length > 0 && multiDayEvents.map((event) => {
-          const eventStart = startOfDay(parseISO(event.startDate));
-          const eventEnd = startOfDay(parseISO(event.endDate));
-          const currentDate = startOfDay(date);
+          const eventStart = startOfDay$1(parseISO(event.startDate));
+          const eventEnd = startOfDay$1(parseISO(event.endDate));
+          const currentDate = startOfDay$1(date);
           const eventTotalDays = differenceInDays(eventEnd, eventStart) + 1;
           const eventCurrentDay = differenceInDays(currentDate, eventStart) + 1;
           return /* @__PURE__ */ jsxRuntimeExports.jsx(AgendaEventCard, { event, eventCurrentDay, eventTotalDays }, event.id);
@@ -63808,10 +65337,10 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
       singleDayEvents.forEach((event) => {
         var _a;
         const eventDate = parseISO(event.startDate);
-        if (!isSameMonth(eventDate, selectedDate)) return;
-        const dateKey = format(eventDate, "yyyy-MM-dd");
+        if (!isSameMonth$1(eventDate, selectedDate)) return;
+        const dateKey = format$1(eventDate, "yyyy-MM-dd");
         if (!allDates.has(dateKey)) {
-          allDates.set(dateKey, { date: startOfDay(eventDate), events: [], multiDayEvents: [] });
+          allDates.set(dateKey, { date: startOfDay$1(eventDate), events: [], multiDayEvents: [] });
         }
         (_a = allDates.get(dateKey)) == null ? void 0 : _a.events.push(event);
       });
@@ -63819,11 +65348,11 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
         var _a;
         const eventStart = parseISO(event.startDate);
         const eventEnd = parseISO(event.endDate);
-        let currentDate = startOfDay(eventStart);
+        let currentDate = startOfDay$1(eventStart);
         const lastDate = endOfDay(eventEnd);
         while (currentDate <= lastDate) {
-          if (isSameMonth(currentDate, selectedDate)) {
-            const dateKey = format(currentDate, "yyyy-MM-dd");
+          if (isSameMonth$1(currentDate, selectedDate)) {
+            const dateKey = format$1(currentDate, "yyyy-MM-dd");
             if (!allDates.has(dateKey)) {
               allDates.set(dateKey, { date: new Date(currentDate), events: [], multiDayEvents: [] });
             }
@@ -63836,7 +65365,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
     }, [singleDayEvents, multiDayEvents, selectedDate]);
     const hasAnyEvents = singleDayEvents.length > 0 || multiDayEvents.length > 0;
     return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "h-[800px]", children: /* @__PURE__ */ jsxRuntimeExports.jsx(ScrollArea, { className: "h-full", type: "always", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-6 p-4", children: [
-      eventsByDay.map((dayGroup) => /* @__PURE__ */ jsxRuntimeExports.jsx(AgendaDayGroup, { date: dayGroup.date, events: dayGroup.events, multiDayEvents: dayGroup.multiDayEvents }, format(dayGroup.date, "yyyy-MM-dd"))),
+      eventsByDay.map((dayGroup) => /* @__PURE__ */ jsxRuntimeExports.jsx(AgendaDayGroup, { date: dayGroup.date, events: dayGroup.events, multiDayEvents: dayGroup.multiDayEvents }, format$1(dayGroup.date, "yyyy-MM-dd"))),
       !hasAnyEvents && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col items-center justify-center gap-2 py-20 text-muted-foreground", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(CalendarX2, { className: "size-10" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm md:text-base", children: t2("events.noEventsScheduled") })
